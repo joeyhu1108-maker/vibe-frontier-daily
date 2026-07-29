@@ -1,7 +1,98 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-28T15:13:24.602Z",
+  "updatedAt": "2026-07-29T12:45:47.750Z",
   "issues": [
+    {
+      "id": "2026-07-29",
+      "note": "最近七天未发现三件证据完整的新作；本期宁可回看三个机制独特的 2026 经典案例，重点是让安全模式、内容关系和作品档案真正进入交互。",
+      "featuredId": "utopia-tokyo",
+      "experiment": {
+        "title": "真实项目关系的「双状态显影」",
+        "input": "Creative Twin 中已确认的项目—输出关系，以及每个项目的真实状态。",
+        "stack": "DOM + CSS mask-image + Pointer Events；不新增 Three.js 依赖。",
+        "target": "同一张项目卡在「项目」与「输出」两种状态间切换，遮罩只显露真实对应关系。",
+        "acceptance": [
+          "每个输出只能回到一个可核验项目",
+          "切换前后项目与输出数量守恒",
+          "390px 使用点击切换，不依赖悬停",
+          "减少动态模式下取消跟随与故障闪烁"
+        ]
+      },
+      "restraint": "只有 Creative Twin 已有稳定的项目—输出—状态映射时，才把关系做成可切换空间；如果数据仍只是项目标题列表，就保持清晰排版，不增加伪装成数据的粒子或 3D。",
+      "cases": [
+        {
+          "id": "utopia-tokyo",
+          "title": "Utopia Tokyo",
+          "author": "SPOTHEROZ（collaborator: Andrew Measham）",
+          "platform": "CSS Design Awards",
+          "pageTime": "Website of the Day · 2026.03.19",
+          "url": "https://www.utopiatokyo.com/",
+          "accent": "#e60012",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "进入红黑东京前先选择 Safe Mode 或 Glitch；随后从日本面具谱系与六项能力中分配选择，生成自己的面具身份。",
+          "why": "安全开关、面具档案和角色生成属于同一套世界观。3D/高对比动效不是背景表演，而是用户决定如何进入、如何阅读、最终成为谁的界面。",
+          "input": "原站可核验的面具类别、Strength、Agility、Vitality、Intellect、Spirit、Ferocity，以及用户的模式与能力选择；属性到最终面具的精确映射未披露。",
+          "layer": "作者页明确呈现 Safe Mode、Glitch 与面具生成器；CSSDA 披露 animated / typographic，公开设计图库标记 WebGL / Canvas 与 3D。未找到作者对具体框架或 Shader 的说明。",
+          "motion": "高对比故障转场建立受监控的东京语气；Safe Mode 提供克制入口。镜头从面具档案收束到能力分配与结果揭晓，运动服从角色生成顺序。",
+          "pipeline": "面具与文化文本 → 分类和能力状态 → 视觉资产/模型 → 交互分配 → 结果页；具体模型格式、渲染器和生成算法未公开。",
+          "performance": "把 Safe Mode 保留为一级入口；移动端减少高频故障与后期处理，面具资产按步骤加载，并为结果保留可读的静态卡。",
+          "transfer": "Creative Twin 可把真实项目状态变成进入模式，再用真实项目—输出关系生成一张身份切片；没有关系数据时不要生成。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作品名、作者、日期来自 CSSDA；流程与字段来自可访问原站；WebGL/Canvas 仅按公开图库标签记录，框架、Shader 和属性映射均未披露。"
+        },
+        {
+          "id": "obsidian-assembly",
+          "title": "The Obsidian Assembly",
+          "author": "Fiddle.Digital",
+          "platform": "CSS Design Awards",
+          "pageTime": "Website of the Day · 2026.03.17",
+          "url": "https://obsidianassembly.com/",
+          "accent": "#ded4e6",
+          "mechanisms": [
+            "滚动变成镜头",
+            "交互变成叙事"
+          ],
+          "memory": "坐标被刻意隐藏，七个地点与四件物品在长滚动中通过石材浮雕、影像序列和局部文字逐步建立关系。",
+          "why": "它把「不可完全看见」变成内容结构：地点、物品、形成过程与准入状态共同决定信息如何出现，模糊和遮挡因此不是装饰滤镜。",
+          "input": "原站公开的地点数量、物品、状态更新、人物与图像；这些是策展内容，不是实时业务数据。",
+          "layer": "官方页署名 Fiddle.Digital；公开资源可核验 Nuxt/Vue SSR、WebGL Canvas relief、WebP 图像序列、sticky/progress 变量与 clip-path 转场。",
+          "motion": "长距离 sticky 段落把滚动映射为揭示进度；Canvas 浮雕维持空间基底，DOM 影像序列在离开、进入、激活三态间切换。",
+          "pipeline": "策展条目与关系 → Nuxt/Vue 内容章节 → WebGL relief 背景 → 滚动进度变量 → DOM/图像序列与路由转场。",
+          "performance": "WebGL relief 离屏时应暂停；公开资源已包含压缩 WebP 与石墙图像，可作为低能力设备替代，移动端缩短 sticky 距离并保留完整文本。",
+          "transfer": "把 Creative Twin 的真实项目作为 Places、已交付成果作为 Objects，用一条已核验关系连接两者；不要复制神秘文案和虚构坐标。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者与内容关系来自原站及 Fiddle.Digital；日期来自 CSSDA；Nuxt/Vue、Canvas、WebGL、滚动变量与资源格式来自公开 HTML/CSS/JS 检查。"
+        },
+        {
+          "id": "quentin-hocde-v26",
+          "title": "Quentin Hocdé — v26.0",
+          "author": "Quentin Hocdé",
+          "platform": "CSS Design Awards",
+          "pageTime": "Nominated · 2026.03.04",
+          "url": "https://quentinhocde.com/",
+          "accent": "#b8b48a",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "安静的 WebGL 渐变托住大尺度网格与十余年项目档案；文字、拖拽和路由运动很多，却没有抢走作品年份、角色与合作信息。",
+          "why": "视觉系统持续服务于档案检索和职业证据。它没有用一个夸张 3D Hero 代替项目，而是让排版、运动与背景形成稳定的作品浏览器。",
+          "input": "作者公开的 2015–2026 项目、角色、合作方、年份和奖项；背景渐变没有被描述为数据映射。",
+          "layer": "作者 About 明确列出 Astro、GSAP、piecesjs；CSSDA 标记 grid / WebGL；独立 WebGL 技术媒体核验背景为 WebGL 渐变。具体 Shader 与 piecesjs 用法未披露。",
+          "motion": "字符与区块转场建立浏览节奏，拖拽和滚动帮助穿行档案；低饱和背景只提供连续氛围，不承担内容含义。",
+          "pipeline": "结构化项目档案 → Astro 页面 → GSAP 排版/路由运动 → WebGL 渐变背景 → Archive 与 About 的证据索引。",
+          "performance": "背景限制 DPR、不可见时暂停；减少动态模式下取消字符拆分与拖拽惯性，移动端优先保留项目、角色、年份和链接。",
+          "transfer": "把 Joey 的真实项目年份、角色和结果先做成可检索档案，再给排版加运动；渐变只能做氛围，不要假装它映射了数据。",
+          "difficulty": "1 天原型",
+          "evidence": "作者、日期和 WebGL 标签来自 CSSDA；Astro、GSAP、piecesjs 来自作者 About；背景 WebGL 来自独立技术媒体观察，Shader 与精确动效参数未公开。"
+        }
+      ],
+      "dateLabel": "JUL 29",
+      "issueNo": "004"
+    },
     {
       "id": "2026-07-27",
       "dateLabel": "JUL 27",
