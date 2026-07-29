@@ -1,7 +1,145 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-29T12:45:47.750Z",
+  "updatedAt": "2026-07-29T16:21:49.164Z",
   "issues": [
+    {
+      "id": "2026-07-30",
+      "note": "本期转向五个独立创作者与小型频道：不以奖项为入口，而看个人作品如何把开放数据、Canvas 粒子、手势、儿童绘画与 Shader 变成可操作的前端界面。两项短视频案例只记录作者明确展示的流程，不补写未公开源码。",
+      "featuredId": "artlas-cs-projects",
+      "experiment": {
+        "title": "把真实年份变成可拖动星图",
+        "input": "Joey 作品集中 8–12 个已有项目的真实年份、项目名和一项已交付结果。",
+        "stack": "Canvas 2D + Pointer Events + 一份本地 JSON；不新增 Three.js。",
+        "target": "按年份把项目排在横向空间中，拖动视野后点击节点展开项目与真实结果。",
+        "acceptance": [
+          "每个节点的横坐标只由真实年份计算",
+          "点击后显示的结果能回到对应项目",
+          "390px 宽度可拖动、可点击且文字不溢出",
+          "减少动态模式下取消惯性，只保留直接拖动"
+        ]
+      },
+      "restraint": "Creative Twin 只有在项目年份、角色、输出或行为记录能形成真实映射时才接入空间视图；如果输入只是五个标题，就使用清晰列表，不用粒子密度或伪随机位置制造数据感。",
+      "cases": [
+        {
+          "id": "artlas-cs-projects",
+          "title": "Artlas — Interactive Art History Universe",
+          "author": "CS Projects",
+          "platform": "YouTube",
+          "pageTime": "Published · 2026.07.11",
+          "url": "https://www.youtube.com/watch?v=k9vpKdsVWeM",
+          "accent": "#63d9ff",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "艺术史不再是一条年表：艺术家按创作年份散布在可航行的宇宙中，用户还能从星图进入 3D 博物馆查看真实作品。",
+          "why": "空间位置、年份、艺术家与馆藏内容有明确对应，宇宙和展馆因此承担检索与切换尺度的任务，而不是给普通卡片套一层星空背景。",
+          "input": "作者明确披露使用 Wikipedia、Wikidata 与 Wikimedia Commons 的艺术家、年份和作品；具体清洗规则、缺失值处理与坐标公式未公开。",
+          "layer": "作者明确披露 Next.js、React、React Three Fiber、Three.js、D3.js 与 PostgreSQL；公开演示站可访问。D3 与 3D 场景之间的具体职责划分未披露。",
+          "motion": "视频展示从无限画布浏览艺术家节点，再进入沉浸式展馆的尺度切换；缓动、相机曲线与碰撞约束未公开。",
+          "pipeline": "开放文化数据 → PostgreSQL 内容层 → D3 空间布局 → React 页面状态 → React Three Fiber / Three.js 展馆；这是按作者技术栈与画面关系整理的可复现管线。",
+          "performance": "星图只渲染视口附近标签，展馆模型与贴图进入后再加载；移动端先提供年份筛选与二维节点，低性能设备把展馆降级为可滑动作品墙。",
+          "transfer": "Joey 作品集可单独把真实项目年份映射为节点位置，点击展开角色和交付结果；不要把 Art History Twin 的艺术史数据混入个人作品集证据层。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者、日期、数据源、技术栈和在线地址来自 YouTube 作者说明；演示站 HTTP 200。坐标算法、模型格式和 Shader 均未公开，相关工程顺序是基于已披露组件的结构化整理。"
+        },
+        {
+          "id": "tech2world-particle-art",
+          "title": "Real-Time 3D Particle Art Generator",
+          "author": "tech2world",
+          "platform": "YouTube",
+          "pageTime": "Published · 2026.07.20",
+          "url": "https://www.youtube.com/watch?v=nYYLdA0HV24",
+          "accent": "#b894ff",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "点与连线在球体、立方体、环面、螺旋、超立方体和莫比乌斯带之间连续变形，鼠标与自动 Magic Mode 共同导演镜头。",
+          "why": "粒子不是一次性爆炸特效，而是一套可切换的形态语法：同一批视觉单元保持身份，通过拓扑目标和镜头状态讲出形态演化。",
+          "input": "作者明确披露形态预设、自动模式、鼠标交互、颜色与相机运动；视频称场景含数百个点，但未公开精确数量或生成参数。",
+          "layer": "作者明确披露 HTML5 Canvas 与 JavaScript，并称未使用外部图形引擎；深度排序、投影矩阵、连线阈值和形态采样算法未公开。",
+          "motion": "视频章节明确包含粒子网络、3D 形态生成、相机运动、交互控制和连续变形；具体插值函数只能从画面推断，不能视为源码事实。",
+          "pipeline": "形态预设 → 目标点采样 → 屏幕投影 → 点线绘制 → 鼠标/自动模式更新；其中目标点与插值实现属于根据效果推断的复现方案。",
+          "performance": "连线检测应使用空间网格或限制邻居数，Canvas 按设备像素比设上限；移动端减少点数、关闭全连接和自动镜头，只保留单一形态拖动。",
+          "transfer": "可把 Joey 的同一组真实项目节点在「年份」「角色」「成果类型」三种布局之间变形；只有节点身份保持一致时，这种形变才有叙事意义。",
+          "difficulty": "1 天原型",
+          "evidence": "作品名、频道、日期、Canvas/JavaScript、形态清单和交互来自公开视频及作者说明；未找到公开源码或在线 Demo，粒子精确数量、投影与插值算法不可核验。"
+        },
+        {
+          "id": "openform-drawing-aquarium",
+          "title": "让小朋友的画游进海底世界",
+          "author": "电磁波Studio",
+          "platform": "抖音精选",
+          "pageTime": "Published · 2026.07.04",
+          "url": "https://jingxuan.douyin.com/m/video/7658670977785735395",
+          "accent": "#ffb35c",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "学生上传一张蜡笔画，画里的角色被转成可在海底场景中游动的 3D 对象，并实时投到教室大屏。",
+          "why": "儿童原画不是装饰素材，而是体验的入口和主角；从纸面角色到公共水族箱的状态变化，让上传动作直接成为课堂叙事。",
+          "input": "作者明确披露输入为学生蜡笔画，使用开源工具 OpenForm，输出为自动转 3D 并实时投屏的海底场景；图像处理与模型生成细节未公开。",
+          "layer": "公开视频可核验上传、角色生成和课堂大屏流程。未发现可直接访问的项目仓库或运行站，无法确认渲染框架、模型格式、骨骼或深度生成方法。",
+          "motion": "角色进入海底后持续游动，课堂大屏提供多人共同观看的镜头；游动路径、避碰和相机规则未披露。",
+          "pipeline": "蜡笔画上传 → 前景/角色提取 → 3D 或伪 3D 资产生成 → 海底场景实例化 → 实时投屏；只有首尾流程为作者明确披露，中间步骤是复现时需要验证的工程假设。",
+          "performance": "上传阶段先压缩与裁切，生成结果复用材质；大屏与学生端分离渲染，移动端只负责上传和状态反馈，低性能模式用 2.5D billboard 代替复杂模型。",
+          "transfer": "Joey 的展览互动可让观众上传一张真实创作，再把它放入公共空间；作品来源、作者和处理状态必须保留，不能把匿名生成物伪装成馆藏数据。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者、日期、OpenForm、蜡笔画上传、自动转 3D 与实时投屏来自公开抖音精选页面；只看到短视频与文字说明，框架、模型管线、动画和部署均不可核验。"
+        },
+        {
+          "id": "computer-vision-watercolor",
+          "title": "Watercolor Painting with Computer Vision",
+          "author": "Fun With Computer Vision",
+          "platform": "YouTube",
+          "pageTime": "Published · 2026.01.07",
+          "url": "https://www.youtube.com/watch?v=vT7IMIKqwYo",
+          "accent": "#ff6f91",
+          "mechanisms": [
+            "交互变成叙事",
+            "模型成为界面"
+          ],
+          "memory": "手掌在摄像头前移动，水彩流场的速度、湍流、涡度与颜色随动作改变；身体本身成为 Shader 调参界面。",
+          "why": "手势没有被简化成一个炫技光标，而是进入流体参数与色彩参数的控制回路，用户的动作持续改写画面状态。",
+          "input": "作者明确披露手部动作输入与 MediaPipe；公开 Demo 可核验 Flow Speed、Turbulence、Viscosity、Vorticity、Swirl Scale、颜色和 Field Scale 等控制项。",
+          "layer": "作者说明使用 MediaPipe、WebGL Shader 与 Kimi；公开站说明项目族使用 Three.js、MediaPipe、HTML/CSS/JS。Watercolor 单项是否使用 Three.js 及 Kimi 是否进入运行时未公开。",
+          "motion": "手势驱动流场变化，Demo 还提供自动动画和随机化；手部关键点到每个参数的精确映射、滤波和延迟补偿未披露。",
+          "pipeline": "摄像头 → MediaPipe 手部关键点 → 参数归一化与平滑 → WebGL 流场/水彩 Shader → UI 数值回显与 PNG 导出；中间映射是依据公开控件整理的复现结构。",
+          "performance": "摄像头推理与 Shader 渲染分频，关键点做低通滤波；移动端降低渲染分辨率并允许关闭摄像头，降级为触摸滑杆和自动动画。",
+          "transfer": "Creative Twin 可把真实、连续的行为输入映射到视觉参数，例如浏览停留时间改变流速；若没有可解释的数据，就保留手动控件，不宣称它是人格映射。",
+          "difficulty": "1 天原型",
+          "evidence": "作品名、作者、日期、MediaPipe/WebGL/Kimi 来自 YouTube 作者说明；公开 Demo 可直接访问并核验参数界面。完整代码位于付费私有仓库，未绕过付费墙，具体 Shader 与手势映射不可核验。"
+        },
+        {
+          "id": "kishimisu-shader-art",
+          "title": "An Introduction to Shader Art Coding",
+          "author": "kishimisu",
+          "platform": "YouTube",
+          "pageTime": "Published · 2023.05.20",
+          "url": "https://www.youtube.com/watch?v=f4s1h2YETNY",
+          "accent": "#7df9a8",
+          "mechanisms": [
+            "数据变成空间",
+            "交互变成叙事"
+          ],
+          "memory": "一个屏幕坐标经过居中、距离场、周期函数、调色板和多次迭代，逐步长成有纵深与呼吸感的霓虹分形场。",
+          "why": "视觉复杂度来自一条可解释的坐标变换链，而不是堆叠素材或后期滤镜；每一步都改变空间结构、边界或时间节奏。",
+          "input": "作者教程明确使用 fragCoord、iResolution 与 iTime，并逐步引入 UV、长度、SDF、smoothstep、sin、fract、迭代、exp 与 pow。",
+          "layer": "作者提供最终 Shadertoy 链接和 GLSL 学习资源；视频公开说明动画由 Manim 与 GLSL Shaders 制作。当前环境访问 Shadertoy 返回 403，因此不声称已复核在线源码。",
+          "motion": "iTime 驱动周期变化，重复坐标与距离场形成向内外呼吸的层级；具体公式以作者教程为准，本期不转录或伪造 Shader。",
+          "pipeline": "像素坐标 → 归一化 UV → 距离/重复变换 → 迭代累积 → 调色板 → fragment 输出；这是视频章节明确展示的教学顺序。",
+          "performance": "控制迭代次数与分辨率，避免在循环中增加动态分支；移动端限制 DPR，减少迭代，并为减少动态模式冻结 iTime 或提供静态封面。",
+          "transfer": "可把一个真实指标作为调色板或形态强度的单一输入，并在旁边解释映射；没有真实指标时，把它作为视觉氛围实验，不命名为数据可视化。",
+          "difficulty": "30 分钟实验",
+          "evidence": "作品名、作者、日期、最终 Shadertoy 地址、输入变量与函数链来自 YouTube 作者页面和视频章节；Shadertoy 当前不可直接复核，Shader 公式、迭代次数与性能数据不作额外断言。"
+        }
+      ],
+      "dateLabel": "JUL 30",
+      "issueNo": "005"
+    },
     {
       "id": "2026-07-29",
       "note": "最近七天未发现三件证据完整的新作；本期宁可回看三个机制独特的 2026 经典案例，重点是让安全模式、内容关系和作品档案真正进入交互。",
