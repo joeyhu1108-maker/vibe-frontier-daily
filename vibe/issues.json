@@ -1,7 +1,100 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-29T16:21:49.164Z",
+  "updatedAt": "2026-08-01T10:47:32.026Z",
   "issues": [
+    {
+      "id": "2026-08-01",
+      "note": "本期只收录三个最近七天且原站可直接访问的案例：一个把演示文稿界面反转成内容，一个把案例集做成连续 3D 空间，一个把制作公司的能力与作品入口编成有声 WebGL 场景。所有技术判断都区分作者或平台披露、公开资源核验与复现建议。",
+      "featuredId": "noomo-showcase-2026",
+      "experiment": {
+        "title": "三个真实案例的镜头式索引",
+        "input": "Joey 作品集中 3 个已存在案例的真实标题、年份、角色、封面和一个可回到原项目的证据链接。",
+        "stack": "语义化 DOM + CSS perspective/transform + IntersectionObserver；不引入 Three.js。",
+        "target": "纵向滚动时让当前案例进入前景、前后案例退到空间两侧，停止滚动后仍能直接点击进入原案例。",
+        "acceptance": [
+          "三个空间节点严格对应三个真实案例，不生成装饰性假项目",
+          "当前节点必须同时显示标题、年份、角色和证据入口",
+          "390px 宽度下改为纵向卡片，点击区域不依赖悬停",
+          "减少动态模式下取消透视位移，只保留清晰的当前项高亮"
+        ]
+      },
+      "restraint": "Creative Twin 只有在真实项目、角色、时间和证据链接能够一一对应时，才值得把案例排成空间；如果数据只有三个营销标题，就保留清晰列表，不用晶体、粒子或伪 3D 制造深度。",
+      "cases": [
+        {
+          "id": "noomo-showcase-2026",
+          "title": "Noomo Showcase",
+          "author": "Noomo Agency",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Website of the Day · 2026.07.25",
+          "url": "https://showcase.noomoagency.com/",
+          "accent": "#566bff",
+          "mechanisms": [
+            "模型成为界面",
+            "滚动变成镜头",
+            "交互变成叙事"
+          ],
+          "memory": "案例不是一排缩略图：访客沿深蓝空间穿过玻璃岩体、发光碎片与项目影像，Salesforce、AMD、Coinbase 等作品像连续房间一样被逐段揭示。",
+          "why": "3D 物体、镜头位置和项目影像共同承担案例索引；空间的价值在于维持前后关系并控制一次只看一个项目，而不是在卡片背后循环一段星空。",
+          "input": "作者明确说明输入是最新客户作品；原站公开资源可核验项目视频、多个 GLB 岩体/相机/文字模型、HDR、材质贴图与滚动时间线文件。每个模型与项目的精确语义对应未公开。",
+          "layer": "作者与 GSAP 公开说明明确披露 Three.js、WebGL、Vue、GSAP、ScrollTrigger、ScrollSmoother 与 SplitText；原站资源可交叉核验 Nuxt、GLTFLoader、DRACOLoader、KTX2Loader、ShaderMaterial、InstancedMesh 与 bloom 后期。",
+          "motion": "作者将它定义为 immersive showcase；公开资源显示滚动时间线、相机模型和 ScrollTrigger。镜头穿行与 DOM 项目文字同步这一结构可核验，具体关键帧、缓动和滚动比例未公开。",
+          "pipeline": "客户案例视频与品牌材料 → GLB 岩体和文字资产 → HDR/贴图材质 → Three.js 场景与后期 → GSAP 滚动时间线 → Vue/Nuxt 内容层；资产职责来自公开资源，复现时可用 Blender，原作制作软件与精确镜头表未披露。",
+          "performance": "公开资源包含 DRACO、KTX2、移动端专用相机与 Hero 模型，并限制像素比。复现时还应延迟项目视频、离屏暂停渲染；低能力设备保留同序的静态案例卡与视频封面。",
+          "transfer": "Joey 作品集可只选三个最强真实案例，把每个空间段绑定到真实年份、角色和证据链接；镜头到位后必须立即出现可点击正文，不能让空间漫游替代案例阅读。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作品名、作者、日期、客户范围和 WebGL 标签来自 CSS Design Awards 与作者公开说明；Three.js/Vue/GSAP 栈得到 GSAP 官方展示与原站资源交叉核验。GLB、HDR、视频、移动模型和加载器可公开检查；模型制作软件、完整相机关键帧和每项资产语义未披露。"
+        },
+        {
+          "id": "nodeck-anti-deck",
+          "title": "Nodeck — The Anti-Deck",
+          "author": "Bogdan Kolomiyets",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Nominated · 2026.07.31",
+          "url": "https://www.nodeck.online/",
+          "accent": "#dfff19",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "一套故意像 PowerPoint 的十页网站，把 Prev/Next、页码、Presenter Notes、荧光笔、便签、橡皮和图钉变成可操作的讽刺舞台。",
+          "why": "它批判演示文稿文化，却让用户亲手操作演示文稿界面；形式与观点发生直接冲突。每页工具、排版和声音都推进论点，不是给普通咨询文案套一层夸张动效。",
+          "input": "作者站公开的十页咨询叙事、图片与声音，以及用户的前后翻页、键盘、滚轮、触控、指针和拖拽操作；没有实时业务数据或生成模型输入。",
+          "layer": "作者元数据明确署名 Bogdan Kolomiyets。公开 HTML 与模块资源可核验语义化十页结构、GSAP、Draggable、Swiper、Howler、data-split 文本和声音开关；未发现 WebGL 或 Three.js 运行证据。",
+          "motion": "页级转场保持固定控制台，局部再使用字符拆分、轮播、拖拽图钉和指针响应；公开 bundle 还包含键盘、滚轮与触控分支。每个段落的精确时间线没有作者说明。",
+          "pipeline": "十页语义 HTML 与观点脚本 → 固定翻页状态机 → GSAP/Swiper 的页内编排 → Howler 声音层 → 键盘、鼠标与触摸输入；这条顺序可由公开 DOM 和 bundle 交叉核验。",
+          "performance": "原站预载字体与首屏 WebP，并提供静音入口；复现时按页加载图像与声音、离页停止局部循环。移动端保留 Prev/Next 和滑动，关闭持续指针跟随；减少动态模式直接切页。",
+          "transfer": "Joey 的方法页可借用固定页码和 Presenter Notes：主画面讲决策，注释层写证据边界；不要复制办公文具风格，也不要把完整作品集锁成只能顺序翻页。",
+          "difficulty": "1 天原型",
+          "evidence": "作品名、作者、日期与 anti-PowerPoint 定义来自 CSS Design Awards 和原站元数据；十页、固定控制、讲者注释、GSAP/Draggable、Swiper、Howler、键盘/触控分支来自公开 HTML 与 bundle。未核验到 WebGL，声音素材内容与精确转场参数不作断言。"
+        },
+        {
+          "id": "homunculus-inc-2026",
+          "title": "homunculus Inc. 2026",
+          "author": "homunculus Inc.",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Website of the Day · 2026.07.30",
+          "url": "https://homunculus.jp/",
+          "accent": "#f4f0df",
+          "mechanisms": [
+            "模型成为界面",
+            "滚动变成镜头",
+            "交互变成叙事"
+          ],
+          "memory": "黑场里的半透明有机膜、面孔、眼睛与牙齿模型组成一具会呼吸的数字身体；用户选择有声或静音进入，再从同一场景抵达 About、Works 与 Company。",
+          "why": "生物模型不是与内容无关的 Hero：它们把制作公司的技术身份、声音入口、场景切换和三个信息分支接在同一套界面里，作品列表仍保留真实视频与 live link。",
+          "input": "原站公开的公司介绍、作品 JSON、项目视频与海报、GLB 面孔/眼睛/牙齿等模型、纹理、背景音乐和语音；鼠标、滚轮、触控与有声/静音选择控制体验。",
+          "layer": "CSS Design Awards 明确标记 WebGL 与 video/sound；原站资源可核验 Three.js、GLTFLoader、DRACOLoader、KTX2Loader、ShaderMaterial/RawShaderMaterial、InstancedMesh、GSAP、Howler、Canvas 与 WebGLRenderer。",
+          "motion": "统一 requestAnimationFrame 循环更新 WebGL 与 DOM，滚轮/触控推进场景，声音导航可触发语音与字幕，详情页再切换到可滚动正文和作品视频。相机曲线与 Shader 公式未公开说明。",
+          "pipeline": "公司与作品数据 → GLB/纹理/声音资产 → Three.js 场景和 Shader → GSAP 场景管理 → Howler 语音/BGM → About、Works、Company 的 DOM 详情；具体 3D 制作流程未披露。",
+          "performance": "公开代码区分 PC、平板与手机并使用压缩模型加载器、像素比设置和静音入口。复现时应延迟语音与作品视频、隐藏时暂停帧循环；低端设备用 OG/作品海报和完整正文替代实时场景。",
+          "transfer": "Joey 的 About 可把三个真实能力域映射为三个模型入口，但每个入口必须落到真实案例、角色和证据；声音只能作为可选层，正文与导航不能依赖它。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作品名、作者、日期、WebGL 与声音标签来自 CSS Design Awards；公司身份、三类详情、作品 JSON、live link、模型/纹理/声音资产及技术栈来自可访问原站和公开资源。模型的象征含义、Shader 公式、相机轨迹与 3D 制作软件未披露。"
+        }
+      ],
+      "dateLabel": "AUG 1",
+      "issueNo": "006"
+    },
     {
       "id": "2026-07-30",
       "note": "本期转向五个独立创作者与小型频道：不以奖项为入口，而看个人作品如何把开放数据、Canvas 粒子、手势、儿童绘画与 Shader 变成可操作的前端界面。两项短视频案例只记录作者明确展示的流程，不补写未公开源码。",
