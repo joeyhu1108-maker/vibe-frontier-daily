@@ -1,7 +1,99 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-01T10:47:32.026Z",
+  "updatedAt": "2026-08-03T12:07:11.103Z",
   "issues": [
+    {
+      "id": "2026-08-03",
+      "note": "本期只收录三个最近七天且当前直链可访问的案例：一个把音频分析变成可导出的生成画，一个把作品集改造成可完成任务的 3D 游乐场，一个把摄影服务装进真实可滚动的手机界面并用 WebGL 改写桌面背景。作者、页面时间、视觉与技术资源均已交叉核验；Cula 旧 3D 站因当前直链已被新站替换而淘汰。",
+      "featuredId": "spectral-field-rob-fwa",
+      "experiment": {
+        "title": "一段音频画出一条可复现的谱线",
+        "input": "一段 20–40 秒、自己拥有使用权的本地音频；只在浏览器内解码，不上传。",
+        "stack": "原生 Web Audio API + Canvas 2D + 一个 file input；不引入 Three.js。",
+        "target": "把低、中、高三个频段分别映射为步长、转角与颜色，让同一音频每次得到同一条连续径向谱线。",
+        "acceptance": [
+          "同一文件刷新后重新选择，路径结构保持一致",
+          "暂停与继续只改变揭示进度，不重置已绘图像",
+          "390px 宽度下仍能选择文件、播放、暂停并看到完整构图",
+          "音频解码失败时显示明确错误，页面不保留或上传文件"
+        ]
+      },
+      "restraint": "Creative Twin 只有在真实项目日期、角色、证据数量或媒介类型能够稳定映射到位置、尺度、颜色时，才接入这种生成机制；如果输入只是营销形容词，就保留清晰案例列表，不把随机纹理包装成数据人格。",
+      "cases": [
+        {
+          "id": "spectral-field-rob-fwa",
+          "title": "Spectral Field",
+          "author": "Rob FWA",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Website of the Day · 2026.08.02",
+          "url": "https://www.robfwa.com/",
+          "accent": "#f4b860",
+          "mechanisms": [
+            "数据变成空间",
+            "交互变成叙事"
+          ],
+          "memory": "黑场中央先悬着一枚琥珀色声学壳体；选择曲目后，低中高频、节拍、音高与声像共同牵引一支连续画笔，逐帧长成可保存的放射谱场。",
+          "why": "音频不是给背景动画加一点抖动：同一文件先生成确定性的声音 DNA，再决定构图家族、对称数、镜像、路径、色相与揭示节奏；最后的 PNG/SVG 是输入留下的作品，而不是播放控件旁的装饰波形。",
+          "input": "作者元数据明确说明任意曲目都在浏览器内生成作品；公开源码可核验内置曲目或本地文件、FileReader、AudioContext 解码、FFT、低中高频、节拍、音高、左右声像、响度与动态分析。精确音乐版权仍由使用者负责。",
+          "layer": "原站公开源码使用 Canvas 2D 与 Web Audio API，实时 Analyser 的 fftSize 为 2048；离线分析另以 1024 点窗口计算频段、chroma、节拍、速度、调性与音频种子，再把连续线段按旋转/镜像复制并以 lighter 混合叠加。",
+          "motion": "作品先离线生成完整确定性路径，播放时再按 currentTime 逐段揭示；节拍改变转角或步长，频段改变笔触，音高牵引色相。没有虚构镜头系统，视觉运动本质是时间轴上的绘图进度。",
+          "pipeline": "本地音频或内置曲目 → 浏览器解码 → 离线 FFT 与声音 DNA → 确定性随机种子选择 Orbit/Spiral/Bloom/Rift/Lattice 构图 → Canvas 实时揭示 → PNG/SVG 导出；关键映射均可在公开源码中检查。",
+          "performance": "源码把设备像素比封顶为 2，分析过程定期让出主线程，画布 resize 后按记录重绘，并提供直接跳到成品；CSS 在减少动态模式下停止入口脉冲。复现时低端机可降低采样率和对称副本，保留静态导出与音频播放。",
+          "transfer": "Joey 可让用户选择一个真实案例，用年份、项目时长、角色数和证据数生成唯一索引纹样；点击纹样必须回到原案例与证据，生成图不能替代项目说明。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作品名、作者、日期和生成式音频画的定位来自 CSS Design Awards 与原站元数据；首屏和交互在当前直链实际渲染通过。Canvas 2D、Web Audio、FFT 2048、离线分析、确定性构图、逐段揭示、PNG/SVG 导出和像素比限制来自可访问源码。音乐分析质量、浏览器兼容边界与版权归属不作超出源码的推断。"
+        },
+        {
+          "id": "motiondeep-play-area",
+          "title": "Motiondeep — Immersive Play Area",
+          "author": "John Jattoh / Motiondeep",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Website of the Day · 2026.07.29",
+          "url": "https://www.motiondeep.com/",
+          "accent": "#ffee00",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "一个方头角色站在霓虹失真游乐场里，作品标题、入口、金币与传送门都成为可接近的空间物件；用户移动、转镜头、收集，再穿过昼夜两套状态。",
+          "why": "3D 世界承担了作品集的信息架构和任务状态：靠近、收集、完成与传送会改变 HUD、声音、后期和可见入口。它不是把一段循环角色动画铺在 About 文案背后。",
+          "input": "公开界面与源码可核验键鼠移动、拖拽/中键旋转镜头、点击、触控、移动端倾斜镜头、金币状态、传送门距离和声音开关；角色碰撞与任务判定的完整规则因源码混淆而不能精确复述。",
+          "layer": "原站元数据署名 John Jattoh，并公开导入 Three.js 0.158、GLTFLoader、DRACOLoader、EffectComposer、RenderPass、UnrealBloomPass、RGBShiftShader、FXAA、Bokeh、GSAP 与 Lottie；Web Audio 生成背景、金币、冲击和传送反馈。",
+          "motion": "第三人称角色与相机在连续空间中移动，距离驱动传送门强度与声音，昼夜切换改变色彩、星场和后期；DOM 按钮与提示投影到 3D 目标附近。精确动画剪辑、相机阻尼和碰撞参数未由作者说明。",
+          "pipeline": "角色与场景模型 → GLTF/DRACO 加载 → 角色、相机、射线与任务状态 → bloom/RGB shift/FXAA/Bokeh 后期 → GSAP/Lottie HUD → Web Audio 反馈；源码可证明模块组合，但模型制作软件和原始工程未公开。",
+          "performance": "公开源码在移动端扩大相机视野、精简 HUD，并将像素比限制为移动端 1.5、桌面端 2；同时引入 DRACO 加载器。复现时还应提供静态作品入口、关闭景深与色差，并在页面失焦时暂停渲染和音频。",
+          "transfer": "Joey 可把三个真实能力域做成三个可到达的空间节点，收集物改为项目证据而不是金币；任何用户都应能从固定菜单直接进入案例，漫游只能补充叙事，不能成为访问门槛。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作品名、作者组织与 2026.07.29 页面时间来自 CSS Design Awards；John Jattoh 身份、Three.js/WebGL 专长、Three.js 0.158、加载器、后期、GSAP、Lottie、Web Audio 和移动端分支来自当前可访问原站。奖项截图与站点界面可验证角色、霓虹空间和镜头提示；模型来源、碰撞规则和完整关卡逻辑未公开。"
+        },
+        {
+          "id": "max-ready-cinematic-portraits",
+          "title": "Max Ready — Cinematic Portraits",
+          "author": "Maksim Kyshtymov / Max Ready",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Nominated · 2026.08.02",
+          "url": "https://maxready.me/en",
+          "accent": "#ee0000",
+          "mechanisms": [
+            "滚动变成镜头",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "桌面像一张俯拍摄影工作台：镜头、相机机身与红色绳带围着中央手机；真正的服务叙事在手机内滚动，外部暗房背景随章节被显影成不同场景。",
+          "why": "手机框不是装饰 mockup，而是完整的内容、价格、信任和预约路径；桌面 WebGL 只负责把滚动章节转译成暗房显影，移动端则直接成为原生页面。形式准确服务于摄影业务的观看与下单。",
+          "input": "原站可核验纵向滚动、指针和移动端陀螺仪视差、语言切换与预约入口；公开 HTML 还包含真实服务城市、套餐和响应式照片。没有实时相机输入或生成式影像。",
+          "layer": "公开资源显示 Astro 生成的语义 DOM/CSS 手机界面、分层 WebP 人像与桌面 Canvas；DesktopBackdrop 直接使用原生 WebGL 和 GLSL，在三张背景图之间按亮度遮罩显影，不依赖 Three.js。",
+          "motion": "手机内滚动决定当前章节，桌面背景以约两秒的亮度阈值 shader 从暗到亮转换；Hero 前后景由指针或陀螺仪产生深度视差，文字与区块另用 CSS/JS 进入。具体摄影拍摄与调色流程不在网页源码中。",
+          "pipeline": "摄影内容与套餐文案 → 多尺寸 WebP/前后景切片 → Astro DOM 与手机滚动容器 → 三张桌面场景纹理 → 原生 WebGL 显影 shader → 预约与多语言入口；内容、交互和转化在同一条路径中完成。",
+          "performance": "源码仅在 700px 以上启用桌面 WebGL，像素比封顶为 1，关闭 antialias 与 depth，图片提供多档 srcset；纹理失败或 WebGL context lost 时隐藏画布并保留 CSS 背景，减少动态模式直接切换最终状态。",
+          "transfer": "Joey 可把一台固定设备作为真实案例阅读窗，外部背景只在进入 Research、Prototype、Outcome 时切换为对应证据图；每段仍需有标题、角色、时间和原链接，不能只剩设备壳和视差。",
+          "difficulty": "1 天原型",
+          "evidence": "作品名、Maksim Kyshtymov 署名与 2026.08.02 时间来自 CSS Design Awards；当前原站元数据署名 Max Ready，公开 HTML 可核验城市、套餐、多语言、指针/陀螺仪视差与响应式图片。原生 WebGL、GLSL 显影、三纹理、滚动章节、像素比和桌面降级来自公开资源；未发现 Three.js，摄影后期参数与商业结果未披露。"
+        }
+      ],
+      "dateLabel": "AUG 3",
+      "issueNo": "007"
+    },
     {
       "id": "2026-08-01",
       "note": "本期只收录三个最近七天且原站可直接访问的案例：一个把演示文稿界面反转成内容，一个把案例集做成连续 3D 空间，一个把制作公司的能力与作品入口编成有声 WebGL 场景。所有技术判断都区分作者或平台披露、公开资源核验与复现建议。",
