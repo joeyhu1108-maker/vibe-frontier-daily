@@ -1,7 +1,125 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-03T12:07:11.103Z",
+  "updatedAt": "2026-08-04T15:51:14.373Z",
   "issues": [
+    {
+      "id": "2026-08-04",
+      "note": "本期收录四个最近七天、当前直链可访问且作者与页面时间可交叉核验的案例：一份把历史舞台作品组织成三幕滚动档案并在第三幕引入可触摸图像表面的个人实验；一个把月度书目、筛选、拖拽书架与会员入口连成真实电商路径的编辑型书店；一次把托斯卡纳工艺拆成可操作章节、声音与路由状态的品牌旅程；以及一个明确标注为非商业概念、只在产品决策节点加载 3D 椅子的家具站。所有技术结论均来自当前页面、公开资源或 source map；未把标签、类型引用或视觉推断升级为运行时事实。",
+      "featuredId": "triadic-ballet-ai",
+      "experiment": {
+        "title": "让一张真实项目图变成可触摸的证据膜",
+        "input": "一张来自 Joey 真实项目、拥有展示权的图片；同时准备项目年份与证据数量两个可核验字段。",
+        "stack": "Three.js CDN + PlaneGeometry + Raycaster + 一个自写顶点回弹循环；不加后期、不接生成式 AI。",
+        "target": "黑色舞台中央只保留一张图像平面；指针经过时局部下陷并缓慢回弹，网格密度仅由真实证据数量映射，年份只决定初始倾角。",
+        "acceptance": [
+          "同一项目数据每次得到相同网格密度与初始倾角",
+          "指针离开后平面在两秒内稳定回到原位，不持续漂移",
+          "画布离开视口后停止顶点更新，设备像素比封顶为 1.5",
+          "390px 宽度或减少动态模式下显示原始静态图片，并保留项目标题与证据链接"
+        ]
+      },
+      "restraint": "Creative Twin 只有在项目年份、证据数量、媒介类型等真实字段能够稳定映射到幕次、网格密度或颜色时，才接入这种表面机制；如果输入只是“未来感”“神秘”等形容词，就保留静态证据图，不把随机形变包装成数据人格。",
+      "cases": [
+        {
+          "id": "triadic-ballet-ai",
+          "title": "The Triadic Ballet AI",
+          "author": "Isabelle Cuisset / isaWabi",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Website of the Day · 2026.08.04（详情页仍保留 Nominated · 2026.07.04）",
+          "url": "https://www.thetriadicballetai.com/",
+          "accent": "#f2c40f",
+          "mechanisms": [
+            "滚动变成镜头",
+            "模型成为界面",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "黑场中央先出现一张小幅舞台档案；随后黄、玫瑰、黑三幕像实体幕布依次翻开，第三幕的人像不再只是照片，而成为会被指针压出凹陷、拖出色散的暗色薄膜。",
+          "why": "三幕的颜色、节奏、排版和交互强度对应作品从滑稽、仪式到抽象的内容变化；Three.js 只在第三幕接管一张关键图像，让“身体变成几何”从文案成为可触摸界面。作者还明确标注所有影像是 AI 生成的教育性重构，不伪装成历史档案。",
+          "input": "作者页面明确给出 Oskar Schlemmer 的三幕结构、1922 首演时间、早期摄影档案作为视觉参考以及 AI 重构免责声明；运行时输入只有滚动和桌面指针，没有实时生成图像或用户上传。",
+          "layer": "Webflow 负责语义内容、响应式图片和视频；公开页面加载 GSAP 3.15、Flip、ScrollTrigger、SplitText 与 ScrollSmoother。接近第三幕时，桌面端才从固定提交版本动态加载 Three.js 0.170 组件，用高细分 PlaneGeometry、Raycaster、自定义 ShaderMaterial 和图像纹理组成可变形表面。",
+          "motion": "滚动触发三幕幕布、卡片翻转、标题切换和章节色场；第三幕网格按指针命中点施加局部力、阻尼和回弹，法线变化再驱动高光，片元着色器按运动方向产生拖影与色散。章节触发关系和回弹行为来自公开代码，内容与动效的对应关系属于本次结构判断。",
+          "pipeline": "历史作品结构与明确免责声明 → AI 重构图片/视频 → Webflow 三幕内容 → GSAP 桌面/移动分支 → 第三幕临近时懒加载固定版本 Three.js 组件 → 纹理平面、顶点回弹与着色器反馈；没有证据表明站点在浏览时调用生成模型。",
+          "performance": "页面在 992px 处分开桌面与移动动画，移动端使用简化章节；Three.js 只在桌面且第三幕进入预加载区后加载。组件把 DPR 封顶为 2，并用 IntersectionObserver 在离屏时跳过变形和渲染；复现时还应在减少动态模式下直接保留静态关键图。",
+          "transfer": "Joey 可把一个真实案例拆成 Research、Prototype、Outcome 三幕，每幕只换真实证据与节奏；把可变形表面留给最关键的一张结果图，并在旁边保留日期、角色、原链接和“推断/事实”标签，不能用交互膜替代证据。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSS Design Awards 首页确认 2026.08.04 Website of the Day，详情页确认 Isabelle Cuisset、作品说明与 2026.07.04 提名日期；原站当前 HTTP 200，页面 credits 明确个人项目、isaWabi 设计开发与 AI 重构免责声明。Webflow、GSAP 插件、桌面/移动断点、第三幕懒加载、Three.js 0.170、PlaneGeometry、Raycaster、自定义 shader、DPR 限制和 IntersectionObserver 均来自公开页面及固定版本组件源码。AI 生成工具、提示词、历史素材清单和完整设计过程未公开。"
+        },
+        {
+          "id": "aardvark-book-club-2026",
+          "title": "Aardvark Book Club — Editorial Rebuild",
+          "author": "FUTURE THREE® / Dylan Brouwer / Eduard Bodak",
+          "platform": "CSS Design Awards / brand site",
+          "pageTime": "Website of the Day · 2026.08.03",
+          "url": "https://www.aardvarkbookclub.com/",
+          "accent": "#433792",
+          "mechanisms": [
+            "滚动变成镜头",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "深紫色封面之后，一组真实新书像略带歪斜的硬壳卡片铺开；横向拖动时每本书围绕视口中心改变倾角，滚动到装箱段落，连续帧把“选书—装箱—送达”变成一段可操控的编辑动画。",
+          "why": "视觉动作直接服务月度书单、类型筛选、书籍详情、会员注册和配送解释；书封、标签、价格与入口都是真实业务内容。所谓立体感主要来自连续帧、层叠排版和拖拽惯性，而不是把一个无关 3D 物体放在首屏。",
+          "input": "当前页面公开八月书单、封面、简介、类型标签、会员价格、配送地区与登录/注册入口；用户输入包括滚动、横向拖拽、书名搜索、类型筛选和点击详情。CSSDA 明确作者与“editorial curation meets custom 3D craft”，但没有披露原始建模文件。",
+          "layer": "Webflow 提供 CMS 与语义 DOM；公开资源加载 Barba、GSAP/ScrollTrigger/SplitText/CustomEase/Inertia/DrawSVG、Lenis、Smooothy 与 MiniSearch。Canvas 2D 播放按滚动进度索引的 WebP 连续帧，书架和卡片使用 DOM/CSS 变换与拖拽惯性；未发现 Three.js 或原生 WebGL 运行证据。",
+          "motion": "滚动进度驱动装箱连续帧、标题和手写文字；横向书架根据卡片相对视口中心的位置计算旋转和纵向偏移，并区分拖拽与点击。弹性入场、徽章、SVG 路径和 emoji 只在允许动态时触发。",
+          "pipeline": "月度 CMS 书目与标签 → 响应式封面/连续帧资产 → Webflow 页面 → Canvas 滚动序列与 GSAP 章节 → Smooothy 拖拽书架 → MiniSearch 模糊前缀检索 → 外部会员应用完成注册与下单。",
+          "performance": "连续帧分别配置桌面、移动和静态资源，并按当前帧附近建立加载队列；减少动态模式改用静态帧，ResizeObserver 和清理函数处理页面切换。公开代码按原生 DPR 放大 Canvas 而未见明确上限，复现时应封顶 1.5，并把搜索与书单 DOM 保留为无动画降级。",
+          "transfer": "Joey 可把作品集案例做成可拖拽的“证据书架”：封面对应真实项目，标签对应角色和媒介，搜索结果直接进入案例详情；连续帧只解释一个关键流程，不要让每张卡片都承担重动画。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSS Design Awards 确认 2026.08.03 Website of the Day、FUTURE THREE® 及两位协作者，并公开编辑策展与 custom 3D craft 描述；原站当前 HTTP 200，公开八月书目、会员路径和业务信息。Webflow、Canvas 2D、桌面/移动/静态序列、GSAP 系列插件、Barba、Lenis、Smooothy、MiniSearch、减少动态分支和拖拽判定来自可访问页面与 Slater 脚本。没有发现 Three.js/WebGL 或可下载 3D 模型，CSSDA 的“3D craft”不被扩写为具体引擎。"
+        },
+        {
+          "id": "tuscan-journey-pasticcino",
+          "title": "The Tuscan Journey Begins",
+          "author": "MONOGRID SRL for Weekend Max Mara",
+          "platform": "CSS Design Awards / brand interactive site",
+          "pageTime": "Website of the Day · 2026.08.01",
+          "url": "https://weekend-mm-2026-pasticcino-bag-master.monogrid.io/en/",
+          "accent": "#4a5718",
+          "mechanisms": [
+            "滚动变成镜头",
+            "交互变成叙事"
+          ],
+          "memory": "一列旧式车厢从橄榄绿纹样中显影，声音提示像登车广播；旅程随后停靠织物档案、采石场和皮具工坊，用户翻布样、按住雕刻、拖动剪刀与金属扣，最后才看到成品包。",
+          "why": "三个章节不是品牌视频的分段播放，而是把材料选择、持续施力、剪裁、涂胶和放置扣件变成必须完成或明确跳过的动作；每种输入对应一种工艺语义，路由、声音、纹样和完成状态共同推进旅程。",
+          "input": "CSSDA 明确这是 MONOGRID 为 Weekend Max Mara 制作的意大利工艺互动旅程。公开 source map 可核验六种布料纹样、章节路由、三秒按住进度、拖放剪刀、滑杆涂胶、放置金属扣、声音开关、字幕状态、跳过交互和最终商品链接。",
+          "layer": "公开构建包含 Vue、Vue Router、GSAP 3.14.2、ScrollTrigger、Howler、Lottie、响应式图片/纹理与按章节拆分的代码块。source map 还暴露 stage texture 的 Three.js Node 类型接口，但仅凭类型引用不足以确认完整渲染器，因此本拆解不声称 Three.js 场景、模型数量或 shader 公式。",
+          "motion": "章节切换使用纹理框景、wipe、标题错位、照片堆叠和声音过门；织物卡片从画外滚入，采石段把按住进度映射为旋转、缩放与消失，皮具段用拖放与滑杆触发分段反馈。这里的“镜头”是章节转场和前后景组织，不是被证明存在的 3D 相机。",
+          "pipeline": "工艺章节与商品信息 → 纹样、照片、Lottie、音轨和 SFX → Vue 路由与阶段状态 → GSAP/ScrollTrigger 转场 → Howler 声音反馈 → 每章独立交互与完成/跳过状态 → Outro 与商品链接；公开 source map 可检查主要组件和输入逻辑。",
+          "performance": "首页只加载预载器与主框架，Intro、三章、Outro 和 Gift 使用路由级代码分割；提供移动断点、减少动态检测、声音自愿开启、字幕状态和跳过交互。复现时应继续按章节延迟图片/音频，并保证静音、低性能或不操作时仍能进入下一章。",
+          "transfer": "Joey 可把真实案例过程做成三站旅程：素材选择用可翻卡片，关键决策用按住确认，最终交付用拖放组装；每站都必须展示原始输入和结果证据，并提供“跳过动画直接读案例”的旁路。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSS Design Awards 确认 2026.08.01 Website of the Day、MONOGRID SRL 与 Weekend Max Mara 工艺旅程；原站当前 HTTP 200 并实际渲染声音入口。Vue、路由章节、GSAP、Howler、Lottie、六种纹样、按住/拖放/滑杆交互、完成与跳过状态、代码分割及减少动态检测来自公开 bundle 与 source map。Three.js 只在公开类型路径中出现，不能据此确认实际渲染架构；原始拍摄、三维资产和商业效果未公开。"
+        },
+        {
+          "id": "noho-product-world",
+          "title": "Noho — Product World Concept",
+          "author": "Eugene Morev / Alex Ivanov",
+          "platform": "CSS Design Awards / concept site",
+          "pageTime": "Website of the Day · 2026.07.31",
+          "url": "https://noho.ink/",
+          "accent": "#f0df54",
+          "mechanisms": [
+            "模型成为界面",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "首屏被切成一半宣言、一半错落摄影拼贴；滚动进入产品区后，一把椅子从海报占位切换成可实时换座面与椅身颜色的模型，Random 和 Mood 像两个明确的试玩动作。",
+          "why": "3D 没有覆盖整站，而是被放在颜色、形态和适配决策发生的位置；前面的摄影、材料与可持续性排版建立语境，后面的问答和小测验把视觉体验接回选择。它的边界也很清楚：这是非商业改版概念，不是假装已经上线的品牌商店。",
+          "input": "CSSDA 明确标注非商业 Noho redesign concept、Eugene Morev 与协作者 Alex Ivanov。公开页面可核验滚动、产品弹层、问卷、Random、Mood、椅身/座面颜色集合与一个压缩 GLB；具体订单、库存和真实品牌授权不在本次证据范围。",
+          "layer": "语义 DOM、摄影 WebP 与产品内容构成主页面，GSAP/ScrollTrigger 和 Lenis 负责滚动编排；产品节点使用 Google model-viewer 自定义元素、海报图与 compressed-combined.glb。CSSDA 标注 WebGL，但公开业务脚本未显示自写 Three.js 场景，因此不把 model-viewer 的内部实现冒充作者披露。",
+          "motion": "首屏摄影拼贴随滚动形成节奏，产品区再切入实时模型、随机配色和背景 Mood；问卷与弹层承担选择反馈。model-viewer 的精确相机轨道、灯光和材质制作参数未公开，本期只确认可访问模型资源与控制入口。",
+          "pipeline": "品牌概念与摄影 → Webflow 式 DOM/本地资源 → GSAP/Lenis 页面编排 → 海报占位 → 产品区临近时懒加载 model-viewer → 压缩 GLB 与颜色控制 → 问卷/FAQ；这是设计原型链路，不是已验证的电商交易链路。",
+          "performance": "公开脚本先显示 poster，并在产品区接近视口时用 IntersectionObserver、requestIdleCallback 和工作队列预取/加载 model-viewer；只有一个压缩 GLB，且按桌面、平板、触摸与方向分支重排。复现时应保留静态海报、限制模型纹理尺寸，并在低端机禁用自动旋转。",
+          "transfer": "Joey 可只给一个需要比较材质或形态的真实项目加入 3D viewer，其他案例保持快速图片卡；模型旁必须并列列出方案差异、角色与结果，Random 只能探索组合，不能替用户做无依据的推荐。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSS Design Awards 确认 2026.07.31 Website of the Day、Eugene Morev、Alex Ivanov、非商业改版概念与 WebGL 标签；原站当前 HTTP 200 且首屏实际渲染。公开 HTML/脚本可核验 GSAP、ScrollTrigger、Lenis、model-viewer、压缩 GLB、poster、颜色数据、Random/Mood、问卷、IntersectionObserver、requestIdleCallback、工作队列和设备断点。model-viewer 内部 Three.js 版本、相机约束、材质制作与商业上线状态未由作者披露。"
+        }
+      ],
+      "dateLabel": "AUG 4",
+      "issueNo": "008"
+    },
     {
       "id": "2026-08-03",
       "note": "本期只收录三个最近七天且当前直链可访问的案例：一个把音频分析变成可导出的生成画，一个把作品集改造成可完成任务的 3D 游乐场，一个把摄影服务装进真实可滚动的手机界面并用 WebGL 改写桌面背景。作者、页面时间、视觉与技术资源均已交叉核验；Cula 旧 3D 站因当前直链已被新站替换而淘汰。",
