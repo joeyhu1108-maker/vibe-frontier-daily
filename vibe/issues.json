@@ -1,7 +1,102 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-04T15:51:14.373Z",
+  "updatedAt": "2026-08-05T10:41:16.589Z",
   "issues": [
+    {
+      "id": "2026-08-05",
+      "note": "本期收录三个最近两天、当前直链可访问且作者与页面时间可交叉核验的案例：一份把潜在自然植被、古生态模型与物种资料组织成可旋转地球、地点切换和双视频对照的推测生态图谱；一个把实时流体场、3D 场景与项目列表合成同一作品集界面的 Creative Technologist 站点；以及一个以长页、横向粘性时间轴和响应式影像编排豪宅叙事的房地产站。所有技术结论均来自奖项页、当前原站和公开资源；未把科学引用等同于可复现模型，也未把 bundle 中存在的库等同于每项能力都已启用。",
+      "featuredId": "terra-prime",
+      "experiment": {
+        "title": "把五条真实项目记录变成一张证据轨道",
+        "input": "从 Joey 一个真实项目中取五条可核验记录：日期、阶段、角色、证据链接与证据数量。",
+        "stack": "单 HTML + 原生 SVG + 30 行左右 JavaScript；不接 3D 引擎，不生成随机数据。",
+        "target": "将日期映射为环上角度、阶段映射为半径、证据数量映射为节点大小；悬停或点击节点时显示原始记录与链接。",
+        "acceptance": [
+          "同一份输入每次得到完全相同的角度、半径和节点大小",
+          "每个节点都能回到一条真实记录与一个可打开的证据链接",
+          "390px 宽度下标签不互相覆盖，节点仍可点击",
+          "减少动态模式下不旋转轨道，只保留静态布局和信息面板"
+        ]
+      },
+      "restraint": "Creative Twin 只有在日期、阶段、角色、证据数量等真实字段能够稳定映射到位置、尺度或状态时，才接入这种空间化机制；如果输入只是风格词或情绪词，就保留清晰的案例列表，不把随机场包装成数字人格。",
+      "cases": [
+        {
+          "id": "terra-prime",
+          "title": "Terra Prime · Speculative Ecology Atlas",
+          "author": "Fang He",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Nominated · 2026.08.05",
+          "url": "https://www.terraprime.art/",
+          "accent": "#45e0b7",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "深绿黑色界面里，一颗可拖动的点阵地球与 NYC、Shanghai、Paris、Cairo、Amazon 五个地点按钮共同定位视角；进入地点后，当代城市与“无人类介入”的生态影像并排同步，旁边不是装饰文案，而是生境、温差与恢复物种面板。",
+          "why": "它先建立一套地点、生境、物种、气候影响和来源的内容结构，再让地球、地点选择、双视频比较与物种卡片分别承担定位、对照和查证任务。视觉效果没有脱离论点：每次交互都在回答“同一地点的另一种生态状态会是什么”。",
+          "input": "原站公开五个地点的坐标、生境、温差描述、恢复大型动物、植物与动物资料链接，并在方法弹层列出 Aarhus University 的 PHYLACINE 大型动物分布重建、OpenLandMap 潜在自然植被和 BIOME 6000。用户输入是地点选择、地球拖动、视图模式切换与双视频分隔位置。",
+          "layer": "React 单页应用把语义卡片和控件放在 DOM；公开 bundle 内的自建 WebGL 画布优先请求 WebGL2、回退 WebGL，并以点采样、经纬线、标记和弧线构成地球。地点视图使用两路自动播放、静音、循环视频和可拖动分隔层；Atlas、Globe、Split、Living 四种模式共享同一地点数据。",
+          "motion": "地球拖动改变经纬旋转；地点切换更新镜头、标记与内容。双视频启动后用 requestAnimationFrame 检查时间差并保持同步，分隔位置直接控制两层可见范围；卡片和方法弹层只用短促的透明度、位移和弹簧过渡。",
+          "pipeline": "公开生态数据与物种资料 → 五地点编辑数据模型 → 当代/推测生态视频与海报 → React 视图模式 → WebGL 地球定位 → 双视频同步比较 → 方法与来源弹层。难点不在画地球，而在让每个数字、物种和影像都能追溯到资料或明确标注为推测。",
+          "performance": "地球初始化优先 WebGL2 并保留 WebGL 回退，公开源码的地图默认采样值为 10000；Canvas 使用可配置 DPR，地点内容用 IntersectionObserver 处理进入视口，应用同时监听减少动态偏好。复现时应把 DPR 封顶 1.5、移动端把双视频改为静态前后对照，并在视频未就绪时保留海报和数据卡。",
+          "transfer": "Joey 可把五个真实项目或五次交付节点放到同一可拖动轨道：位置来自日期和类型，点击后打开输入、输出与证据；只要没有真实字段，就不要显示温差、规模或关系线。",
+          "difficulty": "1 天原型",
+          "evidence": "CSS Design Awards 确认 2026.08.05 提名、作者 Fang He，并描述为由科学数据与无缝 AI 视频循环驱动的人类缺席史前生境探索；原站当前 HTTP 200。公开 bundle 可核验五地点数据、Aarhus University/OpenLandMap/BIOME 6000 方法说明、物种外链、React 视图、原生 WebGL2/WebGL 地球、地图默认采样值、两路视频同步、拖动分隔、IntersectionObserver 与减少动态监听。科学资料如何具体推导每个温差和生态结论、视频生成工具与提示词均未公开，因此这些内容只能视为带来源说明的编辑性推测，不能当成已复现的科学模型。"
+        },
+        {
+          "id": "mathis-biabiany-portfolio-2026",
+          "title": "Mathis Biabiany — Creative Technologist Portfolio",
+          "author": "Mathis Biabiany",
+          "platform": "CSS Design Awards / creator portfolio",
+          "pageTime": "Nominated · 2026.08.04",
+          "url": "https://www.mathis-biabiany.fr/",
+          "accent": "#f06b3f",
+          "mechanisms": [
+            "模型成为界面",
+            "滚动变成镜头",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "奶油色流体纹理覆盖首屏，橙色卷曲体从超大姓名上方刺入；继续滚动，作品列表不再是独立卡片墙，而被同一个实时场景接管，在 sci-fi 与 lab 两种空间状态之间切换。",
+          "why": "实时图形不是背景播放器：页面用 data-scene 把 Hero 指定为 curlField、项目区指定为 sciFi 或 lab，滚动、指针和项目模式共同驱动一个跨章节场景管理器。文字、项目内容和 3D 场景共享状态，所以模型承担导航与章节语义。",
+          "input": "原站公开项目、实验、角色标签、视频封面与作者经历；用户输入包含滚动、指针、模式切换、项目进入和声音开关。页面源代码还定义流体 splat、场景重测、视频覆盖、项目模式与性能等级等事件。",
+          "layer": "Nuxt/Vue 负责语义 DOM、项目卡与路由；GSAP/ScrollTrigger 处理导航和内容转场。异步 3D chunk 包含 Three.js WebGL/WebGPU 渲染能力、curlField/sciFi/lab/celShading/moebius 场景枚举、流体反馈、场景相机和自定义 shader；公开资源还包含 GLTF、DRACO、KTX2 与 MSDF 相关加载代码，但不能据此断言每个页面都实际加载了全部格式。",
+          "motion": "Hero 的卷曲场随指针和流体 splat 反馈，滚动测量每个 data-scene 区段并请求对应场景；项目区在 work 与 lab 模式间切换，相机、卡片位置与场景效果同步。环境声通过 Web Audio 的低通滤波和增益平滑进入，只有用户允许后才播放。",
+          "pipeline": "项目 CMS/静态内容 → Nuxt 服务端输出与分块 → 图片、视频纹理、音频和 3D 资产 → 统一事件总线 → Three.js 场景管理器与 GSAP DOM 编排 → 指针、滚动、模式和音频反馈。真正困难的是跨 DOM 与 GPU 场景保持同一滚动坐标、切场状态和资源生命周期。",
+          "performance": "首页把重型 3D 与调试模块异步拆分；项目区用 IntersectionObserver 判断在场状态，并用 requestIdleCallback 预取首个详情。源码包含性能等级事件、DPR 限制、稳定移动端视口、粗指针分支、压缩纹理/模型加载器和减少动态处理；减少动态时导航取消入场动画，移动端应进一步保留项目 DOM、关闭流体与环境声。",
+          "transfer": "Joey 可借用“一个场景跨多个 DOM 章节”的结构：Intro 只显示克制的数据场，Projects 才切换为可交互模型，About 回到静态排版；每次场景切换都必须对应内容状态，而不是为了展示 shader。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSS Design Awards 确认 2026.08.04 提名、Mathis Biabiany 与其 Creative Technologist 定位；原站当前 HTTP 200，页面公开项目、经历和 Three.js 致谢。公开 Nuxt 资源可核验 data-scene=curlField/sciFi/lab、Three.js WebGL/WebGPU bundle、流体 splat、场景管理器、GSAP/ScrollTrigger、Web Audio、IntersectionObserver、requestIdleCallback、DPR/移动端/粗指针/减少动态分支，以及 GLTF/DRACO/KTX2/MSDF 相关代码。具体模型清单、场景资产制作、每个 loader 的实际调用和目标设备帧率没有公开。"
+        },
+        {
+          "id": "zorge-9",
+          "title": "Zorge 9",
+          "author": "Vide Infra",
+          "platform": "CSS Design Awards / real-estate site",
+          "pageTime": "Website of the Day · 2026.08.05",
+          "url": "https://zorge9.estate/",
+          "accent": "#a9785f",
+          "mechanisms": [
+            "滚动变成镜头",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "黑色石材纹理包围一块电影银幕般的建筑画面，人物、楼体和超宽 ZORGE №9 字标彼此前后穿插；向下滚动后，位置、建筑、07:00—21:00 日程、会所与户型像连续分镜被逐段推入。",
+          "why": "它没有靠一颗无关 3D 建筑拖住首屏，而是让影像比例、粘性横向段落、日程时间和服务卡片分别解释位置、一天的生活节奏与购买对象。滚动改变叙事视角，真实户型范围和购买入口始终留在内容链路里。",
+          "input": "CSSDA 确认 Vide Infra、2026.08.05 Website of the Day 与高端住宅项目属性。原站公开位置、建筑、五段日程、设施、户型面积、购买条件与看房/选房入口；用户输入包括滚动、横向粘性段落、画廊、视频和导航。",
+          "layer": "服务器输出的语义 HTML 承载项目内容；响应式 picture/WebP 与 Vimeo 负责影像。公开 shared/landing bundle 包含 Locomotive Scroll 风格的平滑滚动实现、视口观察、parallax、reveal、视频播放器和自建 stickySlider，后者把垂直滚动进度映射为内容的水平 translateX。未发现 Three.js、WebGL 场景或可下载建筑模型证据。",
+          "motion": "首屏与章节图片通过 parallax 和 reveal 建立前后景；日程和服务段根据容器可滚宽度计算最大位移，再把垂直滚动归一化为横向进度。桌面平滑滚动与粘性段落协同，移动和平板回到原生纵向滚动。",
+          "pipeline": "住宅卖点与户型数据 → 分章节文案、响应式渲染图和 Vimeo → 服务端长页 → in-view 预加载/显现 → 平滑滚动、视差与横向 sticky slider → 选房和联系入口。难点是媒体体量、粘性高度和多断点节奏同时成立，而不是单一转场。",
+          "performance": "原站为主要图像生成 xs、md、xxl、xxxl 等尺寸缓存，并由两个 IntersectionObserver 分别控制预载与显现；Locomotive 配置明确在 tablet/smartphone 关闭 smooth，公开 bundle也监听减少动态偏好。复现时应继续限制首屏视频、为横向段提供原生纵向备选，并让户型和 CTA 在无动画时可直接阅读。",
+          "transfer": "Joey 可把 07:00—21:00 日程结构替换为一个真实项目从 brief、研究、原型、交付到结果的五段时间轴；每段只配一张证据图和一个事实，横向镜头负责节奏，移动端则直接纵向排列。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSS Design Awards 确认 2026.08.05 Website of the Day、Vide Infra、原站直链与项目描述；原站当前 HTTP 200，公开页面可核验位置、日程、设施、户型与购买入口。响应式 WebP、Vimeo、Locomotive 风格平滑滚动、IntersectionObserver、parallax/reveal、视频播放器、自建 stickySlider、移动/平板关闭 smooth 与减少动态监听来自公开 HTML 和 bundle。未发现 Three.js/WebGL、建筑模型格式、完整动效参数或销售成效数据。"
+        }
+      ],
+      "dateLabel": "AUG 5",
+      "issueNo": "009"
+    },
     {
       "id": "2026-08-04",
       "note": "本期收录四个最近七天、当前直链可访问且作者与页面时间可交叉核验的案例：一份把历史舞台作品组织成三幕滚动档案并在第三幕引入可触摸图像表面的个人实验；一个把月度书目、筛选、拖拽书架与会员入口连成真实电商路径的编辑型书店；一次把托斯卡纳工艺拆成可操作章节、声音与路由状态的品牌旅程；以及一个明确标注为非商业概念、只在产品决策节点加载 3D 椅子的家具站。所有技术结论均来自当前页面、公开资源或 source map；未把标签、类型引用或视觉推断升级为运行时事实。",
