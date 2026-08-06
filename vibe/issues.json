@@ -1,7 +1,99 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-05T10:41:16.589Z",
+  "updatedAt": "2026-08-06T10:38:38.761Z",
   "issues": [
+    {
+      "id": "2026-08-06",
+      "note": "今天的共同点不是更重的渲染，而是让内容结构直接决定视觉：墨迹揭示项目、制图线组织建筑服务、真实 mod 状态驱动影像章节。",
+      "featuredId": "amanda-guo",
+      "experiment": {
+        "title": "一层真实证据的墨迹显影",
+        "input": "3 个真实项目条目，每个只提供标题、日期、交付物和一条证据来源。",
+        "stack": "原生 HTML/CSS/JavaScript + 单层 SVG mask；不用 Canvas 和 WebGL。",
+        "target": "指针经过项目标题时，只在墨迹范围内显露对应日期、交付物和证据来源。",
+        "acceptance": [
+          "3 条输入严格对应 3 张卡片",
+          "墨迹下只出现该卡片的真实字段",
+          "指针更新通过 requestAnimationFrame 合帧",
+          "390px 与 reduced-motion 下改为点击展开静态证据"
+        ]
+      },
+      "restraint": "Creative Twin 只有在墨迹、线条或章节状态对应真实项目日期、版本或证据来源时才值得接入；若只是随机扩散，就保持静态排版。",
+      "cases": [
+        {
+          "id": "amanda-guo",
+          "title": "Amanda Guo — Portfolio",
+          "author": "Amanda Guo",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Nominated · 2026.08.06",
+          "url": "https://byamandaguo.com/",
+          "accent": "#111111",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "十字准星移动时，五层墨迹从正文中渗出；项目点击后像桌面窗口一样叠放、拖拽和全屏。",
+          "why": "墨迹不是贴在页面上的纹理，而是信息显影机制；网格、列表与多窗口又让真实项目内容保持可检索、可比较。",
+          "input": "作者简介、项目顺序 JSON、逐项目 JSON、图像与循环视频，以及指针坐标。",
+          "layer": "公开源码可核验原生 HTML/CSS/JavaScript、SVG mask/filter、IntersectionObserver、MutationObserver 与 requestAnimationFrame；未使用 Canvas 或 WebGL。",
+          "motion": "指针按最小距离写入椭圆印章，五个滤镜层形成由外到内的墨迹密度；桌面窗口可拖拽并按 z-index 置顶，移动端改为单列全宽窗口。",
+          "pipeline": "项目 JSON → 卡片网格/列表 → 项目窗口 → SVG 印章遮罩与五层正文克隆 → 指针或滚动状态。",
+          "performance": "源码把印章限制为每层最多 35 个、间距至少 18px，并用 rAF 合并指针更新；滚动时暂时隐藏重滤镜克隆，700px 以下直接关闭墨迹层。",
+          "transfer": "让 Creative Twin 的一层墨迹只显露某个作品的真实日期、版本与证据来源，避免用装饰噪声模糊内容。",
+          "difficulty": "1 天原型",
+          "evidence": "CSSDA 确认作者与 2026-08-06 提名；原站标注 2026-06-12 更新。机制、阈值和移动分支来自公开 script.js/style.css；滤镜设计意图之外的视觉判断属于交互推断。"
+        },
+        {
+          "id": "ecolinear-studio",
+          "title": "ecoLINEAR Studio",
+          "author": "Cesar Useche Munoz for ecoLINEAR Studio",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Special Kudos · 2026.08.06",
+          "url": "https://ecolinearstudio.com/",
+          "accent": "#a2664f",
+          "mechanisms": [
+            "滚动变成镜头",
+            "排版变成界面"
+          ],
+          "memory": "建筑平面线、尺寸标记和图号先被逐笔画出，再把真实住宅照片切入同一张制图纸面。",
+          "why": "制图线不是建筑网站的装饰边框，而是导航、服务解释、转场与图像构图共用的界面语法。",
+          "input": "Sanity 中的住宅项目、响应式图片、服务文案，以及可解析的内联建筑 SVG。",
+          "layer": "公开资源可核验 Next.js/React、Sanity、GSAP、ScrollTrigger、DrawSVG、SplitText 与 React Lenis；没有 WebGL 证据。",
+          "motion": "页面切换用分块遮罩和 Logo 路径绘制；服务章节按滚动逐段绘制 SVG 轮廓、尺寸线和填充，桌面与平板/手机使用不同触发区间。",
+          "pipeline": "Sanity 内容与图片 → Next.js 页面 → 内联 SVG 语义节点 → GSAP context/ScrollTrigger → 响应式章节。",
+          "performance": "原站提供 Next 响应式图片和 LQIP，转场块按桌面 20、平板 10、手机 10 分级；多处 reduced-motion 分支直接显示终态或关闭逐笔动画。",
+          "transfer": "把 Joey 项目的流程节点画成真实信息架构线：每条线连接一项已发生的研究、决策或交付，不画无来源蓝图。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSSDA 确认 2026-08-06 Special Kudos、作者和 plotter-style SVG；原站内容与公开 Next.js bundle 交叉核验技术栈、断点和 reduced-motion。建筑效果与业务成效未披露。"
+        },
+        {
+          "id": "razed-mods",
+          "title": "Razed Mods — Lighting Archive",
+          "author": "Arian Atmar for Razed Mods",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Website of the Day · 2026.08.06",
+          "url": "https://razed-mods.webflow.io/",
+          "accent": "#8ed8ff",
+          "mechanisms": [
+            "滚动变成镜头",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "巨大的 razed 字标压住游戏夜景；滚动让不同 mod 的天气、灯光和氛围片段接管同一块舞台。",
+          "why": "视觉状态来自六个真实 mod 的分类与差异，标签、片段、说明和入口同步切换；它展示的是可比较的改造档案，不是无上下文的全屏视频。",
+          "input": "六个游戏/mod 条目、天气与灯光改造说明、AVIF 图像、预告片和社区入口。",
+          "layer": "公开 HTML 可核验 Webflow、GSAP、ScrollTrigger、SplitText、Lenis、SVG filter 与 CSS CRT 层；没有 Canvas、Three.js 或 WebGL。",
+          "motion": "滚动控制视频容器缩放、裁切和分段文字进出；桌面以 tab 切换 mod，移动端用前后按钮推进，社区尾章叠加轻量 CRT 扫描线。",
+          "pipeline": "Webflow CMS 条目 → 响应式 AVIF/视频 → GSAP 滚动时间线 → 桌面 tab 与移动按钮状态机。",
+          "performance": "图片使用多尺寸 AVIF；粗指针设备关闭 SVG 色差滤镜，reduced-motion 会停止 CRT 动画。主滚动时间线未见完整 reduced-motion 旁路，仍应补静态顺序阅读。",
+          "transfer": "把同一作品的 v1、v2、发布版放进一块固定舞台，让真实版本差异驱动镜头，而不是为每个案例铺一段背景视频。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSSDA 确认 Arian Atmar 与 2026-08-06 WOTD；原站标注 2026-07-07 发布。技术与响应式分支来自公开 Webflow HTML；mod 制作参数、视频编码和用户成效未披露。"
+        }
+      ],
+      "dateLabel": "AUG 6",
+      "issueNo": "010"
+    },
     {
       "id": "2026-08-05",
       "note": "本期收录三个最近两天、当前直链可访问且作者与页面时间可交叉核验的案例：一份把潜在自然植被、古生态模型与物种资料组织成可旋转地球、地点切换和双视频对照的推测生态图谱；一个把实时流体场、3D 场景与项目列表合成同一作品集界面的 Creative Technologist 站点；以及一个以长页、横向粘性时间轴和响应式影像编排豪宅叙事的房地产站。所有技术结论均来自奖项页、当前原站和公开资源；未把科学引用等同于可复现模型，也未把 bundle 中存在的库等同于每项能力都已启用。",
