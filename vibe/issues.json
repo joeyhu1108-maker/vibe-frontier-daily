@@ -1,7 +1,99 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-06T10:38:38.761Z",
+  "updatedAt": "2026-08-08T10:43:58.271Z",
   "issues": [
+    {
+      "id": "2026-08-08",
+      "note": "今天的三个作品都把媒体从背景素材提升为可计算界面：视频成为可命中的纹理，透明影像成为章节空间，几何体则被滚动、指针与声音共同塑形。",
+      "featuredId": "son-daven",
+      "experiment": {
+        "title": "三条真实数据长成一组可读形体",
+        "input": "3 个真实项目条目，每个只取年份、媒体数量和当前状态三个字段。",
+        "stack": "原生 HTML/CSS/JavaScript + Canvas 2D；不用 Three.js、WebGL 或生成素材。",
+        "target": "把年份映射到横向位置、媒体数量映射到半径、状态映射到描边；滚动时只突出当前项目。",
+        "acceptance": [
+          "每个视觉变量都能反查到一个真实字段",
+          "切换项目时标题、形体和数据说明同步",
+          "390px 下不溢出且点击可替代滚动切换",
+          "reduced-motion 下直接显示三组静态终态"
+        ]
+      },
+      "restraint": "Creative Twin 只有在形体、镜头或声音响应确实映射作品年份、版本、媒体数量或交互记录时才接入；如果只是随机变形，就保留静态图像与清楚标签。",
+      "cases": [
+        {
+          "id": "son-daven",
+          "title": "Son Daven",
+          "author": "The First The Last for Son Daven",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Website of the Day · 2026.08.07",
+          "url": "https://sondaven.com/en",
+          "accent": "#b8a27c",
+          "mechanisms": [
+            "滚动变成镜头",
+            "交互变成叙事"
+          ],
+          "memory": "米金色像素字从暗场升起，牧羊、飞鸟、山体与云层沿滚动被压成一张会呼吸的卡尔巴阡版画。",
+          "why": "它没有把一支宣传片铺满全页，而是把山、羊、人物、云和前景分别做成可调位置、尺寸、阈值与颜色的媒体层；同一套颗粒化语言贯穿序章、季节、收益与页尾，章节内容真正决定画面。",
+          "input": "120 帧昼夜首屏序列、建筑与地图内容、AVIF 静帧、带透明信息的 MP4/HEVC 场景层、滚动进度与桌面/移动断点。",
+          "layer": "公开资源可核验 Webflow、Slater、Barba、GSAP/ScrollTrigger、Lenis、Swiper、Canvas 2D 首屏序列，以及原生 WebGL 顶点/片元着色器对图像和视频纹理做阈值化、抖动与着色合成；没有 Three.js 证据。",
+          "motion": "首屏滚动在 120 帧序列中取整采样；后续场景把透明视频和静帧放进独立 WebGL 画布，由 GSAP 改变位置、尺寸、显隐与时间线，横向权益卡和季节切换继续承担章节推进。",
+          "pipeline": "Webflow 内容与响应式图片 → Slater 场景配置 → 视频/图像纹理 → 原生 WebGL 合成 → ScrollTrigger 章节时间线 → Barba 页面切换。",
+          "performance": "场景关闭抗锯齿、DPR 封顶 1.5，并以 IntersectionObserver 暂停离屏实例；992px 以下跳过多组桌面场景和 120 帧序列。公开脚本未见完整 reduced-motion 旁路，移动端仍应提供静态章节封面。",
+          "transfer": "把 Joey 的展览章节拆成前景文字、作品轮廓、档案纹理与环境层，用透明视频做空间深度；每层必须绑定真实作品或章节，不把粒子当填充物。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSSDA 确认 The First The Last、WebGL 标签与 2026-08-07 WOTD；原站返回 200，公开 Webflow HTML 和 Slater 源码交叉核验 120 帧、媒体清单、着色器、DPR、断点与离屏暂停。透明素材的制作软件、编码流程、着色器设计意图和业务转化未披露。"
+        },
+        {
+          "id": "milledollars",
+          "title": "MilleDollars",
+          "author": "Magnetism for MilleDollars",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Website of the Day · 2026.08.08",
+          "url": "https://milledollars.fr/",
+          "accent": "#50a7b5",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "一支全屏运动影像被细线、客户名、片名、年份和左右字标精确钉住，像把实时放映机塞进极简电影目录。",
+          "why": "影像不是自动播放的背景：项目顺序、命中区域、缩略图、视频纹理、双色调和信息标签共同构成首页索引，用户面对的是一张可操作的 showreel 数据面，而不是带菜单的视频封面。",
+          "input": "Prismic 中的项目顺序、客户与角色字段、桌面/移动视频、缩略图、路由状态、指针命中与滚动位置。",
+          "layer": "公开 bundle 可核验 Nuxt/Vue、Prismic、GSAP/ScrollTrigger、Lenis，以及原生 WebGL 渲染器、视频纹理、缩略图纹理、双色调纹理、网格与射线命中；没有公开 3D 模型或 Three.js 证据。",
+          "motion": "项目切换以统一画布重排和缩放媒体网格，缩略图先占位再淡入实时视频；指针命中选择作品，详情路由沿用同一画布做尺度与信息层切换。",
+          "pipeline": "Prismic 项目数据 → Nuxt 页面与排序 → 桌面/移动视频选择 → WebGL 视频纹理与着色器 → GSAP 路由和布局状态。",
+          "performance": "源码提供移动视频分支、requestVideoFrameCallback 更新、AbortController 卸载、窗口失焦暂停与按需视频加载；渲染器直接使用设备 DPR，未见上限或完整 reduced-motion 分支，高密度移动屏需要额外限幅与静态海报。",
+          "transfer": "把作品集首页做成一块持续存在的媒体画布：项目标题、年份与角色是真实索引，进入详情只改变画布尺度和信息密度，不另造一套视觉世界。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSSDA 确认 Magnetism 与 2026-08-08 WOTD；原站返回 200，元数据说明其为高端视频制作 bureau。公开 Nuxt bundle 交叉核验 Prismic、项目字段、视频纹理、命中、移动资源和卸载流程；具体拍摄制作、着色器公式意图、目标帧率与商业成效未披露。"
+        },
+        {
+          "id": "run-rob-run",
+          "title": "Run Rob Run",
+          "author": "Robert Aperios",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "Nominated · 2026.08.07",
+          "url": "https://www.runrobrun.com/",
+          "accent": "#f92d04",
+          "mechanisms": [
+            "模型成为界面",
+            "滚动变成镜头",
+            "交互变成叙事"
+          ],
+          "memory": "橙色软体被包在透明外壳里，随着滚动从圆润团块逼近立方体并裂解；按下播放后，低频让核心收缩，指针又把表面拉向手势。",
+          "why": "中央物体同时是首屏主角、滚动进度条、声音可视化和拖拽反馈面；同一几何状态承接内容推进，而不是在正文上方循环一段无关 3D 动画。",
+          "input": "滚动进度、指针与拖拽旋转、播放状态、低中高频及脉冲事件、视口尺寸和页面可见状态。",
+          "layer": "作者/平台明确披露 React、Next.js、Lottie、GSAP 与 WebGPU；公开模块进一步核验 Three.js WebGPURenderer、三层 BoxGeometry 形变、MeshPhysicalMaterial、区域灯、HDR/Canvas 环境与声音事件桥接。",
+          "motion": "滚动把 morphProgress 与 splitProgress 写入三层几何；声音低中高频分别调制核心质量、肢体冲击、扩散与表面波纹，指针和拖拽以阻尼插值叠加，末段拆成立方体阵列。",
+          "pipeline": "页面滚动/指针/声音事件 → 响应映射与平滑 → CPU 顶点形变和分帧法线更新 → Three.js WebGPU 材质/灯光 → 单画布镜头。",
+          "performance": "渲染器首选抗锯齿与 DPR 1.25，失败后重试关闭抗锯齿、DPR 1；外壳/内核/涂层法线按每 1/2/3 帧更新，离开主章节或标签页隐藏会停循环。没有 WebGPU 时仅显示明确提示，没有 WebGL/静态模型替代。",
+          "transfer": "为 Creative Twin 只保留一个可读形体，让作品数量、版本完成度或真实音频特征改变它的质量、裂变和表面；同时准备一张同构静态终态覆盖不支持 WebGPU 的设备。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSSDA 确认 Robert Aperios、2026-08-07 提名和作者披露的 React/Next.js/Lottie/GSAP/WebGPU；原站返回 200，公开 react-scene.js 与模块核验 Three.js WebGPU、输入映射、几何分段、DPR 回退和暂停逻辑。当前复核浏览器不支持 WebGPU，原站显示不可用提示，动态形体仅由 CSSDA 截图与公开代码交叉确认；真实运行帧率和设备覆盖未披露。"
+        }
+      ],
+      "dateLabel": "AUG 8",
+      "issueNo": "011"
+    },
     {
       "id": "2026-08-06",
       "note": "今天的共同点不是更重的渲染，而是让内容结构直接决定视觉：墨迹揭示项目、制图线组织建筑服务、真实 mod 状态驱动影像章节。",
