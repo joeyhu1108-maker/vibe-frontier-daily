@@ -1,7 +1,124 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-08T10:43:58.271Z",
+  "updatedAt": "2026-08-09T10:43:53.838Z",
   "issues": [
+    {
+      "id": "2026-08-09",
+      "note": "今天的四个作品把三维从展示层推进为状态系统：地形承载材料守恒，模型承载知识索引，镜头承载章节，生态对象承载教学路径。成立的关键不是复杂度，而是同一份结构同时驱动画面、交互与叙事。",
+      "featuredId": "tidewright",
+      "experiment": {
+        "title": "把一组真实项目数据变成可读等高线",
+        "input": "Joey 作品集中的 5 个真实项目；每个只取年份、媒体数量、完成度三个字段。",
+        "stack": "原生 HTML/CSS/JavaScript + Canvas 2D；不使用 Three.js、WebGL 或随机噪声。",
+        "target": "年份决定峰的位置，媒体数量决定峰宽，完成度决定峰高；切换项目时画面与数据说明同步。",
+        "acceptance": [
+          "任一峰的位置、宽度和高度都能反查到真实字段",
+          "五组等高线在 1440px 与 390px 都不重叠标题",
+          "键盘与点击均可切换当前项目",
+          "reduced-motion 下直接显示终态，不播放插值"
+        ]
+      },
+      "restraint": "Creative Twin 只有在形体、镜头或热点确实映射项目年份、媒体数量、版本状态、地理位置或交互记录时才接入；若没有可追溯数据，就保持静态编排，不用随机粒子制造生命感。",
+      "cases": [
+        {
+          "id": "tidewright",
+          "title": "TIDEWRIGHT — Nine Tides over Vellamar",
+          "author": "winch",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.05",
+          "url": "https://winchxyz.github.io/tidewright/",
+          "accent": "#d8b273",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "潮线缓慢逼近一座刚堆好的沙堡；切到等高线、丝网印刷或木刻视图，城堡仍是同一座，材料状态却被另一套视觉语法重新解释。",
+          "why": "它不是给静态地形套一层海浪 Shader。沙量、湿度、压实度和表面水膜共同决定坡面是否坍塌，挖出的沙进入桶、倒出的颗粒落到哪里就把高度加到哪里；九种画风读取同一高度场，因此视觉变化仍保留可操作状态。",
+          "input": "指针/键盘工具、连续高度场中的沙量/湿度/压实度/水膜、潮位与波浪、日照时间、相机和画质设置。",
+          "layer": "作者说明与公开源码可核验原生 JavaScript、WebGL2、浮点渲染目标、GLSL 高度场求解、八邻域坡度松弛、Gerstner 波、GPU 粒子沉积、程序化地形/天空/道具和后处理；没有 Three.js 或外部模型资产。",
+          "motion": "拖拽工具把笔刷与模具写入模拟纹理，固定步长迭代让沙坡松弛、受潮、干燥与被浪冲刷；相机围绕同一海滩移动，九种 look 通过统一 uStyle 在地形、水、天空、道具和合成阶段同步换肤。",
+          "pipeline": "输入工具 → 沉积/挖掘缓冲 → GPU 高度场与湿度/压实/水膜迭代 → 地形与海面渲染 → 风格统一变量 → HDR 后处理与 HUD。",
+          "performance": "运行要求 WebGL2 与 EXT_color_buffer_float，缺失时显示明确错误；DPR 封顶 2，并提供 quality 与 50%–100% render scale。900px 以下会收起部分 HUD，但未见 reduced-motion 分支，且右键/键盘等完整操作明显偏桌面，移动端应降级为只读观察或简化触控工具。",
+          "transfer": "把作品集中的创作版本、材料占比或展览布置转成一个可守恒的二维场，再让写实、档案线稿和展陈图三种视图读取同一状态；重点是状态一致，不是复制沙堡主题。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认仓库由 winch 于 2026-08-05 创建；演示与源码均公开可访问。README 明确披露单提示词起点、无引擎/无资产/无构建步骤与运行要求；js/sim.js、glsl.js、terrain.js、water.js、post.js 和 game.js 交叉核验状态通道、坡度松弛、波浪、九种着色和画质设置。物理模型的科学准确度、不同 GPU 的帧率和移动端可用性没有独立基准，作者关于“守恒到最后一粒”的表述只视为实现目标。源码：https://github.com/winchxyz/tidewright"
+        },
+        {
+          "id": "kage",
+          "title": "Kage",
+          "author": "Meng To",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.08",
+          "url": "https://mengto.github.io/kage/",
+          "accent": "#a94738",
+          "mechanisms": [
+            "滚动变成镜头",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "暗夜山门被巨大的 KAGE 字标切开，朱红月亮、灯笼、雨雾与枫叶从前中后景围合；向下滚动像穿过五段被字幕标记的寺院夜行。",
+          "why": "它把一个小型程序化 3D 世界、生成的场景板、透明前景切片和章节排版放进同一深度结构。滚动不是触发一串独立 reveal，而是持续改变相机路径、章节近景所有权与文字密度，让镜头和信息架构共享节奏。",
+          "input": "五个章节锚点、滚动进度、视口比例、指针/触控类型、reduced-motion 偏好，以及作者生成并人工编排的 WebP 场景板和前景切片。",
+          "layer": "作者 README 与单文件源码可核验 vendored Three.js r149、运行时生成的寺院/鸟居/灯笼/月亮/地形/雨/叶/雾、Canvas 程序纹理、阴影与 bloom 管线，以及覆盖其上的 WebP 图像与 HTML 排版。",
+          "motion": "滚动进度在相机关键点间插值，章节进入时重新挂接对应近景层；雨、叶、雾、布面卡片与指针扰动提供局部运动，reduced-motion 则取消平滑滚动和多组入场/布面模拟。",
+          "pipeline": "章节内容与生成图像 → HTML/透明 WebP 分层 → Three.js 程序场景 → 滚动进度映射相机与近景 → 阴影/bloom/颗粒合成。",
+          "performance": "粗指针设备默认 low：关闭阴影、DPR 上限 1.4；桌面上限 1.8，并按帧耗动态缩放渲染分辨率。布面模拟离屏或低能量时停帧，页面隐藏时暂停；仍有多层透明合成与 WebGL2 布面卡片，低端机应进一步用静态章节板替代。",
+          "transfer": "把 Joey 的一组作品写成五段空间章节：每章只分档案底图、一个程序化空间物件、一个近景切片和一组文字，不增加与内容无关的景观。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认仓库由 Meng To 于 2026-08-08 创建，演示返回 200；README 明确披露五章、Three.js、GPT Image 2 生成图层、移动布局和 reduced-motion。公开 index.html 交叉核验运行时几何/纹理、滚动相机、DPR、动态分辨率、离屏暂停和 WebGL2 布面模拟。它是独立设计研究，并非真实寺院或文化机构项目；图像提示词、文化考据和设备帧率未披露。源码：https://github.com/MengTo/kage"
+        },
+        {
+          "id": "anatomy-atelier",
+          "title": "Anatomy Atelier",
+          "author": "The Bugged Dev",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.02",
+          "url": "https://anatomy-livid.vercel.app/",
+          "accent": "#d88477",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "一颗写实心脏悬在暖色展台上，六个彩色热点跟随旋转表面移动；剖面、线框、隔离、比较把同一器官从展品变成一套学习工具。",
+          "why": "3D 模型不是首页装饰，而是导航与解释的中心。器官切换、表面热点、剖切平面、线框层、对照图和知识卡共享同一数据对象，用户每次操作都会改变理解路径，而非只改变观看角度。",
+          "input": "九个器官条目、GLB 模型、解剖热点坐标、说明/对照/显微图、器官选择、旋转缩放、剖面/层级/比较状态。",
+          "layer": "公开源码可核验 Next.js/React、Three.js、GSAP、GLTFLoader/KTX2Loader、OrbitControls、HTML 数据卡和自定义热点投影；模型材质经过统一重建，并以 clipping plane、depth prepass、wireframe 和 Canvas 生成的环境/接触阴影支持工具状态。",
+          "motion": "器官切换以缩放、位移与材质淡入交接；自动旋转在选中热点或手动交互时暂停，热点从 3D 世界坐标投影到 2D 标签；剖面平面和镜头复位由 GSAP 插值。",
+          "pipeline": "器官数据对象 → 按需加载 GLB/KTX2 → 材质与尺度标准化 → 3D 热点/剖面/线框 → 2D 信息卡与比较视图。",
+          "performance": "Three.js 查看器动态导入；780px 以下或低核心设备关闭抗锯齿并把 DPR 限到 1.5，其他设备上限 2；IntersectionObserver、页面可见性和 dirty/busy 标记减少无效绘制，模型切换会释放资源。CSS reduced-motion 只压缩页面动画，默认自动旋转仍开启，最好再把偏好直接绑定到旋转状态。",
+          "transfer": "把作品集里的一个复杂项目拆成可旋转总览、结构热点、剖面和对比四个查看模式；热点必须指向真实媒介、时间、角色或成果，避免把说明文字随意钉在模型表面。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认仓库由 The Bugged Dev 于 2026-08-02 创建，并由仓库描述披露 Three.js 与 GPT 5.6 Sol；演示返回 200。README 仍是 vinext starter 模板，不能作为作品说明；结论来自公开 app 源码、九组 GLB/图像资产与页面元数据。器官模型来源、医学内容审校、生成过程、授权和真实学习效果均未披露，因此不把它当医学权威或可自由复用素材。源码：https://github.com/thebuggeddev/anatomy"
+        },
+        {
+          "id": "pond-atlas",
+          "title": "Pond Atlas",
+          "author": "Cyril Dieumegard",
+          "platform": "GitHub / creator site",
+          "pageTime": "Repository created · 2026.08.05",
+          "url": "https://pondatlas.cc/",
+          "accent": "#6f9185",
+          "mechanisms": [
+            "模型成为界面",
+            "数据变成空间",
+            "交互变成叙事"
+          ],
+          "memory": "蜻蜓悬在奶油色自然史桌面中央，热点贴着翅、眼和腹部移动；左侧是物种索引，右侧是生态事实，底部像博物馆抽屉一样排开微观、生命周期与栖息地卡片。",
+          "why": "它把 Anatomy Atelier 的器官查看器语言迁移到池塘生态，但不是换皮：物种、栖息层、形态热点、剖面/透明层、教育卡和野外观察入口形成新的自然史信息架构，3D 对象成为跨尺度知识的枢纽。",
+          "input": "八种池塘生物、Meshy 生成并优化的 GLB、表面热点、栖息层、形态/生态文本、学习卡、搜索与视图状态。",
+          "layer": "作者 README 与公开源码可核验 React 19、Three.js/R3F/Drei、three-mesh-bvh、GLB 内嵌 WebP PBR 纹理、MeshPhysicalMaterial、HTML 热点层、真实 clipping plane 和透明 Layers 视图；生成与优化脚本披露 Meshy 6 与 glTF Transform 管线。",
+          "motion": "拖拽/缩放围绕解剖学 pivot 旋转，自动旋转受控；热点逐帧投影到 2D，并每十帧用 BVH 射线检查遮挡。关闭自动旋转后 Canvas 改为 demand 渲染，剖面与透明层仍围绕同一模型状态切换。",
+          "pipeline": "自然史参考图 → Meshy image-to-3D/PBR → glTF Transform 清理压缩 → R3F 按需加载 → 表面吸附热点与 BVH 遮挡 → 教育卡/测验/栖息地界面。",
+          "performance": "模型懒加载，Canvas DPR 多数设为 1.5，自动旋转关闭时采用 demand frameloop；热点遮挡每十帧检查一次，并使用 BVH first-hit。部分 GLB 约 5–8.6MB，默认自动旋转未读取 reduced-motion，移动端虽然重排到单列，仍需要更小模型或静态生物图备用。",
+          "transfer": "把一个项目的媒介、角色、来源和版本组织成“物种—热点—生态关系”式图鉴：中心模型只负责结构定位，证据与叙事留在可阅读的侧栏和卡片。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认仓库由 Cyril Dieumegard 于 2026-08-05 创建，原站返回 200；README 明确披露八个物种、技术栈、模型管线、响应式与 reduced-motion，并公开承认受 Anatomy Atelier 启发但为独立实现。ThreeSpecimen.jsx、data.js、生成/优化脚本和实际 GLB 交叉核验热点吸附、BVH 遮挡、剖面、透明层、demand 渲染与 Meshy 流程。物种知识的专家审校、Meshy 模型的形态准确度和学习成效未披露。源码：https://github.com/CyrilDieumegard/pond-atlas"
+        }
+      ],
+      "dateLabel": "AUG 9",
+      "issueNo": "012"
+    },
     {
       "id": "2026-08-08",
       "note": "今天的三个作品都把媒体从背景素材提升为可计算界面：视频成为可命中的纹理，透明影像成为章节空间，几何体则被滚动、指针与声音共同塑形。",
