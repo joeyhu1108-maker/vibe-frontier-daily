@@ -1,7 +1,123 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-09T10:43:53.838Z",
+  "updatedAt": "2026-08-10T10:43:02.647Z",
   "issues": [
+    {
+      "id": "2026-08-10",
+      "note": "今天的四个作品共同证明：高完成度不来自效果数量，而来自一个主机制持续组织品牌、内容与交互。流体揭示、粒子核心、桌面空间和位移 Shader 都是界面本体；它们成立，是因为输入、视觉反馈与信息结构没有彼此脱节。",
+      "featuredId": "nothin-studio",
+      "experiment": {
+        "title": "把真实项目字段变成可解释的粒子核心",
+        "input": "Joey 作品集中的 8 个真实项目；每个只取年份、媒介数量、协作人数三个字段。",
+        "stack": "原生 HTML/CSS/JavaScript + Canvas 2D；不使用 Three.js、WebGL 或随机业务数据。",
+        "target": "年份决定粒子环半径，媒介数量决定点的数量，协作人数决定点的亮度；点击项目后同步显示字段与映射说明。",
+        "acceptance": [
+          "任一点的半径、数量和亮度都能反查到真实项目字段",
+          "鼠标、触控与键盘都能切换当前项目",
+          "1440px 与 390px 下映射说明不遮挡图形",
+          "reduced-motion 下直接切换终态，不播放粒子插值"
+        ]
+      },
+      "restraint": "Creative Twin 只有在粒子位置、密度、镜头或热点确实映射项目时间、媒介、角色、协作或版本记录时才接入；若数据只是装饰性随机数，就保留静态排版，不借动态效果伪造生命感。",
+      "cases": [
+        {
+          "id": "nothin-studio",
+          "title": "NOTHIN’ — Protean Studio",
+          "author": "Thomas Carré / Nothin’",
+          "platform": "Awwwards / creator site",
+          "pageTime": "Awwwards Site of the Day · 2026.08.10",
+          "url": "https://www.noth.in/",
+          "accent": "#111111",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "巨大的黑色 NOTHIN’ 字标几乎撑满屏幕，指针经过时白底像被墨流侵入，银色充气字模从硬排版中鼓起；材质冲突本身就是品牌介绍。",
+          "why": "它不是在 Webflow 首页叠一层鼠标光斑。公开模块把底图、揭示图、指针速度和流体状态接入同一 GPU 管线，染料场决定两套视觉之间的遮罩；因此用户移动不是装饰反馈，而是在实时改写首屏的可见内容。",
+          "input": "指针位置与速度、基础/揭示媒体、视口尺寸、滚动位置，以及菜单和作品链接状态。",
+          "layer": "原站公开 HTML 与模块可核验 Webflow 外壳、Three.js WebGLRenderer、双缓冲速度/压力/染料纹理、curl/divergence/pressure pass、自定义遮罩 Shader、GSAP/ScrollTrigger 与 Lenis；Awwwards 另标注 WebGL、3D、GSAP、Webflow。",
+          "motion": "指针 splat 写入速度与染料场，20 次压力迭代形成连续墨流，遮罩在基础层与揭示层间混合；滚动和菜单使用独立的 GSAP 时间轴，避免把所有内容塞进同一镜头。",
+          "pipeline": "Webflow 内容与媒体 → 外部 ES module → GPU 流体多 pass → 遮罩合成基础/揭示层 → GSAP 页面与菜单编排。",
+          "performance": "渲染器关闭抗锯齿、请求 high-performance，并把 DPR 封顶 2；模拟与染料分辨率固定为 256/512。代码提供 991px 菜单分支，但未发现 prefers-reduced-motion 或静态流体替代，移动端应进一步降低模拟分辨率，低性能设备直接显示基础排版。",
+          "transfer": "把 Joey 作品集首屏的两组真实内容做成可揭示关系：基础层是作品索引，揭示层是对应材料、地点或过程证据；指针只负责显露信息，不复制充气字或黑墨表面。",
+          "difficulty": "3–5 天成品",
+          "evidence": "Awwwards 明确记录 2026-08-10 Site of the Day、Thomas Carré 署名、原站链接和 WebGL/3D/GSAP/Webflow 标签；原站返回 HTTP 200，公开加载 https://nothinv1.netlify.app/main.js。该模块交叉核验 Three.js、流体缓冲、Shader、DPR 与菜单断点。Awwwards 截图可见流体/充气字视觉；本次无 GPU 的无头截图只显示基础排版，因此不把实时效果写成当前浏览器已完整目测。原始建模工具、素材生产过程、移动端帧率和 reduced-motion 均未披露。"
+        },
+        {
+          "id": "intframe",
+          "title": "INTFRAME® AI Product Studio",
+          "author": "INTFRAME®",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "CSSDA nominee · 2026.08.10",
+          "url": "https://intframe.com/",
+          "accent": "#7c86d9",
+          "mechanisms": [
+            "模型成为界面",
+            "滚动变成镜头",
+            "交互变成叙事"
+          ],
+          "memory": "深黑首屏中，一颗白色点阵球压在超大 INTFRAME 字标上；拖拽让核心旋转，点击让它爆开，随后滚动像穿过九个系统章节。",
+          "why": "粒子核心不是品牌旁边的装饰物：拖拽、点击、滚动速度和章节状态持续改变它或后续画布的行为。项目清单、技术栈和运营状态也被写成同一套仪表式节奏，模型、排版与导航共同承担解释。",
+          "input": "拖拽旋转、点击爆裂、指针位置、滚动进度/速度、章节可见状态、粗指针判断与 reduced-motion 偏好。",
+          "layer": "CSSDA 与原站公开资源可核验 Next.js/React、Three.js WebGLRenderer、ShaderMaterial、GSAP/ScrollTrigger、Lenis、多段 Canvas 和 HTML 章节；公开代码还包含鼠标扰动的波形平面、字体可变轴随滚动速度改变等机制。",
+          "motion": "首屏模型响应拖拽和点击；进入 portal 后，滚动把平面 Shader 变形、裁切和章节淡入串成镜头。技术栈字重读取 ScrollTrigger 速度，触屏改为点击解码，局部 spotlight 在 reduced-motion 下停在固定位置。",
+          "pipeline": "章节/项目数据 → React 结构 → Three.js 与 Canvas 场景按需加载 → GSAP 绑定滚动与段落 → HUD 同步当前章节。",
+          "performance": "Three.js 场景动态加载；WebGL DPR 在粗指针设备上封顶 1.5、其他设备 1.7，局部效果使用 IntersectionObserver。已见局部 reduced-motion 分支，但不是每个 rAF/ScrollTrigger 都有统一停用逻辑；低端移动端宜保留静态点阵海报和普通纵向章节。",
+          "transfer": "可借鉴其“一个核心对象贯穿章节”的结构：让 Joey 的真实项目关系图成为首页核心，点击项目只展开同一数据对象的证据、角色与过程，不把每章做成互不相干的特效。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSS Design Awards 明确记录 INTFRAME® 于 2026-08-10 入围，原站链接、WebGL 标签，以及“九个 ventures、九个滚动章节、各自 Canvas”的作者描述。原站返回 HTTP 200，页面自报 Three.js/WebGL/GSAP，公开 Next.js chunks 交叉核验 WebGLRenderer、ShaderMaterial、拖拽/点击提示、DPR 粗指针分支、ScrollTrigger 和局部 reduced-motion。精确粒子数量、所有章节的画布实现、真实运营指标与帧率未独立验证。"
+        },
+        {
+          "id": "parinaz-desktop",
+          "title": "Parinaz’s Desktop Portfolio",
+          "author": "Parinaz Kassemi",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "CSSDA Website of the Day · 2026.08.09",
+          "url": "https://www.parinazkassemi.com/",
+          "accent": "#6d9fd8",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "云海壁纸上散落文件夹、照片、案例图标和便签，右侧天气、音乐与小游戏像私人工作台；打开 My Shelf 时，整个桌面退到模糊背景，收藏成为一扇真实窗口。",
+          "why": "它没有把 macOS 皮肤只当怀旧装饰。项目、个人材料、收藏、实验和工具被改写成可移动节点、窗口、Dock 与系统菜单；用户通过整理、打开、切换壁纸和操作小工具来理解设计者，而不是被动滚动一串案例卡片。",
+          "input": "双击/单击打开、指针拖拽节点、右键整理、壁纸主题、Dock、键盘 Escape、移动端滑动解锁和抽屉手势。",
+          "layer": "CSSDA、原站元数据与公开 desktop.html 可核验 React/TanStack 外层 iframe、原生 HTML/CSS/JavaScript 桌面、Canvas 绘图/粒子/小游戏、拖拽节点与贴纸、天气/音乐组件、独立案例窗口、四套桌面与移动 SVG 壁纸。",
+          "motion": "节点使用 Pointer Events 与 pointer capture 改写 left/top，Dock 的放大每帧批处理；窗口层级、模态背景、整理动画和壁纸过渡维持桌面空间感。移动端把菜单、widget rail 和解锁改成状态栏、全屏 sheet 与可拖拽底部抽屉。",
+          "pipeline": "作品与个人内容 → 桌面节点/文件夹/窗口数据 → 原生拖拽与模态系统 → Canvas 小工具 → 响应式移动端重排。",
+          "performance": "主要空间是 DOM/CSS，Canvas 工具在关闭窗口时会 cancelAnimationFrame；Dock mousemove 经 rAF 合并。1024px 以下自动重排节点并搬移 widgets，且有独立移动壁纸；但公开 desktop.html 未发现全局 prefers-reduced-motion，自动旋转图标、Dock 与粒子实验仍应提供静态路径。",
+          "transfer": "把 Joey 作品集做成“个人世界桌面”时，只保留三类对象：项目、证据、当前实验。每个图标必须打开真实内容或执行明确动作，避免用天气、音乐等无关小组件填满屏幕。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSS Design Awards 明确记录 2026-08-09 Website of the Day、Parinaz Kassemi 署名与互动桌面描述；原站返回 HTTP 200。公开 routes chunk 显示根路由沙盒加载 /desktop.html，后者交叉核验节点拖拽、窗口、Canvas、移动端状态栏/抽屉、独立移动壁纸和 rAF 管理。奖项截图与当前公开 HTML 支持视觉与结构判断；天气数据来源、音乐授权、完整跨设备测试和全局 reduced-motion 未披露。"
+        },
+        {
+          "id": "produx-design",
+          "title": "PRODUX — Design that Speaks",
+          "author": "Prødux Design",
+          "platform": "Awwwards / creator site",
+          "pageTime": "Awwwards Site of the Day · 2026.08.09",
+          "url": "https://www.produx.design/",
+          "accent": "#7f8953",
+          "mechanisms": [
+            "滚动变成镜头",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "苔藓覆盖的巨大字形停在像展柜一样的画面中心，黑色窗口式版面把品牌宣言压在上方；向下滚动，项目图像在裁切、位移和液态折射中接管视线。",
+          "why": "成立的部分不是苔藓 3D 本身，而是品牌语句、项目切换、图片位移和 Shader 反馈共用同一套克制的窗口节奏。公开代码里的液态状态纹理会读取指针速度并在两张图之间折射/像素化，交互确实改变内容呈现。",
+          "input": "滚动进度、指针位置与速度、项目卡片/媒体、视口尺寸、导航与页面路由。",
+          "layer": "Awwwards 与原站公开资源可核验 Next.js、Three.js、GSAP/ScrollTrigger、Lenis、WebGLRenderTarget、双缓冲状态纹理、自定义位移/折射/像素化 Shader，以及响应式 WebP/WebM 项目资产。",
+          "motion": "项目段落通过 ScrollTrigger 改变画布位移与裁切；指针写入速度、压力和 ink 状态，再驱动两张纹理的折射、像素化与抖动合成。大图场景使用正交相机和 DataTexture 做局部位移，而文字保持稳定可读。",
+          "pipeline": "项目内容与响应式媒体 → Next.js 页面 → GSAP 滚动编排 → Three.js 双缓冲状态纹理 → Shader 合成与页面转场。",
+          "performance": "主液态 Shader 关闭抗锯齿、请求 high-performance、DPR 封顶 2，并在指针静止时停止写入速度；部分场景使用 IntersectionObserver 延迟启动。另有场景直接 setPixelRatio(2)，且未发现 prefers-reduced-motion，因此移动端应关闭实时位移，保留响应式图片与普通项目切换。",
+          "transfer": "把项目封面与过程证据做成一对可折射图层：只有用户指向某个真实项目时才揭示其研究、原型或结果，不把苔藓体作为无关装饰迁移。",
+          "difficulty": "3–5 天成品",
+          "evidence": "Awwwards 明确记录 Produx Design 为 2026-08-09 Site of the Day、Prødux Design 署名，并标注 Three.js、GSAP、3D 与 Next.js；原站返回 HTTP 200。公开 chunks 交叉核验 WebGLRenderer、WebGLRenderTarget、ShaderMaterial、DataTexture、指针速度、ScrollTrigger、DPR 与响应式媒体。奖项图中的苔藓体可能是预渲染素材，公开资源不足以证明它是实时模型，因此只把可核验的液态/位移 Shader 写成运行时机制；模型制作、业务效果、移动帧率和 reduced-motion 未披露。"
+        }
+      ],
+      "dateLabel": "AUG 10",
+      "issueNo": "013"
+    },
     {
       "id": "2026-08-09",
       "note": "今天的四个作品把三维从展示层推进为状态系统：地形承载材料守恒，模型承载知识索引，镜头承载章节，生态对象承载教学路径。成立的关键不是复杂度，而是同一份结构同时驱动画面、交互与叙事。",
