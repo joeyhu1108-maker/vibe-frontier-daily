@@ -1,7 +1,124 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-10T10:43:02.647Z",
+  "updatedAt": "2026-08-11T10:43:26.605Z",
   "issues": [
+    {
+      "id": "2026-08-11",
+      "note": "今天的四个作品把三维从视觉容器推进为可核验的状态界面：MRI 数据决定脑区与切片，参数文档决定精确实体，展品数据决定亲子观看路径，滚动状态决定教育叙事章节。成立的共同点，是画面变化都能追溯到内容、数据或操作，而不是独立播放的装饰特效。",
+      "featuredId": "cerebrum-brain-explorer",
+      "experiment": {
+        "title": "把一个真实项目拆成可切换的证据剖面",
+        "input": "Joey 作品集中的 1 个真实项目；只取时间、角色、媒介、版本四组已核验字段。",
+        "stack": "原生 HTML/CSS/JavaScript + Canvas 2D；不使用 Three.js、WebGL 或生成素材。",
+        "target": "四组字段变成同一对象的四层轮廓；点击图例只显露对应证据，并同步显示原始字段。",
+        "acceptance": [
+          "每一层轮廓都能反查到一组真实字段",
+          "鼠标、触控与键盘都能切换当前剖面",
+          "1440px 与 390px 下图例、证据和图形不互相遮挡",
+          "reduced-motion 下直接切换终态，不播放层间插值"
+        ]
+      },
+      "restraint": "Creative Twin 只有在模型分区、镜头、剖面或热点确实映射项目时间、角色、媒介、版本或交互记录时才接入；如果没有可追溯字段，就保留静态图与清楚标签，不用三维外壳制造伪数据感。",
+      "cases": [
+        {
+          "id": "cerebrum-brain-explorer",
+          "title": "Cerebrum — 3D Brain Explorer",
+          "author": "Prasenjit / StarKnightt",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.06",
+          "url": "https://3d-brain-explorer.vercel.app/",
+          "accent": "#b47f7e",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "黑色展厅里，一颗湿润、连续的脑皮层占据中央；左侧十个脑区像博物馆索引，选中内部结构时，整体退成半透明外壳，MRI 切片与目标结构在原位同时出现。",
+          "why": "它没有把脑模型当作可旋转插图。连续皮层负责真实外观，隐藏语义网格负责稳定拾取，内部结构再由同一受试者的 MRI 参考面和结构曲面定位；索引、命中、镜头、说明卡与空间剖面共享脑区状态。",
+          "input": "OpenNeuro ds006128 的 sub-01 MRI/FreeSurfer 数据、十个脑区映射、GLB 与切片资源，以及拖拽、缩放、悬停、点击、键盘和移动端底部面板状态。",
+          "layer": "作者 README、来源清单与公开源码可核验 Next.js/React、Three.js/R3F/Drei、three-mesh-bvh、连续 pial 表面、语义拾取网格、内部结构 GLB、MRI 切片、PBR 材质与后处理；数据来源记录为 OpenNeuro ds006128 1.0.11、CC0。",
+          "motion": "悬停只预览脑区色彩，选中后镜头保存原姿态并聚焦对应区域；内部结构切换到半透明全脑、MRI 平面和目标曲面的三层定位。取消选择时镜头返回先前轨道，而 reduced-motion 会关闭自动旋转与标本漂浮。",
+          "pipeline": "OpenNeuro MRI/FreeSurfer → 校验和锁定与确定性变换 → 连续外部表面、语义拾取层和内部结构/切片 → R3F 场景 → 索引、镜头与说明卡同步。",
+          "performance": "公开代码把桌面 DPR 封顶 1.6、移动端 1.15、紧凑横屏 1.1；移动端关闭阴影并把环境贴图分辨率从 256 降到 128，BVH 加速拾取。reduced-motion 会关闭自动旋转与标本漂浮；但模型与后处理仍有显著 GPU 成本，低端设备应增加静态切片路径。",
+          "transfer": "把 Joey 的一个复杂项目组织成连续总览、可命中语义层和证据剖面：外观用于整体记忆，隐藏结构用于准确导航，点击后只揭示真实角色、媒介、版本或时间证据。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认仓库由 StarKnightt 于 2026-08-06 创建，个人资料名为 Prasenjit；演示返回 HTTP 200。README、brain-atlas.provenance.json、公开模型/切片与源码交叉核验 OpenNeuro 数据、十个区域、连续皮层、语义拾取、内部 X-ray 定位、BVH、移动 DPR 与 reduced-motion。数据变换没有在本次研究中重新运行，脑区边界与说明也未由医学专家独立复核；作者明确声明它是教育可视化，不是医疗器械。源码：https://github.com/StarKnightt/brain-explorer"
+        },
+        {
+          "id": "partmode-browser-cad",
+          "title": "PartMode — Browser CAD for People + Typed Agents",
+          "author": "BOMWiki / PartMode",
+          "platform": "GitHub / product site",
+          "pageTime": "Repository created · 2026.08.06",
+          "url": "https://partmode.com/",
+          "accent": "#58adf2",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "深蓝工程工作台把特征树、精确实体、参数、装配与检查面板围在同一块 3D 画布旁；代理修改先以独立预览出现，右侧飞行记录明确显示验证、批准与提交。",
+          "why": "它的 3D 不是模型预览，而是规范化文档的可编辑投影。人和 typed agent 操作同一参数文档，OpenCascade 在 Worker 内重建 exact B-rep，只有通过预览与权限校验的事务才进入当前版本；画面、拓扑证据和导出结果由同一状态产生。",
+          "input": "参数草图、特征历史、实体与装配、约束、材料/测量属性、人类命令、带权限的 typed agent 操作，以及 STEP 等交换文件。",
+          "layer": "作者 README、架构文档与公开源码可核验原生浏览器工作台、vendored Three.js/OrbitControls/TransformControls、OpenCascade WASM、replicad、独立 kernel Worker、schema-5 文档、B-rep/拓扑证据、预览批准流程与 STEP/STL/3MF/SVG/DXF/PDF 导出。",
+          "motion": "轨道、选择与变换控件服务于建模，不承担装饰。参数或代理操作触发 detached exact preview，批准后才重建并提交新 revision；爆炸视图、剖面、装配约束和特征历史让模型变化保持可追踪。",
+          "pipeline": "人类或 typed agent 操作 → 权限与 revision 检查 → 分离预览 → OpenCascade Worker 精确重建 → B-rep/拓扑证据 → 批准提交 → Three.js 视图与标准格式导出。",
+          "performance": "Three.js DPR 封顶 2，检测软件 WebGL 时初始降至 0.5；轨道仍可保持阻尼，但只在脏状态提交 WebGL 绘制，几何计算放入 Worker。760px 以下重排为横向工具带并保留 44px 触控目标，reduced-motion 关闭界面 transition；复杂 CAD 的移动端可用性和大装配性能仍需真实设备基准。",
+          "transfer": "Creative Twin 可借其“预览—批准—提交”而不是 CAD 外观：AI 生成的新场景、标签或模型变体先成为可比较的临时状态，只有人确认后才进入作品集的公开版本与证据记录。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 BOMWiki/partmode 于 2026-08-06 创建，产品站返回 HTTP 200。README、架构文档、公开 studio.js、studio-kernel.worker.js 与 agent service 交叉核验 Three.js、OpenCascade/replicad、schema-5、Worker、权限、detached preview、approved commit、B-rep 证据与多种导出。源码声明并不等于制造认证；本次未重跑完整 release gate，也未验证大型装配、尺寸公差或不同设备上的帧率。源码：https://github.com/BOMWiki/partmode"
+        },
+        {
+          "id": "prehistoric-animal-museum",
+          "title": "Prehistoric Animal Museum",
+          "author": "Leon Made This",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.04",
+          "url": "https://leon-made-this.work/museum/",
+          "accent": "#d96e47",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "没有追逐和胜负，孩子只是在一块安静展台上转动海、陆、空史前动物；模型旁的短介绍、双语旁白和家长提问把一次观看变成共同对话。",
+          "why": "它把“博物馆级”落实在观看伦理与信息结构，而不是暗场灯光。十八件展品各自绑定模型、背景、双语旁白、分类、化石发现区域、体型、饮食与来源；声音不自动播放，也没有账号、广告或完成压力。",
+          "input": "十八种史前动物的 GLB/Meshopt 模型、横竖背景与海报、英中双语文本和旁白、来源/授权记录，以及旋转、缩放、展品选择、语言和家长指南状态。",
+          "layer": "作者 README、内容注册表和公开源码可核验 React/Vite、Three.js WebGLRenderer、GLTFLoader + Meshopt、OrbitControls、AnimationMixer、响应式横竖构图、模型缓存、加载进度、双语静态内容和分层授权清单。",
+          "motion": "手指或鼠标围绕当前动物旋转缩放；切换展品时海报先维持稳定画面，模型与相机在遮罩下交接。粗指针调整缩放手感，旁白只在明确点击后播放；reduced-motion 把模型转场压到极短并永久关闭自动旋转。",
+          "pipeline": "带来源记录的模型/图像/旁白 → 双语展品数据 → HTTP/内存缓存与进度反馈 → Three.js 展台和相机适配 → 家长指南、来源与授权界面。",
+          "performance": "渲染 DPR 封顶 2，模型使用 Meshopt，预览海报覆盖首帧与切换空档，页面隐藏时取消空闲预载并延后旁白准备；切换会清理旧资源。布局覆盖桌面、平板、手机与短横屏，reduced-motion 同时停止 CSS 氛围动画和 3D 自动旋转。",
+          "transfer": "把 Joey 的艺术数字孪生做成“共同观看”模式：每次只出现一个对象，模型旁只保留一段短说明、一个可追溯来源和一个能开启对话的问题，不用游戏化奖励延长停留。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 s010s/prehistoric-animal-museum 于 2026-08-04 创建，账号公开名为 Leon Made This；演示重定向到中文版本并返回 HTTP 200。README、18 组内容资产、ViewerController、响应式 CSS 和授权文件交叉核验双语、非自动旁白、Three.js/Meshopt、缓存、DPR、移动布局与 reduced-motion。模型与内容来源有记录，但本次未逐项复核全部第三方许可，也未由古生物专家验证复原准确度；作者明确说明颜色、软组织与部分动作属于有依据的艺术复原。源码：https://github.com/s010s/prehistoric-animal-museum"
+        },
+        {
+          "id": "why-zero-university",
+          "title": "Why Zero",
+          "author": "Zero University / Sindhur Dutta",
+          "platform": "CSS Design Awards / creator site",
+          "pageTime": "CSSDA Website of the Day · 2026.08.11",
+          "url": "https://why.zero.university/",
+          "accent": "#55b97a",
+          "mechanisms": [
+            "滚动变成镜头",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "一只绿色三维手和一只真实质感的手伸进白色浏览器框，背后是近乎过曝的花园；滚动继续穿过玻璃碎裂、证书、金钱、隧道与 XP，教育制度被写成连续的空间隐喻。",
+          "why": "它不是把 AI 教育卖点切成几张营销卡。公开资源显示多个章节共享相机、手部模型、玻璃碎片、隧道、证书与 XP 状态；滚动、按住、拖动和声音把“旧学历—破裂—工作与成长”的论证变成用户必须推进的叙事动作。",
+          "input": "滚动进度、指针/触控、按住与拖动、视口、设备方向许可、音频开关，以及用户填写的姓名、教育背景和学校字段。",
+          "layer": "CSSDA 与原站公开资源可核验 Three.js WebGLRenderer、GLTF/DRACO/KTX2、多个 hand/camera/glass/tunnel GLB、GSAP/ScrollTrigger、OrbitControls、自定义 Shader、多 render target 后处理、分章节音频与桌面/移动视频。",
+          "motion": "滚动控制章节、相机与材质转场，手势推进拖拽/按住段落，玻璃破裂、隧道和 XP 形成连续因果。声音按章节切换且需用户开启；设备方向是可选输入，不授予权限时仍保留基础滚动路径。",
+          "pipeline": "品牌论点与用户字段 → 多章节 DOM/表单状态 → Three.js 模型和纹理 → GSAP 滚动编排 → 多 pass 模糊、结霜、碎裂与合成 → 报名/分享终点。",
+          "performance": "公开 bundle 内置 HIGH/MEDIUM/LOW 三级：DPR 分别封顶 2、1.5、1，低档关闭 lens blur，并以 60 帧采样窗口按平均帧耗升降档。发现的 reduced-motion 只明确停止音频按钮波形，未证明全局镜头与 Shader 都会降级；低端移动端应提供静态章节与普通表单。",
+          "transfer": "只借其“论点变成连续动作”的方法：把 Joey 一个真实项目的误解、实验、证据与结果写成四个可推进场景，每个转场都对应内容状态，不复制巨手、花园或玻璃碎裂。",
+          "difficulty": "3–5 天成品",
+          "evidence": "CSS Design Awards 明确记录 Why Zero 为 2026-08-11 Website of the Day，作品归属 Zero University、协作者 Sindhur Dutta，并标注 WebGL；原站与公开主 bundle 均返回 HTTP 200。CSSDA 截图核验双手、花园和浏览器框视觉，公开模型/视频/音频资源与 bundle 交叉核验 Three.js、GLTF/DRACO/KTX2、ScrollTrigger、多 pass、章节资产和自适应质量。作品最初于 2026-07-15 入围；本次使用获奖日作为页面时间。未执行来源脚本或提交表单，完整交互、个人字段处理、跨设备帧率与全局 reduced-motion 未独立验证。"
+        }
+      ],
+      "dateLabel": "AUG 11",
+      "issueNo": "014"
+    },
     {
       "id": "2026-08-10",
       "note": "今天的四个作品共同证明：高完成度不来自效果数量，而来自一个主机制持续组织品牌、内容与交互。流体揭示、粒子核心、桌面空间和位移 Shader 都是界面本体；它们成立，是因为输入、视觉反馈与信息结构没有彼此脱节。",
