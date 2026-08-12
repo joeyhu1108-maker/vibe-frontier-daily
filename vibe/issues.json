@@ -1,7 +1,124 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-11T10:43:26.605Z",
+  "updatedAt": "2026-08-12T10:38:42.360Z",
   "issues": [
+    {
+      "id": "2026-08-12",
+      "note": "今天的四个作品都没有把复杂渲染当作独立表演：昆虫的形态参数同时驱动模型、标注与讲解，色彩公式决定点云所在的空间，像素误差决定下一层几何，花瓣约束决定触碰后的变形。成立的共同点，是每次视觉变化都能回到一个明确输入、状态或计算规则。",
+      "featuredId": "kasane-geometric-image-approximation",
+      "experiment": {
+        "title": "把一张项目照片压缩成 24 层可解释几何",
+        "input": "Joey 作品集里一张已获授权的项目照片；手工记录 24 个半透明圆、矩形或三角形的坐标、颜色、透明度与层级。",
+        "stack": "原生 HTML/CSS/JavaScript + SVG；不用 AI、WebGL、图像上传服务或自动优化。",
+        "target": "滑杆从原图切到 24 层抽象结果；逐层播放时，每次只增加一个能解释构图关系的几何形。",
+        "acceptance": [
+          "24 个形状全部来自可查看的 JSON 数据，并能复现同一结果",
+          "第 8、16、24 层仍能分别读出主体、空间关系与色彩重心",
+          "导出的 SVG 不依赖外链资源，1440px 与 390px 下都不溢出",
+          "reduced-motion 下滑杆直接切换目标层，不自动逐层播放"
+        ]
+      },
+      "restraint": "Creative Twin 只有在形状、模型、颜色或动作确实映射项目时间、素材、角色、版本或交互记录时才接入；若只是让静态图更像技术演示，就保留原图与清楚的证据标签。",
+      "cases": [
+        {
+          "id": "kasane-geometric-image-approximation",
+          "title": "KASANE 襲 — Geometric Image Approximation",
+          "author": "So Kariyama",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.06",
+          "url": "https://kariyamaso.github.io/kasane/",
+          "accent": "#f2b705",
+          "mechanisms": [
+            "数据变成空间",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "一张照片旁边，半透明三角形、圆与贝塞尔线一层层落下；画面不是被滤镜覆盖，而是在观看中逐渐被少量几何重新说出来，时间滑杆还能退回任意中间状态。",
+          "why": "它把抽象风格变成可检查的优化过程。每一步只提交一个让像素误差下降的形状，颜色由当前画面、目标像素与透明度直接求解；视频模式延续同一批形状的轨迹，而不是逐帧随机重画，因此结果既有视觉风格，也有可复现的结构。",
+          "input": "本地图片或视频帧、形状种类、数量与尺寸范围、透明度、调色板或色阶、计算分辨率、随机种子，以及视频模式的光流、平滑、出生/死亡和关键帧参数。",
+          "layer": "作者 README 与公开源码可核验 TypeScript/Vite、Canvas 2D、扫描线光栅化、SSE 误差、闭形式最优颜色、随机搜索/模拟退火/爬山、Web Worker，以及 PNG/SVG/JSON 和动画 SVG 导出；没有 WebGL 或服务器上传。",
+          "motion": "静态模式把每次新增形状变成可回看的建构序列。视频模式先用稀疏金字塔 Lucas–Kanade 估计形状支撑区域的运动，再拟合仿射并投影回形状自由度；出生、死亡用迟滞与透明度渐变避免闪烁，最后用参数空间 RDP 压成稀疏关键帧。",
+          "pipeline": "本地像素/帧 → 降采样计算缓冲 → 候选几何与最优色求解 → 误差评估和局部优化 → Worker 提交形状 → Canvas 预览与 SVG/PNG/JSON；视频再经过轨迹输运、重拟合、生死管理和关键帧压缩。",
+          "performance": "核心优化在 Web Worker 内运行，计算分辨率与形状数量显式暴露给用户，渲染预览与计算缓冲分离；900px 以下控制面板与画布改为单列。作者给出的样例耗时来自特定 640px 输入与低计算分辨率，不能外推到移动设备；源码未发现专门的 reduced-motion 分支，视频逐层播放应增加静态终态入口。",
+          "transfer": "把 Joey 的一个项目主视觉做成“可回溯的抽象”：不是生成一张相似海报，而是让每一层几何对应主体、空间、动作或证据类别，并允许观众停在任意阶段查看它如何成立。",
+          "difficulty": "1 天原型",
+          "evidence": "GitHub API 确认 kariyamaso/kasane 于 2026-08-06 创建，账号公开名为 So Kariyama；演示返回 HTTP 200。作者 README 明确披露全本地、形状叠加、闭形式颜色、Worker、静态与视频导出；公开 TypeScript 交叉核验随机种子、SSE、扫描线、Worker、光流轨迹、出生/死亡和 RDP 关键帧。README 的速度与匹配率是作者给定样例，本次未独立复跑基准，也未验证任意输入都能得到审美上成立的结果。源码：https://github.com/kariyamaso/kasane"
+        },
+        {
+          "id": "insect-world-procedural-field-guide",
+          "title": "Insect World — Procedural 3D Field Guide",
+          "author": "Tim Ren / xr843",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.06",
+          "url": "https://insect-world.pages.dev/",
+          "accent": "#b08d57",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "冷灰绿标本台中央不是一张虫图，而是一只可剖切、可分层的代码昆虫；点彩色锚点，镜头贴近口器、翅或触角，分步讲解讲到哪里，模型就把那里送到眼前。",
+          "why": "六十个物种没有各自塞入一个黑盒 GLB，而是共享头胸腹、分节附肢、翅脉与材质工具箱，再由物种参数生成。数据里的 anchor 同时连接几何、标注和讲解，测试会拦截缺失接缝；因此三维不是说明文字旁的装饰，而是内容结构本身。",
+          "input": "六十个物种的形态参数、真实体长尺度、颜色与表面预设、器官 anchor、双语图鉴和分步讲解，以及旋转、缩放、热点、剖切、分层、对比、主题和测验状态。",
+          "layer": "作者 README 与公开源码可核验 React/Vite、Three.js/R3F/Drei、程序化放样与 CanvasTexture、六十个动态分包 builder、GL clipping plane、热点 HTML 层、N8AO/Bloom/ToneMapping 后期、双语数据和自动化接缝测试；仓库没有外部 3D 模型文件。",
+          "motion": "拖拽与缩放用于观察，点击讲解步骤时相机根据当前旋转后的世界 anchor 聚焦器官；剖切和半透明层揭示结构，对比条把尺度关系留在同一展台。reduced-motion 默认关闭自转、触角微动和转场。",
+          "pipeline": "物种形态与内容数据 → TypeScript builder 参数化建模 → anchor 接缝校验 → 按需代码分割与 LRU 模型缓存 → Three.js 展台 → 标注、讲解、测验、剖切和对比同步。",
+          "performance": "作者公开记录单物种约 1.4 万至 3.6 万三角面、浏览器构建约 30–90 毫秒；这些是作者测量而非本次基准。生产代码按物种分包，桌面后期单独懒加载，粗指针不下载后期，DPR 上限桌面 2、粗指针 1.5，静止按需绘制、离开视口停止渲染，并用 LRU 回收模型。",
+          "transfer": "给艺术数字孪生建立“几何—证据”接缝：作品模型上的每个热点必须对应一条可核验素材、版本、角色或时间记录；缺少证据的热点应像缺失 anchor 一样在发布前报错。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 xr843/insect-world 于 2026-08-06 创建，账号公开名为 Tim Ren；中英文演示返回 HTTP 200。README、六十个 builder、数据契约、registry、InsectCanvas 和测试交叉核验程序建模、真实尺度、anchor、分包、LRU、DPR、按需渲染和 reduced-motion。视觉截图来自仓库并已查看。作者明确警告图鉴讲解由 AI 撰写且未经昆虫学逐条核校；本次也未审定物种形态或文字准确性，作者性能数字未独立复测。源码：https://github.com/xr843/insect-world"
+        },
+        {
+          "id": "luma-color-eye-experiments",
+          "title": "LUMA — Six Experiments on Color & the Eye",
+          "author": "Samahith / MowkE",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.11",
+          "url": "https://mowke.github.io/LUMA/",
+          "accent": "#2f967c",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "明亮美术馆左侧是一块章节铭牌，右侧黑色展柜里悬着可绕行的色彩体；拉动色觉缺失强度，完整晶体被压成薄片，换两端颜色，两条渐变路径直接在空间里分叉。",
+          "why": "它让色彩空间的数学差异变成可以操作的形变：同一组 RGB 字节在 HSV、OKLab、LMS 与色觉缺失投影下得到不同位置。六章不是六个随机 shader，而是从“电脑如何归档颜色”逐步走到“眼睛如何重建颜色”的连续论证。",
+          "input": "RGB/HSV 采样格点、显示色域与锥体响应矩阵、色觉缺失类型和严重度、两端颜色、视觉疲劳计时，以及章节、轨道、缩放、暂停和截图操作。",
+          "layer": "作者 README 与公开源码可核验零依赖 WebGL2、共享 GLSL 色彩库、HSV/OKLab/Hunt–Pointer–Estevez LMS/Viénot 投影、点云与实例箭头、六个章节模块、统一相机和声明式铭牌控件；没有 Three.js 或后端。",
+          "motion": "轨道相机让观众比较色彩体轮廓；第一章在 HSV 立方体、感知晶体和修正向量间变形，第二章把全部颜色迁移写进顶点着色器，第三章用滑杆连续压缩色觉维度，第四章把两种渐变插值显示为空间路径。空格可暂停自转。",
+          "pipeline": "颜色字节与科学公式 → 共享 GLSL 变换 → 点云/箭头/路径几何 → 单一 WebGL2 context → 章节状态、铭牌与控件同步 → PNG 截图。",
+          "performance": "六章复用一个 WebGL2 context，颜色以三个字节送入 GPU，排列、变形和迁移主要在顶点着色器完成；画布 DPR 封顶 2，帧间 dt 封顶 0.05。移动端改为纵向滚动，但渲染循环持续运行；reduced-motion 只关闭 DOM 过渡，没有自动停止自转或持续绘制，低功耗路径仍不完整。",
+          "transfer": "把 Joey 的项目色彩系统做成一件可验证的小型展品：输入真实版本中的颜色 token，展示它们在 sRGB 与 OKLab 插值下的路径差异，并把每个点反链到使用它的真实界面或作品素材。",
+          "difficulty": "1 天原型",
+          "evidence": "GitHub API 确认 MowkE/LUMA 于 2026-08-11 创建，账号公开名为 Samahith；演示返回 HTTP 200。作者 README 明确披露六章、纯 WebGL2、共享色彩公式与各章含义；公开 JavaScript/GLSL 交叉核验颜色转换、点云、实例绘制、章节控件、DPR 2 和连续渲染。仓库截图已查看。感知与色觉陈述本次未由视觉科学论文逐条复核，README 也只明确给出第一章灵感来源；不能把交互演示当医学筛查工具。源码：https://github.com/MowkE/LUMA"
+        },
+        {
+          "id": "digital-peony-webgpu-xpbd",
+          "title": "Digital Peony",
+          "author": "Lewis Orton",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.07",
+          "url": "https://lewisorton.github.io/digital-peony/",
+          "accent": "#d9a8bc",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "一朵粉白牡丹占满黑色画布，花瓣边缘像真实纸纤维，却被一层蓝紫线框与故障颗粒穿过；指针压入花冠，受力沿层层花瓣传开，松手后它缓慢回到有机形态。",
+          "why": "它没有把花做成循环播放的预烘焙动画。花瓣网格、排列、纹理、光照和数字破损都由代码生成，触碰被映射到花朵局部空间并进入 XPBD 约束与碰撞计算；外观与响应来自同一个可调系统。",
+          "input": "花瓣数量与网格拓扑、曲率和开放度、材质与程序纹理、固定步长物理参数、碰撞候选、指针/触控轨迹、交互力度、相机与后处理参数。",
+          "layer": "作者 README 与公开源码可核验 Three.js WebGPURenderer、TSL、程序化花瓣几何、storage buffer/compute graph、XPBD 拉伸/剪切/曲率约束、花瓣碰撞、实例化渲染、程序纹理和多层后处理；无预制模型或贴图资产。",
+          "motion": "物理以 1/120 秒固定步长推进，每帧最多四步并迭代约束；指针轨迹从世界空间转到花朵局部空间，形成可衰减的交互力场，碰撞与回弹维持花冠层次。相机与花朵自转有 dt 上限，页面隐藏时清理悬挂交互。",
+          "pipeline": "花瓣参数与程序纹理 → 花冠实例布局 → GPU storage/compute 状态 → XPBD 约束、碰撞和交互力 → WebGPU 实例花瓣 → TSL 材质、线框/颗粒与后处理合成。",
+          "performance": "模拟与多数视觉处理在 GPU 上，花瓣实例共享几何，固定步长限制单帧追赶次数，页面隐藏时清理输入；生产构建提供 Brotli/gzip。渲染器固定 pixel ratio 2，未按设备能力动态降档；不支持 WebGPU 时只显示明确说明，没有视觉替代。reduced-motion 主要覆盖 UI 过渡，没有停掉花朵物理与自转。",
+          "transfer": "只借它的“触碰产生局部证据反馈”：在作品集的一件材料作品上，让指针扰动与真实材料属性对应的局部网格；若没有材料参数或过程记录，就不要用软体模拟冒充作品本身。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 LewisOrton/digital-peony 于 2026-08-07 创建，作者账号公开名为 Lewis Orton；演示返回 HTTP 200。作者 README 明确披露 Three.js、WebGPU、TSL、GPU XPBD、碰撞、程序 shader、纯客户端和零预制资产；公开源码交叉核验固定步长、约束迭代、碰撞候选、局部交互轨迹、visibility 处理、pixel ratio 2 与 WebGPU 不可用状态。仓库 GIF 帧已查看；本次浏览器未实测 WebGPU 交互与帧率，也没有植物学真实性或跨设备覆盖数据。源码：https://github.com/LewisOrton/digital-peony"
+        }
+      ],
+      "dateLabel": "AUG 12",
+      "issueNo": "015"
+    },
     {
       "id": "2026-08-11",
       "note": "今天的四个作品把三维从视觉容器推进为可核验的状态界面：MRI 数据决定脑区与切片，参数文档决定精确实体，展品数据决定亲子观看路径，滚动状态决定教育叙事章节。成立的共同点，是画面变化都能追溯到内容、数据或操作，而不是独立播放的装饰特效。",
