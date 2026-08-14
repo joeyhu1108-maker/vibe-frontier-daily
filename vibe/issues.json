@@ -1,7 +1,125 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-12T10:38:42.360Z",
+  "updatedAt": "2026-08-14T10:42:38.926Z",
   "issues": [
+    {
+      "id": "2026-08-14",
+      "note": "今天四个作品的共同点不是更复杂的画面，而是让输入、状态与表现保持同一套因果：频谱与浅水状态生成海面，唱片沟槽决定城市生长顺序，RGBA 表达式决定每个输出像素，轨道预测决定玩家下一步故事。视觉成立，是因为效果不能脱离机制单独存在。",
+      "featuredId": "last-train-records",
+      "experiment": {
+        "title": "让 12 条项目证据从一张唱片沟槽中升起",
+        "input": "Joey 一个真实项目的 12 条已核验记录，每条只含时间、类型、标题与一张已获授权缩略图；按时间映射到唱片圆周角度。",
+        "stack": "Three.js + 原生 JavaScript + 一份本地 JSON；一个固定相机、一个方向光，不用后期、音频或外部模型。",
+        "target": "点击一次后，唱片旋转一周；12 个薄片按真实时间顺序从沟槽升起，结束时形成可读的环形项目档案。",
+        "acceptance": [
+          "所有薄片的角度、颜色与标签都能反查到 JSON 中的真实记录",
+          "动画只由一个 0–1 进度值驱动，回拖进度能复现同一中间状态",
+          "390px 宽度下标签不遮挡主模型，DPR 上限不超过 1.5",
+          "reduced-motion 下不旋转唱片，直接用 1 秒淡入显示终态"
+        ]
+      },
+      "restraint": "Creative Twin 只有在几何位置、颜色、显隐或运动确实映射真实项目记录时才接入；若只是把档案包装成漂亮星球、海面或微缩城市场景，就保留清楚的时间线与原始证据。",
+      "cases": [
+        {
+          "id": "inkwell-webgpu-water-tethys",
+          "title": "Inkwell WebGPU Water — Tethys",
+          "author": "James Addison / siliconjungle",
+          "platform": "GitHub",
+          "pageTime": "Repository created · 2026.08.11",
+          "url": "https://github.com/siliconjungle/inkwell-webgpu-water",
+          "accent": "#26a9c2",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "低机位越过一片高亮青蓝海面，长涌浪、短碎波与白沫不是贴图循环，而是在不同尺度上互相穿过；切到水下，沙床、吸收与水面折射仍属于同一片场。",
+          "why": "它没有用一张流动法线伪装海洋。长涌浪、风浪和毛细波分成三个频谱级联，近岸再交给保存水位、动量与泡沫的状态场；白沫由位移压缩和破碎事件产生，湿沙由同一水位驱动，所以几何、光学与岸线不会各说各话。",
+          "input": "TMA/JONSWAP 频谱参数、风向与交叉涌浪、三档波长级联、近岸水位/动量/泡沫状态、地形高度场、时间、相机轨道、表面/水下与开放海域/岛岸场景选择、渲染倍率。",
+          "layer": "作者 README 与公开源码可核验原始 WebGPU/WGSL、513² 沙床场、三个 128² 频谱级联、十四阶段 Stockham 逆 FFT、256² 近岸状态、事件 ping-pong、嵌套水环、Beer–Lambert 吸收、Fresnel/Cox–Munk 高光和厚度感知折射；React 只负责控制面板。",
+          "motion": "频域演化生成不同尺度的位移与导数，长/中波推动网格，短波远处转入 BRDF；近岸用湿干重建和通量更新水位与动量，泡沫沿速度回溯并衰减。拖拽只控制环绕相机，滚轮控制距离，镜头不会替代水体本身的运动。",
+          "pipeline": "频谱与地形参数 → WebGPU compute 生成沙床、频谱与近岸状态 → 逆 FFT 得到位移/导数 → 嵌套水环和岸线几何 → 反射、透射、泡沫、湿沙与水下雾合成 → 遥测面板。",
+          "performance": "作者保存的 Apple/Metal A/B 基准报告表面 6.883 ms、岛岸 9.315 ms，并明确限定为该孤立渲染器；本次未复跑。源码把 DPR 封顶 1.5，并允许 0.5–1.25 渲染倍率。WebGPU 不可用时只有明确报错，没有 WebGL/静态替代；未发现 visibility 暂停或 reduced-motion 分支，移动端持续计算仍是风险。",
+          "transfer": "在 Joey 的作品集里，不要复制海水；复制“同一状态驱动多层表现”的结构。比如让真实创作进度同时控制粒子密度、颜色饱和度与材料表面，而不是给三个层各写一套无关动画。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 siliconjungle/inkwell-webgpu-water 于 2026-08-11 创建，账号公开名为 James Addison。README、WGSL 引擎、测试、基准 JSON 与仓库固定时间截图交叉核验三频谱、近岸状态、嵌套网格、光学、DPR 与控制方式。仓库没有公共部署，本次没有执行项目或独立复测作者性能数字；视觉只核验到仓库截图，跨浏览器和移动端体验未知。"
+        },
+        {
+          "id": "last-train-records",
+          "title": "Last Train Records",
+          "author": "Hamza Ehsan",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.12",
+          "url": "https://hxmzaehsan.github.io/last-train-records/",
+          "accent": "#f52a98",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事",
+            "排版变成界面"
+          ],
+          "memory": "唱针落下，黑胶沟槽沿一圈扫描线抬起成深夜东京：轨道、车站、店铺、行人和最后一班列车依次长出；镜头最后停在唱片上的微缩街区，唱片店本身成为进入三张虚构唱片的按钮。",
+          "why": "微缩城市不是循环视频，也不是可以随意转丢构图的 3D 模型。一个共享时间线同时控制唱片旋转、唱针、建筑升起、列车、霓虹、相机和声音；城市完成后，真实 DOM 按钮投影到 3D 店铺坐标，把模型直接变成内容入口。",
+          "input": "一次明确点击、共享 0–1 时间线、每个构件相对唱针的圆周角、店铺与唱片锚点、相机编排、20 个声音文件与 cue、键盘/浏览器历史、静音和 reduced-motion 偏好。",
+          "layer": "作者 README 与公开源码可核验 React 19、TypeScript、Three.js/R3F、实例几何、Canvas 绘制招牌、Bloom/ACES、Web Audio、投影 DOM 热点和单一可变时间线；唱片、建筑、列车、行人与镜头均为实时几何，不是预渲染视频。",
+          "motion": "10.5 秒正常序列把唱针后的角距离映射成构件 reveal；镜头从俯视压到定稿英雄构图，列车和霓虹按同一进度进入。渲染锁定 60 fps，时间用 wall clock 锚定而非数帧；reduced-motion 改为 2.6 秒、取消唱片旋转，并使用独立缩短的音频 cue。",
+          "pipeline": "圆周角与场景部件 → 共享时间线重映射 → 实例建筑/人物/列车 reveal → 固定相机编排与投影 DOM 热点 → Web Audio cue 同步 → 唱片店近景与发行物内容层。",
+          "performance": "场景使用 frameloop=never，由限帧器稳定在 60 fps；DPR 以约 200 万像素预算动态选择并封顶 1.5，关闭 WebGL 抗锯齿，后期只保留 2x multisampling、四级 Bloom 和 ACES。作者披露的 7.6 ms P95 来自其调试设备，本次未复测；未发现页面隐藏时的主动暂停。",
+          "transfer": "Joey 可把一件作品的真实时间线压进一个可进入的模型：阶段不是旁边的标签，而是模型升起顺序；最终只把有真实素材与授权的节点做成 DOM 热点，让浏览者从空间进入证据。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 hxmzaehsan/last-train-records 于 2026-08-12 创建；README 明确署名设计与导演 Hamza Ehsan。Demo 与源码地址均返回 HTTP 200，仓库预览图已查看。README、timeline、Scene、实例组件、音频 cue 与可访问性代码交叉核验实时几何、10.5/2.6 秒序列、60 fps、DPR、DOM 热点与静音/键盘路径。虚构唱片品牌与 AI 生成音频由作者明确披露；本次未执行站点脚本，也未实测音频、交互或帧率。"
+        },
+        {
+          "id": "filter-fabjs-2-1-1",
+          "title": "Filter FabJS v2.1.1",
+          "author": "Anthony Chimming",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.12",
+          "url": "https://anthonychimming.github.io/filter-fabjs/",
+          "accent": "#8e87ff",
+          "mechanisms": [
+            "数据变成空间",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "深色工作台左边是一张可切换原图、滤镜与分屏的画布，右边四行 R/G/B/A 公式像颜色实验仪表；改公式不会让画面闪烁，按下 Render 后进度条逐行推进，并明确告诉你实际用了 GPU 还是 CPU。",
+          "why": "它不是预设滤镜陈列，而是把图像处理过程变成可编辑、可解释、可降级的界面。公式先解析成带类型的中间表示，再判断能否编译成 WGSL；不兼容的噪声、卷积或旧式整数公式自动落到 CPU Worker，用户能看到回退原因而不是得到一个沉默的黑屏。",
+          "input": "本地 RGBA 图片、四通道表达式、控制滑杆、25 个内置预设、Filter FabJS JSON 或旧式 .afs 文件、Auto/GPU/CPU 选择、原图/结果/分屏与缩放状态。",
+          "layer": "作者 README、状态文档与公开源码可核验零依赖 ES modules、表达式解析器、typed IR、IR-to-WGSL 编译器、WebGPU compute、CPU Worker、Canvas 预览、PNG/剪贴板、导入导出、透明度棋盘和响应式双栏/单栏界面。",
+          "motion": "这里的动效不是装饰转场，而是计算反馈：输入停止后只做校验，不自动重绘；用户主动 Render 才按 128 行 tile 提交 WebGPU compute 或 Worker 任务，进度条显示行数，Esc 可取消。分屏滑杆让结果与原图在同一坐标系里比较。",
+          "pipeline": "图像与 RGBA 公式 → 解析 AST → typed IR 与兼容性分析 → WGSL compute 或 CPU Worker → RGBA 像素回读 → Canvas 原图/结果/分屏 → PNG、剪贴板或滤镜文件导出。",
+          "performance": "GPU 路径按 128 行分块 dispatch 并缓存 pipeline，CPU 路径放入 Worker，两者都提供进度与取消；920px 以下工作区改为单列，560px 以下继续收紧标签。GPU 最终仍把整张 RGBA 缓冲读回 CPU，超大图片的显存、读回与移动端耗时未给出基准；WebGPU 不可用会降到 CPU，这是完整功能降级而非视觉降级。",
+          "transfer": "把 Joey 项目图像的材料处理做成一张公开、可复现的配方卡：每个通道公式、输入图授权与输出结果并列出现；如果 CPU 与 GPU 有差异，界面必须显示实际后端与证据边界。",
+          "difficulty": "1 天原型",
+          "evidence": "GitHub API 确认 anthonychimming/filter-fabjs 于 2026-08-12 创建，账号公开名为 Anthony Chimming；Demo 与源码地址均返回 HTTP 200。README、PROJECT_STATUS、静态界面、renderer manager、WGSL compiler、WebGPU/CPU renderer 和响应式 CSS 交叉核验 typed IR、自动回退、128 行分块、Worker、取消与单栏布局。本次未执行页面脚本，也未用真实图片复核 GPU/CPU 输出、剪贴板权限或大图性能。"
+        },
+        {
+          "id": "worldseed-orbital-story-game",
+          "title": "WORLDSEED",
+          "author": "Southers",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.13",
+          "url": "https://southers.github.io/WORLDSEED/",
+          "accent": "#d8c86a",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事",
+            "数据变成空间"
+          ],
+          "memory": "一颗发光种子被向后拉成弹弓轨迹，松手后掠过微缩行星的重力井；落在哪颗沉睡星球，哪一颗就从灰暗表面长出拱门、火焰、花瓣或星环，最后连成一张被玩家亲手恢复的星座。",
+          "why": "故事不靠过场文字推进，而由同一套轨道物理产生：预测线与真实飞行共用固定步长，落点改变下一次发射几何，危险体与收集物也用同一未来位置采样。玩家只会拖拽和释放，但每次输入同时是路线选择、风险判断与世界恢复。",
+          "input": "指针/触控拖拽向量、行星位置/半径/质量、固定步长引力与碰撞、预测步数、移动危险体和拾取物、已恢复节点、五章 authored system 数据、音频/静音与 reduced-motion 状态。",
+          "layer": "作者 README 与公开源码可核验原生 JavaScript、vendored Three.js、独立物理模块、同模型轨迹预测、程序化行星与合并地标、实例路线/粒子、Web Audio、五章内容数据、测试与静态 GitHub Pages 部署；没有外部模型或安装依赖。",
+          "motion": "按住种子反向拖拽时预测线实时给出落点、碰撞与可收集结果；释放后固定步长模拟真实飞行，命中星球触发球面距离驱动的恢复波、表面生长与环境 bloom。最终章用 3.4 秒系统级光脉冲回收此前建立的路线。",
+          "pipeline": "章节数据 → 物理世界与程序化行星 → 指针映射到轨道平面 → 共享固定步长预测/飞行 → 碰撞、收集与恢复状态 → Three.js 地标、路线、粒子和 DOM HUD → 程序化 Web Audio。",
+          "performance": "手机 DPR 封顶 1.5、桌面 2；每两秒采样平均帧时，低于约 34 fps 时逐级把 DPR 降到 1。地标合并、路线与粒子实例化，页面隐藏时取消瞄准并暂停已授权音频，支持 WebGL context 恢复；reduced-motion 去掉镜头跟随与撞击摇晃。README 的 draw-call 与浏览器跑通记录是作者证据，本次未复测。",
+          "transfer": "把 Joey 的 Creative Twin 导航缩成一种输入：拖拽不是玩具，而是选择真实项目之间的关系；只有当节点和路径来自可核验的合作、时间或素材流转数据时，才让抵达动作触发作品恢复。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 Southers/WORLDSEED 于 2026-08-13 创建；公开账号未披露姓名，故保留用户名署名。Demo 与源码地址均返回 HTTP 200，仓库 1200×600 截图与 10.5 秒展示视频文件可核验。README、physics、campaign、content、main、audio、测试和发布检查交叉核验五章、共享预测/飞行、程序几何、DPR 自适应、visibility、reduced-motion 与 context 恢复。作者的完整通关、draw-call 和帧率目标本次未执行或独立复测。"
+        }
+      ],
+      "dateLabel": "AUG 14",
+      "issueNo": "016"
+    },
     {
       "id": "2026-08-12",
       "note": "今天的四个作品都没有把复杂渲染当作独立表演：昆虫的形态参数同时驱动模型、标注与讲解，色彩公式决定点云所在的空间，像素误差决定下一层几何，花瓣约束决定触碰后的变形。成立的共同点，是每次视觉变化都能回到一个明确输入、状态或计算规则。",
