@@ -1,7 +1,101 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-14T10:42:38.926Z",
+  "updatedAt": "2026-08-15T10:39:36.899Z",
   "issues": [
+    {
+      "id": "2026-08-15",
+      "note": "今天三个作品共同证明，成熟的前端视觉不是在界面外再铺一层特效：H100 把词典条目绑定到可旋转部件，日食模拟器把时间、站点与影路径绑定到同一地球，液态球编辑器把参数、着色器与跨平台导出绑定到同一快照。视觉之所以成立，是因为每次操作都改变可解释的状态。",
+      "featuredId": "h100-gpu-glossary",
+      "experiment": {
+        "title": "把 7 条真实项目证据排成一块可检查的板卡",
+        "input": "Joey 一个真实项目的 7 条已核验记录；每条只含类型、日期、完成度、标题与公开证据链接。",
+        "stack": "Three.js + 原生 JavaScript + 一份本地 JSON；只用 BoxGeometry、固定相机、OrbitControls 与 DOM 说明卡。",
+        "target": "七个几何块按真实日期排序，高度映射完成度，颜色映射证据类型；悬停任一块时显示原始记录与证据链接。",
+        "acceptance": [
+          "每个几何块的位置、高度、颜色都能从 JSON 唯一反算，禁止手工摆放",
+          "悬停和键盘聚焦显示同一张说明卡，链接直接回到公开证据",
+          "390px 宽度下改用横向部件索引，DPR 上限不超过 1.5",
+          "reduced-motion 下取消自动旋转，只保留拖拽查看"
+        ]
+      },
+      "restraint": "Creative Twin 只有在部件位置、颜色、层级和说明卡都映射真实项目记录时才接入；如果模型只是为了显得像数字孪生，就保留清楚的列表、时间线和原始证据。",
+      "cases": [
+        {
+          "id": "h100-gpu-glossary",
+          "title": "H100 GPU Glossary",
+          "author": "Kyle Jeong",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.15",
+          "url": "https://gpu.kylejeong.com/",
+          "accent": "#73ed5c",
+          "mechanisms": [
+            "模型成为界面",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "荧光绿终端网格里，一块 H100 SXM5 板卡像博物馆标本斜置在暗场；左侧七条词典索引与芯片部件同步高亮，切到 Architecture 后，封装内部浮出 GPC、SM、Tensor Core 与 TMA 的概念层。",
+          "why": "它没有把 3D 板卡当封面轮播。七条知识条目各自拥有部件 id、视图、空间锚点与外部词典链接；列表悬停、键盘聚焦、模型点击和移动端快捷条都进入同一选中状态。模型因此承担定位与解释，而不是只负责旋转。",
+          "input": "Exterior/Architecture 视图、七个词典条目、部件与说明卡锚点、指针悬停/点击、触控选择、拖拽旋转、滚轮或捏合缩放、Esc 清除、reduced-motion 偏好。",
+          "layer": "作者 README 与公开源码可核验 Next.js 15、React 19、React Three Fiber、Drei、程序化 Three.js 几何、DOM-in-3D 说明卡、组件索引和绿色终端式响应界面；模型没有使用外部 GLB。",
+          "motion": "未交互时模型以低速自动旋转；第一次拖拽后停止自动旋转，OrbitControls 负责受限环绕与缩放。悬停只预览部件，选择则保持说明卡；切换 Architecture 时在同一板卡上增加概念结构，而不是跳到另一页。",
+          "pipeline": "Modal 词典条目与硬件参考 → typed 部件定义和程序化尺寸表 → R3F 生成板卡/封装/内存与概念单元 → 统一选择状态 → 空间说明卡、左侧索引和移动端快捷条。",
+          "performance": "Canvas DPR 在 1–2 之间，窄屏按画幅后移相机；839px 以下隐藏桌面部件栏并启用横向快捷条。reduced-motion 会关闭自动旋转与阻尼，CSS 动画也缩短；但场景仍使用阴影、ContactShadows、preserveDrawingBuffer 与默认连续渲染，未发现页面隐藏暂停或低性能静态替代。",
+          "transfer": "Joey 可把作品集中的材料、年份、合作角色与证据类型做成一件可检查的‘对象剖面’：模型每个部件必须能回到真实条目，列表与空间共享选中状态，移动端保留同样的信息路径。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 Kylejeong2/gpu 于 2026-08-15 创建，账号公开名为 Kyle Jeong；Demo 与源码均返回 HTTP 200，本次已查看当前在线画面。README、SceneViewport、H100Model、部件定义、几何表、交互 reducer、测试与响应式 CSS 交叉核验程序几何、七条词典映射、双视图、输入路径、DPR 和 reduced-motion。作者明确说明外观是参考重建而非尺寸认证 CAD，Architecture 是教育性概念图；本次未核验 NVIDIA 实物尺寸、词典内容正确性或设备帧率。Source: https://github.com/Kylejeong2/gpu"
+        },
+        {
+          "id": "solar-sclipse",
+          "title": "Solar Sclipse",
+          "author": "Quincunx / Quincunx33",
+          "platform": "GitHub / Cloudflare Pages",
+          "pageTime": "Repository created · 2026.08.14",
+          "url": "https://solar-sclipse.pages.dev/",
+          "accent": "#f5a800",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "一颗可旋转地球占据中央，橙色全食路径从高纬滑向欧洲；左侧时间轴、右侧观测站遥测和右下地面天空视图同时推进，拖到另一时刻，地球阴影与三个面板一起换相位。",
+          "why": "它没有把地球当背景球体。时间是单一主输入，连续驱动本影位置、昼夜分界、站点选择、食分读数、天空视图和历史回放；地图、遥测与时间轴保持同一时态，因此用户能在空间、数字和事件之间交叉检查。",
+          "input": "当前秒数与播放倍速、2026 路径航点、观测站坐标/时间窗、历史事件与回放场景、站点或自定义落点、相机模式、路径/半影/昼夜图层开关、拖拽与缩放。",
+          "layer": "作者 README 与公开源码可核验 React、TypeScript、Three.js WebGLRenderer、96×96 球体、自定义昼夜/本影 Shader、Canvas 生成的备用纹理与标记、OrbitControls、DOM 遥测面板、历史档案和移动端抽屉。",
+          "motion": "应用每 50ms 按倍速推进模拟时钟，影路径在球面航点间插值；相机可跟随阴影、聚焦站点、俯视或自由环绕。用户拖拽会退出自动追踪，滚轮只改变距离；历史条目进入各自的路线、站点与时间窗。",
+          "pipeline": "公开日食资料与编辑后的站点/航点 → 球面插值和太阳高度/距离计算 → Shader 中的昼夜、本影与半影 → 3D 地球和路径 → 站点遥测、天空视图、时间线与历史回放。",
+          "performance": "WebGL 使用 high-performance 偏好并把 DPR 封顶 2，场景销毁时清理 rAF、事件、renderer 与几何材质；桌面左右面板在中小屏逐级隐藏，移动端用底部抽屉。渲染循环与 50ms 时钟持续运行，未发现 visibility 暂停；reduced-motion 只缩短 CSS 动画，没有停止地球渲染、自动追踪或模拟时钟。",
+          "transfer": "Joey 可把一个项目的真实时间、地点与状态放进同一空间视图：中央模型负责关系，侧栏显示可反查的数值，底部时间轴只驱动同一个时间状态；任何估算值都要显式标成情景重放。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 Quincunx33/solar-sclipse 于 2026-08-14 创建，账号公开名为 Quincunx；Demo 与源码均返回 HTTP 200，仓库仪表盘截图已查看。README、Earth3D、astronomy、eclipseData、historicalScenarios、App 与响应式 CSS 交叉核验 Three.js、时间驱动、多面板、DPR 与移动布局。README 明确说历史路线是视觉回放而非精密星历；源码中的历史场景由少量编辑航点与派生时间窗构成，部分遥测使用缓动近似。本次没有独立复算天文数据、验证纹理来源或测量帧率。Source: https://github.com/Quincunx33/solar-sclipse"
+        },
+        {
+          "id": "liquid-orb-editor-webgpu",
+          "title": "Liquid Orb Editor",
+          "author": "LerSent001",
+          "platform": "GitHub / GitHub Pages",
+          "pageTime": "Repository created · 2026.08.14",
+          "url": "https://lersent001.github.io/orb/",
+          "accent": "#d78df3",
+          "mechanisms": [
+            "交互变成叙事",
+            "排版变成界面",
+            "模型成为界面"
+          ],
+          "memory": "黑场中央悬着一颗透明暗球，一条带冷暖色散的液态光带从球心横穿；右侧参数改变速度、轮廓、脊线、玻璃壳与辉光后，画面立即重组，并能把同一结果导出为网页或 SwiftUI/Metal。",
+          "why": "它不是十张预设动图。所有样式共享一份 120 浮点 uniform 快照，但每个预设拥有不同的空间流程序；编辑器、URL hash、Web 导出和 Metal 导出读取同一套参数。视觉选择因此能被保存、分享和迁移，而不是停留在调参截图。",
+          "input": "十个样式预设、时间、速度、半径、缩放、扭曲、脊线、锐度、曝光、边缘与玻璃参数、十二组颜色、球体/场景预览、场景文字、URL hash。",
+          "layer": "作者 README 与公开源码可核验 React 19 控制界面、原始 WebGPU、单个全屏三角形、WGSL 片元着色器、120 浮点 uniform 缓冲、十组流场程序、可选 SDF 玻璃壳，以及 Web 与 SwiftUI/Metal 代码导出。",
+          "motion": "requestAnimationFrame 只推进 shader 时间；不同预设用带状波、频谱层、FBM、脊线与极坐标等不同空间函数重组色场，玻璃壳再用距离场边缘与色散叠加。用户不操纵相机，而是通过参数把同一球体从材质对象改写成场景中的状态信号。",
+          "pipeline": "预设与控件 → 参数校验和 URL hash → 统一 uniform 快照 → WGSL 全屏片元生成液态色场与玻璃壳 → 球体/场景预览 → 自包含 Web 或 SwiftUI/Metal 源码。",
+          "performance": "只绘制一个全屏三角形，DPR 封顶 2，颜色控件懒加载，900px 以下改为堆叠布局；着色器编译错误、设备丢失和 GPU 错误会明确显示。主编辑器持续 rAF，未发现 visibility 或 reduced-motion 暂停；不支持 WebGPU 时只有错误状态，没有 WebGL/静态视觉降级。导出的 Web 页面会在 pagehide 取消动画并销毁设备。",
+          "transfer": "Joey 可复用它的‘参数快照即交付物’：让作品集某个真实状态映射到一份可分享 URL，并从同一快照生成网页与原生展示；不要只借用发光玻璃球的表面风格。",
+          "difficulty": "1 天原型",
+          "evidence": "GitHub API 确认 LerSent001/orb 于 2026-08-14 创建；公开账号未披露姓名，故保留用户名署名。Demo 与源码均返回 HTTP 200，仓库 poster 与十个预设图可核验视觉。README、App、orb-renderer、uniform 映射、WGSL、Metal 与导出代码交叉核验十预设、统一参数快照、WebGPU 管线、DPR、URL hash 和双平台导出。本次未实测每个控件、复制出的代码、Metal 编译或 GPU 帧率；项目没有 WebGPU 降级和完整减弱动态路径。Source: https://github.com/LerSent001/orb"
+        }
+      ],
+      "dateLabel": "AUG 15",
+      "issueNo": "017"
+    },
     {
       "id": "2026-08-14",
       "note": "今天四个作品的共同点不是更复杂的画面，而是让输入、状态与表现保持同一套因果：频谱与浅水状态生成海面，唱片沟槽决定城市生长顺序，RGBA 表达式决定每个输出像素，轨道预测决定玩家下一步故事。视觉成立，是因为效果不能脱离机制单独存在。",
