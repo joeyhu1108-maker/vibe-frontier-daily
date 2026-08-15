@@ -55,10 +55,17 @@ function createFilter(label, count, active, onSelect) {
   return button;
 }
 
-function createFeedItem(item, index, openDetail) {
+function createFeedItem(item, index, openDetail, coverMap) {
   const article = element("article", "feed-item");
   article.style.setProperty("--feed-accent", item.accent || "#4fa7d8");
   article.style.setProperty("--feed-order", String(Math.min(index, 8)));
+  const mappedCover = coverMap[item.id];
+  const cover = mappedCover || (item.image ? {
+    src: item.image,
+    source: item.url,
+    label: "PUBLISHED ISSUE IMAGE",
+  } : null);
+  if (!cover) article.classList.add("is-text-only");
 
   const marker = element("aside", "feed-marker");
   marker.append(
@@ -95,22 +102,30 @@ function createFeedItem(item, index, openDetail) {
   content.append(byline, title, memory, why, tags, actions);
   article.append(marker, content);
 
-  if (item.image) {
+  if (cover) {
+    const visualWrap = element("figure", "feed-visual-wrap");
     const visual = element("a", "feed-visual");
     visual.href = item.url;
     visual.target = "_blank";
     visual.rel = "noopener noreferrer";
     const image = element("img");
-    image.src = item.image;
+    image.src = cover.src;
     image.alt = `${item.title} 作品预览`;
     image.loading = "lazy";
-    visual.append(image, element("span", "", "VIEW ORIGINAL ↗"));
-    article.append(visual);
-  } else {
-    const signal = element("div", "feed-signal");
-    signal.setAttribute("aria-hidden", "true");
-    signal.append(element("span", "", item.title.slice(0, 1)), element("i"));
-    article.append(signal);
+    image.addEventListener("error", () => {
+      visualWrap.remove();
+      article.classList.add("is-text-only");
+    }, { once: true });
+    visual.append(image);
+    const caption = element("figcaption");
+    caption.append(element("span", "", "IMAGE"));
+    const credit = element("a", "", `${cover.label} ↗`);
+    credit.href = cover.source;
+    credit.target = "_blank";
+    credit.rel = "noopener noreferrer";
+    caption.append(credit);
+    visualWrap.append(visual, caption);
+    article.append(visualWrap);
   }
 
   return article;
@@ -167,9 +182,13 @@ function createDetailDialog() {
 
 async function mountFeed() {
   const archive = await waitFor("#archive");
-  const response = await fetch("./vibe/issues.json", { cache: "no-store" });
+  const [response, coverResponse] = await Promise.all([
+    fetch("./vibe/issues.json", { cache: "no-store" }),
+    fetch("./vibe/cover-map.json", { cache: "no-store" }),
+  ]);
   if (!response.ok) throw new Error(`Feed data request failed: ${response.status}`);
   const data = await response.json();
+  const coverMap = coverResponse.ok ? await coverResponse.json() : {};
   const allItems = flattenIssues(data.issues || []);
   if (!allItems.length) return;
 
@@ -189,9 +208,9 @@ async function mountFeed() {
   const heading = element("header", "feed-heading");
   const headingCopy = element("div");
   headingCopy.append(
-    element("span", "feed-kicker", "CURATED WORKS · CONTINUOUS INDEX"),
-    element("h2", "", "作品不是归档，\n而是一条持续生长的观察流。"),
-    element("p", "", "按机制进入，按时间继续阅读。每条记录保留作者、原作、实现判断与证据边界。"),
+    element("span", "feed-kicker", "VIBE FRONTIER · WORKS INDEX"),
+    element("h2", "", "作品 / Works"),
+    element("p", "", "一份关于界面、空间与叙事机制的持续期刊。按机制进入，按时间阅读；图片只采用可追溯的项目素材。"),
   );
   const total = element("div", "feed-total");
   total.append(element("strong", "", String(allItems.length).padStart(2, "0")), element("span", "", "VERIFIED\nWORKS"));
@@ -235,7 +254,7 @@ async function mountFeed() {
   function renderItems() {
     const items = currentItems();
     const visible = items.slice(0, shown);
-    stream.replaceChildren(...visible.map((item, index) => createFeedItem(item, index, openDetail)));
+    stream.replaceChildren(...visible.map((item, index) => createFeedItem(item, index, openDetail, coverMap)));
     status.textContent = `${active === "全部" ? "全部机制" : active} · 显示 ${visible.length} / ${items.length}`;
     more.hidden = visible.length >= items.length;
     more.textContent = `继续加载 · ${Math.min(PAGE_SIZE, items.length - visible.length)} 条`;

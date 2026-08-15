@@ -1,0 +1,62 @@
+{
+  "inkwell-webgpu-water-tethys": {
+    "src": "./vibe/covers/inkwell-webgpu-water-tethys.png",
+    "source": "https://github.com/siliconjungle/inkwell-webgpu-water/blob/main/docs/screenshots/tethys-surface-optimized-clean.png",
+    "label": "OFFICIAL REPOSITORY FRAME"
+  },
+  "last-train-records": {
+    "src": "./vibe/covers/last-train-records.jpg",
+    "source": "https://github.com/hxmzaehsan/last-train-records/blob/main/public/og.jpg",
+    "label": "OFFICIAL PROJECT IMAGE"
+  },
+  "filter-fabjs-2-1-1": {
+    "src": "./vibe/covers/filter-fabjs-2-1-1.png",
+    "source": "https://anthonychimming.github.io/filter-fabjs/",
+    "label": "LIVE SITE CAPTURE"
+  },
+  "worldseed-orbital-story-game": {
+    "src": "./vibe/covers/worldseed-orbital-story-game.png",
+    "source": "https://github.com/Southers/WORLDSEED/blob/main/submission/thumbnail.png",
+    "label": "OFFICIAL REPOSITORY THUMBNAIL"
+  },
+  "kasane-geometric-image-approximation": {
+    "src": "./vibe/covers/kasane-geometric-image-approximation.jpg",
+    "source": "https://github.com/kariyamaso/kasane/blob/main/public/ogp.jpg",
+    "label": "OFFICIAL PROJECT IMAGE"
+  },
+  "insect-world-procedural-field-guide": {
+    "src": "./vibe/covers/insect-world-procedural-field-guide.png",
+    "source": "https://github.com/xr843/insect-world/blob/main/public/og.png",
+    "label": "OFFICIAL PROJECT IMAGE"
+  },
+  "luma-color-eye-experiments": {
+    "src": "./vibe/covers/luma-color-eye-experiments.png",
+    "source": "https://github.com/MowkE/LUMA/blob/main/screenshots/ch1.png",
+    "label": "OFFICIAL REPOSITORY FRAME"
+  },
+  "digital-peony-webgpu-xpbd": {
+    "src": "./vibe/covers/digital-peony-webgpu-xpbd.webp",
+    "source": "https://github.com/LewisOrton/digital-peony/blob/main/media/digital-peony.gif",
+    "label": "OFFICIAL REPOSITORY FRAME"
+  },
+  "cerebrum-brain-explorer": {
+    "src": "./vibe/covers/cerebrum-brain-explorer.webp",
+    "source": "https://github.com/StarKnightt/brain-explorer/blob/master/docs/images/cerebrum-hero.webp",
+    "label": "OFFICIAL REPOSITORY FRAME"
+  },
+  "partmode-browser-cad": {
+    "src": "./vibe/covers/partmode-browser-cad.png",
+    "source": "https://github.com/BOMWiki/partmode/blob/main/docs/media/partmode-social-preview.png",
+    "label": "OFFICIAL PROJECT IMAGE"
+  },
+  "prehistoric-animal-museum": {
+    "src": "./vibe/covers/prehistoric-animal-museum.png",
+    "source": "https://github.com/s010s/prehistoric-animal-museum/blob/main/public/social/museum.png",
+    "label": "OFFICIAL PROJECT IMAGE"
+  },
+  "why-zero-university": {
+    "src": "./vibe/covers/why-zero-university.jpg",
+    "source": "https://why.zero.university/assets/brand/og_image.jpg",
+    "label": "OFFICIAL SITE IMAGE"
+  }
+}
