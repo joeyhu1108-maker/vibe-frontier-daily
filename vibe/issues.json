@@ -1,7 +1,101 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-15T10:39:36.899Z",
+  "updatedAt": "2026-08-16T10:40:43.529Z",
   "issues": [
+    {
+      "id": "2026-08-16",
+      "note": "今天三个作品的共同点不是 GPU 更强，而是数据、模型与界面之间存在可追溯关系：Galaxies 用可逆积分和真实观测对照约束粒子场，Minimum Distance 让统计方法在浏览器里现场重算，Eighty years of talking 把八十年演讲放进同一个固定语义坐标系。视觉成立，是因为画面中的位置、轨迹和形状都能回到输入与方法。",
+      "featuredId": "galaxies-webgpu-encounter-lab",
+      "experiment": {
+        "title": "把 12 次真实项目变化画成一条可反查的漂移轨迹",
+        "input": "Joey 同一个项目的 12 条真实版本记录；每条只含日期、阶段、变更字段数、证据链接与一句摘要。",
+        "stack": "Canvas 2D + 原生 JavaScript + 一份本地 JSON。",
+        "target": "横轴按真实日期，纵轴按固定阶段；每次版本一个点，连线粗细映射变更字段数，点击点显示原始记录与证据链接。",
+        "acceptance": [
+          "12 条记录严格对应 12 个点，日期和阶段都能从 JSON 唯一反算",
+          "连线粗细只来自变更字段数，不用随机位移制造戏剧性",
+          "点击与键盘聚焦显示同一条摘要和真实证据链接",
+          "390px 下取消连续动画，改为可横向滚动的固定时间轴"
+        ]
+      },
+      "restraint": "Creative Twin 只有在空间位置、轨迹或形态能映射到真实项目字段，并且用户可以反查原始证据时才接入；如果坐标只是为了显得智能，就保留清楚的列表、时间线与来源链接。",
+      "cases": [
+        {
+          "id": "galaxies-webgpu-encounter-lab",
+          "title": "Galaxies — Real-time Encounter Laboratory",
+          "author": "tonygillett136",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.08.15",
+          "url": "https://galaxies.gillett-projects.com/",
+          "accent": "#d7ad82",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "纯黑宇宙里，两团由数十万微粒构成的乳白星系在时间轴两端相向运动；右上角同时显示粒子数、帧率与星系间距，底部尺度尺和负时间让这不是一段预渲染宇宙视频，而是一台正在工作的仪器。",
+          "why": "它没有用粒子只做氛围。质量比、近心距、离心率、盘面倾角、自转方向与时间会改变同一套动力学状态；Detect 模式还能把模拟叠到真实 SDSS 图像及 Galaxy Zoo 拟合旁边。可逆时间、尺度尺、分离距离和明确的近似/科学双层，让视觉反馈承担理解与校验。",
+          "input": "质量比、近心距、离心率、两个盘面的倾角与自转方向、摩擦开关、播放方向和时间、相机环绕/缩放，以及 62 组 Galaxy Zoo 目标和 56 张 SDSS cutout。",
+          "layer": "作者 README 与公开源码可核验原生 ES Modules、WebGPU WGSL compute、28–35 万无质量测试粒子、解析势场、HDR 粒子 splat、双层尘埃、bloom 与 AgX 合成；科学参考路径在 CPU float64，交互路径在 GPU float32。",
+          "motion": "KDK 积分器按时间步推进粒子和两星系轨道；没有耗散时可真正反向积分，开启动力摩擦时界面明确说明不可逆。相机可环绕、缩放、跟随单个星系或质心，拖动时间轴会重算到目标时刻而不是回放录屏。",
+          "pipeline": "解析势场与轨道参数 → 指数盘初始条件 → WebGPU compute 推进粒子 → HDR splat、尘埃与后期合成 → Sandbox/Detect/Tour/Atlas 共用仪器层；真实目标另走公开拟合、红移尺度与图像叠加管线。",
+          "performance": "作者报告常用场景为 28–35 万粒子并以 60 fps 为目标，本次只确认页面 HUD 显示 30 万粒子，未独立测帧。Canvas DPR 封顶 2，ResizeObserver 同步画布；760px 以下控制面板改为底部半屏 sheet 或窄侧栏。reduced-motion 会默认暂停模拟并关闭相机缓动。没有 WebGPU 时只有明确错误，不提供 WebGL 或静态场景降级。",
+          "transfer": "Joey 可把作品集中的项目状态做成‘可验证模拟器’：中央画面只呈现由真实参数推导的关系，侧边仪器同步显示原始值与单位，并把情景推演、观察数据和已验证事实分层标注。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 tonygillett136/galaxies 于 2026-08-15 创建；公开账号没有姓名字段，因此保留用户名署名。Demo 与源码均返回 HTTP 200，本次已查看当前在线粒子画面。README、WGSL kernel、GPU/CPU 引擎、renderer、app、目标数据与移动样式交叉核验四模式、粒子计算、真实目标叠加、DPR、移动端与 reduced-motion。作者明确区分 GPU 交互近似和 CPU 科学参考，并撤回尚不成立的可识别性主张；本次没有复跑测试、验证天体物理结论、SDSS 拟合或设备帧率。Source: https://github.com/tonygillett136/galaxies"
+        },
+        {
+          "id": "minimum-distance-litton-2009",
+          "title": "Minimum Distance — Deconvolution without Dividing",
+          "author": "Neo Mohsenvand",
+          "platform": "GitHub / GitHub Pages",
+          "pageTime": "Repository created · 2026.08.15",
+          "url": "https://neovand.github.io/minimum-distance/",
+          "accent": "#69dfcf",
+          "mechanisms": [
+            "数据变成空间",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "一篇统计论文被改造成深色长卷：双峰密度、噪声后的蓝色曲线、傅里叶幅值和相位螺旋在同一页连续展开；顶部固定控制栏切换密度、误差分布、样本量和信噪比，下面每一幕随之现场重算。",
+          "why": "它没有把论文图表贴成静态配图。六幕从‘观测如何被噪声抹平’推进到‘为什么频域除法失稳’，再让读者比较三个估计器、复现实验表格和二维去卷积。相同输入同时改变公式上下文、Canvas 曲线、表格与 GPU 计算，排版结构本身就是推理路径。",
+          "input": "四种目标密度、normal/Laplace 误差、样本量、噪声信号比、随机种子、重复次数，以及 Minimum Distance、deconvoluting kernel、Hall–Yao 三条计算路径。",
+          "layer": "作者 README 与公开源码可核验 Svelte 5 / SvelteKit、手写 Canvas 2D 图表、KaTeX、jax-js、Web Worker、WebGPU/WASM 设备选择、批量 FISTA 与概率单纯形投影；页面不依赖预计算图像或远端计算结果。",
+          "motion": "页面按 Act 0–V 组织阅读，不让镜头替代论证；曲线重采样、相位图拖拽和逐批返回的四分位带构成局部动作。Worker 会预热内核、传回进度，并在真实请求到来时取消推测计算，因此读者看到的是求解过程而非无限 spinner。",
+          "pipeline": "论文方法与印刷表格 → 纯数组参考实现和校准测试 → Worker 中 jax-js 批量求解 → Canvas 曲线、四分位带、小多图和二维去卷积 → 分幕文字解释与可重复控制。",
+          "performance": "每个 Canvas 按 CSS 尺寸重绘并把 DPR 封顶 2，ResizeObserver 负责响应；计算放在 Worker，结果用 transferable buffers 传回。WebGPU 缺失时 jax-js 回退 WASM，数值路径相同但更慢。720px 以下顶部控制栏折叠为可展开 sheet，触控相位图保留纵向页面滚动；reduced-motion 只取消平滑滚动与 CSS 动画，不停止统计计算。",
+          "transfer": "Joey 可把一个复杂设计方法拆成 4–6 个可操作论证幕：每一幕只回答一个问题，顶部共享同一组真实输入，图、解释和结果表都从同一状态重算，而不是用动效掩盖推理缺口。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 NeoVand/minimum-distance 于 2026-08-15 创建，账号公开名为 Neo Mohsenvand。Demo 与源码均返回 HTTP 200，本次已查看在线桌面画面。README、tour steps、Canvas 工具、统计参考实现、jax-js Worker、批量求解、响应式控制栏与 reduced-motion 样式交叉核验六幕结构、三估计器、现场计算、WebGPU/WASM 回退和移动布局。作者明确披露对 Litton 2009 印刷结果的复现并非逐格一致：32 个校准单元中 29 个在两倍范围内，Chapter III 的误差下降率仍与论文不符；本次没有复跑校准、审阅原论文或独立验证统计结论。Source: https://github.com/NeoVand/minimum-distance"
+        },
+        {
+          "id": "eighty-years-of-talking-ungdc",
+          "title": "Eighty years of talking",
+          "author": "Niklas",
+          "platform": "GitHub / data-visualization repository",
+          "pageTime": "Repository created · 2026.08.16",
+          "url": "https://github.com/Niklas-dev/ungdc-drift",
+          "accent": "#d25920",
+          "mechanisms": [
+            "数据变成空间",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "暖白纸面中央，一万多个国家—年份演讲点聚成橙、蓝、绿、紫、黄五片语义群岛；细引线把非洲、大洋洲、亚洲和欧洲的局部簇指向边缘注释，底部把语料、嵌入和投影方法印成可审计的图注。",
+          "why": "它没有逐年重新排点来制造流动感，而是把 1946–2025 的 11,141 篇演讲一次性嵌入并只拟合一个 UMAP 坐标系。年份动画只是切片固定坐标；真实变化另用 768 维嵌入余弦距离编码连线权重。这一约束避免了常见的‘点在动，所以观点在变’的伪叙事。",
+          "input": "UN General Debate Corpus v14 的 11,141 篇演讲、国家与年份、演讲者元数据、地区和冷战阵营表；文本按 200 词块、20 词重叠切分后生成 768 维句向量。",
+          "layer": "作者 README、源码与四张仓库成品图可核验 Python 数据管线、all-mpnet-base-v2、mean pooling、PCA 50 维、单次 UMAP 2D/3D、Plotly 交互 HTML、Matplotlib 300dpi 印刷图与故事影片生成。",
+          "motion": "交互版按年份播放、拖动 slider 并悬停查看演讲，当前年叠在前三年淡化轨迹之上；连接线粗细来自高维余弦漂移。3D 版本固定抽样 6,000 篇并用环绕镜头和插值子帧建立空间连续性。",
+          "pipeline": "人工取得并校验 Dataverse 原始档案 → 清洗 11,141 篇文本与说话人 → 分块嵌入和缓存 → PCA + 单次 UMAP → 固定坐标的年度切片 → 交互 HTML、300dpi plates、2D story film 与 3D flythrough。",
+          "performance": "仓库说明交互 HTML 因内嵌 Plotly 约 12MB，当前没有公开部署，也没有移动端、DPR 或 reduced-motion 证据；因此不能把它视为已验证的移动前端。仓库只公开四张 300dpi 成品图和生成源码，3D 版通过抽样 6,000 篇而非全量点控制镜头渲染。",
+          "transfer": "Joey 若把项目历史做成语义地图，应先把所有版本放进同一个固定坐标系，并把‘画面位移’和‘真实字段变化’拆成两个指标；图下注明数据、投影限制与不可解释的轴。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 确认 Niklas-dev/ungdc-drift 于 2026-08-16 创建，账号公开名为 Niklas；仓库和四张成品图可访问，本次已检查主地图。README、load/embed/project/visualize/poster/flythrough/story 与 validation 源码交叉核验语料量、固定坐标、交互结构、印刷输出和数据边界。交互 HTML、GIF 和 MP4 明确未提交，也没有 live demo，因此本次没有直接观察年份播放、hover、3D 镜头、移动端或性能；区域解释、漂移结论与模型质量没有独立复算。数据源由作者标注为 UN General Debate Corpus v14 / Harvard Dataverse / CC0。"
+        }
+      ],
+      "dateLabel": "AUG 16",
+      "issueNo": "018"
+    },
     {
       "id": "2026-08-15",
       "note": "今天三个作品共同证明，成熟的前端视觉不是在界面外再铺一层特效：H100 把词典条目绑定到可旋转部件，日食模拟器把时间、站点与影路径绑定到同一地球，液态球编辑器把参数、着色器与跨平台导出绑定到同一快照。视觉之所以成立，是因为每次操作都改变可解释的状态。",
