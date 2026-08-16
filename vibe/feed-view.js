@@ -202,6 +202,9 @@ async function mountFeed() {
     todayLink.textContent = "FEED";
   }
 
+  const heroCta = document.querySelector(".hero-cta");
+  if (heroCta) heroCta.href = "#feed";
+
   const section = element("section", "feed-section");
   section.id = "feed";
 

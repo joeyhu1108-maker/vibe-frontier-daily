@@ -1,0 +1,73 @@
+/* Product-facing fixes that sit after the generated site bundle. */
+
+html,
+body,
+.vibe-shell {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@media (max-width: 680px) {
+  .vibe-hero {
+    min-height: max(720px, 100svh);
+  }
+
+  .hero-center {
+    top: 48%;
+    width: calc(100% - 36px);
+    min-width: 0;
+    transform: translate(-50%, -55%);
+  }
+
+  .hero-kicker {
+    max-width: 100%;
+    margin-bottom: 18px;
+    font-size: 8px;
+    letter-spacing: .18em;
+    white-space: normal;
+  }
+
+  .hero-center h1 {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    font-size: clamp(32px, 9.3vw, 38px);
+    line-height: 1.03;
+    letter-spacing: -.065em;
+  }
+
+  .hero-center h1 > span,
+  .hero-center h1 em {
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  .hero-center p {
+    width: 100%;
+    max-width: 320px;
+    margin-top: 22px;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-cta {
+    margin-top: 26px;
+  }
+
+  .hero-bottom > div {
+    min-width: 0;
+  }
+
+  .hero-bottom > div:last-child {
+    max-width: 45%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 374px) {
+  .hero-center h1 {
+    font-size: 32px;
+  }
+}
