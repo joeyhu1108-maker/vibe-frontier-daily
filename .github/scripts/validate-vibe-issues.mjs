@@ -3,6 +3,7 @@ import path from "node:path";
 
 const filePath = path.resolve(process.argv[2] ?? "public/vibe/issues.json");
 const payload = JSON.parse(fs.readFileSync(filePath, "utf8"));
+const isPublicTrial = payload.edition === "public-trial";
 const mechanisms = new Set([
   "数据变成空间",
   "模型成为界面",
@@ -53,8 +54,8 @@ payload.issues.forEach((issue, issueIndex) => {
   if (issueIndex > 0 && issue.id >= payload.issues[issueIndex - 1].id) {
     fail("issues must be sorted newest first");
   }
-  if (!/^\d{3}$/.test(issue.issueNo ?? "")) {
-    fail(`${issue.id}.issueNo must be three digits`);
+  if (!/^\d{3}$/.test(issue.issueNo ?? "") && !(isPublicTrial && /^S\d{2}$/.test(issue.issueNo ?? ""))) {
+    fail(`${issue.id}.issueNo must be three digits${isPublicTrial ? " or use the S01 trial format" : ""}`);
   }
   if (typeof issue.note !== "string" || !issue.note.trim()) {
     fail(`${issue.id}.note is required`);

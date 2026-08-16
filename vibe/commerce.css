@@ -7,6 +7,195 @@ body,
   overflow-x: clip;
 }
 
+.public-trial .issue-rail,
+.public-trial .featured-case {
+  display: none;
+}
+
+.season-pitch {
+  position: relative;
+  scroll-margin-top: 72px;
+  padding: 112px clamp(20px, 5vw, 76px) 124px;
+  overflow: hidden;
+  color: #f4f1e9;
+  border-top: 1px solid rgba(244, 241, 233, .24);
+  background:
+    radial-gradient(circle at 84% 18%, rgba(91, 163, 202, .18), transparent 28%),
+    #080a0d;
+}
+
+.season-pitch::before {
+  position: absolute;
+  top: 54px;
+  right: -9vw;
+  width: min(44vw, 620px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(153, 211, 240, .16);
+  border-radius: 50%;
+  box-shadow: 0 0 0 68px rgba(153, 211, 240, .025), 0 0 0 136px rgba(153, 211, 240, .018);
+  content: "";
+}
+
+.season-pitch-intro,
+.season-proof,
+.season-offer,
+.season-actions {
+  position: relative;
+  z-index: 1;
+  width: min(1240px, 100%);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.season-pitch-kicker,
+.season-offer > div:first-child > span {
+  display: block;
+  color: rgba(216, 241, 255, .64);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .2em;
+}
+
+.season-pitch-intro h2 {
+  max-width: 920px;
+  margin: 30px 0 0;
+  font-family: var(--display);
+  font-size: clamp(56px, 8vw, 114px);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: -.065em;
+}
+
+.season-pitch-intro > p {
+  max-width: 680px;
+  margin: 34px 0 0;
+  color: rgba(244, 241, 233, .64);
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+.season-proof {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 72px;
+  border-top: 1px solid rgba(244, 241, 233, .26);
+  border-bottom: 1px solid rgba(244, 241, 233, .26);
+}
+
+.season-proof > div {
+  padding: 30px 0 28px;
+}
+
+.season-proof > div + div {
+  padding-left: clamp(20px, 4vw, 54px);
+  border-left: 1px solid rgba(244, 241, 233, .18);
+}
+
+.season-proof dt {
+  font-family: var(--serif);
+  font-size: clamp(48px, 6vw, 82px);
+  line-height: .85;
+  letter-spacing: -.055em;
+}
+
+.season-proof dd {
+  margin: 14px 0 0;
+  color: rgba(244, 241, 233, .48);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.season-offer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 60px;
+  align-items: end;
+  padding: 54px 0 48px;
+  border-bottom: 1px solid rgba(244, 241, 233, .26);
+}
+
+.season-offer > div:first-child > strong {
+  display: block;
+  margin-top: 15px;
+  font-family: var(--serif);
+  font-size: clamp(30px, 4vw, 54px);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.season-offer > div:first-child > p {
+  max-width: 680px;
+  margin: 18px 0 0;
+  color: rgba(244, 241, 233, .58);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.season-price {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0 16px;
+  align-items: baseline;
+  text-align: right;
+}
+
+.season-price small {
+  grid-column: 1 / -1;
+  margin-bottom: 7px;
+  color: rgba(244, 241, 233, .46);
+  font-size: 9px;
+  letter-spacing: .12em;
+}
+
+.season-price strong {
+  font-family: var(--serif);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: .8;
+  letter-spacing: -.05em;
+}
+
+.season-price del {
+  color: rgba(244, 241, 233, .4);
+  font-size: 13px;
+}
+
+.season-actions {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  margin-top: 34px;
+}
+
+.season-primary {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-height: 46px;
+  align-items: center;
+  padding: 12px 20px;
+  color: #080a0d;
+  background: #f4f1e9;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-decoration: none;
+}
+
+.season-primary.is-pending {
+  color: rgba(244, 241, 233, .5);
+  border: 1px solid rgba(244, 241, 233, .28);
+  background: transparent;
+}
+
+.season-actions p {
+  max-width: 620px;
+  margin: 0;
+  color: rgba(244, 241, 233, .42);
+  font-size: 10px;
+  line-height: 1.65;
+}
+
 @media (max-width: 680px) {
   .vibe-hero {
     min-height: max(720px, 100svh);
@@ -63,6 +252,73 @@ body,
     max-width: 45%;
     overflow: hidden;
     white-space: nowrap;
+  }
+
+  .season-pitch {
+    padding: 84px 16px 92px;
+  }
+
+  .season-pitch::before {
+    top: 130px;
+    right: -52vw;
+    width: 120vw;
+  }
+
+  .season-pitch-intro h2 {
+    margin-top: 22px;
+    font-size: clamp(44px, 12.3vw, 50px);
+    line-height: .94;
+  }
+
+  .public-trial .feed-heading h2 {
+    font-size: clamp(54px, 15.4vw, 60px);
+    line-height: .9;
+  }
+
+  .season-pitch-intro > p {
+    margin-top: 26px;
+    font-size: 12px;
+  }
+
+  .season-proof {
+    margin-top: 52px;
+  }
+
+  .season-proof > div {
+    padding: 22px 0 20px;
+  }
+
+  .season-proof > div + div {
+    padding-left: 14px;
+  }
+
+  .season-proof dt {
+    font-size: 43px;
+  }
+
+  .season-proof dd {
+    font-size: 7px;
+    line-height: 1.45;
+  }
+
+  .season-offer {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 40px 0 38px;
+  }
+
+  .season-price {
+    justify-content: start;
+    text-align: left;
+  }
+
+  .season-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .season-primary {
+    justify-content: center;
   }
 }
 

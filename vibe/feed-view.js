@@ -7,6 +7,7 @@ const MECHANISMS = [
 ];
 
 const PAGE_SIZE = 12;
+const PURCHASE_URL = document.documentElement.dataset.purchaseUrl || "";
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -180,6 +181,64 @@ function createDetailDialog() {
   };
 }
 
+function createSeasonPitch() {
+  const section = element("section", "season-pitch");
+  section.id = "season";
+
+  const intro = element("div", "season-pitch-intro");
+  intro.append(
+    element("span", "season-pitch-kicker", "VIBE FRONTIER · SEASON 01"),
+    element("h2", "", "三篇看完，再决定要不要买。"),
+    element(
+      "p",
+      "",
+      "第一季不是链接合集。每个案例都保留作者、原作和证据，再往下拆输入、表现、动效、工程、性能，以及真正值得带回自己项目的部分。",
+    ),
+  );
+
+  const proof = element("dl", "season-proof");
+  [
+    ["18", "已完成期数"],
+    ["65", "已核验案例"],
+    ["030", "第一季终点"],
+  ].forEach(([value, label]) => {
+    const item = element("div");
+    item.append(element("dt", "", value), element("dd", "", label));
+    proof.append(item);
+  });
+
+  const offer = element("div", "season-offer");
+  const offerCopy = element("div");
+  offerCopy.append(
+    element("span", "", "FIRST 30 · FOUNDING ACCESS"),
+    element("strong", "", "第一季 ISSUE 001–030"),
+    element("p", "", "现有 18 期立即可读，后续更新至 ISSUE 030；第一季完成后永久阅读。"),
+  );
+
+  const price = element("div", "season-price");
+  price.append(element("small", "", "首批 30 人"), element("strong", "", "¥79"), element("del", "", "¥129"));
+
+  const actionWrap = element("div", "season-actions");
+  if (PURCHASE_URL) {
+    const action = element("a", "season-primary", "购买第一季 ↗");
+    action.href = PURCHASE_URL;
+    action.target = "_blank";
+    action.rel = "noopener noreferrer";
+    actionWrap.append(action);
+  } else {
+    const action = element("span", "season-primary is-pending", "付费入口准备中");
+    action.setAttribute("aria-disabled", "true");
+    actionWrap.append(action);
+  }
+  actionWrap.append(
+    element("p", "", "购买的是原创研究、评论与迁移方法，不包含第三方源码、素材或商业授权。"),
+  );
+
+  offer.append(offerCopy, price);
+  section.append(intro, proof, offer, actionWrap);
+  return section;
+}
+
 async function mountFeed() {
   const archive = await waitFor("#archive");
   const [response, coverResponse] = await Promise.all([
@@ -193,6 +252,7 @@ async function mountFeed() {
   if (!allItems.length) return;
 
   document.body.classList.add("feed-view-active");
+  document.body.classList.add("public-trial");
   document.querySelector("#today")?.setAttribute("hidden", "");
   document.querySelector(".case-index")?.setAttribute("hidden", "");
 
@@ -203,7 +263,16 @@ async function mountFeed() {
   }
 
   const heroCta = document.querySelector(".hero-cta");
-  if (heroCta) heroCta.href = "#feed";
+  if (heroCta) {
+    heroCta.href = "#feed";
+    heroCta.firstChild.textContent = "先看 3 个完整拆解 ";
+  }
+
+  const archiveLink = document.querySelector('a[href="#archive"]');
+  if (archiveLink) {
+    archiveLink.href = "#season";
+    archiveLink.textContent = "第一季";
+  }
 
   const section = element("section", "feed-section");
   section.id = "feed";
@@ -211,12 +280,12 @@ async function mountFeed() {
   const heading = element("header", "feed-heading");
   const headingCopy = element("div");
   headingCopy.append(
-    element("span", "feed-kicker", "VIBE FRONTIER · WORKS INDEX"),
-    element("h2", "", "作品 / Works"),
-    element("p", "", "一份关于界面、空间与叙事机制的持续期刊。按机制进入，按时间阅读；图片只采用可追溯的项目素材。"),
+    element("span", "feed-kicker", "PUBLIC TRIAL · SEASON 01"),
+    element("h2", "", "三个完整拆解"),
+    element("p", "", "三个案例覆盖数据、模型、滚动、排版与叙事五类机制。不是摘要，也不故意留半截；先看这套拆解是否真的能带回你的项目。"),
   );
   const total = element("div", "feed-total");
-  total.append(element("strong", "", String(allItems.length).padStart(2, "0")), element("span", "", "VERIFIED\nWORKS"));
+  total.append(element("strong", "", String(allItems.length).padStart(2, "0")), element("span", "", "FULL\nTRIALS"));
   heading.append(headingCopy, total);
 
   const filters = element("nav", "feed-filters");
@@ -231,6 +300,9 @@ async function mountFeed() {
 
   section.append(heading, filters, status, stream, footer);
   archive.insertAdjacentElement("afterend", section);
+
+  const siteFooter = document.querySelector(".vibe-footer");
+  siteFooter?.insertAdjacentElement("beforebegin", createSeasonPitch());
 
   const openDetail = createDetailDialog();
   let active = "全部";
