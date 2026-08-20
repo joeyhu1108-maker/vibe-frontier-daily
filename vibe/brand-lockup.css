@@ -1,0 +1,52 @@
+.vibe-brand.brand-lockup-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.brand-lockup-logo {
+  display: block;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.brand-lockup-logo--art-with-ai {
+  height: 16px;
+}
+
+.brand-lockup-logo--ai-zaowushe {
+  height: 24px;
+}
+
+.brand-lockup-divider {
+  width: 1px;
+  height: 23px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.vibe-brand.brand-lockup-active:hover .brand-lockup-logo,
+.vibe-brand.brand-lockup-active:focus-visible .brand-lockup-logo {
+  opacity: 0.72;
+}
+
+@media (max-width: 680px) {
+  .vibe-brand.brand-lockup-active {
+    gap: 9px;
+  }
+
+  .brand-lockup-logo--art-with-ai {
+    height: 13px;
+  }
+
+  .brand-lockup-logo--ai-zaowushe {
+    height: 20px;
+  }
+
+  .brand-lockup-divider {
+    height: 18px;
+  }
+}
