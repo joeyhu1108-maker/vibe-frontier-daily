@@ -1,0 +1,233 @@
+/* Public-sharing layer applied after the generated site bundle. */
+
+html,
+body,
+.vibe-shell {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.public-share .issue-rail,
+.public-share .featured-case {
+  display: none;
+}
+
+.open-note {
+  position: relative;
+  scroll-margin-top: 72px;
+  padding: 112px clamp(20px, 5vw, 76px) 118px;
+  overflow: hidden;
+  color: #f4f1e9;
+  border-top: 1px solid rgba(244, 241, 233, .24);
+  background:
+    radial-gradient(circle at 84% 18%, rgba(91, 163, 202, .18), transparent 28%),
+    #080a0d;
+}
+
+.open-note::before {
+  position: absolute;
+  top: 54px;
+  right: -9vw;
+  width: min(44vw, 620px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(153, 211, 240, .16);
+  border-radius: 50%;
+  box-shadow: 0 0 0 68px rgba(153, 211, 240, .025), 0 0 0 136px rgba(153, 211, 240, .018);
+  content: "";
+}
+
+.open-note-intro,
+.open-note-principles,
+.open-note-back {
+  position: relative;
+  z-index: 1;
+  width: min(1240px, 100%);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.open-note-kicker {
+  display: block;
+  color: rgba(216, 241, 255, .64);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .2em;
+}
+
+.open-note-intro h2 {
+  max-width: 980px;
+  margin: 30px 0 0;
+  font-family: var(--display);
+  font-size: clamp(56px, 8vw, 114px);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: -.065em;
+}
+
+.open-note-intro > p {
+  max-width: 680px;
+  margin: 34px 0 0;
+  color: rgba(244, 241, 233, .64);
+  font-size: 13px;
+  line-height: 1.85;
+}
+
+.open-note-principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 72px;
+  border-top: 1px solid rgba(244, 241, 233, .26);
+  border-bottom: 1px solid rgba(244, 241, 233, .26);
+}
+
+.open-note-principles article {
+  padding: 34px clamp(20px, 3vw, 42px) 38px 0;
+}
+
+.open-note-principles article + article {
+  padding-left: clamp(20px, 3vw, 42px);
+  border-left: 1px solid rgba(244, 241, 233, .18);
+}
+
+.open-note-principles h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(24px, 2.7vw, 38px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -.035em;
+}
+
+.open-note-principles p {
+  max-width: 340px;
+  margin: 20px 0 0;
+  color: rgba(244, 241, 233, .5);
+  font-size: 11px;
+  line-height: 1.75;
+}
+
+.open-note-back {
+  display: block;
+  margin-top: 34px;
+  color: rgba(244, 241, 233, .76);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.open-note-back:hover,
+.open-note-back:focus-visible {
+  color: #fff;
+}
+
+@media (max-width: 680px) {
+  .vibe-hero {
+    min-height: max(720px, 100svh);
+  }
+
+  .hero-center {
+    top: 48%;
+    width: calc(100% - 36px);
+    min-width: 0;
+    transform: translate(-50%, -55%);
+  }
+
+  .hero-kicker {
+    max-width: 100%;
+    margin-bottom: 18px;
+    font-size: 8px;
+    letter-spacing: .18em;
+    white-space: normal;
+  }
+
+  .hero-center h1 {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    font-size: clamp(32px, 9.3vw, 38px);
+    line-height: 1.03;
+    letter-spacing: -.065em;
+  }
+
+  .hero-center h1 > span,
+  .hero-center h1 em {
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+  }
+
+  .hero-center p {
+    width: 100%;
+    max-width: 320px;
+    margin-top: 22px;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-cta {
+    margin-top: 26px;
+  }
+
+  .hero-bottom > div {
+    min-width: 0;
+  }
+
+  .hero-bottom > div:last-child {
+    max-width: 45%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .public-share .feed-heading h2 {
+    font-size: clamp(54px, 15.4vw, 60px);
+    line-height: .9;
+  }
+
+  .open-note {
+    padding: 84px 16px 88px;
+  }
+
+  .open-note::before {
+    top: 130px;
+    right: -52vw;
+    width: 120vw;
+  }
+
+  .open-note-intro h2 {
+    margin-top: 22px;
+    font-size: clamp(44px, 12.3vw, 50px);
+    line-height: .94;
+  }
+
+  .open-note-intro > p {
+    margin-top: 26px;
+    font-size: 12px;
+  }
+
+  .open-note-principles {
+    grid-template-columns: 1fr;
+    margin-top: 52px;
+  }
+
+  .open-note-principles article,
+  .open-note-principles article + article {
+    padding: 27px 0 30px;
+    border-left: 0;
+  }
+
+  .open-note-principles article + article {
+    border-top: 1px solid rgba(244, 241, 233, .18);
+  }
+
+  .open-note-principles h3 {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 374px) {
+  .hero-center h1 {
+    font-size: 32px;
+  }
+}
