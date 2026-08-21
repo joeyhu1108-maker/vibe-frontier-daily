@@ -29,6 +29,7 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   assert.equal(await page.locator(".candidate-card").count(), 65);
 
   await page.waitForFunction(() => [...document.querySelectorAll(".partner-logo")].every((image) => image.complete && image.naturalWidth > 0));
+  await page.waitForFunction(() => [...document.querySelectorAll(".footer-brand-signature img")].every((image) => image.complete && image.naturalWidth > 0));
 
   await page.locator(".sample-grid").scrollIntoViewIfNeeded();
   await page.waitForFunction(() => [...document.querySelectorAll(".sample-card img")].every((image) => image.complete && image.naturalWidth > 0));

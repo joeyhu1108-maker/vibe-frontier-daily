@@ -123,7 +123,7 @@ input:focus-visible {
   top: 0;
   z-index: 30;
   display: grid;
-  grid-template-columns: 330px 1fr 170px;
+  grid-template-columns: 300px 1fr 170px;
   align-items: center;
   min-height: 74px;
   padding: 10px 32px;
@@ -152,7 +152,7 @@ input:focus-visible {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .partner-logo {
@@ -163,18 +163,20 @@ input:focus-visible {
 }
 
 .partner-logo--art {
-  height: 12px;
+  height: 11px;
 }
 
 .partner-logo--zaowushe {
-  height: 38px;
+  height: 34px;
 }
 
-.partner-divider {
-  width: 1px;
-  height: 18px;
-  margin-left: 2px !important;
-  background: var(--line-strong);
+.partner-cross {
+  margin: 0 !important;
+  color: #88a997;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
 }
 
 .desktop-nav {
@@ -1977,8 +1979,10 @@ input:focus-visible {
 }
 
 .footer-top {
+  display: grid;
+  grid-template-columns: 0.55fr 0.55fr 1.2fr;
   align-items: flex-start;
-  min-height: 170px;
+  min-height: 230px;
 }
 
 .wordmark--footer {
@@ -1996,6 +2000,29 @@ input:focus-visible {
   margin: 0;
   color: var(--muted);
   font-size: 12px;
+}
+
+.footer-brand-signature {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+}
+
+.footer-brand-signature > span {
+  color: #88a997;
+  font-family: var(--mono);
+  font-size: 14px;
+}
+
+.footer-brand-signature__art {
+  width: 92px;
+  flex: 0 0 auto;
+}
+
+.footer-brand-signature__system {
+  width: min(410px, 32vw);
+  flex: 0 1 auto;
 }
 
 .footer-bottom {
@@ -2129,7 +2156,7 @@ input:focus-visible {
 
 @media (max-width: 1180px) {
   :root { --shell: min(100% - 48px, 1120px); }
-  .site-header { grid-template-columns: 280px 1fr 130px; padding-inline: 24px; }
+  .site-header { grid-template-columns: 260px 1fr 130px; padding-inline: 24px; }
   .desktop-nav { gap: 18px; }
   .hero { grid-template-columns: 0.95fr 1.05fr; gap: 40px; }
   .hero h1 { font-size: clamp(62px, 7.7vw, 88px); }
@@ -2172,6 +2199,9 @@ input:focus-visible {
   .candidate-heading { grid-template-columns: 1fr; gap: 24px; }
   .candidate-grid { grid-template-columns: repeat(2, 1fr); }
   .community-section { grid-template-columns: 1fr; align-items: start; }
+  .footer-top { grid-template-columns: 0.6fr 1.4fr; }
+  .footer-brand-signature { grid-column: 1 / 3; justify-content: flex-start; }
+  .footer-brand-signature__system { width: min(480px, 70vw); }
 }
 
 @media (max-width: 680px) {
@@ -2179,9 +2209,8 @@ input:focus-visible {
   html { scroll-padding-top: 74px; }
   .site-header { min-height: 64px; padding: 8px 16px; }
   .wordmark--partners { gap: 7px; }
-  .partner-logo--art { height: 9px; }
+  .partner-logo--art, .partner-cross { display: none; }
   .partner-logo--zaowushe { height: 30px; }
-  .partner-divider { height: 26px; }
   .header-cta { font-size: 11px; }
   .hero { padding: 72px 0 58px; gap: 54px; }
   .hero h1 { font-size: clamp(52px, 15vw, 68px); line-height: 0.86; }
@@ -2260,7 +2289,11 @@ input:focus-visible {
   .community-section h2 { font-size: 56px; }
   .button--accent { width: 100%; }
   .site-footer { padding: 58px 16px 22px; }
-  .footer-top { min-height: 230px; flex-direction: column; }
+  .footer-top { min-height: 330px; grid-template-columns: 1fr; gap: 32px; }
+  .footer-brand-signature { grid-column: auto; align-items: flex-start; flex-direction: column; gap: 14px; }
+  .footer-brand-signature > span { display: none; }
+  .footer-brand-signature__art { width: 84px; }
+  .footer-brand-signature__system { width: 100%; }
   .footer-bottom { flex-wrap: wrap; }
   .case-dialog__grid { grid-template-columns: 1fr; }
 }
