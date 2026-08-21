@@ -1,0 +1,954 @@
+{
+  "source": "VIBE FRONTIER 历史研究库",
+  "sourceCommit": "2935ac1",
+  "candidateCount": 65,
+  "candidates": [
+    {
+      "id": "galaxies-webgpu-encounter-lab",
+      "title": "Galaxies — Real-time Encounter Laboratory",
+      "author": "tonygillett136",
+      "platform": "GitHub / creator demo",
+      "url": "https://galaxies.gillett-projects.com/",
+      "dateLabel": "AUG 16",
+      "issueNo": "018",
+      "mechanisms": [
+        "数据变成空间",
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "纯黑宇宙里，两团由数十万微粒构成的乳白星系在时间轴两端相向运动；右上角同时显示粒子数、帧率与星系间距，底部尺度尺和负时间让这不是一段预渲染宇宙视频，而是一台正在工作的仪器。"
+    },
+    {
+      "id": "minimum-distance-litton-2009",
+      "title": "Minimum Distance — Deconvolution without Dividing",
+      "author": "Neo Mohsenvand",
+      "platform": "GitHub / GitHub Pages",
+      "url": "https://neovand.github.io/minimum-distance/",
+      "dateLabel": "AUG 16",
+      "issueNo": "018",
+      "mechanisms": [
+        "数据变成空间",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "一篇统计论文被改造成深色长卷：双峰密度、噪声后的蓝色曲线、傅里叶幅值和相位螺旋在同一页连续展开；顶部固定控制栏切换密度、误差分布、样本量和信噪比，下面每一幕随之现场重算。"
+    },
+    {
+      "id": "eighty-years-of-talking-ungdc",
+      "title": "Eighty years of talking",
+      "author": "Niklas",
+      "platform": "GitHub / data-visualization repository",
+      "url": "https://github.com/Niklas-dev/ungdc-drift",
+      "dateLabel": "AUG 16",
+      "issueNo": "018",
+      "mechanisms": [
+        "数据变成空间",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "暖白纸面中央，一万多个国家—年份演讲点聚成橙、蓝、绿、紫、黄五片语义群岛；细引线把非洲、大洋洲、亚洲和欧洲的局部簇指向边缘注释，底部把语料、嵌入和投影方法印成可审计的图注。"
+    },
+    {
+      "id": "h100-gpu-glossary",
+      "title": "H100 GPU Glossary",
+      "author": "Kyle Jeong",
+      "platform": "GitHub / creator demo",
+      "url": "https://gpu.kylejeong.com/",
+      "dateLabel": "AUG 15",
+      "issueNo": "017",
+      "mechanisms": [
+        "模型成为界面",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "荧光绿终端网格里，一块 H100 SXM5 板卡像博物馆标本斜置在暗场；左侧七条词典索引与芯片部件同步高亮，切到 Architecture 后，封装内部浮出 GPC、SM、Tensor Core 与 TMA 的概念层。"
+    },
+    {
+      "id": "solar-sclipse",
+      "title": "Solar Sclipse",
+      "author": "Quincunx / Quincunx33",
+      "platform": "GitHub / Cloudflare Pages",
+      "url": "https://solar-sclipse.pages.dev/",
+      "dateLabel": "AUG 15",
+      "issueNo": "017",
+      "mechanisms": [
+        "数据变成空间",
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "一颗可旋转地球占据中央，橙色全食路径从高纬滑向欧洲；左侧时间轴、右侧观测站遥测和右下地面天空视图同时推进，拖到另一时刻，地球阴影与三个面板一起换相位。"
+    },
+    {
+      "id": "liquid-orb-editor-webgpu",
+      "title": "Liquid Orb Editor",
+      "author": "LerSent001",
+      "platform": "GitHub / GitHub Pages",
+      "url": "https://lersent001.github.io/orb/",
+      "dateLabel": "AUG 15",
+      "issueNo": "017",
+      "mechanisms": [
+        "交互变成叙事",
+        "排版变成界面",
+        "模型成为界面"
+      ],
+      "memory": "黑场中央悬着一颗透明暗球，一条带冷暖色散的液态光带从球心横穿；右侧参数改变速度、轮廓、脊线、玻璃壳与辉光后，画面立即重组，并能把同一结果导出为网页或 SwiftUI/Metal。"
+    },
+    {
+      "id": "inkwell-webgpu-water-tethys",
+      "title": "Inkwell WebGPU Water — Tethys",
+      "author": "James Addison / siliconjungle",
+      "platform": "GitHub",
+      "url": "https://github.com/siliconjungle/inkwell-webgpu-water",
+      "dateLabel": "AUG 14",
+      "issueNo": "016",
+      "mechanisms": [
+        "数据变成空间",
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "低机位越过一片高亮青蓝海面，长涌浪、短碎波与白沫不是贴图循环，而是在不同尺度上互相穿过；切到水下，沙床、吸收与水面折射仍属于同一片场。"
+    },
+    {
+      "id": "last-train-records",
+      "title": "Last Train Records",
+      "author": "Hamza Ehsan",
+      "platform": "GitHub / creator demo",
+      "url": "https://hxmzaehsan.github.io/last-train-records/",
+      "dateLabel": "AUG 14",
+      "issueNo": "016",
+      "mechanisms": [
+        "模型成为界面",
+        "交互变成叙事",
+        "排版变成界面"
+      ],
+      "memory": "唱针落下，黑胶沟槽沿一圈扫描线抬起成深夜东京：轨道、车站、店铺、行人和最后一班列车依次长出；镜头最后停在唱片上的微缩街区，唱片店本身成为进入三张虚构唱片的按钮。"
+    },
+    {
+      "id": "filter-fabjs-2-1-1",
+      "title": "Filter FabJS v2.1.1",
+      "author": "Anthony Chimming",
+      "platform": "GitHub / creator demo",
+      "url": "https://anthonychimming.github.io/filter-fabjs/",
+      "dateLabel": "AUG 14",
+      "issueNo": "016",
+      "mechanisms": [
+        "数据变成空间",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "深色工作台左边是一张可切换原图、滤镜与分屏的画布，右边四行 R/G/B/A 公式像颜色实验仪表；改公式不会让画面闪烁，按下 Render 后进度条逐行推进，并明确告诉你实际用了 GPU 还是 CPU。"
+    },
+    {
+      "id": "worldseed-orbital-story-game",
+      "title": "WORLDSEED",
+      "author": "Southers",
+      "platform": "GitHub / creator demo",
+      "url": "https://southers.github.io/WORLDSEED/",
+      "dateLabel": "AUG 14",
+      "issueNo": "016",
+      "mechanisms": [
+        "模型成为界面",
+        "交互变成叙事",
+        "数据变成空间"
+      ],
+      "memory": "一颗发光种子被向后拉成弹弓轨迹，松手后掠过微缩行星的重力井；落在哪颗沉睡星球，哪一颗就从灰暗表面长出拱门、火焰、花瓣或星环，最后连成一张被玩家亲手恢复的星座。"
+    },
+    {
+      "id": "kasane-geometric-image-approximation",
+      "title": "KASANE 襲 — Geometric Image Approximation",
+      "author": "So Kariyama",
+      "platform": "GitHub / creator demo",
+      "url": "https://kariyamaso.github.io/kasane/",
+      "dateLabel": "AUG 12",
+      "issueNo": "015",
+      "mechanisms": [
+        "数据变成空间",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "一张照片旁边，半透明三角形、圆与贝塞尔线一层层落下；画面不是被滤镜覆盖，而是在观看中逐渐被少量几何重新说出来，时间滑杆还能退回任意中间状态。"
+    },
+    {
+      "id": "insect-world-procedural-field-guide",
+      "title": "Insect World — Procedural 3D Field Guide",
+      "author": "Tim Ren / xr843",
+      "platform": "GitHub / creator demo",
+      "url": "https://insect-world.pages.dev/",
+      "dateLabel": "AUG 12",
+      "issueNo": "015",
+      "mechanisms": [
+        "数据变成空间",
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "冷灰绿标本台中央不是一张虫图，而是一只可剖切、可分层的代码昆虫；点彩色锚点，镜头贴近口器、翅或触角，分步讲解讲到哪里，模型就把那里送到眼前。"
+    },
+    {
+      "id": "luma-color-eye-experiments",
+      "title": "LUMA — Six Experiments on Color & the Eye",
+      "author": "Samahith / MowkE",
+      "platform": "GitHub / creator demo",
+      "url": "https://mowke.github.io/LUMA/",
+      "dateLabel": "AUG 12",
+      "issueNo": "015",
+      "mechanisms": [
+        "数据变成空间",
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "明亮美术馆左侧是一块章节铭牌，右侧黑色展柜里悬着可绕行的色彩体；拉动色觉缺失强度，完整晶体被压成薄片，换两端颜色，两条渐变路径直接在空间里分叉。"
+    },
+    {
+      "id": "digital-peony-webgpu-xpbd",
+      "title": "Digital Peony",
+      "author": "Lewis Orton",
+      "platform": "GitHub / creator demo",
+      "url": "https://lewisorton.github.io/digital-peony/",
+      "dateLabel": "AUG 12",
+      "issueNo": "015",
+      "mechanisms": [
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "一朵粉白牡丹占满黑色画布，花瓣边缘像真实纸纤维，却被一层蓝紫线框与故障颗粒穿过；指针压入花冠，受力沿层层花瓣传开，松手后它缓慢回到有机形态。"
+    },
+    {
+      "id": "cerebrum-brain-explorer",
+      "title": "Cerebrum — 3D Brain Explorer",
+      "author": "Prasenjit / StarKnightt",
+      "platform": "GitHub / creator demo",
+      "url": "https://3d-brain-explorer.vercel.app/",
+      "dateLabel": "AUG 11",
+      "issueNo": "014",
+      "mechanisms": [
+        "数据变成空间",
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "黑色展厅里，一颗湿润、连续的脑皮层占据中央；左侧十个脑区像博物馆索引，选中内部结构时，整体退成半透明外壳，MRI 切片与目标结构在原位同时出现。"
+    },
+    {
+      "id": "partmode-browser-cad",
+      "title": "PartMode — Browser CAD for People + Typed Agents",
+      "author": "BOMWiki / PartMode",
+      "platform": "GitHub / product site",
+      "url": "https://partmode.com/",
+      "dateLabel": "AUG 11",
+      "issueNo": "014",
+      "mechanisms": [
+        "数据变成空间",
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "深蓝工程工作台把特征树、精确实体、参数、装配与检查面板围在同一块 3D 画布旁；代理修改先以独立预览出现，右侧飞行记录明确显示验证、批准与提交。"
+    },
+    {
+      "id": "prehistoric-animal-museum",
+      "title": "Prehistoric Animal Museum",
+      "author": "Leon Made This",
+      "platform": "GitHub / creator demo",
+      "url": "https://leon-made-this.work/museum/",
+      "dateLabel": "AUG 11",
+      "issueNo": "014",
+      "mechanisms": [
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "没有追逐和胜负，孩子只是在一块安静展台上转动海、陆、空史前动物；模型旁的短介绍、双语旁白和家长提问把一次观看变成共同对话。"
+    },
+    {
+      "id": "why-zero-university",
+      "title": "Why Zero",
+      "author": "Zero University / Sindhur Dutta",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://why.zero.university/",
+      "dateLabel": "AUG 11",
+      "issueNo": "014",
+      "mechanisms": [
+        "滚动变成镜头",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "一只绿色三维手和一只真实质感的手伸进白色浏览器框，背后是近乎过曝的花园；滚动继续穿过玻璃碎裂、证书、金钱、隧道与 XP，教育制度被写成连续的空间隐喻。"
+    },
+    {
+      "id": "nothin-studio",
+      "title": "NOTHIN’ — Protean Studio",
+      "author": "Thomas Carré / Nothin’",
+      "platform": "Awwwards / creator site",
+      "url": "https://www.noth.in/",
+      "dateLabel": "AUG 10",
+      "issueNo": "013",
+      "mechanisms": [
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "巨大的黑色 NOTHIN’ 字标几乎撑满屏幕，指针经过时白底像被墨流侵入，银色充气字模从硬排版中鼓起；材质冲突本身就是品牌介绍。"
+    },
+    {
+      "id": "intframe",
+      "title": "INTFRAME® AI Product Studio",
+      "author": "INTFRAME®",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://intframe.com/",
+      "dateLabel": "AUG 10",
+      "issueNo": "013",
+      "mechanisms": [
+        "模型成为界面",
+        "滚动变成镜头",
+        "交互变成叙事"
+      ],
+      "memory": "深黑首屏中，一颗白色点阵球压在超大 INTFRAME 字标上；拖拽让核心旋转，点击让它爆开，随后滚动像穿过九个系统章节。"
+    },
+    {
+      "id": "parinaz-desktop",
+      "title": "Parinaz’s Desktop Portfolio",
+      "author": "Parinaz Kassemi",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://www.parinazkassemi.com/",
+      "dateLabel": "AUG 10",
+      "issueNo": "013",
+      "mechanisms": [
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "云海壁纸上散落文件夹、照片、案例图标和便签，右侧天气、音乐与小游戏像私人工作台；打开 My Shelf 时，整个桌面退到模糊背景，收藏成为一扇真实窗口。"
+    },
+    {
+      "id": "produx-design",
+      "title": "PRODUX — Design that Speaks",
+      "author": "Prødux Design",
+      "platform": "Awwwards / creator site",
+      "url": "https://www.produx.design/",
+      "dateLabel": "AUG 10",
+      "issueNo": "013",
+      "mechanisms": [
+        "滚动变成镜头",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "苔藓覆盖的巨大字形停在像展柜一样的画面中心，黑色窗口式版面把品牌宣言压在上方；向下滚动，项目图像在裁切、位移和液态折射中接管视线。"
+    },
+    {
+      "id": "tidewright",
+      "title": "TIDEWRIGHT — Nine Tides over Vellamar",
+      "author": "winch",
+      "platform": "GitHub / creator demo",
+      "url": "https://winchxyz.github.io/tidewright/",
+      "dateLabel": "AUG 9",
+      "issueNo": "012",
+      "mechanisms": [
+        "数据变成空间",
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "潮线缓慢逼近一座刚堆好的沙堡；切到等高线、丝网印刷或木刻视图，城堡仍是同一座，材料状态却被另一套视觉语法重新解释。"
+    },
+    {
+      "id": "kage",
+      "title": "Kage",
+      "author": "Meng To",
+      "platform": "GitHub / creator demo",
+      "url": "https://mengto.github.io/kage/",
+      "dateLabel": "AUG 9",
+      "issueNo": "012",
+      "mechanisms": [
+        "滚动变成镜头",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "暗夜山门被巨大的 KAGE 字标切开，朱红月亮、灯笼、雨雾与枫叶从前中后景围合；向下滚动像穿过五段被字幕标记的寺院夜行。"
+    },
+    {
+      "id": "anatomy-atelier",
+      "title": "Anatomy Atelier",
+      "author": "The Bugged Dev",
+      "platform": "GitHub / creator demo",
+      "url": "https://anatomy-livid.vercel.app/",
+      "dateLabel": "AUG 9",
+      "issueNo": "012",
+      "mechanisms": [
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "一颗写实心脏悬在暖色展台上，六个彩色热点跟随旋转表面移动；剖面、线框、隔离、比较把同一器官从展品变成一套学习工具。"
+    },
+    {
+      "id": "pond-atlas",
+      "title": "Pond Atlas",
+      "author": "Cyril Dieumegard",
+      "platform": "GitHub / creator site",
+      "url": "https://pondatlas.cc/",
+      "dateLabel": "AUG 9",
+      "issueNo": "012",
+      "mechanisms": [
+        "模型成为界面",
+        "数据变成空间",
+        "交互变成叙事"
+      ],
+      "memory": "蜻蜓悬在奶油色自然史桌面中央，热点贴着翅、眼和腹部移动；左侧是物种索引，右侧是生态事实，底部像博物馆抽屉一样排开微观、生命周期与栖息地卡片。"
+    },
+    {
+      "id": "son-daven",
+      "title": "Son Daven",
+      "author": "The First The Last for Son Daven",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://sondaven.com/en",
+      "dateLabel": "AUG 8",
+      "issueNo": "011",
+      "mechanisms": [
+        "滚动变成镜头",
+        "交互变成叙事"
+      ],
+      "memory": "米金色像素字从暗场升起，牧羊、飞鸟、山体与云层沿滚动被压成一张会呼吸的卡尔巴阡版画。"
+    },
+    {
+      "id": "milledollars",
+      "title": "MilleDollars",
+      "author": "Magnetism for MilleDollars",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://milledollars.fr/",
+      "dateLabel": "AUG 8",
+      "issueNo": "011",
+      "mechanisms": [
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "一支全屏运动影像被细线、客户名、片名、年份和左右字标精确钉住，像把实时放映机塞进极简电影目录。"
+    },
+    {
+      "id": "run-rob-run",
+      "title": "Run Rob Run",
+      "author": "Robert Aperios",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://www.runrobrun.com/",
+      "dateLabel": "AUG 8",
+      "issueNo": "011",
+      "mechanisms": [
+        "模型成为界面",
+        "滚动变成镜头",
+        "交互变成叙事"
+      ],
+      "memory": "橙色软体被包在透明外壳里，随着滚动从圆润团块逼近立方体并裂解；按下播放后，低频让核心收缩，指针又把表面拉向手势。"
+    },
+    {
+      "id": "amanda-guo",
+      "title": "Amanda Guo — Portfolio",
+      "author": "Amanda Guo",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://byamandaguo.com/",
+      "dateLabel": "AUG 6",
+      "issueNo": "010",
+      "mechanisms": [
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "十字准星移动时，五层墨迹从正文中渗出；项目点击后像桌面窗口一样叠放、拖拽和全屏。"
+    },
+    {
+      "id": "ecolinear-studio",
+      "title": "ecoLINEAR Studio",
+      "author": "Cesar Useche Munoz for ecoLINEAR Studio",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://ecolinearstudio.com/",
+      "dateLabel": "AUG 6",
+      "issueNo": "010",
+      "mechanisms": [
+        "滚动变成镜头",
+        "排版变成界面"
+      ],
+      "memory": "建筑平面线、尺寸标记和图号先被逐笔画出，再把真实住宅照片切入同一张制图纸面。"
+    },
+    {
+      "id": "razed-mods",
+      "title": "Razed Mods — Lighting Archive",
+      "author": "Arian Atmar for Razed Mods",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://razed-mods.webflow.io/",
+      "dateLabel": "AUG 6",
+      "issueNo": "010",
+      "mechanisms": [
+        "滚动变成镜头",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "巨大的 razed 字标压住游戏夜景；滚动让不同 mod 的天气、灯光和氛围片段接管同一块舞台。"
+    },
+    {
+      "id": "terra-prime",
+      "title": "Terra Prime · Speculative Ecology Atlas",
+      "author": "Fang He",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://www.terraprime.art/",
+      "dateLabel": "AUG 5",
+      "issueNo": "009",
+      "mechanisms": [
+        "数据变成空间",
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "深绿黑色界面里，一颗可拖动的点阵地球与 NYC、Shanghai、Paris、Cairo、Amazon 五个地点按钮共同定位视角；进入地点后，当代城市与“无人类介入”的生态影像并排同步，旁边不是装饰文案，而是生境、温差与恢复物种面板。"
+    },
+    {
+      "id": "mathis-biabiany-portfolio-2026",
+      "title": "Mathis Biabiany — Creative Technologist Portfolio",
+      "author": "Mathis Biabiany",
+      "platform": "CSS Design Awards / creator portfolio",
+      "url": "https://www.mathis-biabiany.fr/",
+      "dateLabel": "AUG 5",
+      "issueNo": "009",
+      "mechanisms": [
+        "模型成为界面",
+        "滚动变成镜头",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "奶油色流体纹理覆盖首屏，橙色卷曲体从超大姓名上方刺入；继续滚动，作品列表不再是独立卡片墙，而被同一个实时场景接管，在 sci-fi 与 lab 两种空间状态之间切换。"
+    },
+    {
+      "id": "zorge-9",
+      "title": "Zorge 9",
+      "author": "Vide Infra",
+      "platform": "CSS Design Awards / real-estate site",
+      "url": "https://zorge9.estate/",
+      "dateLabel": "AUG 5",
+      "issueNo": "009",
+      "mechanisms": [
+        "滚动变成镜头",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "黑色石材纹理包围一块电影银幕般的建筑画面，人物、楼体和超宽 ZORGE №9 字标彼此前后穿插；向下滚动后，位置、建筑、07:00—21:00 日程、会所与户型像连续分镜被逐段推入。"
+    },
+    {
+      "id": "triadic-ballet-ai",
+      "title": "The Triadic Ballet AI",
+      "author": "Isabelle Cuisset / isaWabi",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://www.thetriadicballetai.com/",
+      "dateLabel": "AUG 4",
+      "issueNo": "008",
+      "mechanisms": [
+        "滚动变成镜头",
+        "模型成为界面",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "黑场中央先出现一张小幅舞台档案；随后黄、玫瑰、黑三幕像实体幕布依次翻开，第三幕的人像不再只是照片，而成为会被指针压出凹陷、拖出色散的暗色薄膜。"
+    },
+    {
+      "id": "aardvark-book-club-2026",
+      "title": "Aardvark Book Club — Editorial Rebuild",
+      "author": "FUTURE THREE® / Dylan Brouwer / Eduard Bodak",
+      "platform": "CSS Design Awards / brand site",
+      "url": "https://www.aardvarkbookclub.com/",
+      "dateLabel": "AUG 4",
+      "issueNo": "008",
+      "mechanisms": [
+        "滚动变成镜头",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "深紫色封面之后，一组真实新书像略带歪斜的硬壳卡片铺开；横向拖动时每本书围绕视口中心改变倾角，滚动到装箱段落，连续帧把“选书—装箱—送达”变成一段可操控的编辑动画。"
+    },
+    {
+      "id": "tuscan-journey-pasticcino",
+      "title": "The Tuscan Journey Begins",
+      "author": "MONOGRID SRL for Weekend Max Mara",
+      "platform": "CSS Design Awards / brand interactive site",
+      "url": "https://weekend-mm-2026-pasticcino-bag-master.monogrid.io/en/",
+      "dateLabel": "AUG 4",
+      "issueNo": "008",
+      "mechanisms": [
+        "滚动变成镜头",
+        "交互变成叙事"
+      ],
+      "memory": "一列旧式车厢从橄榄绿纹样中显影，声音提示像登车广播；旅程随后停靠织物档案、采石场和皮具工坊，用户翻布样、按住雕刻、拖动剪刀与金属扣，最后才看到成品包。"
+    },
+    {
+      "id": "noho-product-world",
+      "title": "Noho — Product World Concept",
+      "author": "Eugene Morev / Alex Ivanov",
+      "platform": "CSS Design Awards / concept site",
+      "url": "https://noho.ink/",
+      "dateLabel": "AUG 4",
+      "issueNo": "008",
+      "mechanisms": [
+        "模型成为界面",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "首屏被切成一半宣言、一半错落摄影拼贴；滚动进入产品区后，一把椅子从海报占位切换成可实时换座面与椅身颜色的模型，Random 和 Mood 像两个明确的试玩动作。"
+    },
+    {
+      "id": "spectral-field-rob-fwa",
+      "title": "Spectral Field",
+      "author": "Rob FWA",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://www.robfwa.com/",
+      "dateLabel": "AUG 3",
+      "issueNo": "007",
+      "mechanisms": [
+        "数据变成空间",
+        "交互变成叙事"
+      ],
+      "memory": "黑场中央先悬着一枚琥珀色声学壳体；选择曲目后，低中高频、节拍、音高与声像共同牵引一支连续画笔，逐帧长成可保存的放射谱场。"
+    },
+    {
+      "id": "motiondeep-play-area",
+      "title": "Motiondeep — Immersive Play Area",
+      "author": "John Jattoh / Motiondeep",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://www.motiondeep.com/",
+      "dateLabel": "AUG 3",
+      "issueNo": "007",
+      "mechanisms": [
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "一个方头角色站在霓虹失真游乐场里，作品标题、入口、金币与传送门都成为可接近的空间物件；用户移动、转镜头、收集，再穿过昼夜两套状态。"
+    },
+    {
+      "id": "max-ready-cinematic-portraits",
+      "title": "Max Ready — Cinematic Portraits",
+      "author": "Maksim Kyshtymov / Max Ready",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://maxready.me/en",
+      "dateLabel": "AUG 3",
+      "issueNo": "007",
+      "mechanisms": [
+        "滚动变成镜头",
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "桌面像一张俯拍摄影工作台：镜头、相机机身与红色绳带围着中央手机；真正的服务叙事在手机内滚动，外部暗房背景随章节被显影成不同场景。"
+    },
+    {
+      "id": "noomo-showcase-2026",
+      "title": "Noomo Showcase",
+      "author": "Noomo Agency",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://showcase.noomoagency.com/",
+      "dateLabel": "AUG 1",
+      "issueNo": "006",
+      "mechanisms": [
+        "模型成为界面",
+        "滚动变成镜头",
+        "交互变成叙事"
+      ],
+      "memory": "案例不是一排缩略图：访客沿深蓝空间穿过玻璃岩体、发光碎片与项目影像，Salesforce、AMD、Coinbase 等作品像连续房间一样被逐段揭示。"
+    },
+    {
+      "id": "nodeck-anti-deck",
+      "title": "Nodeck — The Anti-Deck",
+      "author": "Bogdan Kolomiyets",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://www.nodeck.online/",
+      "dateLabel": "AUG 1",
+      "issueNo": "006",
+      "mechanisms": [
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "一套故意像 PowerPoint 的十页网站，把 Prev/Next、页码、Presenter Notes、荧光笔、便签、橡皮和图钉变成可操作的讽刺舞台。"
+    },
+    {
+      "id": "homunculus-inc-2026",
+      "title": "homunculus Inc. 2026",
+      "author": "homunculus Inc.",
+      "platform": "CSS Design Awards / creator site",
+      "url": "https://homunculus.jp/",
+      "dateLabel": "AUG 1",
+      "issueNo": "006",
+      "mechanisms": [
+        "模型成为界面",
+        "滚动变成镜头",
+        "交互变成叙事"
+      ],
+      "memory": "黑场里的半透明有机膜、面孔、眼睛与牙齿模型组成一具会呼吸的数字身体；用户选择有声或静音进入，再从同一场景抵达 About、Works 与 Company。"
+    },
+    {
+      "id": "artlas-cs-projects",
+      "title": "Artlas — Interactive Art History Universe",
+      "author": "CS Projects",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=k9vpKdsVWeM",
+      "dateLabel": "JUL 30",
+      "issueNo": "005",
+      "mechanisms": [
+        "数据变成空间",
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "艺术史不再是一条年表：艺术家按创作年份散布在可航行的宇宙中，用户还能从星图进入 3D 博物馆查看真实作品。"
+    },
+    {
+      "id": "tech2world-particle-art",
+      "title": "Real-Time 3D Particle Art Generator",
+      "author": "tech2world",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=nYYLdA0HV24",
+      "dateLabel": "JUL 30",
+      "issueNo": "005",
+      "mechanisms": [
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "点与连线在球体、立方体、环面、螺旋、超立方体和莫比乌斯带之间连续变形，鼠标与自动 Magic Mode 共同导演镜头。"
+    },
+    {
+      "id": "openform-drawing-aquarium",
+      "title": "让小朋友的画游进海底世界",
+      "author": "电磁波Studio",
+      "platform": "抖音精选",
+      "url": "https://jingxuan.douyin.com/m/video/7658670977785735395",
+      "dateLabel": "JUL 30",
+      "issueNo": "005",
+      "mechanisms": [
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "学生上传一张蜡笔画，画里的角色被转成可在海底场景中游动的 3D 对象，并实时投到教室大屏。"
+    },
+    {
+      "id": "computer-vision-watercolor",
+      "title": "Watercolor Painting with Computer Vision",
+      "author": "Fun With Computer Vision",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=vT7IMIKqwYo",
+      "dateLabel": "JUL 30",
+      "issueNo": "005",
+      "mechanisms": [
+        "交互变成叙事",
+        "模型成为界面"
+      ],
+      "memory": "手掌在摄像头前移动，水彩流场的速度、湍流、涡度与颜色随动作改变；身体本身成为 Shader 调参界面。"
+    },
+    {
+      "id": "kishimisu-shader-art",
+      "title": "An Introduction to Shader Art Coding",
+      "author": "kishimisu",
+      "platform": "YouTube",
+      "url": "https://www.youtube.com/watch?v=f4s1h2YETNY",
+      "dateLabel": "JUL 30",
+      "issueNo": "005",
+      "mechanisms": [
+        "数据变成空间",
+        "交互变成叙事"
+      ],
+      "memory": "一个屏幕坐标经过居中、距离场、周期函数、调色板和多次迭代，逐步长成有纵深与呼吸感的霓虹分形场。"
+    },
+    {
+      "id": "utopia-tokyo",
+      "title": "Utopia Tokyo",
+      "author": "SPOTHEROZ（collaborator: Andrew Measham）",
+      "platform": "CSS Design Awards",
+      "url": "https://www.utopiatokyo.com/",
+      "dateLabel": "JUL 29",
+      "issueNo": "004",
+      "mechanisms": [
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "进入红黑东京前先选择 Safe Mode 或 Glitch；随后从日本面具谱系与六项能力中分配选择，生成自己的面具身份。"
+    },
+    {
+      "id": "obsidian-assembly",
+      "title": "The Obsidian Assembly",
+      "author": "Fiddle.Digital",
+      "platform": "CSS Design Awards",
+      "url": "https://obsidianassembly.com/",
+      "dateLabel": "JUL 29",
+      "issueNo": "004",
+      "mechanisms": [
+        "滚动变成镜头",
+        "交互变成叙事"
+      ],
+      "memory": "坐标被刻意隐藏，七个地点与四件物品在长滚动中通过石材浮雕、影像序列和局部文字逐步建立关系。"
+    },
+    {
+      "id": "quentin-hocde-v26",
+      "title": "Quentin Hocdé — v26.0",
+      "author": "Quentin Hocdé",
+      "platform": "CSS Design Awards",
+      "url": "https://quentinhocde.com/",
+      "dateLabel": "JUL 29",
+      "issueNo": "004",
+      "mechanisms": [
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "安静的 WebGL 渐变托住大尺度网格与十余年项目档案；文字、拖拽和路由运动很多，却没有抢走作品年份、角色与合作信息。"
+    },
+    {
+      "id": "paper-critters",
+      "title": "Paper Critters",
+      "author": "Ruperto Fabito, Jr.",
+      "platform": "CSS Design Awards",
+      "url": "https://www.papercritters.com/",
+      "dateLabel": "JUL 27",
+      "issueNo": "003",
+      "mechanisms": [
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "给 3D 纸玩偶贴满图案，旋转检查，最后展开成真正可打印、可折叠的纸模。"
+    },
+    {
+      "id": "still",
+      "title": "STILL.",
+      "author": "RefractWeb",
+      "platform": "CSS Design Awards",
+      "url": "https://www.drinkstill.nz/",
+      "dateLabel": "JUL 27",
+      "issueNo": "003",
+      "mechanisms": [
+        "模型成为界面",
+        "排版变成界面"
+      ],
+      "memory": "指针在巨大的 STILL 字标上切出一个孔径，孔径后方露出实时渲染的饮料罐。"
+    },
+    {
+      "id": "scheme-engine",
+      "title": "Scheme Engine",
+      "author": "The Blackpepper Studio",
+      "platform": "CSS Design Awards",
+      "url": "https://www.schemeengine.com/",
+      "dateLabel": "JUL 27",
+      "issueNo": "003",
+      "mechanisms": [
+        "滚动变成镜头",
+        "交互变成叙事"
+      ],
+      "memory": "全屏动态 Shader 场与电影画面并置；速度、暂停、重置与色板成为视觉系统的一部分。"
+    },
+    {
+      "id": "justus-john",
+      "title": "Justus John",
+      "author": "Justus John",
+      "platform": "CSS Design Awards",
+      "url": "https://justus-john.com/",
+      "dateLabel": "JUL 27",
+      "issueNo": "003",
+      "mechanisms": [
+        "数据变成空间",
+        "滚动变成镜头",
+        "交互变成叙事"
+      ],
+      "memory": "从业务流程和代码生成一路滚动到手绘 Canvas；用户画图时，神经网络在浏览器内实时猜测。"
+    },
+    {
+      "id": "squarespace-foundations",
+      "title": "Squarespace Foundations",
+      "author": "Squarespace × Resn",
+      "platform": "Awwwards",
+      "url": "https://brand.squarespace.com/",
+      "dateLabel": "JUL 27",
+      "issueNo": "003",
+      "mechanisms": [
+        "排版变成界面",
+        "交互变成叙事"
+      ],
+      "memory": "Logo、Typography、Color、Photography、Campaign、Motion 六章被做成六个可操作的小型展览。"
+    },
+    {
+      "id": "windows",
+      "title": "Windows.com",
+      "author": "OFF+BRAND. for Microsoft",
+      "platform": "Awwwards",
+      "url": "https://www.microsoft.com/en-us/windows/",
+      "dateLabel": "JUL 25",
+      "issueNo": "002",
+      "mechanisms": [
+        "模型成为界面",
+        "滚动变成镜头"
+      ],
+      "memory": "Windows 产品硬件与系统界面被编排成可复用的 3D 首页语言，而不是一次性的发布会镜头。"
+    },
+    {
+      "id": "jingjing-han",
+      "title": "Jingjing Han",
+      "author": "Jingjing Han",
+      "platform": "Awwwards / Orpetron",
+      "url": "https://www.jingjinghan.com/",
+      "dateLabel": "JUL 25",
+      "issueNo": "002",
+      "mechanisms": [
+        "滚动变成镜头",
+        "排版变成界面"
+      ],
+      "memory": "作品、Playground 与个人叙事通过大尺度排版和运动被串成一个连续场域。"
+    },
+    {
+      "id": "galaxy-structures",
+      "title": "Galaxy of Structures",
+      "author": "Daiki Odaka",
+      "platform": "CSS Winner / CSS Light",
+      "url": "https://daiki-design.com/",
+      "dateLabel": "JUL 25",
+      "issueNo": "002",
+      "mechanisms": [
+        "数据变成空间",
+        "交互变成叙事"
+      ],
+      "memory": "约 7,000 个 Canvas 粒子构成形体，点击后爆散，再回到原本结构。"
+    },
+    {
+      "id": "spotify-wrapped-party",
+      "title": "Spotify Wrapped Party",
+      "author": "Active Theory",
+      "platform": "Awwwards",
+      "url": "https://wrapped-party.activetheory.dev/",
+      "dateLabel": "JUL 24",
+      "issueNo": "001",
+      "mechanisms": [
+        "数据变成空间",
+        "交互变成叙事"
+      ],
+      "memory": "真实个人收听数据被变成多人比较、榜单和逐步揭晓的共同事件。"
+    },
+    {
+      "id": "dragonfly-redux",
+      "title": "Dragonfly Redux",
+      "author": "Studio Freight",
+      "platform": "Awwwards",
+      "url": "https://www.dragonfly.xyz/",
+      "dateLabel": "JUL 24",
+      "issueNo": "001",
+      "mechanisms": [
+        "数据变成空间",
+        "排版变成界面"
+      ],
+      "memory": "字符和点阵聚合成具有身体感的数字形体，介于排版、模型与信号之间。"
+    },
+    {
+      "id": "lacoste-polo-factory",
+      "title": "Lacoste Polo Factory",
+      "author": "Merci Michel",
+      "platform": "Awwwards",
+      "url": "https://members-play.lacoste.com/",
+      "dateLabel": "JUL 24",
+      "issueNo": "001",
+      "mechanisms": [
+        "模型成为界面",
+        "交互变成叙事"
+      ],
+      "memory": "用户不是观看 Polo 衫，而是通过步骤化交互进入材料、制作与个性化过程。"
+    },
+    {
+      "id": "izanami",
+      "title": "IZANAMI",
+      "author": "baqemono.inc. / Tomoyuki Nakata",
+      "platform": "Awwwards",
+      "url": "https://izanami-official.com/",
+      "dateLabel": "JUL 24",
+      "issueNo": "001",
+      "mechanisms": [
+        "滚动变成镜头",
+        "交互变成叙事"
+      ],
+      "memory": "日式神话意象、角色与黑暗空间通过 WebGL 被组织成一条有章节感的体验。"
+    }
+  ]
+}
+

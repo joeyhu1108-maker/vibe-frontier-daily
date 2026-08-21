@@ -196,6 +196,119 @@ const RESOURCES = [
   }
 ];
 
+const PROMPT_SITES = [
+  {
+    name: "Vechooool",
+    url: "https://vechooool.com/",
+    mode: "full",
+    type: "整站 / 模板",
+    access: "免费套件 + 会员",
+    best: "中文浏览，按品牌站、SaaS、作品集、APP 等场景找模板与设计 Token。",
+    note: "最接近“看效果 → 选套件 → 交给 AI 实现”的中文入口。",
+    accent: "#d6ff45"
+  },
+  {
+    name: "MotionSites",
+    url: "https://motionsites.ai/",
+    mode: "full",
+    type: "整站 / 动效",
+    access: "少量免费 + 付费",
+    best: "高运动感 Hero、Landing Page、3D 与创意作品集的完整页面 Prompt。",
+    note: "规格很细，适合学动效参数；先从免费样例判断是否值得购买。",
+    accent: "#ff5c35"
+  },
+  {
+    name: "Jiro",
+    url: "https://jiro.build/",
+    mode: "full",
+    type: "整站 / 区块",
+    access: "免费筛选 + 付费",
+    best: "按行业与页面区块寻找完整 Landing Page、Header、Pricing、FAQ 等 Prompt。",
+    note: "分类最接近真实建站任务，适合从单一区块开始拼页面。",
+    accent: "#8f7cff"
+  },
+  {
+    name: "HeroPrompts",
+    url: "https://heroprompts.io/",
+    mode: "full",
+    type: "Hero / 首屏",
+    access: "免费浏览 + 付费",
+    best: "只解决高质量首屏：构图、字体、材质、灯光与进入动效。",
+    note: "范围窄但聚焦；适合先把官网第一屏做对。",
+    accent: "#ffb14a"
+  },
+  {
+    name: "21st.dev",
+    url: "https://21st.dev/",
+    mode: "component",
+    type: "组件 / 区块",
+    access: "每天 2 次免费复制",
+    best: "12,000+ React 组件、模板与主题，每个组件都提供 AI-ready Prompt。",
+    note: "Prompt 会把组件落进现有代码库，最适合 Codex、Claude Code 与 Cursor。",
+    accent: "#ffffff"
+  },
+  {
+    name: "UIVibes",
+    url: "https://uivibes.pro/",
+    mode: "component",
+    type: "动效组件",
+    access: "部分免费 + 付费",
+    best: "按钮、卡片、背景、文字效果与 Hero 的生产级实现 Prompt。",
+    note: "组件规模不大但目标清晰，适合快速补一个局部效果。",
+    accent: "#54e6b1"
+  },
+  {
+    name: "VibeUI",
+    url: "https://vibeui.online/",
+    mode: "component",
+    type: "结构 Prompt",
+    access: "免费 / 无需登录",
+    best: "92 个页面区块结构 Prompt，配合你自己的参考截图决定视觉风格。",
+    note: "它给骨架而不是套皮，适合避免结构含糊。",
+    accent: "#5eb7ff"
+  },
+  {
+    name: "UIPrompt",
+    url: "https://uiprompt.app/",
+    mode: "system",
+    type: "设计系统 / UI",
+    access: "可试用 + 付费",
+    best: "先定义颜色、字体、组件风格与技术栈，再导出带项目上下文的 Prompt。",
+    note: "更适合已有产品，不容易生成一套与品牌无关的通用皮肤。",
+    accent: "#ff89c0"
+  },
+  {
+    name: "uWarp",
+    url: "https://www.uwarp.design/design-prompts",
+    mode: "system",
+    type: "风格 / 系统",
+    access: "免费复制",
+    best: "从 30 种视觉风格中复制包含角色、Token、布局与反例的设计系统 Prompt。",
+    note: "适合快速比较方向；复制后仍要替换成真实品牌与内容。",
+    accent: "#ffd84c"
+  },
+  {
+    name: "FramingUI",
+    url: "https://framingui.com/",
+    mode: "system",
+    type: "主题 / Agent",
+    access: "开源 / MCP",
+    best: "选择主题与产品屏幕，复制 Prompt 或让 Agent 通过 MCP 使用同一套系统。",
+    note: "适合把一次 Prompt 升级为可持续使用的界面约束。",
+    accent: "#a8ff78"
+  },
+  {
+    name: "TurnConcepts",
+    url: "https://turnconcepts.com/",
+    mode: "system",
+    type: "产品概念 / QA",
+    access: "免费浏览",
+    best: "把 UI 参考、产品概念、无障碍与交付检查写成可复制的工作 Prompt。",
+    note: "不只追求一张好看的图，也覆盖真实产品工作。",
+    accent: "#b3a4ff"
+  }
+];
+
 const PROMPTS = [
   {
     title: "组件状态矩阵",
@@ -319,8 +432,17 @@ const PROMPTS = [
 ];
 
 const COVER_MAP = {
+  "inkwell-webgpu-water-tethys": "./vibe/covers/inkwell-webgpu-water-tethys.png",
+  "last-train-records": "./vibe/covers/last-train-records.jpg",
+  "filter-fabjs-2-1-1": "./vibe/covers/filter-fabjs-2-1-1.png",
+  "worldseed-orbital-story-game": "./vibe/covers/worldseed-orbital-story-game.png",
   "kasane-geometric-image-approximation": "./vibe/covers/kasane-geometric-image-approximation.jpg",
   "insect-world-procedural-field-guide": "./vibe/covers/insect-world-procedural-field-guide.png",
+  "luma-color-eye-experiments": "./vibe/covers/luma-color-eye-experiments.png",
+  "digital-peony-webgpu-xpbd": "./vibe/covers/digital-peony-webgpu-xpbd.webp",
+  "cerebrum-brain-explorer": "./vibe/covers/cerebrum-brain-explorer.webp",
+  "partmode-browser-cad": "./vibe/covers/partmode-browser-cad.png",
+  "prehistoric-animal-museum": "./vibe/covers/prehistoric-animal-museum.png",
   "why-zero-university": "./vibe/covers/why-zero-university.jpg"
 };
 
@@ -337,14 +459,30 @@ const resourceEmpty = document.querySelector("#resource-empty");
 const resourceSearch = document.querySelector("#resource-search");
 const promptList = document.querySelector("#prompt-list");
 const promptPreview = document.querySelector("#prompt-preview");
+const promptSiteGrid = document.querySelector("#prompt-site-grid");
+const promptSiteEmpty = document.querySelector("#prompt-site-empty");
+const promptSiteSearch = document.querySelector("#prompt-site-search");
 const caseGrid = document.querySelector("#case-grid");
+const candidateGrid = document.querySelector("#candidate-grid");
+const candidateEmpty = document.querySelector("#candidate-empty");
+const candidateSearch = document.querySelector("#candidate-search");
 const caseDialog = document.querySelector("#case-dialog");
 const caseDialogContent = document.querySelector("#case-dialog-content");
 const toast = document.querySelector("#toast");
 
 let activeResourceFilter = "all";
+let activePromptSiteFilter = "all";
+let activeCandidateFilter = "all";
 let toastTimer;
 let cases = [];
+let candidates = [];
+let selectedCandidates = new Set();
+
+try {
+  selectedCandidates = new Set(JSON.parse(localStorage.getItem("vibe-selected-candidates") || "[]"));
+} catch {
+  localStorage.removeItem("vibe-selected-candidates");
+}
 
 function escapeHtml(value = "") {
   return String(value)
@@ -429,7 +567,8 @@ function renderResources() {
 }
 
 function initResources() {
-  document.querySelector("#resource-count").textContent = String(RESOURCES.length).padStart(2, "0");
+  const count = document.querySelector("#resource-count");
+  if (count) count.textContent = String(RESOURCES.length).padStart(2, "0");
   renderResources();
   document.querySelectorAll("[data-filter]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -439,6 +578,42 @@ function initResources() {
     });
   });
   resourceSearch.addEventListener("input", renderResources);
+}
+
+function renderPromptSites() {
+  const query = promptSiteSearch.value.trim().toLocaleLowerCase("zh-CN");
+  const visible = PROMPT_SITES.filter((site) => {
+    const modeMatch = activePromptSiteFilter === "all" || site.mode === activePromptSiteFilter;
+    const text = `${site.name} ${site.type} ${site.access} ${site.best} ${site.note}`.toLocaleLowerCase("zh-CN");
+    return modeMatch && (!query || text.includes(query));
+  });
+
+  promptSiteGrid.innerHTML = visible.map((site) => {
+    const index = PROMPT_SITES.indexOf(site) + 1;
+    return `
+      <a class="prompt-site-card" href="${site.url}" target="_blank" rel="noopener noreferrer" style="--site-accent:${site.accent}">
+        <div class="prompt-site-card__top"><span>${String(index).padStart(2, "0")} / ${escapeHtml(site.type)}</span><span>${escapeHtml(site.access)}</span></div>
+        <div class="prompt-site-card__mark" aria-hidden="true">${escapeHtml(site.name.slice(0, 2))}</div>
+        <h3>${escapeHtml(site.name)}</h3>
+        <p>${escapeHtml(site.best)}</p>
+        <div class="prompt-site-card__bottom"><span>${escapeHtml(site.note)}</span><strong>打开并复制 ↗</strong></div>
+      </a>
+    `;
+  }).join("");
+  promptSiteEmpty.hidden = visible.length > 0;
+}
+
+function initPromptSites() {
+  document.querySelector("#prompt-site-count").textContent = String(PROMPT_SITES.length).padStart(2, "0");
+  renderPromptSites();
+  document.querySelectorAll("[data-prompt-site-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      activePromptSiteFilter = button.dataset.promptSiteFilter;
+      document.querySelectorAll("[data-prompt-site-filter]").forEach((item) => item.classList.toggle("is-active", item === button));
+      renderPromptSites();
+    });
+  });
+  promptSiteSearch.addEventListener("input", renderPromptSites);
 }
 
 function renderPrompt(index) {
@@ -544,6 +719,85 @@ async function initCases() {
     console.error("Failed to load case library", error);
   }
   renderCases();
+  if (candidates.length) renderCandidates();
+}
+
+function matchesCandidateCategory(item, category) {
+  if (category === "all") return true;
+  if (category === "selected") return selectedCandidates.has(item.id);
+  const mechanisms = item.mechanisms.join(" ");
+  if (category === "space") return mechanisms.includes("数据变成空间") || mechanisms.includes("模型成为界面");
+  if (category === "scroll") return mechanisms.includes("滚动变成镜头");
+  if (category === "editorial") return mechanisms.includes("排版变成界面");
+  if (category === "interaction") return mechanisms.includes("交互变成叙事");
+  return true;
+}
+
+function renderCandidates() {
+  const query = candidateSearch.value.trim().toLocaleLowerCase("zh-CN");
+  const visible = candidates.filter((item) => {
+    const text = `${item.title} ${item.author} ${item.platform} ${item.mechanisms.join(" ")}`.toLocaleLowerCase("zh-CN");
+    return matchesCandidateCategory(item, activeCandidateFilter) && (!query || text.includes(query));
+  });
+  const deepIds = new Set(cases.map((item) => item.id));
+
+  candidateGrid.innerHTML = visible.map((item) => {
+    const index = candidates.indexOf(item) + 1;
+    const selected = selectedCandidates.has(item.id);
+    const cover = COVER_MAP[item.id];
+    const visual = cover
+      ? `<img src="${cover}" alt="${escapeHtml(item.title)} 案例预览" loading="lazy" />`
+      : `<div class="candidate-card__fallback candidate-card__fallback--${index % 5}"><span>REFERENCE ${String(index).padStart(2, "0")}</span><strong>${escapeHtml(item.title)}</strong></div>`;
+    return `
+      <article class="candidate-card${selected ? " is-selected" : ""}">
+        <a class="candidate-card__visual" href="${item.url}" target="_blank" rel="noopener noreferrer">${visual}${deepIds.has(item.id) ? '<span class="candidate-card__deep">深度拆解</span>' : ""}</a>
+        <div class="candidate-card__body">
+          <div class="candidate-card__meta"><span>ISSUE ${escapeHtml(item.issueNo)} · ${escapeHtml(item.dateLabel)}</span><span>${String(index).padStart(2, "0")} / ${String(candidates.length).padStart(2, "0")}</span></div>
+          <h4><a href="${item.url}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a></h4>
+          <p>${escapeHtml(item.author)} · ${escapeHtml(item.platform)}</p>
+          <ul>${item.mechanisms.slice(0, 3).map((tag) => `<li>${escapeHtml(tag)}</li>`).join("")}</ul>
+          <div class="candidate-card__actions"><a href="${item.url}" target="_blank" rel="noopener noreferrer">打开原作 ↗</a><button type="button" data-select-candidate="${item.id}" aria-pressed="${selected}">${selected ? "已加入 ✓" : "加入候选 ＋"}</button></div>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  document.querySelector("#candidate-result-count").textContent = `${visible.length} 个结果`;
+  document.querySelector("#selected-count").textContent = String(selectedCandidates.size);
+  candidateEmpty.hidden = visible.length > 0;
+  candidateGrid.querySelectorAll("[data-select-candidate]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const id = button.dataset.selectCandidate;
+      if (selectedCandidates.has(id)) selectedCandidates.delete(id);
+      else selectedCandidates.add(id);
+      localStorage.setItem("vibe-selected-candidates", JSON.stringify([...selectedCandidates]));
+      renderCandidates();
+      showToast(selectedCandidates.has(id) ? "已加入你的候选单" : "已移出候选单");
+    });
+  });
+}
+
+async function initCandidates() {
+  try {
+    const response = await fetch("./vibe/site-candidates.json");
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const data = await response.json();
+    candidates = data.candidates ?? [];
+  } catch (error) {
+    console.error("Failed to load candidate library", error);
+  }
+  const count = String(candidates.length);
+  document.querySelector("#candidate-count").textContent = count.padStart(2, "0");
+  document.querySelector("#candidate-total").textContent = count;
+  document.querySelectorAll("[data-candidate-filter]").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeCandidateFilter = button.dataset.candidateFilter;
+      document.querySelectorAll("[data-candidate-filter]").forEach((item) => item.classList.toggle("is-active", item === button));
+      renderCandidates();
+    });
+  });
+  candidateSearch.addEventListener("input", renderCandidates);
+  renderCandidates();
 }
 
 function initDialog() {
@@ -589,16 +843,13 @@ function initCommunity() {
   document.querySelector("#copy-question").addEventListener("click", () => copyText(questionTemplate, "已复制共学提问模板"));
 }
 
-function initHeroDemo() {
-  document.querySelector(".demo-button").addEventListener("click", () => document.querySelector("#workshop").scrollIntoView({ behavior: "smooth" }));
-}
-
 initPaths();
+initPromptSites();
 initResources();
 initPrompts();
 initWorkshop();
 initCases();
+initCandidates();
 initDialog();
 initSamples();
 initCommunity();
-initHeroDemo();

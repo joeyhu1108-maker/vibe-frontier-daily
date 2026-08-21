@@ -17,12 +17,16 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   const response = await page.goto(baseURL, { waitUntil: "domcontentloaded" });
   assert.equal(response.status(), 200);
   await page.waitForSelector(".resource-card");
+  await page.waitForSelector(".prompt-site-card");
   await page.waitForSelector(".case-card");
+  await page.waitForSelector(".candidate-card");
 
   assert.equal(await page.locator(".resource-card").count(), 16);
+  assert.equal(await page.locator(".prompt-site-card").count(), 11);
   assert.equal(await page.locator(".prompt-tab").count(), 6);
   assert.equal(await page.locator(".sample-card").count(), 2);
   assert.equal(await page.locator(".case-card").count(), 3);
+  assert.equal(await page.locator(".candidate-card").count(), 65);
 
   await page.waitForFunction(() => [...document.querySelectorAll(".partner-logo")].every((image) => image.complete && image.naturalWidth > 0));
 
@@ -35,6 +39,13 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   assert.ok(overflow <= 1, `horizontal overflow: ${overflow}px at ${viewport.width}px`);
 
   if (viewport.width >= 1000) {
+    await page.getByRole("button", { name: "组件", exact: true }).first().click();
+    assert.equal(await page.locator(".prompt-site-card").count(), 3);
+    await page.getByPlaceholder("搜索网站、用途或免费").fill("21st");
+    assert.equal(await page.locator(".prompt-site-card").count(), 1);
+    await page.getByRole("button", { name: "全部", exact: true }).first().click();
+    await page.getByPlaceholder("搜索网站、用途或免费").fill("");
+
     await page.locator('.path-tab[data-path="system"]').click();
     await page.getByText("把零散视觉值，改写成团队能使用的语言").waitFor();
 
@@ -42,7 +53,7 @@ async function inspectViewport(browser, viewport, screenshotPath) {
     assert.equal(await page.locator(".resource-card").count(), 7);
     await page.getByPlaceholder("搜索用途或工具名").fill("Rive");
     assert.equal(await page.locator(".resource-card").count(), 1);
-    await page.getByRole("button", { name: "全部" }).click();
+    await page.locator('[data-filter="all"]').click();
     await page.getByPlaceholder("搜索用途或工具名").fill("");
 
     await page.locator('[data-control="state"] [data-value="loading"]').click();
@@ -57,15 +68,28 @@ async function inspectViewport(browser, viewport, screenshotPath) {
     assert.equal(await page.locator("#case-dialog").getAttribute("open"), "");
     await page.locator(".dialog-close").click();
 
+    await page.getByPlaceholder("搜索网站、作者、平台或机制").fill("KASANE");
+    assert.equal(await page.locator(".candidate-card").count(), 1);
+    await page.locator("[data-select-candidate]").click();
+    await page.getByText("已加入你的候选单").waitFor();
+    assert.equal(await page.locator("#selected-count").innerText(), "1");
+    await page.getByPlaceholder("搜索网站、作者、平台或机制").fill("");
+    await page.getByRole("button", { name: /我的候选/ }).click();
+    assert.equal(await page.locator(".candidate-card").count(), 1);
+    await page.getByRole("button", { name: "全部", exact: true }).last().click();
+
     await page.locator('.path-tab[data-path="components"]').click();
     await page.locator('[data-control="state"] [data-value="default"]').click();
   }
 
   await page.waitForFunction(() => !document.querySelector("#toast").classList.contains("is-visible"));
   await page.evaluate(() => window.scrollTo(0, 0));
-  await page.screenshot({ path: screenshotPath, fullPage: true });
+  await page.screenshot({ path: screenshotPath, fullPage: false });
   if (viewport.width < 1000) {
-    await page.locator("#cases").screenshot({ path: "/tmp/vibe-academy-mobile-cases.png" });
+    await page.locator("#prompt-sites").scrollIntoViewIfNeeded();
+    await page.screenshot({ path: "/tmp/vibe-academy-mobile-prompt-sites.png", fullPage: false });
+    await page.locator(".candidate-library").scrollIntoViewIfNeeded();
+    await page.screenshot({ path: "/tmp/vibe-academy-mobile-candidates.png", fullPage: false });
   }
   assert.deepEqual(errors, []);
   await context.close();
