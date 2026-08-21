@@ -3,40 +3,225 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#05070c" />
+    <meta name="theme-color" content="#f3f0e8" />
     <link rel="icon" type="image/png" href="./favicon.png" />
-    <meta
-      name="description"
-      content="VIBE FRONTIER 前端审美拆解公开分享：完整案例、实现证据与可复用方法均可直接阅读。"
-    />
+    <meta name="description" content="VIBE FRONTIER 是一个面向 Vibe Coding 创作者的前端视觉教学站：学习组件、设计系统、界面动效、视觉工具与可执行 Prompt。" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="VIBE FRONTIER｜前端审美拆解・公开分享" />
-    <meta
-      property="og:description"
-      content="保留作者、原作与证据，公开拆解输入、实现、性能与值得复用的方法。"
-    />
-    <meta property="og:image" content="https://joeyhu1108-maker.github.io/vibe-frontier-daily/vibe/hero-poster.jpg" />
+    <meta property="og:title" content="VIBE FRONTIER｜从会生成页面，到会搭建系统" />
+    <meta property="og:description" content="组件、设计系统、界面动效、Vibe Coding 视觉工具与原创 Prompt，一条从效果到系统的学习路径。" />
+    <meta property="og:image" content="https://joeyhu1108-maker.github.io/vibe-frontier-daily/vibe/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="VIBE FRONTIER｜前端审美拆解・公开分享" />
-    <meta
-      name="twitter:description"
-      content="当前发布内容均可完整阅读，不设置付费解锁。"
-    />
-    <meta name="twitter:image" content="https://joeyhu1108-maker.github.io/vibe-frontier-daily/vibe/hero-poster.jpg" />
-    <title>VIBE FRONTIER｜前端审美拆解・公开分享</title>
-    <script type="module" crossorigin src="./assets/vibe-CLt4bOiR.js"></script>
-    <link rel="modulepreload" crossorigin href="./assets/createLucideIcon-DuCt6sP3.js">
-    <link rel="modulepreload" crossorigin href="./assets/arrow-right-BzhnovcI.js">
-    <link rel="modulepreload" crossorigin href="./assets/x-DIVcBNgu.js">
-    <link rel="stylesheet" crossorigin href="./assets/createLucideIcon-BU66-h4g.css">
-    <link rel="stylesheet" crossorigin href="./assets/vibe-Hw_JWSb_.css">
-    <link rel="stylesheet" href="./vibe/feed-view.css">
-    <link rel="stylesheet" href="./vibe/public-share.css">
-    <link rel="stylesheet" href="./vibe/brand-lockup.css">
-    <script type="module" src="./vibe/feed-view.js"></script>
-    <script type="module" src="./vibe/brand-lockup.js"></script>
+    <meta name="twitter:title" content="VIBE FRONTIER｜Vibe Coding 视觉教学站" />
+    <meta name="twitter:description" content="从效果、组件、系统到动效与验收，建立可以迁移到真实项目的前端视觉能力。" />
+    <meta name="twitter:image" content="https://joeyhu1108-maker.github.io/vibe-frontier-daily/vibe/og.png" />
+    <title>VIBE FRONTIER｜Vibe Coding 视觉教学站</title>
+    <link rel="stylesheet" href="./vibe/academy.css" />
+    <script type="module" src="./vibe/academy.js"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header">
+      <a class="wordmark wordmark--partners" href="#top" aria-label="ART WITH AI 与 AI造物社 · VIBE FRONTIER 首页">
+        <img class="partner-logo partner-logo--art" src="./vibe/brands/art-with-ai.svg" alt="" aria-hidden="true" />
+        <span class="partner-divider" aria-hidden="true"></span>
+        <img class="partner-logo partner-logo--zaowushe" src="./vibe/brands/ai-zaowushe.svg" alt="" aria-hidden="true" />
+      </a>
+      <nav class="desktop-nav" aria-label="主导航">
+        <a href="#paths">学习路径</a>
+        <a href="#workshop">组件工坊</a>
+        <a href="#resources">工具地图</a>
+        <a href="#prompts">Prompt 库</a>
+        <a href="#cases">案例实验室</a>
+      </nav>
+      <a class="header-cta" href="#paths">开始学习 <span aria-hidden="true">↘</span></a>
+    </header>
+
+    <main id="main">
+      <section class="hero section-shell" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">VIBE CODING · VISUAL LEARNING FIELD</p>
+          <h1>从「会生成页面」<br />到「会搭建系统」</h1>
+          <p class="hero-intro">不只收藏好看的效果。学习如何拆成组件、写成规则、做出动效，再用清晰的 Prompt 和验收标准把它真正落进项目。</p>
+          <div class="hero-actions">
+            <a class="button button--ink" href="#paths">从第 01 课开始</a>
+            <a class="text-link" href="#resources">先看工具地图 <span aria-hidden="true">↗</span></a>
+          </div>
+          <ul class="hero-facts" aria-label="网站信息">
+            <li><span>04</span> 条学习路径</li>
+            <li><span id="resource-count">16</span> 个官方资源</li>
+            <li><span id="prompt-count">08</span> 份可复制 Prompt</li>
+          </ul>
+        </div>
+
+        <div class="hero-lab" aria-label="从视觉效果到设计系统的学习示意图">
+          <div class="lab-grid" aria-hidden="true"></div>
+          <div class="lab-orbit lab-orbit--one" aria-hidden="true"></div>
+          <div class="lab-orbit lab-orbit--two" aria-hidden="true"></div>
+          <article class="lab-card">
+            <div class="lab-card__top"><span class="status-dot"></span><span>LIVE COMPONENT</span><span>01 / 04</span></div>
+            <div class="lab-card__body">
+              <span class="lab-kicker">BUTTON / PRIMARY</span>
+              <strong>让每个状态<br />都有设计理由。</strong>
+              <button class="demo-button" type="button">开始一次实验 <span>→</span></button>
+            </div>
+            <div class="token-strip">
+              <span style="--swatch:#ff5c35">ACCENT</span>
+              <span style="--swatch:#171714">INK</span>
+              <span style="--swatch:#f3f0e8">SURFACE</span>
+            </div>
+          </article>
+          <div class="lab-note lab-note--a"><span>01</span> COMPONENT</div>
+          <div class="lab-note lab-note--b"><span>02</span> TOKENS</div>
+          <div class="lab-note lab-note--c"><span>03</span> MOTION</div>
+          <p class="lab-caption">EFFECT → COMPONENT → SYSTEM → MOTION → QA</p>
+        </div>
+        <p class="hero-edition">FIELD NOTE 001 · 核验日期 2026.08.22</p>
+      </section>
+
+      <section class="manifesto section-shell" aria-labelledby="manifesto-title">
+        <p class="section-index">WHY</p>
+        <div>
+          <h2 id="manifesto-title">好看不是终点，<br />能解释、能复用、能验收才是。</h2>
+          <p>很多 Vibe Coding 教程停在“生成一个很酷的页面”。VIBE FRONTIER 把学习继续往下推：找到机制，拆出组件，建立设计语言，选择合适的动效层级，并在移动端、无障碍和性能约束下完成验收。</p>
+        </div>
+      </section>
+
+      <section class="learning-paths section-shell" id="paths" aria-labelledby="paths-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">LEARNING PATHS</p><h2 id="paths-title">四条路径，完成一个真实作品</h2></div>
+          <p>建议顺序：组件 → 系统 → 动效 → Vibe 工作流。每一条都以“可交付的产出”结束。</p>
+        </div>
+        <div class="path-layout">
+          <div class="path-list" role="tablist" aria-label="学习路径">
+            <button class="path-tab is-active" type="button" role="tab" aria-selected="true" data-path="components"><span>01</span><span><strong>组件如何成立</strong><small>状态、行为、边界</small></span><span aria-hidden="true">↗</span></button>
+            <button class="path-tab" type="button" role="tab" aria-selected="false" data-path="system"><span>02</span><span><strong>设计系统从 0 到 1</strong><small>Token、语义、文档</small></span><span aria-hidden="true">↗</span></button>
+            <button class="path-tab" type="button" role="tab" aria-selected="false" data-path="motion"><span>03</span><span><strong>界面动效的层级</strong><small>反馈、转场、叙事</small></span><span aria-hidden="true">↗</span></button>
+            <button class="path-tab" type="button" role="tab" aria-selected="false" data-path="workflow"><span>04</span><span><strong>Vibe Coding 工作流</strong><small>Brief、Prompt、验收</small></span><span aria-hidden="true">↗</span></button>
+          </div>
+          <article class="path-detail" id="path-detail" aria-live="polite"></article>
+        </div>
+      </section>
+
+      <section class="component-workshop section-shell" id="workshop" aria-labelledby="workshop-title">
+        <div class="section-heading section-heading--light">
+          <div><p class="eyebrow">COMPONENT WORKSHOP</p><h2 id="workshop-title">先把一个按钮讲清楚</h2></div>
+          <p>组件不是一张静态截图。调节尺寸、语气和状态，观察视觉规则如何跟着变化。</p>
+        </div>
+        <div class="workshop-grid">
+          <div class="workshop-controls" aria-label="按钮组件控制器">
+            <fieldset><legend>SIZE / 尺寸</legend><div class="segmented" data-control="size"><button type="button" data-value="small">S</button><button type="button" class="is-active" data-value="medium">M</button><button type="button" data-value="large">L</button></div></fieldset>
+            <fieldset><legend>TONE / 语气</legend><div class="segmented" data-control="tone"><button type="button" class="is-active" data-value="primary">强调</button><button type="button" data-value="neutral">中性</button><button type="button" data-value="quiet">安静</button></div></fieldset>
+            <fieldset><legend>STATE / 状态</legend><div class="segmented" data-control="state"><button type="button" class="is-active" data-value="default">默认</button><button type="button" data-value="loading">加载</button><button type="button" data-value="disabled">禁用</button></div></fieldset>
+          </div>
+          <div class="component-stage">
+            <span class="stage-label">PREVIEW / 01</span>
+            <button class="playground-button playground-button--medium playground-button--primary" id="playground-button" type="button"><span>生成视觉方案</span><span aria-hidden="true">→</span></button>
+            <div class="measure measure--h" aria-hidden="true">PADDING INLINE · 24</div>
+            <div class="measure measure--v" aria-hidden="true">48 PX</div>
+          </div>
+          <div class="component-notes">
+            <div><span>01 / TOKEN</span><p>尺寸来自空间刻度，颜色来自语义 Token，不在组件里写随机值。</p></div>
+            <div><span>02 / STATE</span><p>Default、Hover、Focus、Loading、Disabled 都要被单独设计与测试。</p></div>
+            <div><span>03 / ACCEPTANCE</span><p>键盘可达、焦点可见、文案不抖动、移动端触控目标不小于 44px。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="system-map section-shell" aria-labelledby="system-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">SYSTEM BLUEPRINT</p><h2 id="system-title">设计系统不是组件仓库</h2></div>
+          <p>它是一条从原始视觉值到产品决策，再到代码与验收的可追踪链路。</p>
+        </div>
+        <ol class="blueprint">
+          <li><span>01</span><strong>AUDIT</strong><p>盘点真实界面与重复问题</p></li>
+          <li><span>02</span><strong>PRIMITIVE</strong><p>颜色、字号、间距、圆角</p></li>
+          <li><span>03</span><strong>SEMANTIC</strong><p>把数值改写成用途与语气</p></li>
+          <li><span>04</span><strong>COMPONENT</strong><p>行为、状态、组合与边界</p></li>
+          <li><span>05</span><strong>DOCS + QA</strong><p>示例、禁用方式与自动测试</p></li>
+        </ol>
+        <div class="system-rule"><span>一条判断原则</span><p>如果一个规则不能解释“何时用、何时不用、怎么验收”，它还不是系统。</p></div>
+      </section>
+
+      <section class="resource-section section-shell" id="resources" aria-labelledby="resources-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">CURATED TOOL MAP</p><h2 id="resources-title">工具不是越多越好，选对层级</h2></div>
+          <p>只收录官方入口。每个资源都有适用场景、使用判断与边界说明。</p>
+        </div>
+        <div class="resource-toolbar">
+          <div class="resource-filters" role="group" aria-label="工具类别筛选">
+            <button type="button" class="is-active" data-filter="all">全部</button><button type="button" data-filter="system">组件与系统</button><button type="button" data-filter="visual">视觉构建</button><button type="button" data-filter="motion">动效与 3D</button><button type="button" data-filter="reference">灵感机制</button>
+          </div>
+          <label class="resource-search"><span class="sr-only">搜索工具</span><span aria-hidden="true">⌕</span><input id="resource-search" type="search" placeholder="搜索用途或工具名" autocomplete="off" /></label>
+        </div>
+        <div class="resource-grid" id="resource-grid" aria-live="polite"></div>
+        <p class="resource-empty" id="resource-empty" hidden>没有匹配的工具，试试更宽的关键词。</p>
+      </section>
+
+      <section class="prompt-section" id="prompts" aria-labelledby="prompts-title">
+        <div class="section-shell prompt-inner">
+          <div class="section-heading section-heading--light">
+            <div><p class="eyebrow">PROMPT LIBRARY</p><h2 id="prompts-title">不是魔法咒语，是可执行 Brief</h2></div>
+            <p>原创教学模板负责讲方法；你已保存的 MotionSites 免费样例负责展示一份完整生成规格可以细到什么程度。</p>
+          </div>
+          <div class="prompt-anatomy" aria-label="好 Prompt 的六部分"><span>目标 OBJECTIVE</span><span>输入 INPUT</span><span>结构 STRUCTURE</span><span>视觉 VISUAL</span><span>约束 CONSTRAINT</span><span>验收 ACCEPTANCE</span></div>
+          <div class="prompt-layout"><div class="prompt-list" id="prompt-list" role="tablist" aria-label="Prompt 模板"></div><article class="prompt-preview" id="prompt-preview" aria-live="polite"></article></div>
+
+          <div class="sample-heading">
+            <div><span>MOTIONSITES / FREE SAMPLES</span><h3>你已经复制保存的两份完整样例</h3></div>
+            <p>原文保留，不伪装成本站原创。预览图仍指向 MotionSites 官方资源；内容仅收录你提供的免费样例，并附原站入口。</p>
+          </div>
+          <div class="sample-grid">
+            <article class="sample-card">
+              <div class="sample-card__visual"><img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" alt="MotionSites 免费样例：3D Creator Portfolio 动效预览" loading="lazy" referrerpolicy="no-referrer" /></div>
+              <div class="sample-card__body">
+                <div class="sample-card__meta"><span>FREE SAMPLE 01</span><span>REACT / 3D / PORTFOLIO</span></div>
+                <h4>Jack — 3D Creator Portfolio</h4>
+                <p>完整到区块顺序、响应式字号、磁吸人物、双向滚动 Marquee、粘性卡片、依赖与动效参数。适合学习“如何把视觉稿写成工程规格”。</p>
+                <div class="sample-card__actions"><button type="button" data-sample="./vibe/motionsites-free/jack-3d-creator.txt">复制完整免费 Prompt</button><a href="https://motionsites.ai/" target="_blank" rel="noopener noreferrer">来源：MotionSites ↗</a></div>
+              </div>
+            </article>
+            <article class="sample-card">
+              <div class="sample-card__visual"><img src="https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif" alt="MotionSites 免费样例：Creative Studio 动效预览" loading="lazy" referrerpolicy="no-referrer" /></div>
+              <div class="sample-card__body">
+                <div class="sample-card__meta"><span>FREE SAMPLE 02</span><span>STUDIO / MARQUEE / INTERACTION</span></div>
+                <h4>Viktor Oddy — Studio Landing</h4>
+                <p>从字体、按钮阴影到无限画廊、视差、轮播、鼠标尾迹与固定底栏，展示复杂单页如何被拆成模块、数据与交互约束。</p>
+                <div class="sample-card__actions"><button type="button" data-sample="./vibe/motionsites-free/viktor-oddy-studio.txt">复制完整免费 Prompt</button><a href="https://motionsites.ai/" target="_blank" rel="noopener noreferrer">来源：MotionSites ↗</a></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section section-shell" id="cases" aria-labelledby="cases-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">CASE LAB</p><h2 id="cases-title">把好网站拆成可迁移的方法</h2></div>
+          <p>保留原作、作者与证据，再讨论输入、实现、性能和如何迁移。案例不是临摹素材。</p>
+        </div>
+        <div class="case-grid" id="case-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="community-section section-shell" aria-labelledby="community-title">
+        <div class="community-copy">
+          <p class="eyebrow">BUILD IN PUBLIC</p>
+          <h2 id="community-title">带着你的作品，<br />进入一次共同拆解。</h2>
+          <p>这里也会逐步融合 AI 造物社的共学内容：真实项目诊断、组件共建、动效实验与公开复盘。先从提出一个具体问题开始。</p>
+        </div>
+        <div class="community-actions">
+          <a class="button button--accent" href="https://github.com/joeyhu1108-maker" target="_blank" rel="noopener noreferrer">联系主理人 / 共建 <span aria-hidden="true">↗</span></a>
+          <button class="text-link text-link--light" id="copy-question" type="button">复制提问模板 <span aria-hidden="true">＋</span></button>
+          <p>不接收“帮我做得高级一点”这类空泛需求；请带上链接、目标用户、当前问题与限制条件。</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-top"><a class="wordmark wordmark--footer" href="#top"><span>VIBE</span><span>FRONTIER</span></a><p>一个关于界面判断、系统能力与 AI 共创方法的持续教学现场。</p></div>
+      <div class="footer-bottom"><span>© 2026 VIBE FRONTIER</span><span>资源核验：2026.08.22</span><a href="#top">回到顶部 ↑</a></div>
+    </footer>
+
+    <dialog class="case-dialog" id="case-dialog" aria-labelledby="case-dialog-title"><button class="dialog-close" type="button" aria-label="关闭案例详情">×</button><div id="case-dialog-content"></div></dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </body>
 </html>

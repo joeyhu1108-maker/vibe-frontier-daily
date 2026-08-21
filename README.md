@@ -1,13 +1,15 @@
 # VIBE FRONTIER
 
-ART WITH AI 与 AI造物社的前端审美拆解公开分享站。
+ART WITH AI 与 AI造物社发起的 Vibe Coding 前端视觉教学站。
 
 - 线上地址：https://joeyhu1108-maker.github.io/vibe-frontier-daily/
-- 公开内容清单：`vibe/issues.json`
+- 学习内容：组件、设计系统、界面动效、Vibe Coding 工作流
+- 官方资源地图：组件系统、视觉构建、动效与 3D、灵感机制
+- Prompt 库：6 份原创教学模板 + 2 份用户提供的 MotionSites 免费样例
+- 案例实验室：读取 `vibe/issues.json` 中的 3 个证据完整案例
 - 当前发布内容均可完整阅读，不设置付费解锁。
-- 站点运行时优先读取公开内容清单；读取失败时使用构建内置的历史稳定版本。
 
-## 公开内容更新
+## 案例实验室更新
 
 公开站只发布经过选择、能够核验的真实案例，宁缺毋滥。
 
