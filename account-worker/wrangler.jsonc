@@ -1,0 +1,26 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vibe-frontier-account",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-22",
+  "routes": [
+    {
+      "pattern": "account.vibe.zone-y.com",
+      "custom_domain": true
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "vibe-frontier-members",
+      "database_id": "a8cd0387-b4f2-42f7-9c6e-5689f7c409d7"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "PRODUCTS",
+      "id": "4ae8eb4925ca4631b6b028960a24378c"
+    }
+  ]
+}
+

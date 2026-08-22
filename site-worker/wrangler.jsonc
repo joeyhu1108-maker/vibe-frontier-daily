@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "vibe-frontier-site",
+  "compatibility_date": "2026-08-22",
+  "assets": {
+    "directory": "../public-dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    {
+      "pattern": "vibe.zone-y.com",
+      "custom_domain": true
+    }
+  ]
+}

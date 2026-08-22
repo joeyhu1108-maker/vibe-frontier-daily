@@ -18,11 +18,13 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   assert.equal(response.status(), 200);
   await page.waitForSelector(".resource-card");
   await page.waitForSelector(".prompt-site-card");
+  await page.waitForSelector(".offer-card");
   await page.waitForSelector(".case-card");
   await page.waitForSelector(".candidate-card");
 
   assert.equal(await page.locator(".resource-card").count(), 16);
   assert.equal(await page.locator(".prompt-site-card").count(), 11);
+  assert.equal(await page.locator(".offer-card").count(), 4);
   assert.equal(await page.locator(".prompt-tab").count(), 6);
   assert.equal(await page.locator(".sample-card").count(), 2);
   assert.equal(await page.locator(".case-card").count(), 3);
@@ -60,10 +62,13 @@ async function inspectViewport(browser, viewport, screenshotPath) {
     await page.locator('[data-control="state"] [data-value="loading"]').click();
     assert.match(await page.locator("#playground-button").innerText(), /正在生成/);
 
-    await page.locator('[data-sample="./vibe/motionsites-free/jack-3d-creator.txt"]').click();
-    await page.getByText("已复制 MotionSites 免费完整 Prompt").waitFor();
-    const copied = await page.evaluate(() => navigator.clipboard.readText());
-    assert.ok(copied.length > 13000, `copied sample too short: ${copied.length}`);
+    await page.locator('[data-offer-filter="prompt"]').click();
+    assert.equal(await page.locator(".offer-card:visible").count(), 1);
+    assert.equal(
+      await page.getByRole("link", { name: "购买 / 登录 ↗" }).getAttribute("href"),
+      "https://account.vibe.zone-y.com/?interest=vfp-001"
+    );
+    await page.locator('[data-offer-filter="all"]').click();
 
     await page.locator("[data-case]").first().click();
     assert.equal(await page.locator("#case-dialog").getAttribute("open"), "");

@@ -597,7 +597,7 @@ function renderPromptSites() {
         <div class="prompt-site-card__mark" aria-hidden="true">${escapeHtml(site.name.slice(0, 2))}</div>
         <h3>${escapeHtml(site.name)}</h3>
         <p>${escapeHtml(site.best)}</p>
-        <div class="prompt-site-card__bottom"><span>${escapeHtml(site.note)}</span><strong>${site.unstable ? "尝试打开" : "打开并复制"} ↗</strong></div>
+        <div class="prompt-site-card__bottom"><span>${escapeHtml(site.note)}</span><strong>${site.unstable ? "尝试打开" : "查看参考"} ↗</strong></div>
       </a>
     `;
   }).join("");
@@ -605,7 +605,8 @@ function renderPromptSites() {
 }
 
 function initPromptSites() {
-  document.querySelector("#prompt-site-count").textContent = String(PROMPT_SITES.length).padStart(2, "0");
+  const count = document.querySelector("#prompt-site-count");
+  if (count) count.textContent = String(PROMPT_SITES.length).padStart(2, "0");
   renderPromptSites();
   document.querySelectorAll("[data-prompt-site-filter]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -629,7 +630,8 @@ function renderPrompt(index) {
 }
 
 function initPrompts() {
-  document.querySelector("#prompt-count").textContent = String(PROMPTS.length + 2).padStart(2, "0");
+  const count = document.querySelector("#prompt-count");
+  if (count) count.textContent = String(PROMPTS.length).padStart(2, "0");
   promptList.innerHTML = PROMPTS.map((prompt, index) => `
     <button class="prompt-tab${index === 0 ? " is-active" : ""}" type="button" role="tab" aria-selected="${index === 0}" data-prompt="${index}">
       <span>${String(index + 1).padStart(2, "0")}</span><span><strong>${escapeHtml(prompt.title)}</strong><small>${prompt.category}</small></span><span aria-hidden="true">↗</span>
@@ -788,7 +790,8 @@ async function initCandidates() {
     console.error("Failed to load candidate library", error);
   }
   const count = String(candidates.length);
-  document.querySelector("#candidate-count").textContent = count.padStart(2, "0");
+  const heroCount = document.querySelector("#candidate-count");
+  if (heroCount) heroCount.textContent = count.padStart(2, "0");
   document.querySelector("#candidate-total").textContent = count;
   document.querySelectorAll("[data-candidate-filter]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -832,6 +835,53 @@ function initSamples() {
   });
 }
 
+function initOffers() {
+  const filters = document.querySelectorAll("[data-offer-filter]");
+  const cards = document.querySelectorAll("[data-offer-card]");
+  filters.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.offerFilter;
+      filters.forEach((item) => item.classList.toggle("is-active", item === button));
+      cards.forEach((card) => {
+        card.hidden = filter !== "all" && card.dataset.offerCard !== filter;
+      });
+    });
+  });
+
+  document.querySelectorAll("[data-buy-interest]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const message = `你好，我想了解「${button.dataset.buyInterest}」。\n我的身份 / 项目：\n我现在最想解决的问题：\n希望用在哪个网站或 Agent：`;
+      copyText(message, "已复制购买咨询，请粘贴给主理人");
+    });
+  });
+}
+
+function initHeroMotion() {
+  const stage = document.querySelector(".showcase-stack");
+  if (!stage || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const left = stage.querySelector(".showcase-card--kasane");
+  const center = stage.querySelector(".showcase-card--prompt");
+  const right = stage.querySelector(".showcase-card--zero");
+  const reset = () => [left, center, right].forEach((card) => {
+    card.style.removeProperty("--motion-x");
+    card.style.removeProperty("--motion-y");
+  });
+
+  stage.addEventListener("pointermove", (event) => {
+    if (event.pointerType === "touch") return;
+    const rect = stage.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+    left.style.setProperty("--motion-x", `${8 + x * 8}px`);
+    left.style.setProperty("--motion-y", `${y * 5}px`);
+    center.style.setProperty("--motion-x", `${x * -5}px`);
+    center.style.setProperty("--motion-y", `${-3 + y * -7}px`);
+    right.style.setProperty("--motion-x", `${-8 + x * 9}px`);
+    right.style.setProperty("--motion-y", `${y * 6}px`);
+  });
+  stage.addEventListener("pointerleave", reset);
+}
+
 function initCommunity() {
   const questionTemplate = `【VIBE FRONTIER 共学提问】
 项目链接：
@@ -853,4 +903,6 @@ initCases();
 initCandidates();
 initDialog();
 initSamples();
+initOffers();
+initHeroMotion();
 initCommunity();
