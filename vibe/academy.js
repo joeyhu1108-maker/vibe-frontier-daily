@@ -198,26 +198,6 @@ const RESOURCES = [
 
 const PROMPT_SITES = [
   {
-    name: "Vechooool",
-    url: "https://vechooool.com/",
-    mode: "full",
-    type: "整站 / 模板",
-    access: "免费套件 + 会员",
-    best: "中文浏览，按品牌站、SaaS、作品集、APP 等场景找模板与设计 Token。",
-    note: "最接近“看效果 → 选套件 → 交给 AI 实现”的中文入口。",
-    accent: "#d6ff45"
-  },
-  {
-    name: "MotionSites",
-    url: "https://motionsites.ai/",
-    mode: "full",
-    type: "整站 / 动效",
-    access: "少量免费 + 付费",
-    best: "高运动感 Hero、Landing Page、3D 与创意作品集的完整页面 Prompt。",
-    note: "规格很细，适合学动效参数；先从免费样例判断是否值得购买。",
-    accent: "#ff5c35"
-  },
-  {
     name: "Jiro",
     url: "https://jiro.build/",
     mode: "full",
@@ -226,16 +206,6 @@ const PROMPT_SITES = [
     best: "按行业与页面区块寻找完整 Landing Page、Header、Pricing、FAQ 等 Prompt。",
     note: "分类最接近真实建站任务，适合从单一区块开始拼页面。",
     accent: "#8f7cff"
-  },
-  {
-    name: "HeroPrompts",
-    url: "https://heroprompts.io/",
-    mode: "full",
-    type: "Hero / 首屏",
-    access: "免费浏览 + 付费",
-    best: "只解决高质量首屏：构图、字体、材质、灯光与进入动效。",
-    note: "范围窄但聚焦；适合先把官网第一屏做对。",
-    accent: "#ffb14a"
   },
   {
     name: "21st.dev",
@@ -248,16 +218,6 @@ const PROMPT_SITES = [
     accent: "#ffffff"
   },
   {
-    name: "UIVibes",
-    url: "https://uivibes.pro/",
-    mode: "component",
-    type: "动效组件",
-    access: "部分免费 + 付费",
-    best: "按钮、卡片、背景、文字效果与 Hero 的生产级实现 Prompt。",
-    note: "组件规模不大但目标清晰，适合快速补一个局部效果。",
-    accent: "#54e6b1"
-  },
-  {
     name: "VibeUI",
     url: "https://vibeui.online/",
     mode: "component",
@@ -266,6 +226,36 @@ const PROMPT_SITES = [
     best: "92 个页面区块结构 Prompt，配合你自己的参考截图决定视觉风格。",
     note: "它给骨架而不是套皮，适合避免结构含糊。",
     accent: "#5eb7ff"
+  },
+  {
+    name: "MotionSites",
+    url: "https://motionsites.ai/",
+    mode: "full",
+    type: "整站 / 动效",
+    access: "少量免费 + 付费",
+    best: "高运动感 Hero、Landing Page、3D 与创意作品集的完整页面 Prompt。",
+    note: "规格很细，适合学动效参数；先从免费样例判断是否值得购买。",
+    accent: "#ff5c35"
+  },
+  {
+    name: "HeroPrompts",
+    url: "https://heroprompts.io/",
+    mode: "full",
+    type: "Hero / 首屏",
+    access: "免费浏览 + 付费",
+    best: "只解决高质量首屏：构图、字体、材质、灯光与进入动效。",
+    note: "范围窄但聚焦；适合先把官网第一屏做对。",
+    accent: "#ffb14a"
+  },
+  {
+    name: "UIVibes",
+    url: "https://uivibes.pro/",
+    mode: "component",
+    type: "动效组件",
+    access: "部分免费 + 付费",
+    best: "按钮、卡片、背景、文字效果与 Hero 的生产级实现 Prompt。",
+    note: "组件规模不大但目标清晰，适合快速补一个局部效果。",
+    accent: "#54e6b1"
   },
   {
     name: "UIPrompt",
@@ -306,6 +296,17 @@ const PROMPT_SITES = [
     best: "把 UI 参考、产品概念、无障碍与交付检查写成可复制的工作 Prompt。",
     note: "不只追求一张好看的图，也覆盖真实产品工作。",
     accent: "#b3a4ff"
+  },
+  {
+    name: "Vechooool",
+    url: "https://vechooool.com/",
+    mode: "full",
+    type: "整站 / 模板",
+    access: "访问不稳定",
+    best: "中文模板与设计 Token 入口；当前部分网络会出现连接超时。",
+    note: "打不开时优先使用 Jiro、21st.dev 或 VibeUI，不要把它作为唯一入口。",
+    accent: "#d6ff45",
+    unstable: true
   }
 ];
 
@@ -591,12 +592,12 @@ function renderPromptSites() {
   promptSiteGrid.innerHTML = visible.map((site) => {
     const index = PROMPT_SITES.indexOf(site) + 1;
     return `
-      <a class="prompt-site-card" href="${site.url}" target="_blank" rel="noopener noreferrer" style="--site-accent:${site.accent}">
+      <a class="prompt-site-card${site.unstable ? " is-unstable" : ""}" href="${site.url}" target="_blank" rel="noopener noreferrer" style="--site-accent:${site.accent}">
         <div class="prompt-site-card__top"><span>${String(index).padStart(2, "0")} / ${escapeHtml(site.type)}</span><span>${escapeHtml(site.access)}</span></div>
         <div class="prompt-site-card__mark" aria-hidden="true">${escapeHtml(site.name.slice(0, 2))}</div>
         <h3>${escapeHtml(site.name)}</h3>
         <p>${escapeHtml(site.best)}</p>
-        <div class="prompt-site-card__bottom"><span>${escapeHtml(site.note)}</span><strong>打开并复制 ↗</strong></div>
+        <div class="prompt-site-card__bottom"><span>${escapeHtml(site.note)}</span><strong>${site.unstable ? "尝试打开" : "打开并复制"} ↗</strong></div>
       </a>
     `;
   }).join("");

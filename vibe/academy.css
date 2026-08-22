@@ -558,6 +558,14 @@ input:focus-visible {
   color: var(--ink);
 }
 
+.prompt-site-card.is-unstable {
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.prompt-site-card.is-unstable .prompt-site-card__top span:last-child {
+  color: #ffb14a;
+}
+
 .prompt-site-card__top {
   display: flex;
   justify-content: space-between;
