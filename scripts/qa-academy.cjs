@@ -5,7 +5,6 @@ const baseURL = process.env.VIBE_QA_URL || "http://127.0.0.1:4178";
 
 async function inspectViewport(browser, viewport, screenshotPath) {
   const context = await browser.newContext({ viewport, deviceScaleFactor: 1 });
-  await context.grantPermissions(["clipboard-read", "clipboard-write"], { origin: baseURL });
   const page = await context.newPage();
   const errors = [];
 
@@ -14,89 +13,52 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   });
   page.on("pageerror", (error) => errors.push(`pageerror: ${error.message}`));
 
-  const response = await page.goto(baseURL, { waitUntil: "domcontentloaded" });
+  const response = await page.goto(baseURL, { waitUntil: "networkidle" });
   assert.equal(response.status(), 200);
-  await page.waitForSelector(".resource-card");
-  await page.waitForSelector(".prompt-site-card");
-  await page.waitForSelector(".offer-card");
-  await page.waitForSelector(".case-card");
-  await page.waitForSelector(".candidate-card");
+  await page.waitForSelector(".feature-card");
+  await page.waitForSelector(".archive-card");
 
-  assert.equal(await page.locator(".resource-card").count(), 16);
-  assert.equal(await page.locator(".prompt-site-card").count(), 11);
-  assert.equal(await page.locator(".offer-card").count(), 4);
-  assert.equal(await page.locator(".prompt-tab").count(), 6);
-  assert.equal(await page.locator(".sample-card").count(), 2);
-  assert.equal(await page.locator(".case-card").count(), 3);
-  assert.equal(await page.locator(".candidate-card").count(), 65);
+  assert.equal(await page.locator(".feature-card").count(), 3);
+  assert.equal(await page.locator(".archive-card").count(), 12);
+  assert.equal(await page.locator(".mechanism-row").count(), 5);
+  assert.equal(await page.locator("text=¥99").count(), 0);
+  assert.equal(await page.locator("text=购买").count(), 0);
+  assert.equal(await page.locator("text=登录").count(), 0);
+  assert.equal(await page.locator("#archive-total").innerText(), "65");
 
-  await page.waitForFunction(() => [...document.querySelectorAll(".partner-logo")].every((image) => image.complete && image.naturalWidth > 0));
-  await page.waitForFunction(() => [...document.querySelectorAll(".footer-brand-signature img")].every((image) => image.complete && image.naturalWidth > 0));
-
-  await page.locator(".sample-grid").scrollIntoViewIfNeeded();
-  await page.waitForFunction(() => [...document.querySelectorAll(".sample-card img")].every((image) => image.complete && image.naturalWidth > 0));
-  const sampleImagesLoaded = await page.locator(".sample-card img").evaluateAll((images) => images.every((image) => image.complete && image.naturalWidth > 0));
-  assert.equal(sampleImagesLoaded, true, "MotionSites free-sample previews did not load");
+  await page.locator(".feature-card").first().scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => {
+    const image = document.querySelector(".feature-card img");
+    return image?.complete && image.naturalWidth > 0;
+  });
 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   assert.ok(overflow <= 1, `horizontal overflow: ${overflow}px at ${viewport.width}px`);
 
   if (viewport.width >= 1000) {
-    await page.getByRole("button", { name: "组件", exact: true }).first().click();
-    assert.equal(await page.locator(".prompt-site-card").count(), 3);
-    await page.getByPlaceholder("搜索网站、用途或免费").fill("21st");
-    assert.equal(await page.locator(".prompt-site-card").count(), 1);
-    await page.getByRole("button", { name: "全部", exact: true }).first().click();
-    await page.getByPlaceholder("搜索网站、用途或免费").fill("");
-
-    await page.locator('.path-tab[data-path="system"]').click();
-    await page.getByText("把零散视觉值，改写成团队能使用的语言").waitFor();
-
-    await page.getByRole("button", { name: "动效与 3D" }).click();
-    assert.equal(await page.locator(".resource-card").count(), 7);
-    await page.getByPlaceholder("搜索用途或工具名").fill("Rive");
-    assert.equal(await page.locator(".resource-card").count(), 1);
-    await page.locator('[data-filter="all"]').click();
-    await page.getByPlaceholder("搜索用途或工具名").fill("");
-
-    await page.locator('[data-control="state"] [data-value="loading"]').click();
-    assert.match(await page.locator("#playground-button").innerText(), /正在生成/);
-
-    await page.locator('[data-offer-filter="prompt"]').click();
-    assert.equal(await page.locator(".offer-card:visible").count(), 1);
-    assert.equal(
-      await page.getByRole("link", { name: "购买 / 登录 ↗" }).getAttribute("href"),
-      "https://account.vibe.zone-y.com/?interest=vfp-001"
-    );
-    await page.locator('[data-offer-filter="all"]').click();
-
-    await page.locator("[data-case]").first().click();
-    assert.equal(await page.locator("#case-dialog").getAttribute("open"), "");
+    await page.locator("[data-case-id]").first().click();
+    await page.locator("#case-dialog[open]").waitFor();
+    await page.getByText("为什么不是普通特效").waitFor();
     await page.locator(".dialog-close").click();
 
-    await page.getByPlaceholder("搜索网站、作者、平台或机制").fill("KASANE");
-    assert.equal(await page.locator(".candidate-card").count(), 1);
-    await page.locator("[data-select-candidate]").click();
-    await page.getByText("已加入你的候选单").waitFor();
-    assert.equal(await page.locator("#selected-count").innerText(), "1");
-    await page.getByPlaceholder("搜索网站、作者、平台或机制").fill("");
-    await page.getByRole("button", { name: /我的候选/ }).click();
-    assert.equal(await page.locator(".candidate-card").count(), 1);
-    await page.getByRole("button", { name: "全部", exact: true }).last().click();
+    await page.locator("#load-more").click();
+    assert.equal(await page.locator(".archive-card").count(), 24);
 
-    await page.locator('.path-tab[data-path="components"]').click();
-    await page.locator('[data-control="state"] [data-value="default"]').click();
+    await page.locator("#archive-search").fill("Galaxies");
+    assert.equal(await page.locator(".archive-card").count(), 1);
+    await page.locator("#archive-search").fill("");
+
+    await page.locator('[data-filter="滚动变成镜头"]').click();
+    assert.ok((await page.locator(".archive-card").count()) > 0);
+    await page.locator('[data-filter="all"]').click();
   }
 
-  await page.waitForFunction(() => !document.querySelector("#toast").classList.contains("is-visible"));
-  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.goto(baseURL, { waitUntil: "networkidle" });
+  await page.evaluate(() => {
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+  });
   await page.screenshot({ path: screenshotPath, fullPage: false });
-  if (viewport.width < 1000) {
-    await page.locator("#prompt-sites").scrollIntoViewIfNeeded();
-    await page.screenshot({ path: "/tmp/vibe-academy-mobile-prompt-sites.png", fullPage: false });
-    await page.locator(".candidate-library").scrollIntoViewIfNeeded();
-    await page.screenshot({ path: "/tmp/vibe-academy-mobile-candidates.png", fullPage: false });
-  }
   assert.deepEqual(errors, []);
   await context.close();
 }
@@ -107,9 +69,9 @@ async function inspectViewport(browser, viewport, screenshotPath) {
     executablePath: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
   });
   try {
-    await inspectViewport(browser, { width: 1440, height: 1000 }, "/tmp/vibe-academy-desktop.png");
-    await inspectViewport(browser, { width: 390, height: 844 }, "/tmp/vibe-academy-mobile.png");
-    process.stdout.write("VIBE academy QA passed at 1440x1000 and 390x844\n");
+    await inspectViewport(browser, { width: 1440, height: 1000 }, "/tmp/vibe-frontier-desktop.png");
+    await inspectViewport(browser, { width: 390, height: 844 }, "/tmp/vibe-frontier-mobile.png");
+    process.stdout.write("VIBE FRONTIER showcase QA passed at 1440x1000 and 390x844\n");
   } finally {
     await browser.close();
   }

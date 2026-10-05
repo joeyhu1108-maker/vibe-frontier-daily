@@ -2,344 +2,163 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f3f0e8" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
-    <link rel="canonical" href="https://vibe.zone-y.com/" />
-    <meta name="description" content="VIBE FRONTIER 教你把网站灵感迁移成自己的个人网站，并提供可直接使用的原创 Prompt 与 Agent 动效能力。" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="VIBE FRONTIER｜把灵感变成自己的个人网站" />
-    <meta property="og:description" content="免费学习个人网站方法，直接使用公开 Prompt，也可以购买原创 Prompt 系统与 Agent 动效 Skill。" />
-    <meta property="og:url" content="https://vibe.zone-y.com/" />
-    <meta property="og:image" content="https://vibe.zone-y.com/vibe/og.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="VIBE FRONTIER｜个人网站方法与原创 Prompt" />
-    <meta name="twitter:description" content="从灵感拆解、个人网站生成到动效验收，既能免费学，也能购买可交付的 Agent 能力。" />
-    <meta name="twitter:image" content="https://vibe.zone-y.com/vibe/og.png" />
-    <title>VIBE FRONTIER｜个人网站方法、原创 Prompt 与动效 Skill</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="VIBE FRONTIER 是 AI 造物社的实验前端观察站：发现真实作品，拆解视觉机制、工程路径与可迁移方法。" />
+    <meta property="og:title" content="VIBE FRONTIER｜实验前端观察站" />
+    <meta property="og:description" content="把值得看的前端作品，拆成可以理解、验证与迁移的方法。" />
+    <meta property="og:image" content="./vibe/og.png" />
+    <title>VIBE FRONTIER｜实验前端观察站</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%230071e3'/%3E%3C/svg%3E" />
     <link rel="stylesheet" href="./vibe/academy.css" />
-    <script type="module" src="./vibe/academy.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">跳到主要内容</a>
 
-    <aside class="launch-bar"><span>FIELD TEST 001</span><p>免费学方法 · 公开 Prompt 可直接拿 · 原创商品与动效 Skill 首发测试中</p><a href="#offers">查看三层产品 ↘</a></aside>
-
-    <header class="site-header">
-      <a class="wordmark wordmark--partners" href="#top" aria-label="ART WITH AI 与 AI造物社 · VIBE FRONTIER 首页">
-        <img class="partner-logo partner-logo--art" src="./vibe/brands/art-with-ai.svg" alt="" aria-hidden="true" />
-        <span class="partner-cross" aria-hidden="true">×</span>
-        <img class="partner-logo partner-logo--zaowushe" src="./vibe/brands/ai-zaowushe.svg" alt="" aria-hidden="true" />
-      </a>
-      <nav class="desktop-nav" aria-label="主导航">
-        <a href="#method">免费学习</a>
-        <a href="#offers">Prompt 商品</a>
-        <a href="#motion-skill">动效 Skill</a>
-        <a href="#cases">案例灵感</a>
-        <a href="#resources">工具</a>
+    <header class="site-header" data-header>
+      <nav class="nav-shell" aria-label="主要导航">
+        <a class="wordmark" href="#top" aria-label="VIBE FRONTIER 首页">
+          <span class="wordmark-mark" aria-hidden="true"></span>
+          <span>VIBE FRONTIER</span>
+        </a>
+        <div class="nav-links">
+          <a href="#issue">本期</a>
+          <a href="#mechanisms">机制</a>
+          <a href="#archive">档案</a>
+          <a class="nav-cta" href="#issue">开始浏览</a>
+        </div>
       </nav>
-      <div class="header-account"><a href="https://account.vibe.zone-y.com/" rel="nofollow">登录</a><a class="header-signup" href="https://account.vibe.zone-y.com/" rel="nofollow">免费注册</a></div>
     </header>
 
     <main id="main">
-      <section class="hero section-shell" id="top">
-        <div class="hero-copy">
-          <p class="eyebrow">PERSONAL WEBSITE METHOD · ORIGINAL PROMPTS · MOTION SKILL</p>
-          <h1>把看到的灵感，<br /><em>变成自己的个人网站。</em></h1>
-          <p class="hero-intro">第一层免费教你从参考、拆解到发布。第二层提供重新组合并验证过的原创 Prompt。第三层把动效设计师的判断做成可交给 Agent 的 Skill，并逐案校准。</p>
+      <section class="hero section-dark" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy wrap">
+          <p class="eyebrow">AI 造物社 · 实验前端观察站</p>
+          <h1 id="hero-title">前端不只是页面。<br />它可以成为空间、<br />镜头与叙事。</h1>
+          <p class="hero-lead">我们寻找真正改变网页感受的作品，并拆解它为什么成立、如何实现，以及哪些机制值得带回你的项目。</p>
           <div class="hero-actions">
-            <a class="button button--ink" href="#method">先免费学会方法</a>
-            <a class="text-link" href="#offers">查看原创商品 <span aria-hidden="true">↗</span></a>
+            <a class="button button-primary" href="#issue">浏览本期</a>
+            <a class="button button-quiet" href="#mechanisms">查看机制地图 <span aria-hidden="true">↓</span></a>
           </div>
-          <ul class="hero-facts" aria-label="网站信息">
-            <li><span>04</span> 步灵感迁移法</li>
-            <li><span>06</span> 层 Prompt 拆解</li>
-            <li><span>03</span> 层产品能力</li>
-          </ul>
         </div>
 
-        <div class="hero-showcase" aria-label="可复制 Prompt 与案例预览">
-          <div class="showcase-head"><span>REFERENCE → REFRAME / 001</span><span>MOVE THE MECHANISM, NOT THE BRAND</span></div>
-          <div class="showcase-stack">
-            <a class="showcase-card showcase-card--kasane" href="#cases">
-              <img src="./vibe/covers/kasane-geometric-image-approximation.jpg" alt="KASANE 几何图像案例预览" />
-              <span>GEOMETRIC IMAGE</span><strong>KASANE</strong>
-            </a>
-            <a class="showcase-card showcase-card--prompt" href="#motion-skill">
-              <span>THIRD LAYER / MOTION</span>
-              <strong>THE GAP<br />IS IN THE<br />MOVEMENT.</strong>
-              <small>CASE-BY-CASE AGENT SKILL ↗</small>
-            </a>
-            <a class="showcase-card showcase-card--zero" href="#cases">
-              <img src="./vibe/covers/why-zero-university.jpg" alt="Why Zero 网站案例预览" />
-              <span>SCROLL NARRATIVE</span><strong>WHY ZERO</strong>
-            </a>
-          </div>
-          <div class="showcase-command">
-            <span>01 / SEE</span><span>02 / DISSECT</span><span>03 / REFRAME</span>
-            <a href="#method">LEARN THE METHOD ↗</a>
-          </div>
-        </div>
-        <p class="hero-edition">FIELD NOTE 001 · 核验日期 2026.08.22</p>
-      </section>
-
-      <section class="method-section section-shell" id="method" aria-labelledby="method-title">
-        <div class="section-heading">
-          <div><p class="eyebrow">FREE METHOD / LAYER 01</p><h2 id="method-title">看到灵感以后，<br />四步变成自己的</h2></div>
-          <p>免费层不只给你网站链接，而是教会一条可以重复使用的迁移路径。你可以直接照着做完第一个个人网站。</p>
-        </div>
-        <ol class="method-steps">
-          <li><span>01</span><strong>选参考</strong><p>最多选 3 个网站，每个只保留一个真正有效的机制。</p><small>OUTPUT / 参考清单</small></li>
-          <li><span>02</span><strong>拆机制</strong><p>分开目标、内容、视觉、动效、工程和验收，不把皮肤当方法。</p><small>OUTPUT / 六层拆解</small></li>
-          <li><span>03</span><strong>换变量</strong><p>替换成你的受众、作品、证据、品牌语气与真实技术条件。</p><small>OUTPUT / 迁移 Brief</small></li>
-          <li><span>04</span><strong>做证据</strong><p>生成、修改并在桌面和手机验收，让结果真的可以打开和联系你。</p><small>OUTPUT / 已发布网站</small></li>
-        </ol>
-        <div class="method-cta"><p><strong>免费拿：</strong>站内公开教学 Prompt、组件练习、案例拆解和工具地图都可以直接使用。</p><a class="button button--ink" href="#prompts">进入免费 Prompt 库 ↘</a></div>
-      </section>
-
-      <section class="offer-library" id="offers" aria-labelledby="offers-title">
-        <div class="section-shell offer-library__inner">
-          <div class="section-heading section-heading--light">
-            <div><p class="eyebrow">LEARN · TAKE · BUY</p><h2 id="offers-title">先免费验证，<br />需要更深再买</h2></div>
-            <p>公开层负责教会方法；付费层交付完整生成规格、变量和验收；动效层交付可安装的 Agent Skill，并保留逐案校准。</p>
-          </div>
-          <div class="offer-toolbar" role="group" aria-label="产品筛选">
-            <button class="is-active" type="button" data-offer-filter="all">全部</button>
-            <button type="button" data-offer-filter="free">免费</button>
-            <button type="button" data-offer-filter="prompt">Prompt</button>
-            <button type="button" data-offer-filter="motion">动效 Skill</button>
-          </div>
-          <div class="offer-grid">
-            <article class="offer-card offer-card--free" data-offer-card="free">
-              <div class="offer-card__top"><span>FREE / 01</span><span>永久免费</span></div>
-              <div class="offer-card__preview"><strong>4</strong><span>STEP<br />METHOD</span></div>
-              <p class="offer-card__category">个人网站公开课</p>
-              <h3>灵感迁移方法</h3>
-              <p>四步方法、六层结构、公开案例和基础 Prompt。先做出第一版，再决定要不要买。</p>
-              <div class="offer-card__bottom"><strong>¥0</strong><a href="#method">开始学习 ↗</a></div>
-            </article>
-            <article class="offer-card" data-offer-card="prompt">
-              <div class="offer-card__top"><span>VFP-001 / PROMPT</span><span>首发验证</span></div>
-              <div class="offer-card__preview offer-card__preview--prompt"><strong>6</strong><span>LAYER<br />SYSTEM</span></div>
-              <p class="offer-card__category">原创 Prompt 商品</p>
-              <h3>个人网站灵感迁移系统</h3>
-              <p>完整主 Prompt、变量采集表、三种网站方向、四个修正 Prompt 和桌面 / 手机验收表。</p>
-              <div class="offer-card__bottom"><strong>¥99</strong><a href="https://account.vibe.zone-y.com/?interest=vfp-001" rel="nofollow">购买 / 登录 ↗</a></div>
-            </article>
-            <article class="offer-card offer-card--motion" id="motion-skill" data-offer-card="motion">
-              <div class="offer-card__top"><span>VMD-001 / AGENT SKILL</span><span>可安装 ZIP</span></div>
-              <div class="offer-card__preview offer-card__preview--motion"><strong>1</strong><span>SIGNATURE<br />MOMENT</span></div>
-              <p class="offer-card__category">动效设计师能力</p>
-              <h3>VIBE Motion Director</h3>
-              <p>Agent 先看真实页面，再选一个标志性动效，完成方向、实现、移动端、减弱动效与性能验收。</p>
-              <div class="offer-card__bottom"><strong>¥299</strong><a href="https://account.vibe.zone-y.com/?interest=vmd-001" rel="nofollow">申请内测 ↗</a></div>
-            </article>
-            <article class="offer-card offer-card--calibration" data-offer-card="motion">
-              <div class="offer-card__top"><span>MOTION CLINIC / CASE</span><span>人工校准</span></div>
-              <div class="offer-card__preview offer-card__preview--case"><strong>1:1</strong><span>CASE<br />REVIEW</span></div>
-              <p class="offer-card__category">Case-by-case 服务</p>
-              <h3>网站动效校准</h3>
-              <p>针对一个真实页面，由动效设计师校准标志性时刻、动效地图和实现优先级。Skill 不替代这一步判断。</p>
-              <div class="offer-card__bottom"><strong>¥999 起</strong><button type="button" data-buy-interest="网站动效校准｜¥999 起">提交案例 ↗</button></div>
-            </article>
-          </div>
-          <div class="offer-boundary"><span>三档信息密度</span><p><strong>公开：</strong>方法和小样。<strong>付费：</strong>完整 Prompt / Skill 与验收。<strong>私有：</strong>参考评分、失败样本、组合矩阵和逐案判断，不作为商品直接公开。</p></div>
-        </div>
-      </section>
-
-      <section class="prompt-radar" id="prompt-sites" aria-labelledby="prompt-sites-title">
-        <div class="section-shell prompt-radar__inner">
-          <div class="section-heading section-heading--light">
-            <div><p class="eyebrow">REFERENCE INPUTS</p><h2 id="prompt-sites-title">这些站，用来研究，不是拿来换皮</h2></div>
-            <p>按整站、组件和设计系统标出用途。公开 Prompt 可以学习，但商品必须经过来源记录、六层拆解、变量替换、重新组合和真实验收。</p>
-          </div>
-          <div class="prompt-site-toolbar">
-            <div class="prompt-site-filters" role="group" aria-label="Prompt 网站类别筛选">
-              <button type="button" class="is-active" data-prompt-site-filter="all">全部</button>
-              <button type="button" data-prompt-site-filter="full">整站 / 区块</button>
-              <button type="button" data-prompt-site-filter="component">组件</button>
-              <button type="button" data-prompt-site-filter="system">设计系统</button>
-            </div>
-            <label class="prompt-site-search"><span class="sr-only">搜索 Prompt 网站</span><span aria-hidden="true">⌕</span><input id="prompt-site-search" type="search" placeholder="搜索网站、用途或免费" autocomplete="off" /></label>
-          </div>
-          <div class="prompt-site-grid" id="prompt-site-grid" aria-live="polite"></div>
-          <p class="prompt-site-empty" id="prompt-site-empty" hidden>没有匹配的网站，试试换一个关键词。</p>
-          <div class="prompt-radar__rule"><span>使用边界</span><p>可以学习公开 Prompt 的规格方法；不能把别人的付费库、品牌资产、动效序列或整站作品改名出售。本站商品只交付重新定义并验证过的原创系统。</p></div>
-        </div>
-      </section>
-
-      <section class="manifesto section-shell" aria-labelledby="manifesto-title">
-        <p class="section-index">WHY</p>
-        <div>
-          <h2 id="manifesto-title">好看不是终点，<br />能解释、能复用、能验收才是。</h2>
-          <p>很多 Vibe Coding 教程停在“生成一个很酷的页面”。VIBE FRONTIER 把学习继续往下推：找到机制，拆出组件，建立设计语言，选择合适的动效层级，并在移动端、无障碍和性能约束下完成验收。</p>
-        </div>
-      </section>
-
-      <section class="learning-paths section-shell" id="paths" aria-labelledby="paths-title">
-        <div class="section-heading">
-          <div><p class="eyebrow">LEARNING PATHS</p><h2 id="paths-title">四条路径，完成一个真实作品</h2></div>
-          <p>建议顺序：组件 → 系统 → 动效 → Vibe 工作流。每一条都以“可交付的产出”结束。</p>
-        </div>
-        <div class="path-layout">
-          <div class="path-list" role="tablist" aria-label="学习路径">
-            <button class="path-tab is-active" type="button" role="tab" aria-selected="true" data-path="components"><span>01</span><span><strong>组件如何成立</strong><small>状态、行为、边界</small></span><span aria-hidden="true">↗</span></button>
-            <button class="path-tab" type="button" role="tab" aria-selected="false" data-path="system"><span>02</span><span><strong>设计系统从 0 到 1</strong><small>Token、语义、文档</small></span><span aria-hidden="true">↗</span></button>
-            <button class="path-tab" type="button" role="tab" aria-selected="false" data-path="motion"><span>03</span><span><strong>界面动效的层级</strong><small>反馈、转场、叙事</small></span><span aria-hidden="true">↗</span></button>
-            <button class="path-tab" type="button" role="tab" aria-selected="false" data-path="workflow"><span>04</span><span><strong>Vibe Coding 工作流</strong><small>Brief、Prompt、验收</small></span><span aria-hidden="true">↗</span></button>
-          </div>
-          <article class="path-detail" id="path-detail" aria-live="polite"></article>
-        </div>
-      </section>
-
-      <section class="component-workshop section-shell" id="workshop" aria-labelledby="workshop-title">
-        <div class="section-heading section-heading--light">
-          <div><p class="eyebrow">COMPONENT WORKSHOP</p><h2 id="workshop-title">先把一个按钮讲清楚</h2></div>
-          <p>组件不是一张静态截图。调节尺寸、语气和状态，观察视觉规则如何跟着变化。</p>
-        </div>
-        <div class="workshop-grid">
-          <div class="workshop-controls" aria-label="按钮组件控制器">
-            <fieldset><legend>SIZE / 尺寸</legend><div class="segmented" data-control="size"><button type="button" data-value="small">S</button><button type="button" class="is-active" data-value="medium">M</button><button type="button" data-value="large">L</button></div></fieldset>
-            <fieldset><legend>TONE / 语气</legend><div class="segmented" data-control="tone"><button type="button" class="is-active" data-value="primary">强调</button><button type="button" data-value="neutral">中性</button><button type="button" data-value="quiet">安静</button></div></fieldset>
-            <fieldset><legend>STATE / 状态</legend><div class="segmented" data-control="state"><button type="button" class="is-active" data-value="default">默认</button><button type="button" data-value="loading">加载</button><button type="button" data-value="disabled">禁用</button></div></fieldset>
-          </div>
-          <div class="component-stage">
-            <span class="stage-label">PREVIEW / 01</span>
-            <button class="playground-button playground-button--medium playground-button--primary" id="playground-button" type="button"><span>生成视觉方案</span><span aria-hidden="true">→</span></button>
-            <div class="measure measure--h" aria-hidden="true">PADDING INLINE · 24</div>
-            <div class="measure measure--v" aria-hidden="true">48 PX</div>
-          </div>
-          <div class="component-notes">
-            <div><span>01 / TOKEN</span><p>尺寸来自空间刻度，颜色来自语义 Token，不在组件里写随机值。</p></div>
-            <div><span>02 / STATE</span><p>Default、Hover、Focus、Loading、Disabled 都要被单独设计与测试。</p></div>
-            <div><span>03 / ACCEPTANCE</span><p>键盘可达、焦点可见、文案不抖动、移动端触控目标不小于 44px。</p></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="system-map section-shell" aria-labelledby="system-title">
-        <div class="section-heading">
-          <div><p class="eyebrow">SYSTEM BLUEPRINT</p><h2 id="system-title">设计系统不是组件仓库</h2></div>
-          <p>它是一条从原始视觉值到产品决策，再到代码与验收的可追踪链路。</p>
-        </div>
-        <ol class="blueprint">
-          <li><span>01</span><strong>AUDIT</strong><p>盘点真实界面与重复问题</p></li>
-          <li><span>02</span><strong>PRIMITIVE</strong><p>颜色、字号、间距、圆角</p></li>
-          <li><span>03</span><strong>SEMANTIC</strong><p>把数值改写成用途与语气</p></li>
-          <li><span>04</span><strong>COMPONENT</strong><p>行为、状态、组合与边界</p></li>
-          <li><span>05</span><strong>DOCS + QA</strong><p>示例、禁用方式与自动测试</p></li>
-        </ol>
-        <div class="system-rule"><span>一条判断原则</span><p>如果一个规则不能解释“何时用、何时不用、怎么验收”，它还不是系统。</p></div>
-      </section>
-
-      <section class="resource-section section-shell" id="resources" aria-labelledby="resources-title">
-        <div class="section-heading">
-          <div><p class="eyebrow">CURATED TOOL MAP</p><h2 id="resources-title">工具不是越多越好，选对层级</h2></div>
-          <p>只收录官方入口。每个资源都有适用场景、使用判断与边界说明。</p>
-        </div>
-        <div class="resource-toolbar">
-          <div class="resource-filters" role="group" aria-label="工具类别筛选">
-            <button type="button" class="is-active" data-filter="all">全部</button><button type="button" data-filter="system">组件与系统</button><button type="button" data-filter="visual">视觉构建</button><button type="button" data-filter="motion">动效与 3D</button><button type="button" data-filter="reference">灵感机制</button>
-          </div>
-          <label class="resource-search"><span class="sr-only">搜索工具</span><span aria-hidden="true">⌕</span><input id="resource-search" type="search" placeholder="搜索用途或工具名" autocomplete="off" /></label>
-        </div>
-        <div class="resource-grid" id="resource-grid" aria-live="polite"></div>
-        <p class="resource-empty" id="resource-empty" hidden>没有匹配的工具，试试更宽的关键词。</p>
-      </section>
-
-      <section class="prompt-section" id="prompts" aria-labelledby="prompts-title">
-        <div class="section-shell prompt-inner">
-          <div class="section-heading section-heading--light">
-            <div><p class="eyebrow">PROMPT LIBRARY</p><h2 id="prompts-title">不是魔法咒语，是可执行 Brief</h2></div>
-            <p>原创教学模板负责讲方法；你已保存的 MotionSites 免费样例负责展示一份完整生成规格可以细到什么程度。</p>
-          </div>
-          <div class="prompt-anatomy" aria-label="好 Prompt 的六部分"><span>目标 OBJECTIVE</span><span>输入 INPUT</span><span>结构 STRUCTURE</span><span>视觉 VISUAL</span><span>约束 CONSTRAINT</span><span>验收 ACCEPTANCE</span></div>
-          <div class="prompt-layout"><div class="prompt-list" id="prompt-list" role="tablist" aria-label="Prompt 模板"></div><article class="prompt-preview" id="prompt-preview" aria-live="polite"></article></div>
-
-          <div class="sample-heading">
-            <div><span>REFERENCE STRUCTURE / ATTRIBUTED</span><h3>两份参考 Prompt 的结构观察</h3></div>
-            <p>这里只展示它们为什么完整，不再把原文当作本站商品。来源、品牌和内容仍属于原作者；本站付费内容从新的任务和变量重新生成。</p>
-          </div>
-          <div class="sample-grid">
-            <article class="sample-card">
-              <div class="sample-card__visual"><img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" alt="MotionSites 免费样例：3D Creator Portfolio 动效预览" loading="lazy" referrerpolicy="no-referrer" /></div>
-              <div class="sample-card__body">
-                <div class="sample-card__meta"><span>FREE SAMPLE 01</span><span>REACT / 3D / PORTFOLIO</span></div>
-                <h4>Jack — 3D Creator Portfolio</h4>
-                <p>完整到区块顺序、响应式字号、磁吸人物、双向滚动 Marquee、粘性卡片、依赖与动效参数。适合学习“如何把视觉稿写成工程规格”。</p>
-                <div class="sample-card__actions"><a href="#offers">看本站如何重写 ↗</a><a href="https://motionsites.ai/" target="_blank" rel="noopener noreferrer">查看公开来源 ↗</a></div>
+        <div class="hero-stage wrap" aria-live="polite">
+          <figure class="hero-visual">
+            <img id="hero-image" src="./vibe/covers/kasane-geometric-image-approximation.jpg" alt="KASANE 作品的几何图像近似画面" />
+            <figcaption class="hero-caption">
+              <div>
+                <span class="caption-kicker" id="hero-label">本期首选 · 数据变成空间</span>
+                <strong id="hero-work">KASANE 襲</strong>
               </div>
-            </article>
-            <article class="sample-card">
-              <div class="sample-card__visual"><img src="https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif" alt="MotionSites 免费样例：Creative Studio 动效预览" loading="lazy" referrerpolicy="no-referrer" /></div>
-              <div class="sample-card__body">
-                <div class="sample-card__meta"><span>FREE SAMPLE 02</span><span>STUDIO / MARQUEE / INTERACTION</span></div>
-                <h4>Viktor Oddy — Studio Landing</h4>
-                <p>从字体、按钮阴影到无限画廊、视差、轮播、鼠标尾迹与固定底栏，展示复杂单页如何被拆成模块、数据与交互约束。</p>
-                <div class="sample-card__actions"><a href="#offers">看本站如何重写 ↗</a><a href="https://motionsites.ai/" target="_blank" rel="noopener noreferrer">查看公开来源 ↗</a></div>
-              </div>
-            </article>
+              <span id="hero-author">So Kariyama · 2026</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="issue-section section-light" id="issue" aria-labelledby="issue-title">
+        <div class="section-heading wrap reveal">
+          <div>
+            <p class="eyebrow eyebrow-blue" id="issue-kicker">CURRENT ISSUE</p>
+            <h2 id="issue-title">三个作品，三种让网页成立的方法。</h2>
+          </div>
+          <p id="issue-note">不做热榜搬运。每个案例都回到作者、源码或公开资源，区分已披露的事实与我们的推断。</p>
+        </div>
+
+        <div class="featured-grid wrap" id="featured-grid" aria-live="polite">
+          <p class="loading-copy">正在载入本期案例…</p>
+        </div>
+      </section>
+
+      <section class="editorial-break section-dark" aria-labelledby="editorial-title">
+        <div class="editorial-inner wrap reveal">
+          <p class="eyebrow">CURATORIAL NOTE</p>
+          <h2 id="editorial-title">好的交互不是“加了动效”，而是让内容获得了一种只能这样被理解的形状。</h2>
+          <p>所以这里不评流行风格，也不奖励技术堆叠。我们只关心视觉、交互和工程是否共同服务同一个判断。</p>
+        </div>
+      </section>
+
+      <section class="mechanism-section section-white" id="mechanisms" aria-labelledby="mechanism-title">
+        <div class="mechanism-layout wrap">
+          <div class="mechanism-intro reveal">
+            <p class="eyebrow eyebrow-blue">PRINCIPLE MAP</p>
+            <h2 id="mechanism-title">五种机制，读懂实验前端。</h2>
+            <p>它们不是风格标签，而是内容如何转化为体验的路径。点选任一机制，可直接进入对应档案。</p>
+          </div>
+          <div class="mechanism-list" role="list" aria-label="五种前端机制">
+            <button class="mechanism-row reveal" type="button" data-mechanism="数据变成空间"><span class="mechanism-number">01</span><span>数据变成空间</span><span class="mechanism-arrow" aria-hidden="true">↗</span></button>
+            <button class="mechanism-row reveal" type="button" data-mechanism="模型成为界面"><span class="mechanism-number">02</span><span>模型成为界面</span><span class="mechanism-arrow" aria-hidden="true">↗</span></button>
+            <button class="mechanism-row reveal" type="button" data-mechanism="滚动变成镜头"><span class="mechanism-number">03</span><span>滚动变成镜头</span><span class="mechanism-arrow" aria-hidden="true">↗</span></button>
+            <button class="mechanism-row reveal" type="button" data-mechanism="排版变成界面"><span class="mechanism-number">04</span><span>排版变成界面</span><span class="mechanism-arrow" aria-hidden="true">↗</span></button>
+            <button class="mechanism-row reveal" type="button" data-mechanism="交互变成叙事"><span class="mechanism-number">05</span><span>交互变成叙事</span><span class="mechanism-arrow" aria-hidden="true">↗</span></button>
           </div>
         </div>
       </section>
 
-      <section class="case-section section-shell" id="cases" aria-labelledby="cases-title">
-        <div class="section-heading">
-          <div><p class="eyebrow">CASE LAB</p><h2 id="cases-title">先看 3 个深度拆解</h2></div>
-          <p>这 3 个案例已有作者、原作、实现和证据边界。它们不是临摹素材，而是把机制迁移到自己项目的练习。</p>
+      <section class="archive-section section-light" id="archive" aria-labelledby="archive-title">
+        <div class="archive-heading wrap reveal">
+          <div>
+            <p class="eyebrow eyebrow-blue">RESEARCH ARCHIVE</p>
+            <h2 id="archive-title">值得继续追踪的前端作品。</h2>
+          </div>
+          <p><span id="archive-total">65</span> 个公开案例，按机制与证据持续整理。</p>
         </div>
-        <div class="case-grid" id="case-grid" aria-live="polite"></div>
 
-        <div class="candidate-library" aria-labelledby="candidate-title">
-          <div class="candidate-heading">
-            <div><p class="eyebrow">FULL REFERENCE INDEX</p><h3 id="candidate-title">全部候选网站 <span id="candidate-total">65</span></h3></div>
-            <p>按标题、作者、平台和机制搜索。点「加入候选」会保存在当前浏览器，方便你逐个筛。</p>
+        <div class="archive-tools wrap reveal">
+          <label class="search-field" for="archive-search">
+            <span class="sr-only">搜索作品、作者、平台或机制</span>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" /></svg>
+            <input id="archive-search" type="search" placeholder="搜索作品、作者或机制" autocomplete="off" />
+          </label>
+          <div class="filter-scroller" id="archive-filters" aria-label="按机制筛选">
+            <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true">全部</button>
+            <button class="filter-chip" type="button" data-filter="数据变成空间" aria-pressed="false">数据空间</button>
+            <button class="filter-chip" type="button" data-filter="模型成为界面" aria-pressed="false">模型界面</button>
+            <button class="filter-chip" type="button" data-filter="滚动变成镜头" aria-pressed="false">滚动镜头</button>
+            <button class="filter-chip" type="button" data-filter="排版变成界面" aria-pressed="false">排版界面</button>
+            <button class="filter-chip" type="button" data-filter="交互变成叙事" aria-pressed="false">交互叙事</button>
           </div>
-          <div class="candidate-toolbar">
-            <label class="candidate-search"><span class="sr-only">搜索候选网站</span><span aria-hidden="true">⌕</span><input id="candidate-search" type="search" placeholder="搜索网站、作者、平台或机制" autocomplete="off" /></label>
-            <div class="candidate-filters" role="group" aria-label="候选网站类别筛选">
-              <button type="button" class="is-active" data-candidate-filter="all">全部</button>
-              <button type="button" data-candidate-filter="space">空间 / 3D</button>
-              <button type="button" data-candidate-filter="scroll">滚动叙事</button>
-              <button type="button" data-candidate-filter="editorial">编辑排版</button>
-              <button type="button" data-candidate-filter="interaction">交互实验</button>
-              <button type="button" data-candidate-filter="selected">我的候选 <span id="selected-count">0</span></button>
-            </div>
-          </div>
-          <div class="candidate-result"><span id="candidate-result-count">65 个结果</span><span>历史研究库 · 原作状态可能变化</span></div>
-          <div class="candidate-grid" id="candidate-grid" aria-live="polite"></div>
-          <p class="candidate-empty" id="candidate-empty" hidden>没有匹配的候选，换一个分类或关键词试试。</p>
+        </div>
+
+        <div class="archive-grid wrap" id="archive-grid" aria-live="polite">
+          <p class="loading-copy">正在载入研究档案…</p>
+        </div>
+        <div class="archive-more wrap">
+          <button class="button button-outline" id="load-more" type="button">显示更多</button>
+          <p id="archive-status" aria-live="polite"></p>
         </div>
       </section>
 
-      <section class="community-section section-shell" id="contact" aria-labelledby="community-title">
-        <div class="community-copy">
-          <p class="eyebrow">BUILD IN PUBLIC</p>
-          <h2 id="community-title">带着你的作品，<br />进入一次共同拆解。</h2>
-          <p>这里也会逐步融合 AI 造物社的共学内容：真实项目诊断、组件共建、动效实验与公开复盘。先从提出一个具体问题开始。</p>
-        </div>
-        <div class="community-actions">
-          <button class="button button--accent" type="button" data-buy-interest="网站动效校准 / 共建咨询">联系主理人 / 共建 <span aria-hidden="true">↗</span></button>
-          <button class="text-link text-link--light" id="copy-question" type="button">复制提问模板 <span aria-hidden="true">＋</span></button>
-          <p>不接收“帮我做得高级一点”这类空泛需求；请带上链接、目标用户、当前问题与限制条件。</p>
+      <section class="about-section section-dark" aria-labelledby="about-title">
+        <div class="about-grid wrap reveal">
+          <div>
+            <p class="eyebrow">ABOUT VIBE FRONTIER</p>
+            <h2 id="about-title">从“看起来很酷”，走到“知道为什么成立”。</h2>
+          </div>
+          <div class="about-copy">
+            <p>VIBE FRONTIER 是 AI 造物社的分享与共学媒介。我们从公开可验证的作品出发，把视觉记忆点、交互输入、表现层、工程管线、性能边界与迁移方式放在同一张图里。</p>
+            <p>不替作者补写技术，不把猜测包装成事实，也不把灵感误认成自己的作品。</p>
+            <a class="text-link" href="#issue">回到本期 <span aria-hidden="true">↑</span></a>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="footer-top">
-        <a class="wordmark wordmark--footer" href="#top"><span>VIBE</span><span>FRONTIER</span></a>
-        <p>一个关于界面判断、系统能力与 AI 共创方法的持续教学现场。</p>
-        <div class="footer-brand-signature" aria-label="ART WITH AI 与 AI 造物社联合品牌">
-          <img class="footer-brand-signature__art" src="./vibe/brands/art-with-ai.svg" alt="ART WITH AI" />
-          <span aria-hidden="true">×</span>
-          <img class="footer-brand-signature__system" src="./vibe/brands/ai-zaowushe-system.svg" alt="AI 造物社品牌系统" />
-        </div>
+      <div class="footer-inner wrap">
+        <div><strong>VIBE FRONTIER</strong><p>AI 造物社 · 实验前端观察站</p></div>
+        <p>真实作品 · 证据拆解 · 可迁移机制</p>
       </div>
-      <div class="footer-bottom"><span>© 2026 VIBE FRONTIER</span><span>资源核验：2026.08.22</span><a href="#top">回到顶部 ↑</a></div>
     </footer>
 
-    <dialog class="case-dialog" id="case-dialog" aria-labelledby="case-dialog-title"><button class="dialog-close" type="button" aria-label="关闭案例详情">×</button><div id="case-dialog-content"></div></dialog>
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <dialog class="case-dialog" id="case-dialog" aria-labelledby="dialog-title">
+      <div class="dialog-shell">
+        <button class="dialog-close" type="button" aria-label="关闭案例详情">×</button>
+        <div id="dialog-content"></div>
+      </div>
+    </dialog>
+
+    <noscript><p class="noscript-note">请启用 JavaScript 以浏览案例拆解与研究档案。</p></noscript>
+    <script src="./vibe/academy.js" defer></script>
   </body>
 </html>
