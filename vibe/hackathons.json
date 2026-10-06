@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-10-06T15:45:39Z",
+  "note": "首批精选，不是全球完整日历。国内按中国主办方或中国举办地归类；国际含海外主办的全球线上活动。状态是官方公开信息的核验快照，不是实时名额；超过 7 天未复核会提示待复核。参与价值为编辑判断，不代表获奖、录用、融资或商业成交。",
+  "events": [
+    {
+      "id": "moonbit-2026-october",
+      "title": "MoonBit 黑客松 · 十月赛",
+      "organizer": "MoonBit / IDEA 等官网列示主办单位",
+      "region": "domestic",
+      "format": "线上",
+      "location": "中国主办 · 远程参与",
+      "topic": "开源软件 · AI 编程",
+      "period": "2026 年 10 月赛季",
+      "registrationStatus": "open",
+      "registrationClosesOn": "2026-10-31",
+      "deadlineLabel": "报名与验收：10 月 31 日；官网未列具体时刻与时区。",
+      "eligibility": "不限学生或社会人士；每队不超过 3 人。",
+      "cost": "官网未明确列出报名费；工具与开发成本需自行确认。",
+      "deliverables": "以 MoonBit 为主要语言，提交公开仓库、README、可运行示例和必要测试；已有项目需提供本期实质新增记录。",
+      "value": "适合把一个小而真实的需求做成可维护的开源工具，用代码、测试与文档积累可检查的工程证据，而不是只留下路演画面。",
+      "boundary": "日期、人数和验收要求来自官网及官方仓库。奖励需通过审核与评选，不按报名推定收入；参赛前以正式章程为准。",
+      "url": "https://moonbitlang.github.io/Hackathon2026/",
+      "sources": [
+        { "label": "官方赛事页", "url": "https://moonbitlang.github.io/Hackathon2026/" },
+        { "label": "官方页面源码", "url": "https://github.com/moonbitlang/Hackathon2026/blob/main/src/App.tsx" }
+      ]
+    },
+    {
+      "id": "anker-hackathon-2026",
+      "title": "Anker 首届黑客松挑战赛",
+      "organizer": "安克创新",
+      "region": "domestic",
+      "format": "线上预赛 + 线下决赛",
+      "location": "中国 · 深圳",
+      "topic": "AI 硬件 · 真实业务命题",
+      "period": "决赛：2026.10.16—10.17",
+      "eventStartsOn": "2026-10-16",
+      "eventEndsOn": "2026-10-17",
+      "registrationStatus": "closed",
+      "registrationClosesOn": "2026-09-27",
+      "deadlineLabel": "预赛材料于 9 月 27 日截止；不是新的报名机会。",
+      "eligibility": "18 岁以上，不限专业学历；队伍 2—4 人，每队一个赛道。决赛面向出线队伍。",
+      "cost": "本次公开页面未明确列出费用与差旅安排，需查正式通知。",
+      "deliverables": "围绕智能录音、智能安防、充电储能或智能服务命题，完成预赛材料；出线后进行 24 小时现场开发与路演。",
+      "value": "值得观察企业如何把业务问题转成赛题，以及原型怎样接受产业场景检验。可用于选题研究，不建议现在为参赛赶做项目。",
+      "boundary": "赛程与门槛来自安克招聘官网。按公开截止日标注报名已截止；页面静态倒计时占位不作为报名状态证据。产品线对接和招聘仅是主办方公布的机会。",
+      "url": "https://career.anker.com.cn/hackathon/",
+      "sources": [
+        { "label": "安克官方赛事页", "url": "https://career.anker.com.cn/hackathon/" }
+      ]
+    },
+    {
+      "id": "build-with-ai-basics-2026",
+      "title": "Build With AI: Basics",
+      "organizer": "Devpost",
+      "region": "international",
+      "format": "线上",
+      "location": "美国主办 · 全球线上",
+      "topic": "AI 产品原型 · 新手友好",
+      "period": "开发：2026.09.22—10.26",
+      "registrationStatus": "open",
+      "registrationClosesAt": "2026-10-26T21:00:00Z",
+      "deadlineLabel": "10 月 26 日 17:00 EDT；北京时间 10 月 27 日 05:00。",
+      "eligibility": "达到居住地法定成年年龄；概览标注 18+。个人、团队或组织可参与，存在地区及利益冲突例外，需核对规则。",
+      "cost": "规则明确无需购买或付款参赛；编码工具与运行成本另计。",
+      "deliverables": "赛事期内新建、能端到端运行的原型；使用指定 Devpost Learn Skill Pack，提交公开开源仓库、规划文档及 3 分钟内演示视频，材料需英文或附英文翻译。",
+      "value": "适合把一个明确用户任务做成完整小产品，练习从需求、实现到演示的闭环。产出可作为作品集的过程证据，不等于已经验证市场需求。",
+      "boundary": "日期、工具和交付要求来自官方规则。只收录公开说明，本次未安装赛事工具、未注册或提交项目。",
+      "url": "https://learn-ai-basics.devpost.com/",
+      "sources": [
+        { "label": "官方赛事页", "url": "https://learn-ai-basics.devpost.com/" },
+        { "label": "官方规则", "url": "https://learn-ai-basics.devpost.com/rules" }
+      ]
+    },
+    {
+      "id": "nebius-nvidia-global-ai-2026",
+      "title": "Nebius × NVIDIA Global AI Hackathon",
+      "organizer": "Nebius B.V. · Devpost 管理",
+      "region": "international",
+      "format": "线上",
+      "location": "荷兰主办 · 全球线上",
+      "topic": "AI 应用 · 个人助手 · 具身智能",
+      "period": "开发：2026.08.26—10.30",
+      "registrationStatus": "open",
+      "registrationClosesAt": "2026-10-30T17:00:00Z",
+      "deadlineLabel": "作品提交：10 月 30 日 10:00 PDT；北京时间 10 月 31 日 01:00。",
+      "eligibility": "达到居住地法定成年年龄；个人、团队或组织可参与，存在地区和利益冲突例外，需核对规则及服务可用性。",
+      "cost": "规则明确无需购买或付款参赛；云资源与模型调用成本、额度条件需单独确认。",
+      "deliverables": "必须使用至少一个 NVIDIA 开源模型，并在 Nebius Token Factory 或 AI Cloud 运行；提交可用项目、公开开源仓库和 3 分钟内演示，既有项目需说明赛事期内实质更新。",
+      "value": "适合验证助手或 Agent 的真实任务能力，把模型调用、交互和部署串成可运行系统。重点比较任务成功率与运行成本，不为奖金临时堆叠功能。",
+      "boundary": "日期和强制技术要求来自官方规则，赛道来自官方赛事页。公开的全球开放说明不保证所有地区都可使用相关云服务或领取奖励。",
+      "url": "https://nebiusglobalaihackathon.devpost.com/",
+      "sources": [
+        { "label": "官方赛事页", "url": "https://nebiusglobalaihackathon.devpost.com/" },
+        { "label": "官方规则", "url": "https://nebiusglobalaihackathon.devpost.com/rules" }
+      ]
+    },
+    {
+      "id": "since-ai-2026",
+      "title": "Since AI 2026",
+      "organizer": "Since AI ry",
+      "region": "international",
+      "format": "线下 · 申请审核制",
+      "location": "芬兰 · 图尔库 Kupittaa Campus",
+      "topic": "产业 AI 命题 · 跨学科协作",
+      "period": "活动：2026.11.06—11.08",
+      "eventTimeZone": "Europe/Helsinki",
+      "eventStartsOn": "2026-11-06",
+      "eventEndsOn": "2026-11-08",
+      "registrationStatus": "application",
+      "deadlineLabel": "滚动审核申请，公开页未列最终申请截止日；名额需官方确认。",
+      "eligibility": "达到居住地法定成年年龄，需官方申请获准后现场参加；产品、设计与工程背景均在招募范围内。",
+      "cost": "主办方列明参与免费；不等于签证、差旅与住宿均获承担。",
+      "deliverables": "从官方产业挑战中选题，赛事期内完成能演示的 AI 原型；提交技术架构、代码、2 分钟内演示和后续计划，并披露既有材料。",
+      "value": "适合已有技术执行能力的团队，把真实产业命题变成可测试原型，并练习跨学科协作。企业反馈可能有助于试点讨论，但不保证商业合作。",
+      "boundary": "日期、方式、费用和申请制来自主办方的 Devpost 页面。加入 Devpost 不等于获准参赛；本次未核验剩余名额与差旅支持。",
+      "url": "https://sinceai2026.devpost.com/",
+      "sources": [
+        { "label": "主办方赛事页", "url": "https://sinceai2026.devpost.com/" },
+        { "label": "官方申请平台", "url": "https://sinceai.app/events/since-ai-hackathon-2026" }
+      ]
+    },
+    {
+      "id": "gitlab-life-after-code-2026",
+      "title": "Life After Code · GitLab Transcend",
+      "organizer": "GitLab Inc. · Devpost 管理",
+      "region": "international",
+      "format": "线上",
+      "location": "美国主办 · 有地区限制",
+      "topic": "Agent · 软件交付自动化",
+      "period": "开发：2026.10.05—10.27",
+      "registrationStatus": "open",
+      "registrationClosesAt": "2026-10-27T13:00:00Z",
+      "restriction": "中国地区不具参赛资格 · 仅供观察",
+      "deadlineLabel": "10 月 27 日 13:00 UTC；北京时间同日 21:00。",
+      "eligibility": "官方规则明确排除中国居民、位于中国的个人及组织等地区对象；不向中国地区读者推荐报名。其他地区也需核对成年年龄及规则。",
+      "cost": "规则明确无需购买或付款参赛；平台开通与运行资源仍有条件。",
+      "deliverables": "使用 GitLab Duo Agent Platform 自动化评审、测试、安全或部署等编码后流程；提交 MIT 许可公开项目、流水线运行记录及 3 分钟内视频。",
+      "value": "对中国地区读者仅作为机制观察：学习怎样把自动化写成可检查的交付流程，比较人工批准与自主执行边界，不投入参赛成本。",
+      "boundary": "日期、地区排除和许可要求来自官方规则。‘全球线上’不等于对中国开放；本次仅收录公开命题，没有注册、开通或申请。",
+      "url": "https://gitlab-transcend.devpost.com/",
+      "sources": [
+        { "label": "官方赛事页", "url": "https://gitlab-transcend.devpost.com/" },
+        { "label": "资格与官方规则", "url": "https://gitlab-transcend.devpost.com/rules" }
+      ]
+    }
+  ]
+}

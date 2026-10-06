@@ -25,6 +25,7 @@
           <a href="#issue">本期</a>
           <a href="#mechanisms">机制</a>
           <a href="#archive">类型与价值</a>
+          <a class="nav-hackathons" href="#hackathons">黑客松</a>
           <a class="nav-cta" href="#issue">开始浏览</a>
         </div>
       </nav>
@@ -134,6 +135,29 @@
           <button class="button button-outline" id="load-more" type="button">显示更多</button>
           <p id="archive-status" aria-live="polite"></p>
         </div>
+      </section>
+
+      <section class="hackathon-section section-white" id="hackathons" aria-labelledby="hackathon-title">
+        <div class="section-heading wrap reveal">
+          <div>
+            <p class="eyebrow eyebrow-blue">GLOBAL HACKATHONS</p>
+            <h2 id="hackathon-title">把灵感，<br />带到真实赛场。</h2>
+          </div>
+          <p>按国内、国际找活动。先确认还能不能参加，再看值得做什么：真实命题、可运行作品、协作与验证，不只看奖金。</p>
+        </div>
+        <div class="hackathon-tools wrap">
+          <div class="filter-scroller" id="hackathon-filters" aria-label="按国内国际筛选黑客松">
+            <button class="filter-chip is-active" type="button" data-region="all" aria-pressed="true">全部</button>
+            <button class="filter-chip" type="button" data-region="domestic" aria-pressed="false">国内</button>
+            <button class="filter-chip" type="button" data-region="international" aria-pressed="false">国际</button>
+          </div>
+          <p id="hackathon-checked"></p>
+        </div>
+        <p class="hackathon-notice wrap" id="hackathon-notice"></p>
+        <div class="hackathon-groups wrap" id="hackathon-groups" aria-live="polite">
+          <p class="loading-copy">正在载入官方活动信息…</p>
+        </div>
+        <p class="hackathon-count wrap" id="hackathon-count" aria-live="polite"></p>
       </section>
 
       <section class="about-section section-dark" aria-labelledby="about-title">

@@ -8,6 +8,26 @@ const readJSON = (file) => JSON.parse(fs.readFileSync(path.join(__dirname, "..",
 const contexts = readJSON("case-context.json");
 const candidates = readJSON("site-candidates.json").candidates;
 const issue = readJSON("issues.json").issues[0];
+const hackathons = readJSON("hackathons.json");
+
+assert.equal(hackathons.schemaVersion, 1);
+assert.ok(Number.isFinite(Date.parse(hackathons.checkedAt)));
+assert.equal(new Set(hackathons.events.map((item) => item.id)).size, hackathons.events.length);
+assert.equal(new Set(hackathons.events.map((item) => item.url)).size, hackathons.events.length);
+assert.deepEqual([...new Set(hackathons.events.map((item) => item.region))].sort(), ["domestic", "international"]);
+for (const item of hackathons.events) {
+  for (const field of ["title", "organizer", "format", "location", "topic", "period", "deadlineLabel", "eligibility", "cost", "deliverables", "value", "boundary"]) {
+    assert.ok(typeof item[field] === "string" && item[field].trim(), `${item.id}: missing ${field}`);
+  }
+  assert.ok(["open", "closed", "application"].includes(item.registrationStatus));
+  assert.ok(item.sources.length > 0);
+  for (const url of [item.url, ...item.sources.map((source) => source.url)]) assert.equal(new URL(url).protocol, "https:");
+  if (item.registrationClosesAt) assert.ok(Number.isFinite(Date.parse(item.registrationClosesAt)));
+  if (item.eventTimeZone) new Intl.DateTimeFormat("en-CA", { timeZone: item.eventTimeZone });
+  for (const field of ["registrationClosesOn", "eventStartsOn", "eventEndsOn"]) {
+    if (item[field]) assert.match(item[field], /^\d{4}-\d{2}-\d{2}$/);
+  }
+}
 
 assert.equal(contexts.schemaVersion, 1);
 assert.equal(new Set(contexts.types.map((type) => type.id)).size, 5);
@@ -35,6 +55,7 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   assert.equal(response.status(), 200);
   await page.waitForSelector(".feature-card");
   await page.waitForSelector(".archive-card");
+  await page.waitForSelector(".hackathon-card");
 
   assert.equal(await page.locator(".feature-card").count(), issue.cases.length);
   assert.equal(await page.locator(".archive-card").count(), 12);
@@ -47,6 +68,40 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   assert.equal(await page.getByRole("link", { name: /^(购买|登录)$/ }).count(), 0);
   assert.equal(await page.locator("#archive-total").innerText(), String(candidates.length));
   assert.match(await page.locator("#value-notice").innerText(), /策展判断/);
+  assert.equal(await page.locator(".hackathon-card").count(), hackathons.events.length);
+  assert.match(await page.locator("#hackathon-notice").innerText(), /不是实时名额/);
+  assert.match(await page.locator('[data-event-id="anker-hackathon-2026"] .hackathon-status').innerText(), /报名已截止|活动已结束/);
+  assert.match(await page.locator('[data-event-id="gitlab-life-after-code-2026"] .hackathon-restriction').innerText(), /中国地区不具参赛资格/);
+  const statuses = await page.evaluate(() => {
+    const item = state.hackathons.find((event) => event.id === "build-with-ai-basics-2026");
+    return [
+      hackathonStatus(item, new Date("2026-10-06T15:45:39Z")).code,
+      hackathonStatus(item, new Date("2026-10-14T15:45:39Z")).code,
+      hackathonStatus(item, new Date("2026-10-26T21:00:00Z")).code,
+      hackathonStatus(state.hackathons.find((event) => event.id === "anker-hackathon-2026"), new Date("2026-10-18T12:00:00Z")).code,
+      hackathonStatus(state.hackathons.find((event) => event.id === "since-ai-2026"), new Date("2026-11-08T21:30:00Z")).code,
+      hackathonStatus(state.hackathons.find((event) => event.id === "since-ai-2026"), new Date("2026-11-08T22:30:00Z")).code
+    ];
+  });
+  assert.deepEqual(statuses, ["open", "review", "closed", "ended", "review", "ended"]);
+  await page.locator('.nav-hackathons').click();
+  for (const region of ["domestic", "international"]) {
+    await page.locator(`#hackathon-filters [data-region="${region}"]`).click();
+    const count = hackathons.events.filter((item) => item.region === region).length;
+    assert.equal(await page.locator(".hackathon-card").count(), count);
+    assert.equal(await page.locator(`.hackathon-card[data-region="${region}"]`).count(), count);
+    assert.equal(await page.locator(`#hackathon-filters [data-region="${region}"]`).getAttribute("aria-pressed"), "true");
+  }
+  const eventDetails = page.locator(".hackathon-details").first();
+  await eventDetails.locator("summary").click();
+  assert.match(await eventDetails.innerText(), /需要做什么|证据边界/);
+  assert.equal(await eventDetails.getAttribute("open"), "");
+  for (const link of await page.locator(".hackathon-official").all()) {
+    assert.equal(new URL(await link.getAttribute("href")).protocol, "https:");
+    assert.equal(await link.getAttribute("rel"), "noopener noreferrer");
+  }
+  await page.locator('#hackathon-filters [data-region="all"]').click();
+  assert.equal(await page.locator(".hackathon-card").count(), hackathons.events.length);
 
   await page.locator(".feature-card").first().scrollIntoViewIfNeeded();
   await page.waitForFunction(() => {
@@ -112,6 +167,17 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   });
   await page.waitForFunction(() => getComputedStyle(document.querySelector(".archive-heading")).opacity === "1");
   await page.screenshot({ path: screenshotPath.replace(".png", "-types.png"), fullPage: false });
+  await page.evaluate(() => {
+    window.scrollTo(0, document.querySelector("#hackathons .section-heading").getBoundingClientRect().top + window.scrollY - 76);
+  });
+  await page.screenshot({ path: screenshotPath.replace(".png", "-hackathons.png"), fullPage: false });
+  if (viewport.width > 680) {
+    await page.locator('#hackathon-filters [data-region="international"]').click();
+    await page.evaluate(() => {
+      window.scrollTo(0, document.querySelector("#hackathon-filters").getBoundingClientRect().top + window.scrollY - 76);
+    });
+    await page.screenshot({ path: screenshotPath.replace(".png", "-hackathons-international.png"), fullPage: false });
+  }
   await page.goto(baseURL, { waitUntil: "networkidle" });
   await page.evaluate(() => {
     document.documentElement.style.scrollBehavior = "auto";

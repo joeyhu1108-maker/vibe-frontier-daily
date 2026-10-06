@@ -6,6 +6,9 @@ const state = {
   types: [],
   contexts: {},
   valueNotice: "",
+  hackathons: [],
+  hackathonCheckedAt: "",
+  activeRegion: "all",
   activeFilter: "all",
   activeMechanism: "",
   query: "",
@@ -31,6 +34,11 @@ const elements = {
   selectedMechanism: document.querySelector("#selected-mechanism"),
   clearMechanism: document.querySelector("#clear-mechanism"),
   loadMore: document.querySelector("#load-more"),
+  hackathonGroups: document.querySelector("#hackathon-groups"),
+  hackathonFilters: document.querySelector("#hackathon-filters"),
+  hackathonChecked: document.querySelector("#hackathon-checked"),
+  hackathonNotice: document.querySelector("#hackathon-notice"),
+  hackathonCount: document.querySelector("#hackathon-count"),
   dialog: document.querySelector("#case-dialog"),
   dialogContent: document.querySelector("#dialog-content"),
   dialogClose: document.querySelector(".dialog-close")
@@ -196,6 +204,73 @@ function setFilter(filter) {
   renderArchive();
 }
 
+function hackathonStatus(item, now = new Date()) {
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: item.eventTimeZone || "Asia/Shanghai" }).format(now);
+  if (item.eventEndsOn && today > item.eventEndsOn) return { code: "ended", label: "活动已结束" };
+  if (item.registrationStatus === "closed") return { code: "closed", label: "报名已截止" };
+  if ((item.registrationClosesAt && now >= new Date(item.registrationClosesAt)) ||
+      (item.registrationClosesOn && today > item.registrationClosesOn)) {
+    return { code: "closed", label: "官方截止日已过" };
+  }
+  if (now - new Date(state.hackathonCheckedAt) > 7 * 24 * 60 * 60 * 1000) {
+    return { code: "review", label: "信息待复核 · 查官方" };
+  }
+  if (item.restriction) return { code: "restricted", label: "地区限制 · 仅供观察" };
+  if (item.eventStartsOn && today >= item.eventStartsOn) return { code: "review", label: "活动期 · 报名待确认" };
+  if (item.registrationClosesOn === today) return { code: "review", label: "截止日 · 查官方时刻" };
+  return item.registrationStatus === "application"
+    ? { code: "application", label: "申请制 · 名额待确认" }
+    : { code: "open", label: "官方申报期内" };
+}
+
+function hackathonCardTemplate(item) {
+  const status = hackathonStatus(item);
+  return `<article class="hackathon-card" data-event-id="${escapeHTML(item.id)}" data-region="${escapeHTML(item.region)}">
+    <div class="hackathon-card-top"><span class="hackathon-status" data-status="${status.code}">${status.label}</span><span class="hackathon-format">${escapeHTML(item.format)}</span></div>
+    <p class="hackathon-topic">${escapeHTML(item.topic)}</p>
+    <h4>${escapeHTML(item.title)}</h4>
+    <p class="hackathon-organizer">${escapeHTML(item.organizer)}</p>
+    ${item.restriction ? `<p class="hackathon-restriction">${escapeHTML(item.restriction)}</p>` : ""}
+    <dl class="hackathon-facts">
+      <div><dt>赛程</dt><dd>${escapeHTML(item.period)}</dd></div>
+      <div><dt>地点</dt><dd>${escapeHTML(item.location)}</dd></div>
+      <div><dt>截止</dt><dd>${escapeHTML(item.deadlineLabel)}</dd></div>
+      <div><dt>门槛</dt><dd>${escapeHTML(item.eligibility)}</dd></div>
+    </dl>
+    <div class="hackathon-value"><p class="value-kicker">参与价值 · 编辑判断</p><p>${escapeHTML(item.value)}</p></div>
+    <details class="hackathon-details"><summary>交付要求、成本与证据</summary>
+      <p><strong>需要做什么：</strong>${escapeHTML(item.deliverables)}</p>
+      <p><strong>成本：</strong>${escapeHTML(item.cost)}</p>
+      <p><strong>证据边界：</strong>${escapeHTML(item.boundary)}</p>
+      <div class="hackathon-sources">${item.sources.map((source) => `<a href="${escapeHTML(safeURL(source.url))}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.label)} ↗</a>`).join("")}</div>
+    </details>
+    <a class="hackathon-official text-link" href="${escapeHTML(safeURL(item.url))}" target="_blank" rel="noopener noreferrer">查看官方详情 <span aria-hidden="true">↗</span></a>
+  </article>`;
+}
+
+function renderHackathons() {
+  const regions = [{ id: "domestic", label: "国内", note: "中国主办或中国举办" }, { id: "international", label: "国际", note: "海外主办 · 含全球线上" }];
+  const selected = regions.filter((region) => state.activeRegion === "all" || state.activeRegion === region.id);
+  elements.hackathonGroups.innerHTML = selected.map((region) => {
+    const events = state.hackathons.filter((item) => item.region === region.id);
+    return `<section class="hackathon-group" aria-labelledby="hackathon-${region.id}"><div class="hackathon-group-heading"><h3 id="hackathon-${region.id}">${region.label} <span>${events.length}</span></h3><p>${region.note}</p></div><div class="hackathon-grid">${events.map(hackathonCardTemplate).join("") || '<p class="empty-state">本组暂无经核验活动。</p>'}</div></section>`;
+  }).join("");
+  const count = state.hackathons.filter((item) => state.activeRegion === "all" || item.region === state.activeRegion).length;
+  elements.hackathonCount.textContent = `显示 ${count} 场 · 报名前请回到官方页面确认资格、名额与规则。`;
+}
+
+async function loadHackathons() {
+  const response = await fetch("./vibe/hackathons.json");
+  if (!response.ok) throw new Error("Hackathon data request failed");
+  const data = await response.json();
+  state.hackathons = data.events;
+  state.hackathonCheckedAt = data.checkedAt;
+  const checked = new Date(data.checkedAt).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai", hour12: false, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
+  elements.hackathonChecked.textContent = `官方信息核验：${checked}（北京时间）`;
+  elements.hackathonNotice.textContent = data.note;
+  renderHackathons();
+}
+
 function detailTemplate(label, value, extraClass = "") {
   if (!value) return "";
   return `<section class="dialog-detail ${extraClass}"><h3>${escapeHTML(label)}</h3><p>${escapeHTML(value)}</p></section>`;
@@ -321,6 +396,18 @@ elements.typeGuide.addEventListener("click", (event) => {
   if (button) setFilter(button.dataset.filter);
 });
 
+elements.hackathonFilters.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-region]");
+  if (!button) return;
+  state.activeRegion = button.dataset.region;
+  elements.hackathonFilters.querySelectorAll("[data-region]").forEach((item) => {
+    const active = item.dataset.region === state.activeRegion;
+    item.classList.toggle("is-active", active);
+    item.setAttribute("aria-pressed", String(active));
+  });
+  renderHackathons();
+});
+
 elements.clearMechanism.addEventListener("click", () => {
   state.activeMechanism = "";
   state.visibleCount = 12;
@@ -353,6 +440,10 @@ window.addEventListener(
 );
 
 observeReveals();
+loadHackathons().catch((error) => {
+  console.error("VIBE FRONTIER hackathon load failed", error);
+  elements.hackathonGroups.innerHTML = '<p class="empty-state">活动信息暂时无法载入，请稍后刷新。</p>';
+});
 loadData().catch((error) => {
   console.error("VIBE FRONTIER data load failed", error);
   elements.featuredGrid.innerHTML = '<p class="empty-state">本期案例暂时无法载入，请稍后刷新。</p>';
