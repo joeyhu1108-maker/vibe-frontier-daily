@@ -444,8 +444,7 @@ button {
   padding: 26px 26px 28px;
 }
 
-.feature-meta,
-.archive-meta {
+.feature-meta {
   margin: 0 0 12px;
   color: var(--blue);
   font-size: 11px;
@@ -518,14 +517,28 @@ button {
   line-height: 1.65;
 }
 
-.mechanism-tags {
+.case-dates {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.case-dates p {
+  margin: 0;
+}
+
+.value-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin-top: 22px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.mechanism-tag {
+.value-tags li {
   padding: 6px 9px;
   border-radius: 999px;
   background: var(--surface);

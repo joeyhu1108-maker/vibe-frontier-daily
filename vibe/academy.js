@@ -74,10 +74,42 @@ const mechanismLabel = (mechanism) => ({
   "交互变成叙事": "互动故事"
 })[mechanism] || mechanism;
 
-const yearFrom = (pageTime = "") => pageTime.match(/20\d{2}/)?.[0] || "";
-
 const caseContext = (item) => item.context || state.contexts[item.id];
 const caseType = (item) => state.types.find((type) => type.id === caseContext(item)?.type);
+
+const dateLabel = (date = "") => {
+  const parts = date.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  return parts ? `${parts[1]}年${Number(parts[2])}月${Number(parts[3])}日` : "未记录";
+};
+
+function sourceTimeLabel(pageTime = "") {
+  const labels = {
+    "Repository created": "仓库创建",
+    "Awwwards Site of the Day": "Awwwards 每日最佳",
+    "CSSDA Website of the Day": "CSSDA 每日最佳",
+    "CSSDA nominee": "CSSDA 提名页",
+    "Website of the Day": "每日最佳奖项页",
+    "Special Kudos": "特别嘉奖页",
+    "Nominated": "提名页",
+    "Nominee": "提名页",
+    "Published": "发布记录",
+    "Featured": "推荐页",
+    "Page time": "页面记录"
+  };
+  return pageTime.replace(/Repository created|Awwwards Site of the Day|CSSDA Website of the Day|CSSDA nominee|Website of the Day|Special Kudos|Nominated|Nominee|Published|Featured|Page time/g, (label) => labels[label])
+    .replace(/(\d{4})\.(\d{2})\.(\d{2})/g, (_, year, month, day) => `${year}年${Number(month)}月${Number(day)}日`) || "原记录未注明";
+}
+
+function caseDates(item) {
+  const context = caseContext(item);
+  const collectedOn = context?.collectedOn || (state.cases.includes(item) ? state.issue?.id : "");
+  return `<div class="case-dates"><p>收录：${collectedOn ? `<time datetime="${escapeHTML(collectedOn)}">${dateLabel(collectedOn)}</time>` : "未记录"}</p><p>来源时间：${escapeHTML(sourceTimeLabel(context?.pageTime || item.pageTime))}</p></div>`;
+}
+
+function valueTags(item) {
+  const tags = (caseContext(item)?.tags || ["价值待分析"]).slice(0, 3);
+  return `<ul class="value-tags" aria-label="价值方向">${tags.map((tag) => `<li>${escapeHTML(tag)}</li>`).join("")}</ul>`;
+}
 
 function valueSummary(item) {
   const context = caseContext(item);
@@ -103,16 +135,12 @@ function renderHero() {
   elements.heroImage.alt = `${featured.title} 的作品画面`;
   elements.heroLabel.textContent = `本期首选 · ${mechanismLabel(featured.mechanisms?.[0] || "实验前端")}`;
   elements.heroWork.textContent = shortTitle(featured.title);
-  elements.heroAuthor.textContent = [featured.author, yearFrom(featured.pageTime)].filter(Boolean).join(" · ");
-  elements.issueKicker.textContent = `${state.issue.issueNo || "CURRENT ISSUE"} · ${state.issue.dateLabel || ""}`;
+  elements.heroAuthor.textContent = `${featured.author} · 收录 ${dateLabel(caseContext(featured)?.collectedOn || state.issue.id)}`;
+  elements.issueKicker.textContent = `${state.issue.issueNo || "CURRENT ISSUE"} · ${dateLabel(state.issue.id)}${state.issue.dateLabel === "TRIAL" ? " · 试读期刊" : ""}`;
 }
 
 function featureCardTemplate(item, index) {
   const cover = safeCover(item.id);
-  const tags = (item.mechanisms || [])
-    .map((mechanism) => `<span class="mechanism-tag">${escapeHTML(mechanismLabel(mechanism))}</span>`)
-    .join("");
-
   return `
     <article class="feature-card reveal" data-type="${escapeHTML(caseContext(item)?.type || "unclassified")}">
       <div class="feature-card-media">
@@ -127,9 +155,10 @@ function featureCardTemplate(item, index) {
         <p class="case-type">${escapeHTML(caseType(item)?.label || "待分类")}</p>
         <p class="feature-meta">${escapeHTML(item.platform)} · ${escapeHTML(item.author)}</p>
         <h3>${escapeHTML(item.title)}</h3>
+        ${caseDates(item)}
+        ${valueTags(item)}
         <p class="feature-memory">${escapeHTML(item.memory)}</p>
         ${valueSummary(item)}
-        <div class="mechanism-tags">${tags}</div>
         <button class="feature-open" type="button" data-case-id="${escapeHTML(item.id)}">价值与技术拆解 ↗</button>
       </div>
     </article>`;
@@ -153,7 +182,7 @@ function filteredCandidates() {
     const context = caseContext(item);
     const matchesFilter = state.activeFilter === "all" || context?.type === state.activeFilter;
     const matchesMechanism = !state.activeMechanism || item.mechanisms?.includes(state.activeMechanism);
-    const haystack = [item.title, item.author, item.platform, item.memory, caseType(item)?.label, context?.summary, context?.audience, context?.value, context?.conditions, ...(item.mechanisms || []), ...(item.mechanisms || []).map(mechanismLabel)]
+    const haystack = [item.title, item.author, item.platform, item.memory, caseType(item)?.label, context?.summary, context?.audience, context?.value, context?.conditions, ...(context?.tags || []), ...(item.mechanisms || []), ...(item.mechanisms || []).map(mechanismLabel)]
       .join(" ")
       .toLocaleLowerCase("zh-CN");
     return matchesFilter && matchesMechanism && (!query || haystack.includes(query));
@@ -177,9 +206,10 @@ function archiveCardTemplate(item) {
       </a>
       <div class="archive-card-body">
           <p class="case-type">${escapeHTML(type?.label || "待分类")}</p>
-          <p class="archive-meta">${escapeHTML(item.issueNo || "ARCHIVE")} · ${escapeHTML(item.dateLabel || item.platform)}</p>
           <h3><a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.title)}</a></h3>
           <p class="archive-author">${escapeHTML(item.author)} · ${escapeHTML(item.platform)}</p>
+          ${caseDates(item)}
+          ${valueTags(item)}
           <p class="archive-summary">${escapeHTML(context?.summary || item.memory)}</p>
           ${cover && state.covers[item.id]?.source ? `<a class="archive-image-source" href="${escapeHTML(safeURL(state.covers[item.id].source))}" target="_blank" rel="noopener noreferrer">作品画面来源 ↗</a>` : ""}
           ${valueSummary(item)}
@@ -296,9 +326,11 @@ function openCase(caseId) {
   elements.dialogContent.innerHTML = `
     ${cover ? `<img class="dialog-cover" src="${escapeHTML(cover)}" alt="${escapeHTML(item.title)} 的公开作品画面" />` : ""}
     <div class="dialog-body">
-      <p class="feature-meta">${escapeHTML(item.platform)} · ${escapeHTML(item.pageTime)}</p>
+      <p class="feature-meta">${escapeHTML(item.platform)}</p>
       <h2 id="dialog-title">${escapeHTML(item.title)}</h2>
       <p class="dialog-byline">作者：${escapeHTML(item.author)} · 复现难度：${escapeHTML(item.difficulty)}</p>
+      ${caseDates(item)}
+      ${valueTags(item)}
       <p class="dialog-memory">${escapeHTML(item.memory)}</p>
       <section class="dialog-value" aria-labelledby="value-title">
         <p class="case-type">${escapeHTML(type?.label || "待分类")}</p>
