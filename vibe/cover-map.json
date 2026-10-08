@@ -1,4 +1,29 @@
 {
+  "galaxies-webgpu-encounter-lab": {
+    "src": "./vibe/covers/galaxies-webgpu-encounter-lab.jpg",
+    "source": "https://galaxies.gillett-projects.com/",
+    "label": "LIVE SITE CAPTURE"
+  },
+  "minimum-distance-litton-2009": {
+    "src": "./vibe/covers/minimum-distance-litton-2009.jpg",
+    "source": "https://neovand.github.io/minimum-distance/",
+    "label": "LIVE SITE CAPTURE"
+  },
+  "eighty-years-of-talking-ungdc": {
+    "src": "./vibe/covers/eighty-years-of-talking-ungdc.png",
+    "source": "https://github.com/Niklas-dev/ungdc-drift/blob/main/output/plate_map.png",
+    "label": "OFFICIAL REPOSITORY FRAME"
+  },
+  "solar-sclipse": {
+    "src": "./vibe/covers/solar-sclipse.jpg",
+    "source": "https://solar-sclipse.pages.dev/",
+    "label": "LIVE SITE CAPTURE"
+  },
+  "terra-prime": {
+    "src": "./vibe/covers/terra-prime.jpg",
+    "source": "https://www.terraprime.art/",
+    "label": "LIVE SITE CAPTURE"
+  },
   "inkwell-webgpu-water-tethys": {
     "src": "./vibe/covers/inkwell-webgpu-water-tethys.png",
     "source": "https://github.com/siliconjungle/inkwell-webgpu-water/blob/main/docs/screenshots/tethys-surface-optimized-clean.png",

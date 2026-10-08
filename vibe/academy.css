@@ -629,6 +629,16 @@ button {
   color: var(--blue);
 }
 
+.mechanism-row small {
+  display: block;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
 .mechanism-number {
   align-self: start;
   padding-top: 12px;
@@ -831,6 +841,37 @@ button {
 .archive-image {
   object-fit: cover;
   background: #e8e8ed;
+}
+
+.archive-media.is-unavailable {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line);
+  background: var(--white);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.archive-media.is-unavailable span:last-child {
+  color: var(--blue);
+}
+
+.archive-summary {
+  margin: 16px 0 0;
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.archive-image-source {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11px;
 }
 
 .archive-placeholder {

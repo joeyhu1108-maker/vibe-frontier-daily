@@ -66,6 +66,14 @@ const safeCover = (id) => {
 
 const shortTitle = (title = "") => title.split(/\s+[—–-]\s+/)[0] || title;
 
+const mechanismLabel = (mechanism) => ({
+  "数据变成空间": "数据可视化",
+  "模型成为界面": "可交互 3D 展示",
+  "滚动变成镜头": "滚动叙事",
+  "排版变成界面": "动态排版",
+  "交互变成叙事": "互动故事"
+})[mechanism] || mechanism;
+
 const yearFrom = (pageTime = "") => pageTime.match(/20\d{2}/)?.[0] || "";
 
 const caseContext = (item) => item.context || state.contexts[item.id];
@@ -93,7 +101,7 @@ function renderHero() {
   const cover = safeCover(featured.id);
   if (cover) elements.heroImage.src = cover;
   elements.heroImage.alt = `${featured.title} 的作品画面`;
-  elements.heroLabel.textContent = `本期首选 · ${featured.mechanisms?.[0] || "实验前端"}`;
+  elements.heroLabel.textContent = `本期首选 · ${mechanismLabel(featured.mechanisms?.[0] || "实验前端")}`;
   elements.heroWork.textContent = shortTitle(featured.title);
   elements.heroAuthor.textContent = [featured.author, yearFrom(featured.pageTime)].filter(Boolean).join(" · ");
   elements.issueKicker.textContent = `${state.issue.issueNo || "CURRENT ISSUE"} · ${state.issue.dateLabel || ""}`;
@@ -102,7 +110,7 @@ function renderHero() {
 function featureCardTemplate(item, index) {
   const cover = safeCover(item.id);
   const tags = (item.mechanisms || [])
-    .map((mechanism) => `<span class="mechanism-tag">${escapeHTML(mechanism)}</span>`)
+    .map((mechanism) => `<span class="mechanism-tag">${escapeHTML(mechanismLabel(mechanism))}</span>`)
     .join("");
 
   return `
@@ -145,7 +153,7 @@ function filteredCandidates() {
     const context = caseContext(item);
     const matchesFilter = state.activeFilter === "all" || context?.type === state.activeFilter;
     const matchesMechanism = !state.activeMechanism || item.mechanisms?.includes(state.activeMechanism);
-    const haystack = [item.title, item.author, item.platform, item.memory, caseType(item)?.label, context?.audience, context?.value, context?.conditions, ...(item.mechanisms || [])]
+    const haystack = [item.title, item.author, item.platform, item.memory, caseType(item)?.label, context?.summary, context?.audience, context?.value, context?.conditions, ...(item.mechanisms || []), ...(item.mechanisms || []).map(mechanismLabel)]
       .join(" ")
       .toLocaleLowerCase("zh-CN");
     return matchesFilter && matchesMechanism && (!query || haystack.includes(query));
@@ -160,11 +168,11 @@ function archiveCardTemplate(item) {
   const url = escapeHTML(safeURL(item.url));
   return `
     <article class="archive-card reveal" data-type="${escapeHTML(context?.type || "unclassified")}">
-      <a href="${url}" target="_blank" rel="noopener noreferrer" aria-label="打开 ${escapeHTML(item.title)} 原作品">
+      <a class="archive-media${cover ? "" : " is-unavailable"}" href="${url}" target="_blank" rel="noopener noreferrer" aria-label="打开 ${escapeHTML(item.title)} 原作品">
         ${
           cover
             ? `<img class="archive-image" src="${escapeHTML(cover)}" alt="${escapeHTML(item.title)} 的公开作品画面" loading="lazy" />`
-            : `<div class="archive-placeholder"><span>${escapeHTML(mechanism)}</span></div>`
+            : '<span>暂缺可核验作品图</span><span>查看原作品 ↗</span>'
         }
       </a>
       <div class="archive-card-body">
@@ -172,9 +180,11 @@ function archiveCardTemplate(item) {
           <p class="archive-meta">${escapeHTML(item.issueNo || "ARCHIVE")} · ${escapeHTML(item.dateLabel || item.platform)}</p>
           <h3><a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.title)}</a></h3>
           <p class="archive-author">${escapeHTML(item.author)} · ${escapeHTML(item.platform)}</p>
+          <p class="archive-summary">${escapeHTML(context?.summary || item.memory)}</p>
+          ${cover && state.covers[item.id]?.source ? `<a class="archive-image-source" href="${escapeHTML(safeURL(state.covers[item.id].source))}" target="_blank" rel="noopener noreferrer">作品画面来源 ↗</a>` : ""}
           ${valueSummary(item)}
           ${context ? `<details class="value-conditions"><summary>落地条件与验证方法</summary><p>${escapeHTML(context.conditions)}</p><p><strong>建议验证：</strong>${escapeHTML(context.measure || type?.measure || "先确认目标任务与判断指标。")}</p></details>` : ""}
-          <span class="archive-mechanism">机制：${escapeHTML(mechanism)}</span>
+          <span class="archive-mechanism">实现方式：${escapeHTML(mechanismLabel(mechanism))}</span>
       </div>
     </article>`;
 }
@@ -189,7 +199,7 @@ function renderArchive() {
   elements.archiveStatus.textContent = visible.length ? `已显示 ${visible.length} / ${matches.length}` : "";
   elements.loadMore.hidden = visible.length >= matches.length;
   elements.mechanismSelection.hidden = !state.activeMechanism;
-  elements.selectedMechanism.textContent = `机制：${state.activeMechanism}`;
+  elements.selectedMechanism.textContent = `实现方式：${mechanismLabel(state.activeMechanism)}`;
   observeReveals();
 }
 
@@ -427,6 +437,15 @@ elements.loadMore.addEventListener("click", () => {
   state.visibleCount += 12;
   renderArchive();
 });
+
+elements.archiveGrid.addEventListener("error", (event) => {
+  const image = event.target;
+  if (!image.classList?.contains("archive-image")) return;
+  const media = image.closest(".archive-media");
+  media.classList.add("is-unavailable");
+  media.innerHTML = '<span>作品图暂时无法加载</span><span>查看原作品 ↗</span>';
+  media.closest(".archive-card").querySelector(".archive-image-source")?.remove();
+}, true);
 
 elements.dialogClose.addEventListener("click", () => elements.dialog.close());
 elements.dialog.addEventListener("click", (event) => {
