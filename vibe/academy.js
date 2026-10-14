@@ -12,7 +12,8 @@ const state = {
   activeFilter: "all",
   activeMechanism: "",
   query: "",
-  visibleCount: 12
+  visibleCount: 12,
+  viewed: new Set()
 };
 
 const elements = {
@@ -23,6 +24,7 @@ const elements = {
   heroLabel: document.querySelector("#hero-label"),
   heroWork: document.querySelector("#hero-work"),
   heroAuthor: document.querySelector("#hero-author"),
+  heroFeatureOpen: document.querySelector("#hero-feature-open"),
   archiveGrid: document.querySelector("#archive-grid"),
   archiveTotal: document.querySelector("#archive-total"),
   archiveStatus: document.querySelector("#archive-status"),
@@ -41,7 +43,8 @@ const elements = {
   hackathonCount: document.querySelector("#hackathon-count"),
   dialog: document.querySelector("#case-dialog"),
   dialogContent: document.querySelector("#dialog-content"),
-  dialogClose: document.querySelector(".dialog-close")
+  dialogClose: document.querySelector(".dialog-close"),
+  viewCount: document.querySelector("#view-count")
 };
 
 const escapeHTML = (value = "") =>
@@ -136,6 +139,8 @@ function renderHero() {
   elements.heroLabel.textContent = `本期首选 · ${mechanismLabel(featured.mechanisms?.[0] || "实验前端")}`;
   elements.heroWork.textContent = shortTitle(featured.title);
   elements.heroAuthor.textContent = `${featured.author} · 收录 ${dateLabel(caseContext(featured)?.collectedOn || state.issue.id)}`;
+  elements.heroFeatureOpen.dataset.caseId = featured.id;
+  elements.heroFeatureOpen.setAttribute("aria-label", `拆开看看本期首选 ${featured.title}`);
   elements.issueKicker.textContent = `${state.issue.issueNo || "CURRENT ISSUE"} · ${dateLabel(state.issue.id)}${state.issue.dateLabel === "TRIAL" ? " · 试读期刊" : ""}`;
 }
 
@@ -215,6 +220,7 @@ function archiveCardTemplate(item) {
           ${valueSummary(item)}
           ${context ? `<details class="value-conditions"><summary>落地条件与验证方法</summary><p>${escapeHTML(context.conditions)}</p><p><strong>建议验证：</strong>${escapeHTML(context.measure || type?.measure || "先确认目标任务与判断指标。")}</p></details>` : ""}
           <span class="archive-mechanism">实现方式：${escapeHTML(mechanismLabel(mechanism))}</span>
+          <button class="archive-open" type="button" data-case-id="${escapeHTML(item.id)}">拿起来拆开看 <span aria-hidden="true">↗</span></button>
       </div>
     </article>`;
 }
@@ -317,8 +323,11 @@ function detailTemplate(label, value, extraClass = "") {
 }
 
 function openCase(caseId) {
-  const item = state.cases.find((candidate) => candidate.id === caseId);
+  const item = state.cases.find((candidate) => candidate.id === caseId) ||
+    state.candidates.find((candidate) => candidate.id === caseId);
   if (!item) return;
+  state.viewed.add(item.id);
+  elements.viewCount.textContent = String(state.viewed.size);
   const cover = safeCover(item.id);
   const context = caseContext(item);
   const type = caseType(item);
@@ -354,11 +363,22 @@ function openCase(caseId) {
         ${detailTemplate("迁移到 Joey 作品集", item.transfer)}
         ${detailTemplate("证据边界", item.evidence, "dialog-evidence")}
       </div>
-      <div class="dialog-action"><a class="button button-primary" href="${escapeHTML(safeURL(item.url))}" target="_blank" rel="noopener noreferrer">查看原作品 ↗</a></div>
+      <div class="dialog-action">
+        <a class="button button-primary" href="${escapeHTML(safeURL(item.url))}" target="_blank" rel="noopener noreferrer">查看原作品 ↗</a>
+        <button class="button button-surprise" type="button" data-random-next>再从架上拿一件</button>
+      </div>
     </div>`;
 
-  elements.dialog.showModal();
+  if (!elements.dialog.open) elements.dialog.showModal();
   elements.dialogClose.focus();
+}
+
+function openRandomCase() {
+  if (!state.candidates.length) return;
+  const unseen = state.candidates.filter((item) => !state.viewed.has(item.id));
+  const pool = unseen.length ? unseen : state.candidates;
+  const item = pool[Math.floor(Math.random() * pool.length)];
+  openCase(item.id);
 }
 
 let revealObserver;
@@ -422,10 +442,30 @@ elements.featuredGrid.addEventListener("click", (event) => {
   if (button) openCase(button.dataset.caseId);
 });
 
+elements.heroFeatureOpen.addEventListener("click", () => {
+  if (elements.heroFeatureOpen.dataset.caseId) openCase(elements.heroFeatureOpen.dataset.caseId);
+});
+
+document.querySelectorAll("#nav-random-pick, #hero-random-pick, #aisle-random-pick, #dock-random-pick").forEach((button) => {
+  button.addEventListener("click", openRandomCase);
+});
+
+document.querySelector("#shop-map").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-shop-filter]");
+  if (!button) return;
+  setFilter(button.dataset.shopFilter);
+  document.querySelector("#archive").scrollIntoView({ behavior: "smooth" });
+});
+
 elements.archiveSearch.addEventListener("input", (event) => {
   state.query = event.target.value;
   state.visibleCount = 12;
   renderArchive();
+});
+
+elements.archiveGrid.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-case-id]");
+  if (button) openCase(button.dataset.caseId);
 });
 
 elements.archiveFilters.addEventListener("click", (event) => {
@@ -480,6 +520,9 @@ elements.archiveGrid.addEventListener("error", (event) => {
 }, true);
 
 elements.dialogClose.addEventListener("click", () => elements.dialog.close());
+elements.dialogContent.addEventListener("click", (event) => {
+  if (event.target.closest("[data-random-next]")) openRandomCase();
+});
 elements.dialog.addEventListener("click", (event) => {
   if (event.target === elements.dialog) elements.dialog.close();
 });
