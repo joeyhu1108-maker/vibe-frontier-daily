@@ -11,6 +11,9 @@ const state = {
   activeRegion: "all",
   activeFilter: "all",
   activeMechanism: "",
+  activeDate: "all",
+  activeValue: "all",
+  sortOrder: "newest",
   query: "",
   visibleCount: 12,
   viewed: new Set()
@@ -30,11 +33,15 @@ const elements = {
   archiveStatus: document.querySelector("#archive-status"),
   archiveSearch: document.querySelector("#archive-search"),
   archiveFilters: document.querySelector("#archive-filters"),
+  archiveDate: document.querySelector("#archive-date"),
+  archiveValue: document.querySelector("#archive-value"),
+  archiveMechanism: document.querySelector("#archive-mechanism"),
+  archiveSort: document.querySelector("#archive-sort"),
   typeGuide: document.querySelector("#type-guide"),
   valueNotice: document.querySelector("#value-notice"),
-  mechanismSelection: document.querySelector("#mechanism-selection"),
-  selectedMechanism: document.querySelector("#selected-mechanism"),
-  clearMechanism: document.querySelector("#clear-mechanism"),
+  filterSelection: document.querySelector("#filter-selection"),
+  selectedFilters: document.querySelector("#selected-filters"),
+  clearArchiveFilters: document.querySelector("#clear-archive-filters"),
   loadMore: document.querySelector("#load-more"),
   hackathonGroups: document.querySelector("#hackathon-groups"),
   hackathonFilters: document.querySelector("#hackathon-filters"),
@@ -76,6 +83,8 @@ const mechanismLabel = (mechanism) => ({
   "排版变成界面": "动态排版",
   "交互变成叙事": "互动故事"
 })[mechanism] || mechanism;
+
+const mechanisms = ["数据变成空间", "模型成为界面", "滚动变成镜头", "排版变成界面", "交互变成叙事"];
 
 const caseContext = (item) => item.context || state.contexts[item.id];
 const caseType = (item) => state.types.find((type) => type.id === caseContext(item)?.type);
@@ -181,17 +190,47 @@ function orderedCandidates(candidates) {
   return [...withCover, ...withoutCover];
 }
 
+function replaceOptions(select, initialLabel, values, labelFor = (value) => value) {
+  select.replaceChildren(new Option(initialLabel, "all"));
+  values.forEach(([value, count]) => select.add(new Option(`${labelFor(value)} · ${count}`, value)));
+}
+
+function populateFacets() {
+  const dates = new Map();
+  const values = new Map();
+  state.candidates.forEach((item) => {
+    const context = caseContext(item);
+    if (context?.collectedOn) dates.set(context.collectedOn, (dates.get(context.collectedOn) || 0) + 1);
+    (context?.tags || []).forEach((tag) => values.set(tag, (values.get(tag) || 0) + 1));
+  });
+
+  replaceOptions(elements.archiveDate, "全部日期", [...dates].sort(([a], [b]) => b.localeCompare(a)), (value) => dateLabel(value));
+  replaceOptions(elements.archiveValue, "全部价值方向", [...values].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "zh-CN")));
+  replaceOptions(elements.archiveMechanism, "全部机制", mechanisms.map((item) => [item, state.candidates.filter((candidate) => candidate.mechanisms?.includes(item)).length]), mechanismLabel);
+}
+
+function sortCandidates(candidates) {
+  return [...candidates].sort((a, b) => {
+    if (state.sortOrder === "title") return a.title.localeCompare(b.title, "zh-CN");
+    const aDate = caseContext(a)?.collectedOn || "";
+    const bDate = caseContext(b)?.collectedOn || "";
+    return state.sortOrder === "oldest" ? aDate.localeCompare(bDate) : bDate.localeCompare(aDate);
+  });
+}
+
 function filteredCandidates() {
   const query = state.query.trim().toLocaleLowerCase("zh-CN");
-  return state.candidates.filter((item) => {
+  return sortCandidates(state.candidates.filter((item) => {
     const context = caseContext(item);
     const matchesFilter = state.activeFilter === "all" || context?.type === state.activeFilter;
     const matchesMechanism = !state.activeMechanism || item.mechanisms?.includes(state.activeMechanism);
+    const matchesDate = state.activeDate === "all" || context?.collectedOn === state.activeDate;
+    const matchesValue = state.activeValue === "all" || context?.tags?.includes(state.activeValue);
     const haystack = [item.title, item.author, item.platform, item.memory, caseType(item)?.label, context?.summary, context?.audience, context?.value, context?.conditions, ...(context?.tags || []), ...(item.mechanisms || []), ...(item.mechanisms || []).map(mechanismLabel)]
       .join(" ")
       .toLocaleLowerCase("zh-CN");
-    return matchesFilter && matchesMechanism && (!query || haystack.includes(query));
-  });
+    return matchesFilter && matchesMechanism && matchesDate && matchesValue && (!query || haystack.includes(query));
+  }));
 }
 
 function archiveCardTemplate(item) {
@@ -231,11 +270,19 @@ function renderArchive() {
 
   elements.archiveGrid.innerHTML = visible.length
     ? visible.map(archiveCardTemplate).join("")
-    : '<p class="empty-state">没有找到匹配的作品。试试更短的关键词、切换类型或清除机制筛选。</p>';
-  elements.archiveStatus.textContent = visible.length ? `已显示 ${visible.length} / ${matches.length}` : "";
+    : '<p class="empty-state">没有找到匹配的作品。试试更短的关键词、切换类型或清除筛选。</p>';
+  elements.archiveStatus.textContent = visible.length ? `已显示 ${visible.length} / ${matches.length} · ${state.sortOrder === "oldest" ? "最早优先" : state.sortOrder === "title" ? "作品名排序" : "最新优先"}` : "";
   elements.loadMore.hidden = visible.length >= matches.length;
-  elements.mechanismSelection.hidden = !state.activeMechanism;
-  elements.selectedMechanism.textContent = `实现方式：${mechanismLabel(state.activeMechanism)}`;
+  const typeLabel = state.types.find((type) => type.id === state.activeFilter)?.label;
+  const activeLabels = [
+    state.activeDate !== "all" ? `日期：${dateLabel(state.activeDate)}` : "",
+    state.activeValue !== "all" ? `商业价值：${state.activeValue}` : "",
+    typeLabel ? `用途：${typeLabel}` : "",
+    state.activeMechanism ? `机制：${mechanismLabel(state.activeMechanism)}` : "",
+    state.query ? `搜索：${state.query}` : ""
+  ].filter(Boolean);
+  elements.filterSelection.hidden = !activeLabels.length;
+  elements.selectedFilters.textContent = activeLabels.join(" / ");
   observeReveals();
 }
 
@@ -430,6 +477,7 @@ async function loadData() {
   state.valueNotice = contextsData.valueNotice || "";
   state.candidates = orderedCandidates(candidatesData.candidates || []);
   elements.archiveTotal.textContent = String(state.candidates.length);
+  populateFacets();
 
   renderHero();
   renderFeatured();
@@ -463,6 +511,30 @@ elements.archiveSearch.addEventListener("input", (event) => {
   renderArchive();
 });
 
+elements.archiveDate.addEventListener("change", (event) => {
+  state.activeDate = event.target.value;
+  state.visibleCount = 12;
+  renderArchive();
+});
+
+elements.archiveValue.addEventListener("change", (event) => {
+  state.activeValue = event.target.value;
+  state.visibleCount = 12;
+  renderArchive();
+});
+
+elements.archiveMechanism.addEventListener("change", (event) => {
+  state.activeMechanism = event.target.value === "all" ? "" : event.target.value;
+  state.visibleCount = 12;
+  renderArchive();
+});
+
+elements.archiveSort.addEventListener("change", (event) => {
+  state.sortOrder = event.target.value;
+  state.visibleCount = 12;
+  renderArchive();
+});
+
 elements.archiveGrid.addEventListener("click", (event) => {
   const button = event.target.closest("[data-case-id]");
   if (button) openCase(button.dataset.caseId);
@@ -490,15 +562,31 @@ elements.hackathonFilters.addEventListener("click", (event) => {
   renderHackathons();
 });
 
-elements.clearMechanism.addEventListener("click", () => {
+elements.clearArchiveFilters.addEventListener("click", () => {
+  state.activeFilter = "all";
   state.activeMechanism = "";
+  state.activeDate = "all";
+  state.activeValue = "all";
+  state.sortOrder = "newest";
+  state.query = "";
   state.visibleCount = 12;
+  elements.archiveSearch.value = "";
+  elements.archiveDate.value = "all";
+  elements.archiveValue.value = "all";
+  elements.archiveMechanism.value = "all";
+  elements.archiveSort.value = "newest";
+  document.querySelectorAll("[data-filter]").forEach((button) => {
+    const active = button.dataset.filter === "all";
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
   renderArchive();
 });
 
 document.querySelectorAll("[data-mechanism]").forEach((button) => {
   button.addEventListener("click", () => {
     state.activeMechanism = button.dataset.mechanism;
+    elements.archiveMechanism.value = state.activeMechanism;
     state.visibleCount = 12;
     renderArchive();
     document.querySelector("#archive").scrollIntoView({ behavior: "smooth" });

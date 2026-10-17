@@ -132,6 +132,16 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   assert.match(await page.locator(".archive-card h3").innerText(), /Insect World/);
   await page.locator("#archive-search").fill("");
 
+  await page.locator("#archive-date").selectOption("2026-08-12");
+  await page.locator("#archive-value").selectOption("品牌传播");
+  await page.locator("#archive-mechanism").selectOption("数据变成空间");
+  await page.locator('#archive-filters [data-filter="tools"]').click();
+  assert.equal(await page.locator(".archive-card").count(), 1);
+  assert.match(await page.locator(".archive-card h3").innerText(), /KASANE/);
+  assert.match(await page.locator("#selected-filters").innerText(), /日期：2026年8月12日.*商业价值：品牌传播.*用途：生成工具.*机制：数据可视化/);
+  await page.locator("#clear-archive-filters").click();
+  assert.equal(await page.locator("#archive-date").inputValue(), "all");
+
   for (const type of contexts.types) {
     await page.locator(`#archive-filters [data-filter="${type.id}"]`).click();
     const count = candidates.filter((item) => contexts.cases[item.id].type === type.id).length;
@@ -150,9 +160,10 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   await page.locator('[data-mechanism="模型成为界面"]').click();
   const intersection = candidates.filter((item) => contexts.cases[item.id].type === "tools" && item.mechanisms.includes("模型成为界面"));
   assert.equal(await page.locator(".archive-card").count(), Math.min(12, intersection.length));
-  assert.equal(await page.locator("#mechanism-selection").isVisible(), true);
-  await page.locator("#clear-mechanism").click();
-  assert.equal(await page.locator("#mechanism-selection").isVisible(), false);
+  assert.equal(await page.locator("#filter-selection").isVisible(), true);
+  assert.equal(await page.locator("#archive-mechanism").inputValue(), "模型成为界面");
+  await page.locator("#clear-archive-filters").click();
+  assert.equal(await page.locator("#filter-selection").isVisible(), false);
   await page.locator('#archive-filters [data-filter="all"]').click();
   await page.locator("#archive-search").fill("__no_case_matches__");
   assert.equal(await page.locator(".archive-card").count(), 0);

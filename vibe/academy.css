@@ -752,11 +752,51 @@ button {
 }
 
 .archive-tools {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(260px, .75fr) minmax(0, 2fr);
+  align-items: end;
   gap: 18px;
   margin-bottom: 38px;
+}
+
+.archive-facets {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.facet-field {
+  min-width: 0;
+}
+
+.facet-field > span,
+.archive-purpose > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #5c5c57;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: .08em;
+}
+
+.facet-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 34px 0 12px;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  background: var(--white);
+  box-shadow: 4px 4px 0 var(--ink);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.archive-purpose {
+  min-width: 0;
+  grid-column: 1 / -1;
 }
 
 .search-field {
@@ -1442,7 +1482,11 @@ button {
 
   .archive-tools {
     align-items: stretch;
-    flex-direction: column;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .archive-facets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .search-field {
@@ -1620,6 +1664,10 @@ button {
   .filter-scroller {
     margin-right: calc(var(--side) * -1);
     padding-right: var(--side);
+  }
+
+  .archive-facets {
+    grid-template-columns: 1fr;
   }
 
   .archive-grid {
@@ -2374,17 +2422,18 @@ body {
 }
 
 .archive-grid {
-  display: block;
-  columns: 3 300px;
-  column-gap: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
 }
 
 .archive-card {
   width: 100%;
-  margin: 0 0 18px;
+  margin: 0;
   border: 2px solid var(--ink);
   border-radius: 2px;
-  display: inline-block;
+  display: block;
   break-inside: avoid;
   background: var(--white);
   box-shadow: 5px 5px 0 var(--ink);
@@ -2592,6 +2641,10 @@ body {
   .feature-card:nth-child(3) {
     grid-column: 2 / span 10;
   }
+
+  .archive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 680px) {
@@ -2726,7 +2779,7 @@ body {
   }
 
   .archive-grid {
-    columns: 1;
+    grid-template-columns: 1fr;
   }
 
   .browse-dock {

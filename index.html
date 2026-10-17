@@ -135,7 +135,7 @@
             <p class="eyebrow eyebrow-blue">ALL STOCK · 全部库存</p>
             <h2 id="archive-title">慢慢翻，<br />总有一件对味。</h2>
           </div>
-          <p><span id="archive-total">65</span> 个公开案例，按主要用途整理。一个作品可能有多种机制，但分类不等于它已经有商业成果。</p>
+          <p><span id="archive-total">65</span> 个公开案例，可按收录日期、商业价值方向、主要用途与实现机制组合筛选。分类来自策展判断，不等于作品已经产生商业成果。</p>
         </div>
 
         <div class="type-guide wrap" id="type-guide" aria-label="五种用途类型"></div>
@@ -148,18 +148,31 @@
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" /></svg>
             <input id="archive-search" type="search" placeholder="翻找：作品、作者、用途、机制…" autocomplete="off" />
           </label>
-          <div class="filter-scroller" id="archive-filters" aria-label="按用途类型筛选">
-            <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true">全部</button>
-            <button class="filter-chip" type="button" data-filter="data" aria-pressed="false">数据表达</button>
-            <button class="filter-chip" type="button" data-filter="product" aria-pressed="false">品牌与产品</button>
-            <button class="filter-chip" type="button" data-filter="space" aria-pressed="false">空间展示</button>
-            <button class="filter-chip" type="button" data-filter="tools" aria-pressed="false">生成工具</button>
-            <button class="filter-chip" type="button" data-filter="story" aria-pressed="false">互动叙事</button>
+          <div class="archive-facets" aria-label="案例分类维度">
+            <label class="facet-field" for="archive-date"><span>收录日期</span><select id="archive-date"><option value="all">全部日期</option></select></label>
+            <label class="facet-field" for="archive-value"><span>商业价值方向</span><select id="archive-value"><option value="all">全部价值方向</option></select></label>
+            <label class="facet-field" for="archive-mechanism"><span>实现机制</span><select id="archive-mechanism"><option value="all">全部机制</option></select></label>
+            <label class="facet-field" for="archive-sort"><span>排列方式</span><select id="archive-sort">
+              <option value="newest">最新收录优先</option>
+              <option value="oldest">最早收录优先</option>
+              <option value="title">按作品名排列</option>
+            </select></label>
+          </div>
+          <div class="archive-purpose">
+            <span>主要用途</span>
+            <div class="filter-scroller" id="archive-filters" aria-label="按主要用途筛选">
+              <button class="filter-chip is-active" type="button" data-filter="all" aria-pressed="true">全部</button>
+              <button class="filter-chip" type="button" data-filter="data" aria-pressed="false">数据表达</button>
+              <button class="filter-chip" type="button" data-filter="product" aria-pressed="false">品牌与产品</button>
+              <button class="filter-chip" type="button" data-filter="space" aria-pressed="false">空间展示</button>
+              <button class="filter-chip" type="button" data-filter="tools" aria-pressed="false">生成工具</button>
+              <button class="filter-chip" type="button" data-filter="story" aria-pressed="false">互动叙事</button>
+            </div>
           </div>
         </div>
-        <div class="mechanism-selection wrap" id="mechanism-selection" hidden>
-          <span id="selected-mechanism"></span>
-          <button type="button" id="clear-mechanism">清除机制筛选 ×</button>
+        <div class="mechanism-selection wrap" id="filter-selection" hidden>
+          <span id="selected-filters"></span>
+          <button type="button" id="clear-archive-filters">清除全部 ×</button>
         </div>
 
         <div class="archive-grid wrap" id="archive-grid" aria-live="polite">
