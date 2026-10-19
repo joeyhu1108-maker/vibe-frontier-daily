@@ -15,7 +15,9 @@
   --radius-large: 30px;
   --radius-card: 22px;
   --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.08);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  --font-hand: "Vibe Pencil", "Vibe WenKai", "Kaiti SC", "STKaiti", cursive;
+  --font-marker: "Vibe Pencil", "Vibe Marker", "Vibe WenKai", "Kaiti SC", "STKaiti", cursive;
+  font-family: var(--font-hand);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -46,7 +48,9 @@ img {
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
 }
 
@@ -1717,8 +1721,36 @@ button {
 
 /* VIBE FRONTIER curiosity shop */
 @font-face {
-  font-family: "Frontier Serif";
-  src: url("./fonts/Merriweather-Regular.ttf") format("truetype");
+  font-family: "Vibe Pencil";
+  src: url("./fonts/Caveat-Latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  size-adjust: 120%;
+  unicode-range: U+0020-024F;
+}
+
+@font-face {
+  font-family: "Vibe WenKai";
+  src: url("./fonts/LXGWWenKaiLite-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vibe WenKai";
+  src: url("./fonts/LXGWWenKaiLite-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Vibe Marker";
+  src: url("./fonts/LXGWMarkerGothic-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
   font-display: swap;
 }
 
@@ -1941,7 +1973,8 @@ body {
   display: inline-block;
   margin-top: 0.14em;
   color: var(--shop-red);
-  font-family: "Frontier Serif", Georgia, serif;
+  font-family: var(--font-marker);
+  font-style: normal;
   font-size: 0.88em;
   font-weight: 400;
   letter-spacing: -0.07em;
@@ -2180,7 +2213,7 @@ body {
   position: absolute;
   top: 20px;
   right: 22px;
-  font-family: Georgia, serif;
+  font-family: var(--font-hand);
   font-size: 36px;
   font-style: normal;
   transition: transform 180ms ease;
@@ -2957,16 +2990,16 @@ body {
 .shop-hero h1 {
   max-width: 720px;
   color: var(--ink);
-  font-size: clamp(66px, 8vw, 126px);
-  font-weight: 850;
-  letter-spacing: -0.075em;
-  line-height: 0.84;
+  font-size: clamp(66px, 8vw, 120px);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
 }
 
 .shop-hero h1 em {
   margin-top: 0.18em;
   color: var(--ink);
-  font-family: "Frontier Serif", Georgia, serif;
+  font-family: var(--font-marker);
   font-weight: 400;
   transform: rotate(-1deg);
 }
@@ -3473,4 +3506,48 @@ body {
 .code-download-form button { justify-self: start; color: #151515; }
 .code-download-form button:disabled { opacity: .4; cursor: not-allowed; transform: none; }
 .code-download-form small { line-height: 1.7; }
+
+/* A handwritten reading system, including controls and mixed Chinese / Latin text. */
+h1,
+h2,
+h3,
+.wordmark,
+.aisle-card strong,
+.hero-caption strong,
+.footer-inner strong {
+  font-family: var(--font-marker);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.section-heading h2,
+.shop-map-heading h2,
+.mechanism-intro h2,
+.editorial-inner h2,
+.about-grid h2,
+.aisle-card strong {
+  line-height: 1.15;
+}
+
+.shop-hero .hero-lead {
+  line-height: 1.75;
+}
+
+.shop-hero h1 em {
+  letter-spacing: -0.02em;
+}
+
+.wordmark {
+  font-size: 14px;
+}
+
+.nav-links,
+.shop-open,
+.shop-promise,
+.shelf-label,
+.caption-kicker,
+.feature-meta,
+.aisle-card small {
+  font-size: 12px;
+}
 .archive-card[hidden] { display: none; }

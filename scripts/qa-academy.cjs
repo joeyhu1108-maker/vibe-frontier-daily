@@ -64,6 +64,20 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   await page.waitForSelector(".feature-card");
   await page.waitForSelector(".archive-card");
   await page.waitForSelector(".hackathon-card");
+  await page.evaluate(() => document.fonts.ready);
+  const typography = await page.evaluate(() => ({
+    loaded: [...document.fonts].every((font) => font.status === "loaded"),
+    title: getComputedStyle(document.querySelector("#hero-title")).fontFamily,
+    lead: getComputedStyle(document.querySelector(".hero-lead")).fontFamily,
+    controls: [...document.querySelectorAll("button, input, select")].every((node) => getComputedStyle(node).fontFamily.includes("Vibe WenKai")),
+    allText: [...document.querySelectorAll("body *")].filter((node) => [...node.childNodes].some((child) => child.nodeType === Node.TEXT_NODE && child.textContent.trim())).every((node) => getComputedStyle(node).fontFamily.includes("Vibe "))
+  }));
+  assert.equal(typography.loaded, true, "handwriting font files must load");
+  assert.match(typography.title, /Vibe Marker/);
+  assert.match(typography.lead, /Vibe WenKai/);
+  assert.equal(typography.controls, true, "controls must use the handwritten reading face");
+  assert.equal(typography.allText, true, "all site text must use a handwriting family");
+  assert.equal(await page.locator("#hero-title > span").evaluate((node) => new Set([...node.getClientRects()].map((rect) => Math.round(rect.top))).size), 1, "hero title must stay on one handwritten line");
 
   assert.equal(await page.locator(".feature-card").count(), issue.cases.length);
   assert.equal(await page.locator(".archive-card").count(), 12);
