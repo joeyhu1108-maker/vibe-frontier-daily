@@ -26,6 +26,13 @@ const duplicateUrl = issue.cases?.find((item) => existingUrls.has(item.url));
 if (duplicateUrl) {
   throw new Error(`Case URL already exists: ${duplicateUrl.url}`);
 }
+for (const item of issue.cases ?? []) {
+  for (const field of ["image", "imageSource", "imageCredit"]) {
+    if (typeof item[field] !== "string" || !item[field].trim()) {
+      throw new Error(`New case ${item.id} requires ${field}; do not publish without a verified work image`);
+    }
+  }
+}
 
 const [, month, day] = issue.id.split("-");
 const monthNames = [
@@ -43,7 +50,7 @@ const monthNames = [
   "DEC",
 ];
 const nextIssueNo =
-  Math.max(...manifest.issues.map((entry) => Number.parseInt(entry.issueNo, 10))) + 1;
+  Math.max(0, ...manifest.issues.filter((entry) => /^\d{3}$/.test(entry.issueNo)).map((entry) => Number(entry.issueNo))) + 1;
 
 issue.dateLabel = `${monthNames[Number(month) - 1]} ${Number(day)}`;
 issue.issueNo = nextIssueNo.toString().padStart(3, "0");

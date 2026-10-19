@@ -81,6 +81,17 @@ payload.issues.forEach((issue, issueIndex) => {
     }
     if (caseUrls.has(entry.url)) fail(`duplicate case URL: ${entry.url}`);
     caseUrls.add(entry.url);
+    if (entry.image) {
+      if (entry.image.startsWith("./vibe/covers/")) {
+        const imagePath = path.resolve(path.dirname(filePath), "..", entry.image);
+        if (!fs.existsSync(imagePath)) fail(`${entry.id}.image does not exist`);
+      } else if (!/^https:\/\//.test(entry.image)) {
+        fail(`${entry.id}.image must use a local cover or public HTTPS image`);
+      }
+      if (!/^https?:\/\//.test(entry.imageSource ?? "") || !entry.imageCredit?.trim()) {
+        fail(`${entry.id} requires image provenance and credit`);
+      }
+    }
     if (!difficulties.has(entry.difficulty)) {
       fail(`${issue.id}.cases[${caseIndex}].difficulty is invalid`);
     }

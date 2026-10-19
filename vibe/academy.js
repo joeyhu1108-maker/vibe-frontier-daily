@@ -30,6 +30,9 @@ const elements = {
   heroFeatureOpen: document.querySelector("#hero-feature-open"),
   archiveGrid: document.querySelector("#archive-grid"),
   archiveTotal: document.querySelector("#archive-total"),
+  shopCount: document.querySelector("#shop-count"),
+  imageNotice: document.querySelector("#image-notice"),
+  issueNote: document.querySelector("#issue-note"),
   archiveStatus: document.querySelector("#archive-status"),
   archiveSearch: document.querySelector("#archive-search"),
   archiveFilters: document.querySelector("#archive-filters"),
@@ -71,7 +74,7 @@ const safeURL = (value = "") => {
 
 const safeCover = (id) => {
   const path = state.covers[id]?.src;
-  return typeof path === "string" && path.startsWith("./vibe/covers/") ? path : "";
+  return typeof path === "string" && (path.startsWith("./vibe/covers/") || /^https:\/\//.test(path)) ? path : "";
 };
 
 const shortTitle = (title = "") => title.split(/\s+[—–-]\s+/)[0] || title;
@@ -147,10 +150,11 @@ function renderHero() {
   elements.heroImage.alt = `${featured.title} 的作品画面`;
   elements.heroLabel.textContent = `本期首选 · ${mechanismLabel(featured.mechanisms?.[0] || "实验前端")}`;
   elements.heroWork.textContent = shortTitle(featured.title);
-  elements.heroAuthor.textContent = `${featured.author} · 收录 ${dateLabel(caseContext(featured)?.collectedOn || state.issue.id)}`;
+  elements.heroAuthor.textContent = `${featured.author} · ${sourceTimeLabel(caseContext(featured)?.pageTime || featured.pageTime)}`;
   elements.heroFeatureOpen.dataset.caseId = featured.id;
   elements.heroFeatureOpen.setAttribute("aria-label", `拆开看看本期首选 ${featured.title}`);
   elements.issueKicker.textContent = `${state.issue.issueNo || "CURRENT ISSUE"} · ${dateLabel(state.issue.id)}${state.issue.dateLabel === "TRIAL" ? " · 试读期刊" : ""}`;
+  elements.issueNote.textContent = state.issue.note;
 }
 
 function featureCardTemplate(item, index) {
@@ -184,10 +188,7 @@ function renderFeatured() {
 }
 
 function orderedCandidates(candidates) {
-  const withCover = [];
-  const withoutCover = [];
-  candidates.forEach((candidate) => (safeCover(candidate.id) ? withCover : withoutCover).push(candidate));
-  return [...withCover, ...withoutCover];
+  return candidates.filter((candidate) => safeCover(candidate.id));
 }
 
 function replaceOptions(select, initialLabel, values, labelFor = (value) => value) {
@@ -276,7 +277,7 @@ function renderArchive() {
   const typeLabel = state.types.find((type) => type.id === state.activeFilter)?.label;
   const activeLabels = [
     state.activeDate !== "all" ? `日期：${dateLabel(state.activeDate)}` : "",
-    state.activeValue !== "all" ? `商业价值：${state.activeValue}` : "",
+    state.activeValue !== "all" ? `应用价值：${state.activeValue}` : "",
     typeLabel ? `用途：${typeLabel}` : "",
     state.activeMechanism ? `机制：${mechanismLabel(state.activeMechanism)}` : "",
     state.query ? `搜索：${state.query}` : ""
@@ -369,6 +370,28 @@ function detailTemplate(label, value, extraClass = "") {
   return `<section class="dialog-detail ${extraClass}"><h3>${escapeHTML(label)}</h3><p>${escapeHTML(value)}</p></section>`;
 }
 
+function codeDownloadURL(item) {
+  const code = item?.code;
+  if (!code || !/^https:\/\/github\.com\/[\w.-]+\/[\w.-]+$/.test(code.repository) || !/^[a-f0-9]{40}$/.test(code.revision) || !code.license || !code.licenseUrl) return "";
+  return `${code.repository}/archive/${code.revision}.zip`;
+}
+
+function downloadTemplate(item) {
+  if (!codeDownloadURL(item)) return '<p class="code-unavailable">学习代码：尚未核验可下载许可，仅提供原作欣赏与来源。</p>';
+  return `<section class="code-sharing" aria-labelledby="code-title">
+    <p class="case-type">FREE TO LEARN · 尊重原创</p>
+    <h3 id="code-title">下载公开学习代码</h3>
+    <p>来自作者原仓库的 ZIP，不是本站原创代码。代码许可：<a href="${escapeHTML(safeURL(item.code.licenseUrl))}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.code.license)} ↗</a>。</p>
+    <p>${escapeHTML(item.code.notice)}</p>
+    <p class="code-boundary">以下是本站下载入口的学习承诺，不改写原作者许可，也不授予额外权利。图片、字体、数据等仍需分别遵守原始条款。</p>
+    <form class="code-download-form" data-code-case="${escapeHTML(item.id)}">
+      <label class="code-agreement"><input type="checkbox" name="learning-agreement" required /><span>我已阅读并承诺：仅作个人学习，不抄袭、不商用，保留原作者署名与许可说明。</span></label>
+      <button class="button button-primary" type="submit" disabled>同意后下载代码 ZIP ↗</button>
+      <small>每次打开需重新勾选；本站不收集个人信息，不提供付费解锁。</small>
+    </form>
+  </section>`;
+}
+
 function openCase(caseId) {
   const item = state.cases.find((candidate) => candidate.id === caseId) ||
     state.candidates.find((candidate) => candidate.id === caseId);
@@ -382,6 +405,7 @@ function openCase(caseId) {
   elements.dialogContent.innerHTML = `
     ${cover ? `<img class="dialog-cover" src="${escapeHTML(cover)}" alt="${escapeHTML(item.title)} 的公开作品画面" />` : ""}
     <div class="dialog-body">
+      <p class="dialog-image-credit">${escapeHTML(state.covers[item.id]?.credit || "作品画面，权利归原作者所有")} · <a href="${escapeHTML(safeURL(state.covers[item.id]?.source || item.url))}" target="_blank" rel="noopener noreferrer">画面来源 ↗</a></p>
       <p class="feature-meta">${escapeHTML(item.platform)}</p>
       <h2 id="dialog-title">${escapeHTML(item.title)}</h2>
       <p class="dialog-byline">作者：${escapeHTML(item.author)} · 复现难度：${escapeHTML(item.difficulty)}</p>
@@ -390,7 +414,7 @@ function openCase(caseId) {
       <p class="dialog-memory">${escapeHTML(item.memory)}</p>
       <section class="dialog-value" aria-labelledby="value-title">
         <p class="case-type">${escapeHTML(type?.label || "待分类")}</p>
-        <h3 id="value-title">应用与商业价值判断</h3>
+        <h3 id="value-title">应用价值与学习方向</h3>
         <p class="value-boundary">策展判断 · 商业结果未验证</p>
         <div class="dialog-detail-grid">
           ${detailTemplate("适用对象与场景", context?.audience)}
@@ -410,6 +434,7 @@ function openCase(caseId) {
         ${detailTemplate("迁移到 Joey 作品集", item.transfer)}
         ${detailTemplate("证据边界", item.evidence, "dialog-evidence")}
       </div>
+      ${downloadTemplate(item)}
       <div class="dialog-action">
         <a class="button button-primary" href="${escapeHTML(safeURL(item.url))}" target="_blank" rel="noopener noreferrer">查看原作品 ↗</a>
         <button class="button button-surprise" type="button" data-random-next>再从架上拿一件</button>
@@ -455,7 +480,7 @@ function observeReveals() {
 
 async function loadData() {
   const [issuesResponse, candidatesResponse, coversResponse, contextsResponse] = await Promise.all([
-    fetch("./vibe/issues.json"),
+    fetch("./vibe/issues.json", { cache: "no-cache" }),
     fetch("./vibe/site-candidates.json"),
     fetch("./vibe/cover-map.json"),
     fetch("./vibe/case-context.json")
@@ -469,14 +494,26 @@ async function loadData() {
     contextsResponse.json()
   ]);
 
-  state.issue = issuesData.issues?.[0] || null;
-  state.cases = state.issue?.cases || [];
   state.covers = coversData || {};
   state.types = contextsData.types || [];
   state.contexts = contextsData.cases || {};
   state.valueNotice = contextsData.valueNotice || "";
-  state.candidates = orderedCandidates(candidatesData.candidates || []);
+  const library = new Map((candidatesData.candidates || []).map((item) => [item.id, item]));
+  // Merge published issues so new work never stays hidden behind the historical snapshot.
+  for (const issue of [...(issuesData.issues || [])].reverse()) {
+    for (const item of issue.cases) {
+      const context = item.context || state.contexts[item.id] || {};
+      library.set(item.id, { ...item, context: { ...context, collectedOn: context.collectedOn || issue.id, pageTime: context.pageTime || item.pageTime } });
+      if (item.image) state.covers[item.id] = { src: item.image, source: item.imageSource, credit: item.imageCredit };
+    }
+  }
+  state.issue = issuesData.issues?.[0] || null;
+  state.cases = (state.issue?.cases || []).map((item) => library.get(item.id)).filter((item) => safeCover(item.id));
+  state.candidates = orderedCandidates([...library.values()]);
   elements.archiveTotal.textContent = String(state.candidates.length);
+  elements.shopCount.textContent = `${state.candidates.length} 件有图作品`;
+  const pendingImages = library.size - state.candidates.length;
+  elements.imageNotice.textContent = `只展示有可核验作品图的案例；${pendingImages} 件暂缺图的历史研究记录保留在档案中，不用占位图补数。收录日期不等于作品上线日；来源时间另行标注。`;
   populateFacets();
 
   renderHero();
@@ -601,15 +638,26 @@ elements.loadMore.addEventListener("click", () => {
 elements.archiveGrid.addEventListener("error", (event) => {
   const image = event.target;
   if (!image.classList?.contains("archive-image")) return;
-  const media = image.closest(".archive-media");
-  media.classList.add("is-unavailable");
-  media.innerHTML = '<span>作品图暂时无法加载</span><span>查看原作品 ↗</span>';
-  media.closest(".archive-card").querySelector(".archive-image-source")?.remove();
+  image.closest(".archive-card").hidden = true;
+  elements.archiveStatus.textContent += " · 一件作品图加载失败，已暂时隐藏";
 }, true);
 
 elements.dialogClose.addEventListener("click", () => elements.dialog.close());
 elements.dialogContent.addEventListener("click", (event) => {
   if (event.target.closest("[data-random-next]")) openRandomCase();
+});
+elements.dialogContent.addEventListener("change", (event) => {
+  if (event.target.name !== "learning-agreement") return;
+  event.target.form.querySelector('button[type="submit"]').disabled = !event.target.checked;
+});
+elements.dialogContent.addEventListener("submit", (event) => {
+  const form = event.target.closest(".code-download-form");
+  if (!form) return;
+  event.preventDefault();
+  if (!form.elements["learning-agreement"].checked) return;
+  const item = state.candidates.find((candidate) => candidate.id === form.dataset.codeCase);
+  const url = codeDownloadURL(item);
+  if (url) window.open(url, "_blank", "noopener,noreferrer");
 });
 elements.dialog.addEventListener("click", (event) => {
   if (event.target === elements.dialog) elements.dialog.close();

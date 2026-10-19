@@ -1909,7 +1909,7 @@ body {
   font-weight: 700;
 }
 
-.shop-open span {
+.shop-open > span[aria-hidden] {
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -2935,7 +2935,7 @@ body {
   box-shadow: none;
 }
 
-.shop-open span {
+.shop-open > span[aria-hidden] {
   width: 10px;
   height: 10px;
   border: 2px solid var(--shop-yellow);
@@ -3455,3 +3455,22 @@ body {
     border-radius: 14px;
   }
 }
+
+.code-sharing {
+  margin: 32px 0;
+  padding: clamp(20px, 4vw, 32px);
+  border: 1px solid currentColor;
+  background: #1b1b1b;
+}
+
+.code-sharing h3 { margin: 8px 0 16px; font-size: 24px; }
+.code-sharing p { margin: 12px 0; line-height: 1.8; }
+.code-sharing a, .dialog-image-credit a { text-decoration: underline; text-underline-offset: 3px; }
+.code-boundary, .code-unavailable, .dialog-image-credit { font-size: 13px; line-height: 1.7; }
+.code-download-form { display: grid; gap: 18px; margin-top: 24px; }
+.code-agreement { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; line-height: 1.75; }
+.code-agreement input { flex: 0 0 20px; width: 20px; height: 20px; margin-top: 4px; accent-color: var(--shop-yellow); }
+.code-download-form button { justify-self: start; color: #151515; }
+.code-download-form button:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+.code-download-form small { line-height: 1.7; }
+.archive-card[hidden] { display: none; }

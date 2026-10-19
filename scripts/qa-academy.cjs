@@ -8,6 +8,14 @@ const readJSON = (file) => JSON.parse(fs.readFileSync(path.join(__dirname, "..",
 const contexts = readJSON("case-context.json");
 const candidates = readJSON("site-candidates.json").candidates;
 const issue = readJSON("issues.json").issues[0];
+const issues = readJSON("issues.json").issues;
+const covers = readJSON("cover-map.json");
+const library = new Map(candidates.map((item) => [item.id, item]));
+for (const entry of [...issues].reverse()) {
+  for (const item of entry.cases) library.set(item.id, item);
+}
+const visibleCandidates = [...library.values()].filter((item) => item.image || covers[item.id]?.src);
+const contextFor = (item) => item.context || contexts.cases[item.id];
 const hackathons = readJSON("hackathons.json");
 
 assert.equal(hackathons.schemaVersion, 1);
@@ -34,7 +42,7 @@ assert.equal(new Set(contexts.types.map((type) => type.id)).size, 5);
 assert.match(contexts.valueNotice, /未核验成交/);
 assert.deepEqual(Object.keys(contexts.cases).sort(), candidates.map((item) => item.id).sort());
 for (const item of [...candidates, ...issue.cases]) {
-  const context = contexts.cases[item.id];
+  const context = contextFor(item);
   assert.ok(contexts.types.some((type) => type.id === context.type), `${item.id}: unknown type`);
   for (const field of ["audience", "value", "conditions"]) {
     assert.ok(typeof context[field] === "string" && context[field].trim(), `${item.id}: missing ${field}`);
@@ -66,7 +74,11 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   assert.equal(await page.locator("text=¥99").count(), 0);
   assert.equal(await page.getByRole("button", { name: /^(购买|登录)$/ }).count(), 0);
   assert.equal(await page.getByRole("link", { name: /^(购买|登录)$/ }).count(), 0);
-  assert.equal(await page.locator("#archive-total").innerText(), String(candidates.length));
+  assert.equal(await page.locator("#archive-total").innerText(), String(visibleCandidates.length));
+  const [year, month, day] = issue.id.split("-").map(Number);
+  assert.match(await page.locator("#issue-kicker").innerText(), new RegExp(`${year}年${month}月${day}日`));
+  assert.match(await page.locator("#about").innerText(), /不以盈利为目的/);
+  assert.doesNotMatch(await page.locator("#about").innerText(), /未来探索|定制互动项目/);
   assert.match(await page.locator("#value-notice").innerText(), /策展判断/);
   assert.equal(await page.locator(".hackathon-card").count(), hackathons.events.length);
   assert.match(await page.locator("#hackathon-notice").innerText(), /不是实时名额/);
@@ -115,15 +127,42 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   await page.locator("[data-case-id]").first().click();
   await page.locator("#case-dialog[open]").waitFor();
   await page.getByText("为什么不是普通特效").waitFor();
-  await page.getByText("应用与商业价值判断", { exact: true }).waitFor();
+  await page.getByText("应用价值与学习方向", { exact: true }).waitFor();
   for (const label of ["适用对象与场景", "能解决什么问题", "落地条件与限制", "建议如何验证"]) {
     await page.getByText(label, { exact: true }).waitFor();
   }
   assert.match(await page.locator(".dialog-value").innerText(), /商业结果未验证/);
   await page.locator(".dialog-close").click();
 
+  const downloadable = issue.cases.find((item) => item.code);
+  await page.locator(`.feature-open[data-case-id="${downloadable.id}"]`).click();
+  const agreement = page.locator('[name="learning-agreement"]');
+  const download = page.locator('.code-download-form button[type="submit"]');
+  assert.equal(await agreement.isChecked(), false);
+  assert.equal(await download.isEnabled(), false);
+  await agreement.check();
+  assert.equal(await download.isEnabled(), true);
+  await agreement.uncheck();
+  assert.equal(await download.isEnabled(), false);
+  await page.locator(".code-sharing").screenshot({ path: screenshotPath.replace(".png", "-agreement.png") });
+  if (baseURL.startsWith("http://127.0.0.1")) {
+    await page.evaluate(() => { window.open = (url) => { window.qaDownloadURL = url; }; });
+    await agreement.check();
+    await download.click();
+    assert.equal(await page.evaluate(() => window.qaDownloadURL), `${downloadable.code.repository}/archive/${downloadable.code.revision}.zip`);
+  }
+  await page.locator(".dialog-close").click();
+  await page.locator(`.feature-open[data-case-id="${downloadable.id}"]`).click();
+  assert.equal(await page.locator('[name="learning-agreement"]').isChecked(), false);
+  assert.equal(await page.locator('.code-download-form button').isEnabled(), false);
+  await page.locator(".dialog-close").click();
+
   await page.locator("#load-more").click();
-  assert.equal(await page.locator(".archive-card").count(), 24);
+  assert.equal(await page.locator(".archive-card").count(), Math.min(24, visibleCandidates.length));
+  for (const image of await page.locator(".archive-card img").all()) await image.scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => [...document.querySelectorAll(".archive-card img")].every((image) => image.complete && image.naturalWidth > 0));
+  assert.equal(await page.locator(".archive-card:not(:has(img))").count(), 0);
+  assert.equal(await page.locator('.archive-card[hidden]').count(), 0);
 
   await page.locator("#archive-search").fill("Galaxies");
   assert.equal(await page.locator(".archive-card").count(), 1);
@@ -138,14 +177,13 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   await page.locator('#archive-filters [data-filter="tools"]').click();
   assert.equal(await page.locator(".archive-card").count(), 1);
   assert.match(await page.locator(".archive-card h3").innerText(), /KASANE/);
-  assert.match(await page.locator("#selected-filters").innerText(), /日期：2026年8月12日.*商业价值：品牌传播.*用途：生成工具.*机制：数据可视化/);
+  assert.match(await page.locator("#selected-filters").innerText(), /日期：2026年8月12日.*应用价值：品牌传播.*用途：生成工具.*机制：数据可视化/);
   await page.locator("#clear-archive-filters").click();
   assert.equal(await page.locator("#archive-date").inputValue(), "all");
 
   for (const type of contexts.types) {
     await page.locator(`#archive-filters [data-filter="${type.id}"]`).click();
-    const count = candidates.filter((item) => contexts.cases[item.id].type === type.id).length;
-    assert.ok(count > 0);
+    const count = visibleCandidates.filter((item) => contextFor(item).type === type.id).length;
     assert.equal(await page.locator(".archive-card").count(), Math.min(12, count));
     assert.equal(await page.locator(`.archive-card[data-type="${type.id}"]`).count(), Math.min(12, count));
     assert.equal(await page.locator(`#type-guide [data-filter="${type.id}"]`).getAttribute("aria-pressed"), "true");
@@ -158,7 +196,7 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   assert.match(await firstConditions.innerText(), /建议验证/);
 
   await page.locator('[data-mechanism="模型成为界面"]').click();
-  const intersection = candidates.filter((item) => contexts.cases[item.id].type === "tools" && item.mechanisms.includes("模型成为界面"));
+  const intersection = visibleCandidates.filter((item) => contextFor(item).type === "tools" && item.mechanisms.includes("模型成为界面"));
   assert.equal(await page.locator(".archive-card").count(), Math.min(12, intersection.length));
   assert.equal(await page.locator("#filter-selection").isVisible(), true);
   assert.equal(await page.locator("#archive-mechanism").inputValue(), "模型成为界面");

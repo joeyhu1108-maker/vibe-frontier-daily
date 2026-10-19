@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-17T00:00:00.000Z",
+  "updatedAt": "2026-10-19T04:50:37.987Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,208 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-10-19",
+      "note": "本次新收录 4 件作品，来源仓库均创建于 2026 年 10 月 18 日。首选 Geomap：同一份高度场同时生成景观、地图与地质剖面，让解释与画面从结构上保持一致。收录日期与作品来源时间分开标注，不把旧作改成新作。",
+      "featuredId": "geomap-webgpu-geology",
+      "experiment": {
+        "title": "用同一份数据画出表面与剖面",
+        "input": "一张 64×64 灰度高度图；没有真实数据时，只用一个公开 DEM 小样，不把程序噪声冒充项目数据。",
+        "stack": "单个 HTML、Canvas 2D、原生 JavaScript；先不使用 Three.js 或 WebGPU。",
+        "target": "左侧画俯视高度色带，右侧画鼠标所在列的剖面；两个视图必须读取同一个数组。",
+        "acceptance": [
+          "鼠标横移时剖面与俯视指示线同步",
+          "改变一处高度值后两个视图同时变化",
+          "移动端仍能用触摸选择剖面",
+          "页面文字明确标注数据来源与显示缩放"
+        ]
+      },
+      "restraint": "Creative Twin 只有在项目确有可核验的时间、空间、版本或行为数据时，才接入三维或生成映射；如果只有一组文案和装饰图，就保持二维叙事，不用伪数据制造数字孪生感。",
+      "cases": [
+        {
+          "id": "geomap-webgpu-geology",
+          "title": "Geomap — WebGPU Terrain & Geological Block",
+          "author": "Ardin Fardiansyah",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.10.18",
+          "url": "https://ngublag.com/geomap/",
+          "accent": "#d88c52",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "一片干燥山谷按下 Geology 后变成可切开的彩色地质方块；顶面的地质图与四周褶皱剖面严丝合缝，切片滑杆像在移动一把真实剖刀。",
+          "why": "它不是给山体换一张彩色贴图。作者让 compute shader 生成共享高度场，再让同一个 WGSL 地质函数逐片元决定顶面和侧壁的地层、断层、岩体与不整合，因此景观、地图与剖面是同一模型的三种读法。",
+          "input": "随机地形种子、64–1024 网格分辨率、地形/地质模式、东西与南向切片位置、垂直夸张、褶皱幅度、断层落差、太阳方位，以及等高线、接触线和岩体开关。",
+          "layer": "公开源码可核验原生 WebGPU、WGSL compute 高度场、域扭曲 fBm、ridged noise、河谷函数、阴影贴图、MSAA、等高线与地层接触线；没有引入三维框架。",
+          "motion": "拖拽环绕、右键或 Shift 拖拽平移、滚轮缩放；切片滑杆实时移动方块边界，褶皱幅度和断层落差直接改写剖面，自动旋转只负责观察而不替代结构变化。",
+          "pipeline": "种子与网格参数 → compute shader 生成共享高度场 → 顶面与侧壁读取同一高度 → WGSL 地质函数求地层/断层/侵入体 → 阴影、轮廓和接触线合成 → 交互切片与镜头。",
+          "performance": "默认网格 512，可用 URL 在 64–1024 间降级；画布 DPR 封顶 2，尺寸变化时重建 MSAA 与深度纹理。没有 WebGPU 时页面明确失败；源码未见 WebGL/Canvas 或 reduced-motion 后备，移动端发布应先以 128/256 网格和静态剖面兜底。",
+          "transfer": "把 Joey 项目里一份真实的空间或版本数据做成“表面 + 剖面”双视图：表面给整体气质，剖面解释关键节点；两个视图必须共享同一数据源，不能用两套手工画面假装一致。",
+          "difficulty": "1 天原型",
+          "evidence": "GitHub API 显示 ardfard/geomap 创建于 2026-10-18，账号公开名为 Ardin Fardiansyah；演示当前 HTTP 200，本次重新核验公开页面与展示图；前次已现场查看地形/地质切换与切片。README、HTML 与 WGSL/JavaScript 源码交叉核验共享高度场、地质函数、控件、DPR 和 WebGPU 限制。地层是程序化示意，不代表真实地点；本次未做 GPU 基准，仓库也未声明许可证。源码：https://github.com/ardfard/geomap",
+          "image": "./vibe/covers/geomap-webgpu-geology.jpg",
+          "imageSource": "https://ngublag.com/geomap/?mode=geology",
+          "imageCredit": "Ardin Fardiansyah / Geomap；本站实景截图，仅作作品介绍",
+          "context": {
+            "type": "space",
+            "tags": [
+              "科学传播",
+              "知识学习"
+            ],
+            "collectedOn": "2026-10-19",
+            "pageTime": "Repository created · 2026.10.18",
+            "summary": "切开同一块程序化山体，地质图与侧面地层同步变化。",
+            "audience": "科学传播、交互展陈与可视化学习者",
+            "value": "用同一模型连接整体与剖面，适合学习如何让空间展示承担解释，而不是只呈现模型。",
+            "conditions": "这里是程序化地质示意，不是实测地层；迁移到真实场地前需可靠数据与专业审阅。"
+          }
+        },
+        {
+          "id": "dream-engine-browser-world-model",
+          "title": "Dream Engine — A Browser Diffusion World Model",
+          "author": "Mohammadreza Ahmaditeshnizi",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.10.18",
+          "url": "https://dream.teshnizi.dev/",
+          "accent": "#d8a64a",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "同一次按键把屏幕一分为二：左边是真实迷宫，右边是神经网络逐帧梦出的迷宫；刚醒来几乎一致，十几帧后空间开始漂移，误差不再藏在演示背后。",
+          "why": "它把模型的能力和失败同时做成界面。真实引擎与 6.77M 参数扩散世界模型接收同一动作，用户亲手看见短期预测成立、长期记忆崩解；漂移曲线和重新唤醒不是装饰，而是叙事的证据。",
+          "input": "真实引擎最近 4 帧、最近 4 个移动/侧移/转向动作、扩散噪声与 1–3 个 Euler 去噪步；用户键盘或触控输入同时送给真实与梦境两侧。",
+          "layer": "作者公开说明与源码可核验 64×64 raycaster、DIAMOND 风格 EDM U-Net、ONNX Runtime Web 1.30、WebGPU fp16 graph capture 与 WASM 后备；fp16 模型约 13.8 MB，画面和动作数据在浏览器内递归生成。",
+          "motion": "左右画面锁定同一控制节奏，梦境每帧以上一段梦境继续自回归；用户可重新注入真实帧让它“醒来”。镜头运动来自用户动作，漂移曲线把模型从跟随到另一个空间的过程显性化。",
+          "pipeline": "程序化迷宫在线生成训练批次 → Python/JavaScript 引擎像素一致性校验 → 模型训练与 ONNX 导出 → 浏览器加载最近 4 帧/动作 → WebGPU 或 WASM 去噪 → 真实/梦境并排与漂移可视化。",
+          "performance": "作者报告 Apple M4、WebGPU fp16、2 步时中位约 28 fps，并给出结果文件；这是作者测试而非本站独立基准。当前页面提供 1–3 步切换；粗指针有触控垫，非 WebGPU 浏览器可回退 WASM，但会更慢。约 13.8 MB 模型与持续推理仍需加载提示、暂停和设备测试。",
+          "transfer": "在 Joey 的实验页里采用“真实状态 / 模型推断”并排，而不是只展示漂亮生成结果；例如把真实创作步骤与 Creative Twin 的下一步预测同时播放，并允许观众在预测漂移时重新注入一条真实证据。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 显示 teshnizi2/dream-engine 创建于 2026-10-18，账号公开名为 Mohammadreza Ahmaditeshnizi；MIT 仓库和演示均可访问，现场确认左右 REAL/DREAM、WebGPU fp16 captured 状态与交互。参数量、训练时长、帧率、PSNR 和漂移窗口均来自作者 README 与 results 文件，本次未重训、未复跑评测，不能把这些数字视为独立审计结论。源码：https://github.com/teshnizi2/dream-engine",
+          "image": "./vibe/covers/dream-engine-browser-world-model.png",
+          "imageSource": "https://github.com/teshnizi2/dream-engine/blob/7e7168679e714390ccaaef658a14646c014709de/media/hero.png",
+          "imageCredit": "Mohammadreza Ahmaditeshnizi / Dream Engine；作者仓库展示图（MIT）",
+          "context": {
+            "type": "story",
+            "tags": [
+              "知识学习",
+              "科学传播"
+            ],
+            "collectedOn": "2026-10-19",
+            "pageTime": "Repository created · 2026.10.18",
+            "summary": "同一次按键，左边运行真实迷宫，右边由模型逐帧想象；漂移就是可以亲手观察的内容。",
+            "audience": "AI 创作、模型解释与交互叙事学习者",
+            "value": "学习真实状态与模型推断并排呈现的方法，让能力边界也成为可操作的界面。",
+            "conditions": "模型训练与推理有显著设备成本；作者性能数字不是本站实测，不承诺手机流畅运行。"
+          },
+          "code": {
+            "repository": "https://github.com/teshnizi2/dream-engine",
+            "revision": "7e7168679e714390ccaaef658a14646c014709de",
+            "license": "MIT（原创代码）",
+            "licenseUrl": "https://github.com/teshnizi2/dream-engine/blob/7e7168679e714390ccaaef658a14646c014709de/LICENSE",
+            "notice": "原创代码为 MIT；下载后保留 LICENSE 与 THIRD_PARTY.md，并核查依赖和模型说明。"
+          }
+        },
+        {
+          "id": "picnic-site-edogawa",
+          "title": "江户川のピクニック — Walkable Pixel Landscape",
+          "author": "Ishihara",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.10.18",
+          "url": "https://jumpei-ishihara.github.io/picnic-site/edogawa.html",
+          "accent": "#77a65d",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "低分辨率的江户川河滩从野餐垫高度展开：草、桥、送电线和水面不是背景板，观众可以起身走过去，午餐、午睡与夕阳把同一地点变成不同段落。",
+          "why": "像素风只是最后一层。场景先把国土地理院 DEM5A、空中照片分类和 OpenStreetMap 地标转成可行走地形，再用真实日期的太阳/月亮路径、碰撞与水面把地点变成界面；风格化没有切断数据来源。",
+          "input": "国土地理院高程与空中照片、OSM 道路/建筑/设施、场景 JSON、2026-10-18 的经纬度与太阳/月亮位置，以及移动、视角、午餐/午睡/夕阳/桥梁预设和水面点击。",
+          "layer": "公开源码可核验 Three.js 0.160、低分辨率离屏渲染、色阶量化与抖动、Bloom、像素化放大、高度图地形、OSM 建筑与地标、真实天体路径、阴影、水面反射/折射、碰撞和 PNG/循环视频导出。",
+          "motion": "第一人称步行和触控摇杆承担探索，四个视点预设承担镜头剪辑；时间段连续改变天空、光照、窗灯、雾与水面，点击水面产生波纹。运动由地点状态驱动，不是独立播放的一段背景视频。",
+          "pipeline": "公开地理数据获取与加工 → 高程/地面分类/地标写入 scene JSON → Three.js 建立地形、建筑、植被与水 → 低分辨率渲染和像素后期 → 行走、时段、声音与导出界面。",
+          "performance": "渲染器固定 DPR 1，并按视口宽高除以 pixelScale 后再放大，最低 160×90；触控设备把阴影贴图从 2048 降到 1024，并提供粗指针专用摇杆。README 仅说明 Chrome/WebGL2，源码未见 reduced-motion 分支；移动端应默认关闭自动时段与高成本水面反射。",
+          "transfer": "若 Joey 作品有真实地点，可把展览、采样点或行走路线做成低分辨率空间，并让每个位置打开对应证据；若没有地理数据，就只借“固定视点 + 可走路径”的结构，不宣称数字孪生。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 显示 Jumpei-Ishihara/picnic-site 创建于 2026-10-18，账号公开名为 Ishihara；直接场景当前 HTTP 200，本次重新核验公开页面与展示图；前次已现场进入江户川与午餐视点。README、场景署名、SPEC、渲染器和控制器源码交叉核验 DEM5A、空中照片、OSM、真实天体路径、DPR 与触控降级。未独立核对地形对真实江户川的测绘精度，也未执行导出；地理派生数据另受 ODbL/国土地理院条款约束。源码：https://github.com/Jumpei-Ishihara/picnic-site",
+          "image": "./vibe/covers/picnic-site-edogawa.jpg",
+          "imageSource": "https://jumpei-ishihara.github.io/picnic-site/edogawa.html",
+          "imageCredit": "Jumpei Ishihara / 江戸川のピクニック；本站实景截图。地形来自日本国土地理院，地图数据 © OpenStreetMap contributors（ODbL）",
+          "context": {
+            "type": "space",
+            "tags": [
+              "文化传播",
+              "展陈体验"
+            ],
+            "collectedOn": "2026-10-19",
+            "pageTime": "Repository created · 2026.10.18",
+            "summary": "从野餐垫高度走进像素江户川；真实地形与地点成为可以探索的日常空间。",
+            "audience": "地方叙事、数字展览与空间创作学习者",
+            "value": "把地理数据与亲密的观看尺度连接，可学习地点如何成为内容入口，像素化只是表达层。",
+            "conditions": "地理派生数据与源码分开许可，不能把风格化场景当作测绘精度证明。"
+          },
+          "code": {
+            "repository": "https://github.com/Jumpei-Ishihara/picnic-site",
+            "revision": "a13662ff0fdcda639651858f097483a555f10a04",
+            "license": "MIT（原创代码）",
+            "licenseUrl": "https://github.com/Jumpei-Ishihara/picnic-site/blob/a13662ff0fdcda639651858f097483a555f10a04/LICENSE",
+            "notice": "代码为 MIT；场景地理数据与文档地图不在 MIT 范围内，须另读场景 ATTRIBUTION.md 及 GSI / ODbL 条款。"
+          }
+        },
+        {
+          "id": "solaris-ephemeris-orrery",
+          "title": "SOLARIS — Interactive Ephemeris Orrery",
+          "author": "Tiancan Xia",
+          "platform": "GitHub / creator demo",
+          "pageTime": "Repository created · 2026.10.18",
+          "url": "https://tiancanxia.github.io/solaris/",
+          "accent": "#c9a86a",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "一座黄铜刻度与黑玻璃包围的太阳仪缓慢运行；拖动日期时，行星不是沿装饰轨道转圈，而是按星历重新排布，点一颗行星，镜头像博物馆导览一样弧线飞近。",
+          "why": "它清楚分开科学真实性与观看尺度：轨道参数、日期和相位由 JPL 近似根数计算，日心距离再用单调函数压缩，行星尺寸与卫星距离则明确为可观看而放大。数据、表现性失真和程序化背景各自被标注，因此 3D 展示仍有证据纪律。",
+          "input": "1800–2050 的模拟日期、JPL J2000 近似轨道根数及世纪变率、行星物理参数、时间倍率、天体选择、镜头拖拽/缩放、轨道与标注开关、语言和声音状态。",
+          "layer": "README 与公开源码可核验 Three.js r170/WebGL2、Newton 法解开普勒方程、视觉距离压缩、自写 ShaderMaterial、HalfFloat/MSAA EffectComposer、Bloom/ACES、12,500 颗单 draw call 恒星、实例化小行星带和程序化银河。",
+          "motion": "时间轴让轨道相位持续变化，点击天体触发带弧线的聚焦镜头和档案浮层，自动巡游串联九个站点且可被用户动作打断。相机模块读取 prefers-reduced-motion，降低转场运动。",
+          "pipeline": "日期 → 儒略日与轨道根数 → Newton 求偏近点角 → 黄道坐标与显示压缩 → 行星/卫星/轨道场景 → HDR 后期 → 标注、档案、双语与巡游同步。",
+          "performance": "源码会按持续帧率在 DPR 1–1.75 间调节，并提供关闭 MSAA、降为 2× MSAA、关闭 Bloom 的 URL 开关；恒星与小行星使用单次/实例化绘制。作者给出的 Intel UHD 帧率只代表其测试环境，本次未复测；WebGL2 与硬件加速是底线。",
+          "transfer": "把 Joey 项目集做成“证据驱动的观测档案”：真实日期、地点或版本决定对象位置，镜头聚焦后再展示来源与状态；同时像本作一样公开说明哪些比例被为了观看而压缩。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 显示 TiancanXia/solaris 创建于 2026-10-18，公开名为 Tiancan Xia，仓库 MIT；演示当前 HTTP 200，本次重新核验公开页面与展示图；前次已现场进入太阳仪、查看星历面板与行星聚焦。README、ephemeris、camera、world 与 main 源码交叉核验数据区间、计算方法、显示压缩、12,500 恒星、自适应 DPR 与 reduced-motion。轨道是 JPL 近似模型而非 Horizons 精密星历，银河和尘埃带是艺术化背景；作者性能数字未独立复测。源码：https://github.com/TiancanXia/solaris",
+          "image": "./vibe/covers/solaris-ephemeris-orrery.jpg",
+          "imageSource": "https://github.com/TiancanXia/solaris/blob/84c52311cea130763d1e25615fc0165a29b4a915/preview/orrery.jpg",
+          "imageCredit": "TiancanXia / SOLARIS；作者仓库展示图。星球纹理 © Solar System Scope（CC BY 4.0，原项目已缩放与重新编码）",
+          "context": {
+            "type": "data",
+            "tags": [
+              "科学传播",
+              "知识学习"
+            ],
+            "collectedOn": "2026-10-19",
+            "pageTime": "Repository created · 2026.10.18",
+            "summary": "拖动日期重新排布行星，点击天体聚焦档案；星历计算与观看尺度各自被说明。",
+            "audience": "科普叙事、数据可视化与博物馆界面学习者",
+            "value": "学习如何分开数据真实性与视觉尺度：计算驱动关系，镜头与档案负责解释。",
+            "conditions": "采用 JPL 近似模型而非精密星历；距离压缩、天体放大与艺术背景需要持续标注。"
+          },
+          "code": {
+            "repository": "https://github.com/TiancanXia/solaris",
+            "revision": "84c52311cea130763d1e25615fc0165a29b4a915",
+            "license": "MIT（原创代码）",
+            "licenseUrl": "https://github.com/TiancanXia/solaris/blob/84c52311cea130763d1e25615fc0165a29b4a915/LICENSE",
+            "notice": "原创代码为 MIT；星球纹理为 CC BY 4.0、字体为 OFL。必须保留 LICENSES.md 与第三方署名。"
+          }
+        }
+      ],
+      "dateLabel": "OCT 19",
+      "issueNo": "001"
+    },
     {
       "id": "2026-08-17",
       "dateLabel": "TRIAL",
