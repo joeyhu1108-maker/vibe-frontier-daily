@@ -15,9 +15,10 @@
   --radius-large: 30px;
   --radius-card: 22px;
   --shadow-card: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --font-reading: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
   --font-hand: "Vibe Pencil", "Vibe WenKai", "Kaiti SC", "STKaiti", cursive;
   --font-marker: "Vibe Pencil", "Vibe Marker", "Vibe WenKai", "Kaiti SC", "STKaiti", cursive;
-  font-family: var(--font-hand);
+  font-family: var(--font-reading);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
@@ -2990,10 +2991,10 @@ body {
 .shop-hero h1 {
   max-width: 720px;
   color: var(--ink);
-  font-size: clamp(66px, 8vw, 120px);
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 1.04;
+  font-size: clamp(66px, 8vw, 126px);
+  font-weight: 850;
+  letter-spacing: -0.075em;
+  line-height: 0.84;
 }
 
 .shop-hero h1 em {
@@ -3168,6 +3169,17 @@ body {
 
 .feature-card-body {
   padding: 22px 0 0;
+}
+
+.feature-card:nth-child(3),
+.feature-card:nth-child(4) {
+  grid-column: span 6;
+  display: block;
+}
+
+.feature-card:nth-child(3) .feature-card-media img {
+  height: auto;
+  aspect-ratio: 4 / 3;
 }
 
 .feature-memory,
@@ -3480,6 +3492,11 @@ body {
     border: 0;
   }
 
+  .feature-card:nth-child(3),
+  .feature-card:nth-child(4) {
+    grid-column: 1;
+  }
+
   .archive-tools {
     padding: 0;
   }
@@ -3507,10 +3524,7 @@ body {
 .code-download-form button:disabled { opacity: .4; cursor: not-allowed; transform: none; }
 .code-download-form small { line-height: 1.7; }
 
-/* A handwritten reading system, including controls and mixed Chinese / Latin text. */
-h1,
-h2,
-h3,
+/* Keep handwriting as an accent; long-form reading stays in the system sans stack. */
 .wordmark,
 .aisle-card strong,
 .hero-caption strong,

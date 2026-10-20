@@ -66,20 +66,32 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   await page.waitForSelector(".hackathon-card");
   await page.evaluate(() => document.fonts.ready);
   const typography = await page.evaluate(() => ({
-    loaded: [...document.fonts].every((font) => font.status === "loaded"),
+    markerLoaded: document.fonts.check('16px "Vibe Marker"') && document.fonts.check('16px "Vibe Pencil"'),
+    body: getComputedStyle(document.body).fontFamily,
     title: getComputedStyle(document.querySelector("#hero-title")).fontFamily,
     lead: getComputedStyle(document.querySelector(".hero-lead")).fontFamily,
-    controls: [...document.querySelectorAll("button, input, select")].every((node) => getComputedStyle(node).fontFamily.includes("Vibe WenKai")),
-    allText: [...document.querySelectorAll("body *")].filter((node) => [...node.childNodes].some((child) => child.nodeType === Node.TEXT_NODE && child.textContent.trim())).every((node) => getComputedStyle(node).fontFamily.includes("Vibe "))
+    featureTitle: getComputedStyle(document.querySelector(".feature-card h3")).fontFamily,
+    wordmark: getComputedStyle(document.querySelector(".wordmark")).fontFamily,
+    controlsReadable: [...document.querySelectorAll("button, input, select")].every((node) => !getComputedStyle(node).fontFamily.includes("Vibe "))
   }));
-  assert.equal(typography.loaded, true, "handwriting font files must load");
-  assert.match(typography.title, /Vibe Marker/);
-  assert.match(typography.lead, /Vibe WenKai/);
-  assert.equal(typography.controls, true, "controls must use the handwritten reading face");
-  assert.equal(typography.allText, true, "all site text must use a handwriting family");
-  assert.equal(await page.locator("#hero-title > span").evaluate((node) => new Set([...node.getClientRects()].map((rect) => Math.round(rect.top))).size), 1, "hero title must stay on one handwritten line");
+  assert.equal(typography.markerLoaded, true, "handwriting accent fonts must load");
+  for (const value of [typography.body, typography.title, typography.lead, typography.featureTitle]) assert.doesNotMatch(value, /Vibe /);
+  assert.match(typography.wordmark, /Vibe Marker/);
+  assert.equal(typography.controlsReadable, true, "controls must use the reading face");
+  assert.equal(await page.locator("#hero-title > span").evaluate((node) => new Set([...node.getClientRects()].map((rect) => Math.round(rect.top))).size), 1, "hero title must stay on one display line");
 
   assert.equal(await page.locator(".feature-card").count(), issue.cases.length);
+  if (viewport.width > 980) {
+    const lowerCards = await page.locator(".feature-card").evaluateAll((cards) => cards.slice(2, 4).map((card) => ({
+      display: getComputedStyle(card).display,
+      width: card.getBoundingClientRect().width,
+      mediaBottom: card.querySelector(".feature-card-media").getBoundingClientRect().bottom,
+      bodyTop: card.querySelector(".feature-card-body").getBoundingClientRect().top
+    })));
+    assert.equal(lowerCards[0].display, "block");
+    assert.ok(Math.abs(lowerCards[0].width - lowerCards[1].width) <= 1, "lower feature cards must share one grid rhythm");
+    assert.ok(lowerCards[0].bodyTop >= lowerCards[0].mediaBottom, "third feature copy must stack below its image");
+  }
   assert.equal(await page.locator(".archive-card").count(), 12);
   assert.equal(await page.locator(".mechanism-row").count(), 5);
   assert.equal(await page.locator(".type-tile").count(), 5);
