@@ -66,7 +66,7 @@ async function inspectViewport(browser, viewport, screenshotPath) {
   await page.waitForSelector(".hackathon-card");
   await page.evaluate(() => document.fonts.ready);
   const typography = await page.evaluate(() => ({
-    markerLoaded: document.fonts.check('16px "Vibe Marker"') && document.fonts.check('16px "Vibe Pencil"'),
+    accentLoaded: document.fonts.check('16px "Vibe Pencil"'),
     body: getComputedStyle(document.body).fontFamily,
     title: getComputedStyle(document.querySelector("#hero-title")).fontFamily,
     lead: getComputedStyle(document.querySelector(".hero-lead")).fontFamily,
@@ -74,9 +74,9 @@ async function inspectViewport(browser, viewport, screenshotPath) {
     wordmark: getComputedStyle(document.querySelector(".wordmark")).fontFamily,
     controlsReadable: [...document.querySelectorAll("button, input, select")].every((node) => !getComputedStyle(node).fontFamily.includes("Vibe "))
   }));
-  assert.equal(typography.markerLoaded, true, "handwriting accent fonts must load");
+  assert.equal(typography.accentLoaded, true, "the lightweight handwriting accent must load");
   for (const value of [typography.body, typography.title, typography.lead, typography.featureTitle]) assert.doesNotMatch(value, /Vibe /);
-  assert.match(typography.wordmark, /Vibe Marker/);
+  assert.match(typography.wordmark, /Vibe Pencil/);
   assert.equal(typography.controlsReadable, true, "controls must use the reading face");
   assert.equal(await page.locator("#hero-title > span").evaluate((node) => new Set([...node.getClientRects()].map((rect) => Math.round(rect.top))).size), 1, "hero title must stay on one display line");
 
