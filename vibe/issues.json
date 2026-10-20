@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-19T04:50:37.987Z",
+  "updatedAt": "2026-10-20T10:45:35.595Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,185 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-10-20",
+      "note": "本期收录 4 件 2026 年 10 月 20 日出现的公开作品。重点不是把技术名词堆成风格，而是看输入如何成为界面：视频被重新采样为字形，时间剪切被物理输出约束筛选，绘画状态被操作日志组织，三条局部规则则长成群体运动。来源时间与本站收录日期分开标注。",
+      "featuredId": "wake-timeshear-plotter-research",
+      "experiment": {
+        "title": "让 30 条线拥有各自的时间",
+        "input": "一个 640×640 画布、30 个同心圆采样点，以及一个 0–1 的全局进度；先不用真实项目数据。",
+        "stack": "单个 HTML、Canvas 2D、原生 JavaScript；固定随机种子。",
+        "target": "每条线不同时启动，同一组几何在时间差中形成可比较的三种轮廓，而不是加噪声冒充变化。",
+        "acceptance": [
+          "刷新后同一 seed 得到完全相同的画面",
+          "关闭时间偏移后所有线恢复同步",
+          "导出一张黑白 PNG，缩小到 320px 仍能看清层级",
+          "页面标注 seed、线数与时间偏移范围"
+        ]
+      },
+      "restraint": "Creative Twin 只有在确有可核验的行为、时间或版本数据时，才把状态映射成轨迹、密度或群体关系；如果输入只是策展文案，就保持编辑叙事，不用随机粒子伪装成数据孪生。",
+      "cases": [
+        {
+          "id": "wake-timeshear-plotter-research",
+          "title": "wake-research — Timeshear Plotter Study",
+          "author": "Preet Panchal",
+          "platform": "GitHub / creator case study",
+          "pageTime": "Repository created · 2026.10.20",
+          "url": "https://wake-black.vercel.app/case.html",
+          "accent": "#d94b2b",
+          "mechanisms": [
+            "数据变成空间",
+            "交互变成叙事"
+          ],
+          "memory": "二十张橙红线稿像同一股涟漪在二十个平行时间里展开；不是换颜色或随机抖动，而是每个点等待自己的时钟后再开始运动。",
+          "why": "它把生成艺术从“看起来复杂”推进到“可以被验证和制造”。作者先复现失败的时间剪切，再用逐点时钟修正，并用固定 seed、参数扫掠、预计绘图时间与墨量检查筛掉无法落到纸上的结果；材料约束参与了造型。",
+          "input": "uji 的几何与运动参数、固定随机 seed、逐点 timeshear、迭代次数、形状，以及面向 A4 与 0.3 mm 笔的绘图时间和墨量检查。",
+          "layer": "作者公开仓库可核验 Playwright 批量渲染、参数接触表、可复现 seed、逐点时间偏移，以及基于 vpype 的 plotcheck；展示图来自仓库内 20-seed 系列接触表。",
+          "motion": "最初做法只改变旋转相位，仍落在同一组圆上；修正版让每个点在自己的时钟启动前不绘制、不运动，于是时间差真正改变轮廓。案例页用失败—修正—筛选的顺序组织观看。",
+          "pipeline": "原作结构拆解 → 固定所有随机抽样 → 参数扫掠与接触表 → 逐点时钟实现 timeshear → 生成 SVG → plotcheck 估算时间与过墨 → 保留 20 个开放圆形结果。",
+          "performance": "研究输出以 PNG/SVG 和离线批处理为主，前端负担低；2192×2496 接触表在移动端应使用缩略图和延迟加载。957 分钟、2.1 km 与 3–5 分钟均为作者工具估算，不是本站实测；实体绘图仍未被独立验收。",
+          "transfer": "把 Joey 的一次创作过程分成 20 个可复现版本：每个版本只改变一个时间参数，再用明确的输出成本或可读性条件筛选。重点保留失败样本和淘汰理由，而不是只展示最好看的一张。",
+          "difficulty": "1 天原型",
+          "evidence": "GitHub API 显示 preet-portfolio/wake-research 创建于 2026-10-20，公开作者为 Preet Panchal；本次现场打开案例页，并核验 README、接触表、工具目录与工作记录。固定 seed、timeshear 过程和 plotcheck 来自作者披露；绘图时间与墨长是 vpype 估算，本站未复跑工具，也未见本组纸上成品的独立验收。该研究基于 Noah Doersing 的 uji，许可边界以仓库说明为准。源码：https://github.com/preet-portfolio/wake-research",
+          "image": "https://raw.githubusercontent.com/preet-portfolio/wake-research/bf7db09188b6d339fe42a22bc21d750ef08fdc0e/out/contact-sheets/09-family-20.png",
+          "imageSource": "https://github.com/preet-portfolio/wake-research/blob/bf7db09188b6d339fe42a22bc21d750ef08fdc0e/out/contact-sheets/09-family-20.png",
+          "imageCredit": "Preet Panchal / wake-research；基于 Noah Doersing 的 uji，作者仓库展示图",
+          "context": {
+            "type": "story",
+            "tags": [
+              "生成艺术",
+              "实体输出"
+            ],
+            "collectedOn": "2026-10-20",
+            "pageTime": "Repository created · 2026.10.20",
+            "summary": "用可复现 seed、逐点时钟和绘图成本，把屏幕生成效果收敛为可制造的系列。",
+            "audience": "生成艺术、绘图机创作与研究型作品集学习者",
+            "value": "学习如何把失败、参数实验和材料约束一起变成作品论证，而不是只发布最终视觉。",
+            "conditions": "绘图成本来自软件估算，实体输出尚未独立验收；衍生代码与原作许可需分别核对。"
+          }
+        },
+        {
+          "id": "ascii-render-video-editor",
+          "title": "ASCII Render — Video-to-Glyph Editor",
+          "author": "Oleksandr Riasnyi",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.20",
+          "url": "https://xand0dev.github.io/ascii-render/?demo",
+          "accent": "#ff1f2d",
+          "mechanisms": [
+            "数据变成空间",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "一段视频被压成能呼吸的字符网格：轮廓处出现斜杠和竖线，暗部让位给稀疏字形，时间轴、字库与音频节拍共同改写同一帧。",
+          "why": "它不是把等宽字体盖在视频上。每帧先缩成字形网格，再计算亮度、对比、运动与梯度；强边缘选方向字形，其余单元按字体真实墨量排序。预览与导出共用确定性随机，因此故障、数字雨和节拍切换不会在导出时变成另一套效果。",
+          "input": "本地视频或摄像头帧、字形集合与字体、网格密度、亮度/对比/伽马、边缘阈值、色彩模式、运动量、音频低频包络、裁切速度和 A/B 样式关键帧。",
+          "layer": "作者 README 与源码可核验浏览器端 Canvas 2D、WebCodecs 导出，以及 Node/MCP 端 Skia 与 ffmpeg；字形密度按字体实际像素覆盖率排序，音频以低通、RMS 和 onset 提取节拍。",
+          "motion": "时间轴管理裁切、速度与关键帧，运动图强调帧间变化；低频包络驱动脉冲，onset 切换预设。故障和数字雨使用确定性 hash，让实时预览与成片保持一致。",
+          "pipeline": "视频解码 → 缩采样为字形网格 → 亮度/伽马/运动与梯度分析 → 边缘字形或密度字形 → 色彩与文字层 → 拖影/故障/辉光 → WebCodecs 或 ffmpeg 导出。",
+          "performance": "作者报告 1080p 单帧约 10–20 ms，本站未做基准；MP4 需要 Chromium WebCodecs，GIF 更通用。移动端应降低行数、禁用拖影与辉光、限制预览分辨率，并把相机权限保持为用户主动触发。",
+          "transfer": "把 Joey 的短片或项目录屏做成“可读的像素排版”：只在结构变化处启用边缘字形，正文或项目名称用自定义 glyph set 注入，而不是整片套同一种 ASCII 滤镜。",
+          "difficulty": "1 天原型",
+          "evidence": "GitHub API 显示 xand0dev/ascii-render 创建于 2026-10-20，公开作者为 Oleksandr Riasnyi，仓库标注 MIT；本次现场打开 ?demo，确认编辑器、预设、网格/字形/颜色/效果控件与时间轴。渲染管线、WebCodecs、Skia/ffmpeg 与音频分析来自作者 README 和源码；10–20 ms 为作者描述，未独立复测。源码：https://github.com/xand0dev/ascii-render",
+          "image": "https://raw.githubusercontent.com/xand0dev/ascii-render/8ade6841fb0b6f93b41c1659a18853f5c920d9c2/docs/assets/editor.png",
+          "imageSource": "https://github.com/xand0dev/ascii-render/blob/8ade6841fb0b6f93b41c1659a18853f5c920d9c2/docs/assets/editor.png",
+          "imageCredit": "Oleksandr Riasnyi / ASCII Render；作者仓库展示图（MIT）",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "影像创作",
+              "创作工具"
+            ],
+            "collectedOn": "2026-10-20",
+            "pageTime": "Repository created · 2026.10.20",
+            "summary": "把视频的亮度、边缘、运动和节拍映射成可编辑、可导出的字形系统。",
+            "audience": "短片作者、动态图形设计师与创意编码学习者",
+            "value": "适合学习同一渲染核心如何连接实时编辑、自动化工具和最终导出，并保持结果一致。",
+            "conditions": "性能数字为作者口径；高分辨率 MP4 依赖 Chromium WebCodecs，移动设备需降低网格和效果。"
+          }
+        },
+        {
+          "id": "peinten-browser-paint-engine",
+          "title": "peinten — Browser Raster Painting Engine",
+          "author": "7xrk / peinten contributors",
+          "platform": "Creator demo / GitHub",
+          "pageTime": "Repository created · 2026.10.20",
+          "url": "https://peinten.vercel.app/demo",
+          "accent": "#6b6cf6",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "浏览器里出现一套接近桌面软件的画布：画笔、选区、变形、图层、调整层与协作都围绕同一个操作历史工作，界面不是功能拼盘，而是状态模型的外壳。",
+          "why": "它的关键不是多做几个绘画控件，而是先解决状态一致性。64×64 不可变瓦片、只复制首次被笔触触及的块、操作日志与回放同时驱动撤销、Worker 和协作；WebGPU 只重组脏瓦片，让编辑语义和渲染成本共用一套边界。",
+          "input": "指针/压感笔事件、libmypaint 画笔参数、64×64 像素瓦片、图层与调整层树、选区、文本、滤镜、视图变换，以及本地或协作操作批次。",
+          "layer": "作者文档与源码可核验纯 TypeScript 领域层、fix15 预乘 RGBA 瓦片、不可变文档状态、StrokeSession、WebGPU tile atlas 与 compute 合成、Canvas2D 文本、Worker bridge 和 BroadcastChannel 协作。",
+          "motion": "画笔预览在独立 StrokeSession 中覆盖已提交画面，落笔时才产生一次状态变化；协作者尚未完成的笔触同样以临时瓦片回放。撤销不是隐藏 UI 状态，而是可同步的 set-op-enabled 操作。",
+          "pipeline": "输入工具生成操作 → 复制受影响瓦片并维护不可变状态 → 操作批次进入历史与排序器 → CPU 展平图层为小型栈程序 → compute shader 合成脏瓦片 → 视图通道绘制画布与工具覆盖层。",
+          "performance": "局部瓦片复制、引用比较和脏瓦片上传避免整幅重算；但演示明确需要 WebGPU，仓库未提供 Canvas/WebGL 合成后备。本次在桌面浏览器确认编辑器完成加载，未做长笔触、超大画布或手机压力测试；移动端应先只读预览或限制画布。",
+          "transfer": "如果 Joey 要做可编辑的艺术档案，不要先堆工具栏；先把一次修改定义成可记录、可撤销、可重放的操作，再让预览、历史和多人协作读取同一日志。",
+          "difficulty": "3–5 天成品",
+          "evidence": "GitHub API 显示 peinten/peinten 创建于 2026-10-20，最近提交署名 7xrk；README 标注项目 MIT，libmypaint 端口为 ISC、画笔预设为 CC0。本次现场确认演示编辑器加载出画笔、选区、滤镜、图层与协作入口；架构细节来自项目文档与源码。本站未测试协作冲突、GPU 基准和移动端，也未把组织名推断成个人身份。源码：https://github.com/peinten/peinten",
+          "image": "./vibe/covers/peinten-browser-paint-engine.jpg",
+          "imageSource": "https://peinten.vercel.app/demo",
+          "imageCredit": "peinten contributors；本站对公开演示的实景截图，仅作作品介绍",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "创作工具",
+              "协作编辑"
+            ],
+            "collectedOn": "2026-10-20",
+            "pageTime": "Repository created · 2026.10.20",
+            "summary": "用不可变瓦片和操作日志，让绘画、撤销、Worker 与协作共享同一状态模型。",
+            "audience": "浏览器创作工具、图像编辑器与协作应用开发者",
+            "value": "学习先定义编辑语义，再组织渲染和协作，而不是让多个功能各自维护状态。",
+            "conditions": "公开演示依赖 WebGPU；移动端、超大画布和多人冲突性能尚未由本站验证。"
+          }
+        },
+        {
+          "id": "murmurations-boids-canvas",
+          "title": "Murmurations — Three Rules, One Flock",
+          "author": "Olivier Giulieri",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.20",
+          "url": "https://evoluteur.github.io/murmurations/",
+          "accent": "#e5876b",
+          "mechanisms": [
+            "数据变成空间",
+            "交互变成叙事"
+          ],
+          "memory": "两千五百只黑鸟在暮色方形天空里聚成、拉开又折返；鼠标一进入画面就变成猎隼，局部躲避沿着群体迅速传播。",
+          "why": "它没有靠预录动画制造群鸟。每只 boid 只读取视野内邻居，用分离、对齐、聚合三股力更新速度，再叠加边界、栖息地吸引、微小随机和猎隼排斥；宏观形状来自局部规则的持续计算。",
+          "input": "100–5000 只 boid 的位置与速度、分离/对齐/聚合权重、视野、速度、群体预设、轨迹开关，以及指针或自动猎隼的位置。",
+          "layer": "作者 README 与源码可核验原生 Canvas 2D、无依赖 JavaScript，以及把画面划成桶网格的邻域查询；页面提供椋鸟、鱼群、蠓群和萤火虫四种显示/参数预设。",
+          "motion": "每帧建立空间桶，只让 boid 查询附近格子；局部转向经过邻居传播成分裂、合拢和波浪。指针事件同时支持鼠标与触摸，轨迹模式通过透明叠加保留短暂运动痕迹。",
+          "pipeline": "初始化位置/速度 → 桶网格索引 → 邻域内计算三规则与环境力 → 限制速度并更新位置 → Canvas 绘制鸟/鱼/点/辉光 → requestAnimationFrame 循环与 URL 参数分享。",
+          "performance": "空间桶避免每只 boid 与全部个体比较；数量上限 5000，DPR 封顶 2。现场在 2500 只配置下确认画面与控件可用，但未记录帧率；源码未见 reduced-motion 或自动数量降级，手机应默认 500–1000 并暂停离屏标签页。",
+          "transfer": "把 Joey 的真实协作或版本事件映射成少量代理：靠近、对齐和分离分别对应共享主题、共同节奏和保留差异；没有真实关系数据时，只把它作为 30 分钟机制实验，不包装成社群数字孪生。",
+          "difficulty": "30 分钟实验",
+          "evidence": "GitHub API 显示 evoluteur/murmurations 创建于 2026-10-20，公开作者为 Olivier Giulieri，仓库与页面标注 MIT；本次现场确认 2500 只鸟、三条规则滑杆、猎隼指针和公开说明。桶网格、5000 上限、DPR 封顶 2 与 pointer 事件来自源码；本站未做帧率或移动端基准。算法属于经典 Boids，独特之处是解释、控制与画面在同一页闭环。源码：https://github.com/evoluteur/murmurations",
+          "image": "https://raw.githubusercontent.com/evoluteur/murmurations/c08509919db27ff5a49f753746eefdbbe2c8cafb/murmurations.png",
+          "imageSource": "https://github.com/evoluteur/murmurations/blob/c08509919db27ff5a49f753746eefdbbe2c8cafb/murmurations.png",
+          "imageCredit": "Olivier Giulieri / Murmurations；作者仓库展示图（MIT）",
+          "context": {
+            "type": "data",
+            "tags": [
+              "生成艺术",
+              "科学传播"
+            ],
+            "collectedOn": "2026-10-20",
+            "pageTime": "Repository created · 2026.10.20",
+            "summary": "三条局部规则和一个猎隼指针，实时长成可操控的群体形态。",
+            "audience": "生成艺术、交互教学与群体模拟学习者",
+            "value": "用最少规则解释涌现，并让观众通过参数和指针直接验证因果关系。",
+            "conditions": "这是经典 Boids 的演示，不是鸟群科学仿真；帧率与移动端上限未由本站基准测试。"
+          }
+        }
+      ],
+      "dateLabel": "OCT 20",
+      "issueNo": "002"
+    },
     {
       "id": "2026-10-19",
       "note": "本次新收录 4 件作品，来源仓库均创建于 2026 年 10 月 18 日。首选 Geomap：同一份高度场同时生成景观、地图与地质剖面，让解释与画面从结构上保持一致。收录日期与作品来源时间分开标注，不把旧作改成新作。",
