@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-20T10:45:35.595Z",
+  "updatedAt": "2026-10-21T10:37:08.246Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,184 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-10-21",
+      "note": "四件同日公开作品把仿真、代码历史、运动学和字符渲染变成了可操作的界面。共同价值不在特效密度，而在于内部结构会回应输入；来源时间均保留为仓库创建日 2026-10-21，收录日为 2026-10-21。",
+      "featuredId": "tetrafract",
+      "experiment": {
+        "title": "让一次点击暴露内部结构",
+        "input": "一个 20×8 单元网格、两种材料阈值和一次鼠标点击的冲击位置。",
+        "target": "点击后让应力以可读的环形路径传播；超过阈值的单元断开、露出内侧面，但不把它包装成真实物理。",
+        "stack": "单个 HTML、Canvas 2D、原生 JavaScript；固定随机种子，不接物理库。",
+        "acceptance": "同一点击位置可重复得到同一结果；画面至少清楚区分完整、受力、断裂三种状态；在普通手机宽度下保持可点按且不横向溢出。"
+      },
+      "restraint": "Creative Twin 只有在接入真实的版本、时间或行为数据，并能解释映射关系时才值得采用；程序生成的仿真或漂亮运动不能被命名为数字孪生。",
+      "cases": [
+        {
+          "id": "tetrafract",
+          "title": "Tetrafract",
+          "author": "sh1ftmaker",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.21",
+          "url": "https://sh1ftmaker.github.io/tetrafract/",
+          "accent": "#f3a545",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：炮弹击中玻璃罐后，裂面、碎片和粉尘不是贴图切换，而是从受力位置连续长出来。",
+          "why": "它成立在“内部结构可见”：材料差异不是颜色主题，而是刚度、断裂阈值和碎裂形态共同决定的反馈。一次点击同时改变几何、运动和残留物，因此不是普通爆炸特效。",
+          "input": "用户选择木、玻璃、石、钢四类材料并点击发射；计算输入是四面体网格、冲击点、材料参数和逐帧约束求解状态。",
+          "layer": "WebGPU 与 Three.js TSL compute 更新四面体；体素生成的四面体网格、形状匹配簇、面分裂后的独立碎块，再叠加粉尘、木屑或玻璃片。",
+          "motion": "固定镜头让撞击成为主事件；裂缝沿四面体面传播，松散单元退化为粒子，碎块保留惯性。镜头不抢戏，材料反馈就是叙事。",
+          "pipeline": "作者明确披露：体素转四面体、4×4×4 重叠簇做形状匹配、Chebyshev 加速 Jacobi 在 GPU 上求解；过载面复制顶点并用 union-find 分组碎片。难点是同时维持拓扑断裂、稳定约束与可读碎片。",
+          "performance": "源码有 Low 到 Ultra 四档、像素比上限 1.25，并按帧率与跳帧窗口自动降级；演示明确要求 WebGPU。移动端应先降迭代和碎片量，并提供预录或静态剖面替代，不假定所有设备支持。",
+          "transfer": "用于 Joey 作品集的项目封面时，不做泛化爆炸：让“研究假设—修改—结果”成为三层可击穿结构，每次点击只揭示一层真实过程证据。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者 README 与源码明确披露 WebGPU、Three.js TSL、四面体网格、簇约束、断面分裂和自适应质量；公开演示已实测切换到 Glass 并触发撞击。实际材料精度、粒子数量与移动端帧率未由作者给出，不作推断。",
+          "image": "./vibe/covers/tetrafract-webgpu-fracture.jpg",
+          "imageSource": "https://sh1ftmaker.github.io/tetrafract/",
+          "imageCredit": "sh1ftmaker；本站对作者公开演示的实景截图",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "浏览器物理实验",
+              "材料反馈",
+              "WebGPU"
+            ],
+            "collectedOn": "2026-10-21",
+            "pageTime": "Repository created · 2026.10.21",
+            "summary": "把可破坏材料的内部约束、断裂与碎片生成直接变成浏览器中的交互证据。",
+            "audience": "做生成式 3D、材料交互或技术型作品集的创作者",
+            "value": "应用价值：学习如何让参数差异改变行为，而不只是更换视觉皮肤。",
+            "conditions": "需要 WebGPU 设备；若用于项目叙事，必须把材料参数映射到真实内容层级。"
+          }
+        },
+        {
+          "id": "codemap",
+          "title": "CodeMap",
+          "author": "Joel Lithgow",
+          "platform": "Netlify / GitHub",
+          "pageTime": "Repository created · 2026.10.21",
+          "url": "https://codemap-3d.netlify.app/",
+          "accent": "#47e5ee",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：Git 仓库变成一座发光城市，切到 Strata 后，一栋文件塔按触及它的提交逐层堆起。",
+          "why": "它不是把代码量画成随意柱状图：目录决定街区，文件决定建筑，行数决定高度，提交、变更频率、语言和 churn 作为可切换镜头。空间关系仍能回到文件、diff 与依赖。",
+          "input": "公开 GitHub 仓库 URL，或浏览器本地文件夹；读取树结构、最近提交、diff 与源码文本。可选 token 仅存 sessionStorage 并请求 api.github.com。",
+          "layer": "Three.js 渲染城市、依赖图和提交地层；目录 treemap 决定城市布局，force layout 组织导入网络，侧栏承载源码、blame、diff 与符号。",
+          "motion": "时间轴负责提交切换，City、Graph、Strata 是三种认知镜头；选择文件时用弧线显出 imports 与 dependents，让浏览动作逐步收窄。",
+          "pipeline": "作者 README 与源码可核验 GitHub API、树结构与提交解析、treemap 和 force layout。难点不是建模，而是让文件路径、提交触达和依赖关系在多视图之间保持同一对象身份。",
+          "performance": "渲染器像素比封顶 2；GitHub 匿名额度为每小时 60 次请求，加载大仓库时数据请求先成为瓶颈。源码未见针对低性能设备的自动质量档，移动端应限制提交数、默认 2D 列表并按需进入 3D。",
+          "transfer": "把 Joey 作品集按“项目—版本—产出文件”映成城市：只用真实 Git 或交付记录决定塔高与地层，点击建筑回到具体页面和证据，不虚构活跃度。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者 README 明确说明三种视图、四种 lens、GitHub/本地加载和安全边界；源码核验 Three.js、treemap、force layout、像素比上限。公开演示已实测 simonw/shot-scraper 示例并切换 Strata + Churn。对超大仓库和手机性能没有作者基准。",
+          "image": "./vibe/covers/codemap-git-city.jpg",
+          "imageSource": "https://codemap-3d.netlify.app/",
+          "imageCredit": "Joel Lithgow；本站对作者公开演示的实景截图",
+          "context": {
+            "type": "data",
+            "tags": [
+              "代码可视化",
+              "版本历史",
+              "空间导航"
+            ],
+            "collectedOn": "2026-10-21",
+            "pageTime": "Repository created · 2026.10.21",
+            "summary": "把文件、目录、依赖和提交历史映成可切换的城市、网络与地层。",
+            "audience": "需要解释复杂代码库、版本演进或技术项目过程的设计师与开发者",
+            "value": "应用价值：把同一组真实数据通过不同空间镜头回答不同问题。",
+            "conditions": "数据量、API 额度和映射图例必须透明；3D 不能替代文件搜索与文本阅读。"
+          }
+        },
+        {
+          "id": "robotic-arm-simulator",
+          "title": "3D Arm Simulator",
+          "author": "Skipper Chen",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.21",
+          "url": "https://niceskipperchen-coder.github.io/robotic-arm-simulator/",
+          "accent": "#d6f18a",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：调肩、肘与高度不是修改表单后等待刷新，机械臂、轨迹、可达范围和遥测同时回应。",
+          "why": "模型本身就是计算界面：正向运动学把关节角变成端点位置，逆向运动学把地面点击还原为两组肘部解。拾取流程把抽象方程变成一段可观察的状态机。",
+          "input": "肩角、肘角、垂直高度、连杆长度、速度上限、肘部构型，或在地面点击笛卡尔目标；演示还包含选块、夹取与圆路径。",
+          "layer": "Three.js 程序化机械臂、工作包络、轨迹线与积木；DOM 控件和遥测显示关节、端点高度与当前构型。",
+          "motion": "透视、顶视、侧视对应不同判断任务；关节按速度上限追踪目标，十步 pick-and-place 把张爪、靠近、下降、夹取、抬升与放置串成可读过程。",
+          "pipeline": "作者明确给出 2R+1P 正逆运动学公式、可达区间和两种 elbow 解；自动测试覆盖坐标、不可达目标、夹取、重力落地、速度限制与不越界。难点是让数学约束、点击拾取和视觉状态始终一致。",
+          "performance": "渲染像素比封顶 2，窄于 500px 时调整镜头适配；prefers-reduced-motion 下直接应用姿态。页面有触控轨道控制和手机单列布局，但持续 3D 仍应关闭轨迹或降低像素比。",
+          "transfer": "用于解释 Joey 的 Creative Twin 时，可把“输入—约束—可达结果”做成一台克制的模型：观众先选真实条件，再看哪些方案可达，而不是自由拖动一个装饰性 3D 物体。",
+          "difficulty": "1 天原型",
+          "evidence": "README、源码与 17 项自动测试明确支持正逆运动学、速度上限、两种肘解、简化重力和 reduced-motion；公开演示已实测启动 pick-and-place。作者同时声明它不是物理控制器，未模拟扭矩、惯性、摩擦、机器人碰撞和堆叠。",
+          "image": "./vibe/covers/scara-arm-simulator.jpg",
+          "imageSource": "https://niceskipperchen-coder.github.io/robotic-arm-simulator/",
+          "imageCredit": "Skipper Chen；本站对作者公开演示的实景截图",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "运动学",
+              "交互式模型",
+              "状态机"
+            ],
+            "collectedOn": "2026-10-21",
+            "pageTime": "Repository created · 2026.10.21",
+            "summary": "用一个可操作的 SCARA 模型把关节空间、笛卡尔目标和拾取流程对齐。",
+            "audience": "做工业交互、教育可视化或约束型 3D 产品演示的创作者",
+            "value": "应用价值：学习如何让公式、控制和场景状态互相校验。",
+            "conditions": "仅作运动学教学与界面参考；不得把简化重力和碰撞表现当成真实机械臂验证。"
+          }
+        },
+        {
+          "id": "ascii-wisteria",
+          "title": "ASCII Wisteria",
+          "author": "yeman / Yeman-sker",
+          "platform": "Vercel / GitHub",
+          "pageTime": "Repository created · 2026.10.21",
+          "url": "https://ascii-wisteria.vercel.app/?intro=0",
+          "accent": "#8570d4",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：月光下的紫藤被重新写成密度不同的字符，指针经过时花穗摆动，点击则从字形里扩散出一圈回声。",
+          "why": "ASCII 不是覆盖在图片上的滤镜。字形承担亮度、边缘与纹理采样，同时每串花穗仍有自己的链式运动；排版网格既是图像采样器，也是风、点击和落花发生的空间。",
+          "input": "作者内置插画或用户本地照片、指针位置、点击/触摸、程序生成的慢风与阵风。上传图片只在浏览器本地处理。",
+          "layer": "Canvas 2D 先绘制照片或程序插画，再按 5×8 或 4×6 单元采样为字符；40 列阻尼摆负责照片模式，插画中的花穗使用 14 节点 Verlet 链，前景叠加落瓣、香气轨迹与点击波。",
+          "motion": "背景风由两组慢摆动与约 40 秒一次的阵风组成；指针提供局部风和光，点击制造短暂 ripple 与 echo。固定月景让微运动被看见，而不是用镜头移动制造热闹。",
+          "pipeline": "作者 README 与单文件引擎明确披露采样尺寸、阻尼摆、Verlet 链、三帧分区刷新和叠加层。难点是让字形亮度、图像边缘与动态覆盖保持同一网格节奏。",
+          "performance": "零依赖、设备像素比封顶 2、固定 60Hz 步长；IntersectionObserver 在离屏时暂停，prefers-reduced-motion 生成稳定静帧，照片层分三帧刷新。触摸不模拟悬停微风，但保留点按波纹。",
+          "transfer": "把 Joey 作品集中的一张真实过程照片转成可读字符场：字符集来自项目关键词，触摸只揭示局部注释或证据，让文字真的参与图像结构。",
+          "difficulty": "1 天原型",
+          "evidence": "作者 README 与源码明确披露 Canvas 采样、摆动链、Verlet、三帧刷新、离屏暂停和 reduced-motion；公开演示已实测点击波纹。作者仓库声明默认照片权利归仓库所有者；作者真实身份、不同手机帧率与约 40 秒阵风周期的实测分布未独立核验。",
+          "image": "./vibe/covers/ascii-wisteria-canvas.jpg",
+          "imageSource": "https://ascii-wisteria.vercel.app/?intro=0",
+          "imageCredit": "yeman / Yeman-sker；本站对作者公开演示的实景截图；底层照片由作者仓库声明为其自有素材",
+          "context": {
+            "type": "story",
+            "tags": [
+              "ASCII 渲染",
+              "Canvas",
+              "微交互"
+            ],
+            "collectedOn": "2026-10-21",
+            "pageTime": "Repository created · 2026.10.21",
+            "summary": "让字符网格同时承担图像采样、花穗运动和点击反馈。",
+            "audience": "做实验排版、诗性网页或低依赖互动封面的创作者",
+            "value": "应用价值：把文字从说明层推进到图像与交互结构本身。",
+            "conditions": "使用照片时必须保留素材权利与署名；移动端应优先静帧可读性而不是动效数量。"
+          }
+        }
+      ],
+      "dateLabel": "OCT 21",
+      "issueNo": "003"
+    },
     {
       "id": "2026-10-20",
       "note": "本期收录 4 件 2026 年 10 月 20 日出现的公开作品。重点不是把技术名词堆成风格，而是看输入如何成为界面：视频被重新采样为字形，时间剪切被物理输出约束筛选，绘画状态被操作日志组织，三条局部规则则长成群体运动。来源时间与本站收录日期分开标注。",
