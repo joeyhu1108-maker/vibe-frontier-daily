@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-21T10:37:08.246Z",
+  "updatedAt": "2026-10-22T10:37:45.951Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,186 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-10-22",
+      "note": "四件同日公开作品把风洞求解、NASA 遭遇数据、雨水生长与城市遮阴变成了可操作空间。共同价值在于画面由真实数据或明确状态驱动；来源时间均保留为仓库创建日 2026-10-22，收录日为 2026-10-22。",
+      "featuredId": "undercover-ph-shaded-walks",
+      "experiment": {
+        "title": "让一条路线真正响应时间",
+        "input": "12 段路线 JSON，每段包含长度，以及 08:00、12:00、16:00 三个 shade 值。",
+        "target": "拖动时间控件时，路线分段颜色和“曝晒分钟”同步变化；颜色必须来自数据。",
+        "stack": "单个 HTML、SVG 或 Canvas 2D、原生 JavaScript；不用地图 SDK。",
+        "acceptance": "同一时刻可重复得到同一结果；图例说明颜色含义；切到手机宽度仍可读；删除 shade 数据后界面明确报缺失而不随机补值。"
+      },
+      "restraint": "Creative Twin 只有在接入真实、可追溯且能解释映射关系的时间、位置、版本或行为数据时才值得采用；若只剩程序动画或假实时数字，就保持为叙事原型，不称数字孪生。",
+      "cases": [
+        {
+          "id": "undercover-ph-shaded-walks",
+          "title": "undercover.ph — Shaded & Sheltered Walks",
+          "author": "Xavier Puspus",
+          "platform": "Creator site / GitHub",
+          "pageTime": "Repository created · 2026.10.22",
+          "url": "https://undercover.ph/",
+          "accent": "#5b7cff",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：同一段马尼拉步行路，因为时间和“遮阴/有顶”选择不同，路线、阴影方向与曝晒分钟一起改写。",
+          "why": "它不是在地图上覆盖一层漂亮阴影。道路哪一侧可走、建筑和树的高度、太阳时刻都会进入路线成本，结果还能回到逐段导航，所以空间画面与决策是同一个系统。",
+          "input": "OpenStreetMap 步行网络、地点、建筑与开放时间，Google Open Buildings 2.5D 高度、Meta/WRI 树冠高度、太阳时刻，以及起终点、遮阴/有顶偏好和无障碍开关。",
+          "layer": "React、TypeScript 与 MapLibre 承载地图、3D 建筑和树冠；浏览器侧 A* 计算路线，路线卡片与导航页解释时间、距离和曝晒差异。",
+          "motion": "半小时粒度的时间变化会移动阴影并重算覆盖；切换 Shaded 或 Sheltered 会改写路径。地图、路线卡片和导航始终指向同一组路段。",
+          "pipeline": "作者明确披露：源数据先按城区处理，再沿人行边每 5 米采样，在 06:00–18:30 每 30 分钟做建筑与树冠射线遮挡，得到边级覆盖状态；浏览器 A* 再给出最短、覆盖最多与推荐路线。",
+          "performance": "路线在浏览器计算，建筑与树木以分区数据按需加载；作者未提供手机性能基准。移动端应优先保留 2D 路线、时间与逐段文字，把 3D 阴影作为可关闭层，并持续显示数据适用范围。",
+          "transfer": "用于 Joey 的旅行或城市文化作品时，可把真实开放时间、坡度、照明、遮雨与证据点映射到路线；先解释数据来源与缺口，再让地图成为行程选择器。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开网站与作者仓库可核验 MapLibre、浏览器侧 A*、数据来源、5 米采样和半小时阴影时刻；作者公布的范围与数据量未由本站重新计算。项目仍标注为原型，路线与数据可能有误，尚未完成实地核验，也不是高温安全、积水或完整无障碍导航工具。",
+          "image": "https://raw.githubusercontent.com/xmpuspus/undercover-ph/2459ff8e6af17d72f4ec717ee0f8fceae3472d29/docs/demo/social-preview.png",
+          "imageSource": "https://github.com/xmpuspus/undercover-ph/blob/2459ff8e6af17d72f4ec717ee0f8fceae3472d29/docs/demo/social-preview.png",
+          "imageCredit": "Xavier Puspus；作者仓库公开预览图；地图与数据第三方署名见原项目 Data Sources and Licenses",
+          "context": {
+            "type": "space",
+            "tags": [
+              "城市步行",
+              "时空数据",
+              "MapLibre"
+            ],
+            "collectedOn": "2026-10-22",
+            "pageTime": "Repository created · 2026.10.22",
+            "summary": "把建筑、树冠、时间与步行网络转成可解释的遮阴和有顶路线。",
+            "audience": "做城市服务、出行叙事、空间数据或公共界面的创作者",
+            "value": "应用价值：学习如何让地图中的视觉层真正参与路线决策，并公开数据局限。",
+            "conditions": "只适用于已覆盖城区和作者声明的数据版本；不能替代现场安全判断与专业导航。"
+          }
+        },
+        {
+          "id": "aeolus-webgpu-wind-tunnel",
+          "title": "Aeolus — Browser CFD Wind Tunnel",
+          "author": "ylfeid",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.22",
+          "url": "https://ylfeid.github.io/aeolus/",
+          "accent": "#f0a35b",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：黑色风洞里，烟线经过圆柱后生成连续涡街；切换几何或流速，尾流和升阻力读数同时回应。",
+          "why": "它成立在求解状态可见：烟、示踪粒子、流线和力图不是四套独立特效，而是同一速度场与边界条件的不同读法。参数改变会改写流动结构，而非只换颜色。",
+          "input": "二维障碍几何、网格尺度、入口速度、黏度、边界条件、烟与示踪粒子的发射位置，以及暂停、重置和参数扫描。",
+          "layer": "WebGPU compute 在规则网格上推进 D2Q9 Lattice Boltzmann；Three.js TSL 显示烟、LIC 流线和示踪粒子，图表呈现升力、阻力、阻力系数与 Strouhal 相关读数。",
+          "motion": "镜头固定在风洞，让圆柱尾流、分离点与涡脱落成为时间叙事；切换场景或参数后，粒子轨迹与图表以同一求解步更新。",
+          "pipeline": "作者明确披露：BGK 碰撞与 Smagorinsky LES、bounce-back 边界、GPU 力归约、MacCormack 烟雾平流、RK2 示踪粒子和 LIC 流线。难点是把数值求解、可视化与量纲读数维持在同一状态。",
+          "performance": "源码提供 512–2048 网格档位，并在图表处限制设备像素比；公开演示明确要求 WebGPU。作者未提供移动端基准或 reduced-motion 分支，低性能设备应降低网格、关闭 LIC 与粒子，并提供静态场图。",
+          "transfer": "用于作品集中的参数实验时，可把真实输入、约束和结果放进一个固定观察窗：每次只改变一个条件，并让空间形态和读数同时回应，避免伪科学仪表盘。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已核验可操作风洞、场景切换和实时读数；README 与源码支持 WebGPU、D2Q9、BGK、LES、力归约、MacCormack、RK2 与 LIC。作者给出的理论比较和数值稳定性未由本站复算；这是二维教育/实验工具，不等同工程级 CFD 验证。",
+          "image": "https://raw.githubusercontent.com/ylfeid/aeolus/de855a0321889eff4fff096ae858925aa659e3e3/docs/scenes.jpg",
+          "imageSource": "https://github.com/ylfeid/aeolus/blob/de855a0321889eff4fff096ae858925aa659e3e3/docs/scenes.jpg",
+          "imageCredit": "ylfeid；作者仓库公开场景预览图",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "WebGPU",
+              "CFD",
+              "参数实验"
+            ],
+            "collectedOn": "2026-10-22",
+            "pageTime": "Repository created · 2026.10.22",
+            "summary": "把二维流体求解、场可视化和力学读数放进同一个浏览器实验台。",
+            "audience": "做科学可视化、参数界面或计算型作品集的创作者",
+            "value": "应用价值：学习如何让一个计算状态产生多种互相校验的视觉读法。",
+            "conditions": "需要 WebGPU；用于严肃工程前必须另做网格、边界、量纲和实验验证。"
+          }
+        },
+        {
+          "id": "perigee-nasa-asteroid-explorer",
+          "title": "Perigee — NASA Asteroid Explorer",
+          "author": "Zak Rademacher",
+          "platform": "Cloudflare Workers / GitHub",
+          "pageTime": "Repository created · 2026.10.22",
+          "url": "https://perigee.zakjrademacher.workers.dev/",
+          "accent": "#a7efcf",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：在以地球为中心的黑色空间里，拖动 UTC 时刻，月球、太阳方向、近地小行星与被选天体的 30 天路径一起换位。",
+          "why": "它没有把天体做成任意旋转的装饰球。坐标系、历元、单位、数据来源与缺失状态都进入界面；位置共用线性尺度，而小行星标记明确说明被视觉放大。",
+          "input": "NASA NeoWs 的 30 天近地天体遭遇目录、JPL Horizons 的逐小时状态向量，以及日期窗、危险标记、距离和速度筛选、UTC 时刻与选中天体。",
+          "layer": "Three.js 显示地球、月球、太阳方向、小行星和轨迹；Cloudflare Worker 串行请求 NASA/JPL、校验响应并缓存，侧栏承载筛选、时刻、数据来源和缺失说明。",
+          "motion": "时间滑杆推进统一历元，所有对象从逐小时状态向量插值到当前时刻；只有选中小行星展开 30 天路径，旋转与缩放负责空间阅读，不替代数据变化。",
+          "pipeline": "作者明确披露：NeoWs 建立遭遇目录并取得可验证 SPK-ID，JPL Horizons 返回 60 天逐小时 ICRF/J2000 黄道状态向量；前端用三次 Hermite 插值，再投到地心共享线性空间。",
+          "performance": "Worker 串行化请求并缓存、退避，前端复用标记且只展开一条选中轨迹，背景星场限制到约 20fps；作者未给手机基准。降级应保留二维地心示意、表格和时间读数，而不是伪造缺失坐标。",
+          "transfer": "用于展览或项目历程时，可以真实事件、版本和时间戳建立共享时间轴；先明确坐标与单位，再让选中对象展开路径，未知数据必须保持未知。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者 README 与源码明确披露 NeoWs、JPL Horizons、参考系、单位、Hermite 插值、缓存与失败关闭；公开页面外壳可访问，本次查看时 NASA 数据仍在连接，完成态画面以作者仓库预览图核验。本站未独立审计星历精度；地球姿态为教育性近似，小行星标记被视觉放大，仓库也未声明代码许可。",
+          "image": "./vibe/covers/perigee-nasa-asteroid-explorer.jpg",
+          "imageSource": "https://github.com/ZakJRademacher/perigee-asteroid-tracker/blob/21cef422e15f459015f91808dbed7f9749bd19e0/docs/images/perigee-viewer.png",
+          "imageCredit": "Zak Rademacher；作者仓库公开预览图；NASA/JPL 数据与纹理来源见原项目 provenance",
+          "context": {
+            "type": "data",
+            "tags": [
+              "NASA/JPL",
+              "轨迹可视化",
+              "Three.js"
+            ],
+            "collectedOn": "2026-10-22",
+            "pageTime": "Repository created · 2026.10.22",
+            "summary": "把近地天体目录、状态向量与统一历元变成可追溯的地心空间浏览器。",
+            "audience": "做科学数据、时间轨迹或博物馆级 3D 解释界面的创作者",
+            "value": "应用价值：学习如何让来源、坐标系、时间和缺失状态成为视觉体验的一部分。",
+            "conditions": "只作教育性浏览；数据可用性依赖 NASA/JPL，且未声明许可的代码不能开放下载或复用。"
+          }
+        },
+        {
+          "id": "little-rain-cloud-procedural-world",
+          "title": "小雨云 · Little Rain Cloud",
+          "author": "dososo / BLCaptain",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.22",
+          "url": "https://dososo.github.io/little-rain-cloud/",
+          "accent": "#8fbf6f",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：狐狸带着一小块私有雨云穿过沙丘，走过的湿痕长出草花；按 C 回望时，一条自己制造的绿洲成为旅程证据。",
+          "why": "它不是给沙漠叠一场循环雨。雨滴写入持续的湿度图，湿沙、草、花、彩虹、夜间萤火虫与音乐都从同一旅程状态生长，玩家留下的路径就是叙事。",
+          "input": "键盘或点击移动、狐狸与雨云位置、雨滴碰撞、湿度累积、昼夜状态，以及阵风、呼唤、彩虹和回望镜头。",
+          "layer": "Three.js 生成沙丘与风纹 shader；512×512 湿度纹理驱动沙色和生长，实例化草与花承担密度，Khronos 狐狸模型与 Web Audio 补充角色和环境反馈。",
+          "motion": "云以滞后速度跟随狐狸，雨沿行进轨迹改变地面；草花逐步长出，夜雨转成萤火虫，C 键拉远镜头回看路径，E 键生成短暂彩虹。",
+          "pipeline": "输入先更新狐狸与云，再生成雨滴并写入湿度图；湿度同时驱动地表 shader、草花实例与声音事件，最后由镜头把局部行动组织成可回看的路径。",
+          "performance": "源码提供三档质量：低档降低像素比与阴影，最高档将设备像素比封顶 2，并控制实例数量；作者只声明在 macOS Chrome 测试、桌面 Chrome 体验最佳。未见 reduced-motion 分支，手机兼容与持续帧率未知。",
+          "transfer": "用于 Joey 作品集时，可让每个真实过程节点在空间里留下可回看的痕迹；只有完成并可链接的产出才生长为地貌，避免把浏览动作误当项目成果。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已核验狐狸、雨云、沙丘、绿洲计数与交互控件；README 与源码支持湿度图、实例化生长、质量档和程序音频。仓库披露代码由 Claude Opus 5.5 在 Claude Code 中生成；狐狸模型与动画分别包含 CC0 与 CC BY 4.0 来源。最大实例上限来自源码，不代表所有设备的稳定性能。",
+          "image": "https://raw.githubusercontent.com/dososo/little-rain-cloud/8180c1b1c98e993bad05e77eb596d472ce2910cd/shots/03-rainbow.png",
+          "imageSource": "https://github.com/dososo/little-rain-cloud/blob/8180c1b1c98e993bad05e77eb596d472ce2910cd/shots/03-rainbow.png",
+          "imageCredit": "dososo / BLCaptain；作者仓库公开截图；狐狸模型与动画署名见原项目 Third-party assets",
+          "context": {
+            "type": "story",
+            "tags": [
+              "程序化世界",
+              "状态叙事",
+              "Three.js"
+            ],
+            "collectedOn": "2026-10-22",
+            "pageTime": "Repository created · 2026.10.22",
+            "summary": "让雨水、湿度、生长、镜头与声音把一次移动变成可回看的绿洲路径。",
+            "audience": "做互动叙事、程序化世界或轻量 3D 体验的创作者",
+            "value": "应用价值：学习如何让用户行为留下持续状态，而不是触发即消失的特效。",
+            "conditions": "当前证据以桌面 Chrome 为主；移动端和减弱动效模式需要另行设计与验证。"
+          }
+        }
+      ],
+      "dateLabel": "OCT 22",
+      "issueNo": "004"
+    },
     {
       "id": "2026-10-21",
       "note": "四件同日公开作品把仿真、代码历史、运动学和字符渲染变成了可操作的界面。共同价值不在特效密度，而在于内部结构会回应输入；来源时间均保留为仓库创建日 2026-10-21，收录日为 2026-10-21。",
