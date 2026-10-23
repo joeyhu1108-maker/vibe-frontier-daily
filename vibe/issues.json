@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-22T10:37:45.951Z",
+  "updatedAt": "2026-10-23T10:43:58.654Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,185 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-10-23",
+      "note": "四件新作分别把地下雷达不确定度、南宋临安的程序化水墨、4D Gaussian Splat 与玩家行为预测变成可操作界面。共同价值不在视觉奇观，而在于画面由可追溯数据、模型状态或交互历史驱动；来源时间与收录日期分开保留。",
+      "featuredId": "gpr-horizon-uncertainty",
+      "experiment": {
+        "title": "让真实移动序列长出一张预测图",
+        "input": "记录自己连续 60 次方向键移动，把 4×4 网格中的当前格与下一格写成一组真实转移序列。",
+        "target": "把 16×16 转移计数画成热力矩阵，并在当前格旁只显示下一步概率最高的三格；数据不足时明确显示“样本不足”。",
+        "stack": "单个 HTML、Canvas 2D、原生 JavaScript；不接模型、不存远端。",
+        "acceptance": "同一序列得到同一矩阵；每行概率和为 1；清空记录后不保留旧预测；手机宽度下仍可点按并看清图例。"
+      },
+      "restraint": "Creative Twin 只有在接入真实、可追溯的版本、状态或行为数据，并能说明每个视觉变量如何由数据生成时才值得采用；若只有程序景观、动画或自造仪表数字，就保持为互动叙事，不称数字孪生。",
+      "cases": [
+        {
+          "id": "gpr-horizon-uncertainty",
+          "title": "Uncertainty-aware 3D visualization of a GPR horizon",
+          "author": "zhaoyhtj",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.23",
+          "url": "https://zhaoyhtj.github.io/GPR_horizon_3d/horizon3d.html",
+          "accent": "#3a9fbe",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：一张彩色地下层位曲面和它的 ±kσ 带同屏旋转；切到剖面或留一测线残差时，漂亮曲面立刻暴露哪里更该怀疑。",
+          "why": "它不是给地形叠一层热力色。曲面、24 条测线、留一测线残差、局部重复性尺度与全局时深误差保持分离，界面迫使读者同时看结论与证据强度。",
+          "input": "Schillerslage 公开数据集中的 RF4 GPR 人工拾取、测线位置、归一化卷积重建、24 折留一测线残差，以及作者引用的全局时深转换误差。",
+          "layer": "单文件 HTML 与 Canvas 2D 内嵌派生数组；主视图显示曲面、带状包络、测线或残差，底部剖面和俯视图用同一 σ(x,y) 与深度字段辅助阅读。",
+          "motion": "拖拽、缩放和悬停用于空间读取；切换 surface、band、profiles、LOO residuals 才是主叙事。显示夸张与垂直夸张分别标明，并让空间项和全局包络保持同一夸张系数。",
+          "pipeline": "作者明确披露：4,990 个拾取点先做归一化卷积，9 米最近拾取距离掩膜留下 7,739 个节点；24 折留一测线残差再反演为局部平均绝对残差尺度 σ。查看器把派生字段编码进约 0.46 MB 的自包含页面。",
+          "performance": "零运行时依赖、无网络请求，只在状态变化时用 requestAnimationFrame 重绘；公开页面可在桌面和触控界面操作。作者未给不同手机的持续帧率，移动端应默认降低垂直夸张并保留剖面与文字表。",
+          "transfer": "用于 Joey 的真实项目复盘时，把“完成结果”和“证据薄弱处”放在同一视觉对象上：例如用真实版本记录画主曲线，用缺少验收、来源或回执的节点画独立的不确定度层。",
+          "difficulty": "1 天原型",
+          "evidence": "公开演示已核验曲面、σ 着色、±kσ 带、24 条测线、LOO 残差和触控旋转；README 明确给出数据来源、计算定义、误差项与许可。σ 是局部平均绝对残差尺度，不是标准差或置信区间；分析管线和机器可读残差尚未随仓库发布，手稿仍在准备中，本站未复算数值。作者真实姓名未公开，仅按 GitHub 署名。",
+          "image": "https://raw.githubusercontent.com/zhaoyhtj/GPR_horizon_3d/3c668bce5499c1182fa1cc549b3c9f3c632b028e/FramePic.png",
+          "imageSource": "https://github.com/zhaoyhtj/GPR_horizon_3d/blob/3c668bce5499c1182fa1cc549b3c9f3c632b028e/FramePic.png",
+          "imageCredit": "zhaoyhtj；作者仓库公开截图；派生字段基于 Igel et al. 2019 Schillerslage 数据集（CC BY 4.0）",
+          "context": {
+            "type": "data",
+            "tags": [
+              "科学可视化",
+              "不确定度",
+              "Canvas"
+            ],
+            "collectedOn": "2026-10-23",
+            "pageTime": "Repository created · 2026.10.23",
+            "summary": "让地下层位重建与局部重复性尺度、测线和残差保持在同一可操作界面。",
+            "audience": "做真实数据、科研解释、数字孪生或证据型界面的创作者",
+            "value": "应用价值：学习如何在不制造假精确度的前提下，让不确定度参与空间阅读。",
+            "conditions": "必须保留原始数据署名、误差定义与作者声明的证据边界；当前结果不能当置信区间。"
+          }
+        },
+        {
+          "id": "linan-walkable-ink-world",
+          "title": "临安 Lin’an — Walkable Ink World",
+          "author": "Keith / Keith-CY",
+          "platform": "Creator site / GitHub",
+          "pageTime": "Repository created · 2026.10.22; updated · 2026.10.23",
+          "url": "https://linan.lapla.si/",
+          "accent": "#a08a72",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：沿苏堤走向拱桥时，柳树、桃花、远山与雾仍像一幅固定在世界中的水墨长卷，镜头移动却没有把笔触变成屏幕滤镜。",
+          "why": "它不是把 Three.js 场景后处理成黑白。建筑、山水与植被均由代码生成，每个材质同时写入 G-buffer，画师 pass 再组织勾、皴、染与留白；笔触锚定世界，空间行走和绘画语言没有分家。",
+          "input": "《营造法式》模数与构造规则、程序地形与水体、城市和植被生成器、相机位置、时令与三种水墨风格。",
+          "layer": "Three.js WebGL2 构成可步行世界；worker 流式生成地形，材质输出 G-buffer，水墨 pass 生成轮廓、纹理笔触、分级墨洗和纸面留白；十个视点与六种时令承担导航。",
+          "motion": "WASD 或触控移动，镜头停稳后画面收束成离线静帧；世界锚定笔触避免随屏幕游动。时间与季节切换改写光、植被和氛围，而不是只换色板。",
+          "pipeline": "作者明确披露：建筑生成器按材分、举折、出檐与斗拱规则搭建；重石几何预烘焙为量化压缩文件并近处优先下载，未命中时浏览器回退生成。G-buffer 再进入水墨画师，离线渲染器用于高质量静帧与视频。",
+          "performance": "作者报告全世界浏览后约占 0.5–0.7 GB JS heap 与约 2 GB 几何，在 M1 Max、1440×900 的宫殿和御街区域帧率约 30 多；在线分辨率会自适应。首帧实测加载明显长于常规网页，移动端应限制视点、几何范围和画师分辨率。",
+          "transfer": "用于 Joey 的艺术史或城市作品时，先选一个可被规则解释的局部——一座构件、一段路径或一个画面视点——让模型、笔触与文本证据共用坐标，不要一上来复制整座城。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已完整加载并实测进入“苏堤春晓”可步行场景；README 与源码说明 Three.js、程序化资产、G-buffer 水墨、worker 流式地形与性能范围。历史与地理准确性未由本站独立审计；作者明确披露 refs 中的对照图由 Qwen-Image 2.1 生成，但页面不把它们当贴图。性能数字为作者在特定机器上的报告。",
+          "image": "https://raw.githubusercontent.com/Keith-CY/linan/0435eafa9ff835b7ff2442355a5d97956b930ea5/media/contact.jpg",
+          "imageSource": "https://github.com/Keith-CY/linan/blob/0435eafa9ff835b7ff2442355a5d97956b930ea5/media/contact.jpg",
+          "imageCredit": "Keith / Keith-CY；作者仓库公开的十视点 contact sheet；Athenaion 与 Three.js 第三方署名见原项目 NOTICE",
+          "context": {
+            "type": "space",
+            "tags": [
+              "程序化世界",
+              "水墨渲染",
+              "Three.js"
+            ],
+            "collectedOn": "2026-10-23",
+            "pageTime": "Repository created · 2026.10.22; updated · 2026.10.23",
+            "summary": "把南宋城市规则、程序化世界与世界锚定的水墨笔触合成可步行长卷。",
+            "audience": "做文化空间、博物馆级 3D、程序化叙事或艺术史体验的创作者",
+            "value": "应用价值：学习如何让一种绘画语言成为空间渲染结构，而不是末端滤镜。",
+            "conditions": "当前完整世界对设备要求高；历史准确性、移动端范围和引用边界需按具体项目另行验证。"
+          }
+        },
+        {
+          "id": "four-d-gaussian-splat-viewer",
+          "title": "4D Viewer",
+          "author": "t5dev10",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.23",
+          "url": "https://t5dev10.github.io/4dviewer/",
+          "accent": "#d066ff",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：一团发光的 4D splat 结构在时间轴里伸展、淡出和换色；暂停后仍可绕行检查体积，而不是只能观看固定视频。",
+          "why": "它不是在静态点云上播放噪声位移。每个 splat 拥有空间速度、时间门控和随时间变化的方向色，场景时钟同时决定位置、透明度与颜色；时间和视角都成为模型界面。",
+          "input": ".nx4d、流式 .nxs4、SuperSplat .sog4d 与多种静态 splat 格式，外加播放时间、相机、坐标轴、变换、FOV、质量和可选 WebGPU 开关。",
+          "layer": "WebGL2 以实例化四边形和 worker 深度排序渲染；可选 WebGPU compute sort + draw。shader 在同一时钟求位置、时间 Gaussian gate、球谐方向色与 Fourier 时间色。",
+          "motion": "细时间轴负责播放、暂停和拖动；轨道镜头保留空间检查。流式场景先画粗层，再按时间与视角补全细节，音频可绑定同一场景时钟。",
+          "pipeline": "作者明确披露：.nx4d 为单 gzip 容器，.nxs4 用 HTTP Range、CRC、时空 AABB、LOD 与压缩 chunk 组织；解析有计数边界和解压上限。浏览器还能应用坐标变换并导出当前时刻。",
+          "performance": "渲染分辨率随帧率自适应，画面不变时停止重绘；.nxs4 支持粗到细和按视角加载。公开演示可在桌面 WebGL2 运行，但作者未给手机、WebGPU、XR 或超大捕获的统一基准，移动端应固定低质量并提供海报帧。",
+          "transfer": "用于 Joey 的作品集时，只有拿到同一对象跨时间的真实捕获或版本数据才做 4D；可先把一个真实雕塑的三时刻状态放进共用时钟，并让暂停、绕行和来源说明同时可达。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已核验默认动态场景、时间轴、轨道查看与完成加载；README 和容器说明支持各格式、时间门控、SH×Fourier、WebGL2、可选 WebGPU 与 range streaming。本站只实测默认 Lumen 场景，未逐一验证所有格式、XR、导出和 WebGPU 路径；仓库未声明整体许可，因此不提供代码下载入口。",
+          "image": "https://raw.githubusercontent.com/t5dev10/4dviewer/20414232a75a741811929d33fc6684a934e64bbb/assets/og.jpg",
+          "imageSource": "https://github.com/t5dev10/4dviewer/blob/20414232a75a741811929d33fc6684a934e64bbb/assets/og.jpg",
+          "imageCredit": "t5dev10；作者仓库公开预览图；第三方 fzstd 署名与许可见原项目",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "4D Gaussian Splat",
+              "WebGL2",
+              "时空查看器"
+            ],
+            "collectedOn": "2026-10-23",
+            "pageTime": "Repository created · 2026.10.23",
+            "summary": "让动态 Gaussian Splat 的时间、视角、流式细节与导出共享一个浏览器查看器。",
+            "audience": "做空间捕获、数字遗产、动态点云或 WebGL 工具的创作者",
+            "value": "应用价值：学习如何把动态体积数据的时间维度做成可检查、可链接的界面。",
+            "conditions": "需要真实 4D 捕获或可解释的时序模型；未声明许可的仓库内容不能直接打包复用。"
+          }
+        },
+        {
+          "id": "noise-adaptive-stealth-city",
+          "title": "NOISE — A City That Models Its Couriers",
+          "author": "Kretik / ASKretik",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.23",
+          "url": "https://askretik.github.io/noise/",
+          "accent": "#ff5364",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：在暗色城市网格中躲避红色外星人时，右侧预测条、到达日志和 dossier 不断解释系统为何把追兵派往某个分区。",
+          "why": "它不是给潜行游戏加一个假 AI 标签。当前地图的转移计数、跨关卡行为统计、出生采样和小队分工都能在界面上被观察与切换；玩家行为既改变敌人分布，也成为叙事中的“档案”。",
+          "input": "每 tick 的玩家位置、16 个行为特征与地图几何、当前关卡的分区转移计数、跨关卡 dossier、难度与已收集钥匙的可见范围。",
+          "layer": "纯 JavaScript 仿真核心与 Canvas 城市网格；tier 1 用分区 Markov 计数，tier 2 用每个行为特征的指数加权均值、方差和样本数，spawner 与 squad 消费合并后的分布。",
+          "motion": "玩家以八 tick 每秒移动，外星人按预测区域到达并分工追击、封路；水、闪电、瓦砾和黑箱改变可见性、速度与记忆。热力图、目标层和访问层可按键显隐。",
+          "pipeline": "作者明确披露：无训练、无梯度与 checkpoint；当前关卡转移矩阵离开后清空，跨关卡 dossier 持久化并重加权巡逻。语言模型只异步叙述预测状态，无 WebGPU 时退化为同一状态生成的模板文本，不阻塞游戏循环。",
+          "performance": "仿真核心零 DOM、固定种子且可在 Node 测；浏览器层把 IndexedDB、声音和叙述做成叶节点，缺失时不影响核心。作者未给手机帧率；移动端应先保留网格、预测条与模板 dispatch，并关闭运行时语言模型。",
+          "transfer": "用于 Joey 的互动项目时，可把真实浏览或选择序列转成透明的计数模型：界面同时展示系统的预测、依据与置信边界，让观众能故意偏离习惯，而不是被不可见画像操控。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已实测地图、预测分布、到达日志、dossier 和四种 spawner 模式；README、源码与决策日志支持两层在线计数、固定种子、基准与降级。重要冲突：README/首页仍有“分数就是熵”的旧句，但当前 score.js 和 decisions.md 明确显示分数已改为速度、收集、眩晕、钥匙等复合值；熵只保留为 HUD noise index 与控制器信号。基准由作者脚本生成，本站未重跑；仓库未声明许可。",
+          "image": "./vibe/covers/noise-adaptive-stealth-city.jpg",
+          "imageSource": "https://askretik.github.io/noise/play.html?p=main&d=1",
+          "imageCredit": "Kretik / ASKretik；本站对作者公开演示的实机截图",
+          "context": {
+            "type": "story",
+            "tags": [
+              "行为预测",
+              "Canvas 游戏",
+              "可解释系统"
+            ],
+            "collectedOn": "2026-10-23",
+            "pageTime": "Repository created · 2026.10.23",
+            "summary": "让当前移动统计、跨关卡行为档案和敌人调度成为可见的潜行叙事。",
+            "audience": "做可解释交互、行为系统、游戏叙事或个性化界面的创作者",
+            "value": "应用价值：学习如何把简单在线统计做成玩家能观察、对抗和质疑的系统。",
+            "conditions": "必须揭示数据如何被记录和使用；当前仓库文案与计分源码有冲突，不能复述过期结论。"
+          }
+        }
+      ],
+      "dateLabel": "OCT 23",
+      "issueNo": "005"
+    },
     {
       "id": "2026-10-22",
       "note": "四件同日公开作品把风洞求解、NASA 遭遇数据、雨水生长与城市遮阴变成了可操作空间。共同价值在于画面由真实数据或明确状态驱动；来源时间均保留为仓库创建日 2026-10-22，收录日为 2026-10-22。",
