@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-23T10:43:58.654Z",
+  "updatedAt": "2026-10-24T10:36:17.316Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,143 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-10-24",
+      "note": "今天的三件作品都把后台机制直接变成了界面：森林把浏览器内光照烘焙、缓存和层级细节暴露给观看者；策展工作室让空间、藏品、动线与关系树在同一模型中编辑；性能实验室则把设备测量、理论预测与真实模型验证排成可追问的证据链。来源时间与收录日期分开保留。",
+      "featuredId": "baked-voxel-lighting",
+      "experiment": {
+        "title": "把一束光的遮挡写成可检查体积",
+        "input": "生成一个 32 × 16 × 32 的占据网格，放入地面、12 根树干代理和一条可拖动的太阳方向。",
+        "target": "并排显示体积切片与一个低模场景；太阳移动时，只更新光照体积，几何不重建，并明确标注这是近似遮挡而非路径追踪。",
+        "stack": "单个 HTML、Three.js、WebGL2 render target 或纯 Canvas 2D 切片；不接后端、不下载模型。",
+        "acceptance": "太阳方向改变后 1 秒内看到阴影体积变化；同一输入得到同一结果；关闭体积光后仍能辨认原始几何；手机宽度下保留切片、图例和降级提示。"
+      },
+      "restraint": "Creative Twin 只有在树木、展品、设备或访客状态来自真实且可追溯的数据，并能逐项说明视觉变量的映射时才值得接入；程序森林、演示展厅和作者自测数据本身都不应被包装成数字孪生。",
+      "cases": [
+        {
+          "id": "baked-voxel-lighting",
+          "title": "BakedVoxelLighting",
+          "author": "SamG-Coder",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.24",
+          "url": "https://samg-coder.github.io/BakedVoxelLighting/",
+          "accent": "#dceaa1",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：一片 16 km² 的开阔林地已经在浏览器里亮起来，右侧 Bake Studio 同时显示 WebGPU / WGSL、96 × 48 × 96 光照体积、缓存命中与树草 HLOD；画面与工程状态没有被拆成两个世界。",
+          "why": "它不是给树海套一层氛围滤镜。占据、传输与辐射照度在浏览器 GPU 上烘焙，植被远近层级仍保留各自位置和法线，太阳与点光可以只刷新局部光照；控制台把近似方法、缓存和 LOD 直接交给观看者检查。",
+          "input": "确定性 4,000 × 4,000 米地形、侵蚀与道路规则、38,041 棵树和 27,556 个草丛位置、植被与水体代理、相机地址、太阳方向、局部光照体积与缓存身份。",
+          "layer": "Three.js 管理场景、实例和材质；WebGPU / WGSL 或 WebGL2 / GLSL render pass 烘焙占据与近似传输。近处使用枝叶和草卡片，远处使用多视角 capture、合并几何与地表覆盖，现场面板暴露后端、分辨率和 HLOD。",
+          "motion": "拖拽与滚轮读取林地，WASD 进入漫游；24 分钟昼夜循环、太阳滑杆和移动点光更新光照。树与草在四级 HLOD 间交叠淡化，云影和风仍按时间变化。",
+          "pipeline": "作者明确披露：CPU 生成地形、植被代理与合并网格，GPU render-to-texture pass 烘焙局部体积、植被色彩／法线 atlas 与云密度；结果以 SHA-256 身份写入 IndexedDB，镜头移动时按 64 米区域地址复用或异步补烘焙。",
+          "performance": "空间批次、视锥裁剪、四级树草 HLOD、惰性草地几何与 IndexedDB 热缓存共同控制成本；页面明确说明仍无层级遮挡剔除，首次 shader、流式重建与场景遍历可能卡顿，移动端工作尚未完成。本站看到的帧率和 draw 数只是一次浏览器运行快照，不作为跨设备基准。",
+          "transfer": "用于 Joey 的作品集时，可只做一块真实作品空间：让展品、灯位和观众路径驱动 32 × 16 × 32 的局部光照体积，并把烘焙状态与降级策略放在画面边缘，而不是复制一整片森林。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已实机完成加载并核验 WebGPU · WGSL、96 × 48 × 96 光照体积、IndexedDB 热缓存、昼夜和 HLOD 控件；README 与源码支持双后端 render pass、确定性世界、代理烘焙与已知限制。本站未切换验证 WebGL2、未重跑作者测试，也未在手机上验证；作者明确称光照为 RGBA8 近似辐射照度而非收敛路径追踪，生态与水体同样是艺术近似。",
+          "image": "./vibe/covers/baked-voxel-lighting.jpg",
+          "imageSource": "https://samg-coder.github.io/BakedVoxelLighting/",
+          "imageCredit": "SamG-Coder；本站对作者公开演示的实机截图",
+          "context": {
+            "type": "space",
+            "tags": [
+              "浏览器光照烘焙",
+              "WebGPU / WebGL2",
+              "植被 HLOD"
+            ],
+            "collectedOn": "2026-10-24",
+            "pageTime": "Repository created · 2026.10.24",
+            "summary": "把浏览器内体积光照、缓存与植被层级细节做成可观察的林地界面。",
+            "audience": "做实时空间、生成景观、WebGPU 实验或浏览器 3D 工具的创作者",
+            "value": "应用价值：学习如何让烘焙、缓存、近似边界和画面共同构成可信的技术叙事。",
+            "conditions": "当前定位为桌面实验；移动端、首次加载和快速移动时的卡顿仍需单独设计降级。"
+          }
+        },
+        {
+          "id": "rds-curatix-2026",
+          "title": "Rds Curatix 2026",
+          "author": "Rds / GreentailTohru-arch",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.24",
+          "url": "https://greentailtohru-arch.github.io/Rds-Curatix/",
+          "accent": "#d48b3f",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：不是走进一间现成展厅，而是在同一张黑色工作台里同时看楼层地图、三维空间、展品数量、场景树和沉浸屏关系；模型本身就是策展控制面。",
+          "why": "它不是把画框拖进通用 3D 编辑器。空间模块、藏品资产、沉浸媒体、参观路线、镜头焦点和关系树围绕“展览如何被组织与游览”形成专用语法，编辑态与漫游态共享同一项目。",
+          "input": "多层展厅与命名展区、画框／展墙／展柜／台座／屏幕／灯光／家具、艺术品与媒体、展线、相机运动、渲染质量，以及可导出的 .cura 或内嵌资产 JSON。",
+          "layer": "公开界面把布局编辑、楼层地图、场景集合、CMS 资产、关系树、材质、漫游和动画组织为一体；作者说明 Web 与 Windows 版共享展览工具和便携项目格式，Web 草稿保存在当前浏览器。",
+          "motion": "用户先拼接空间与展陈模块，再以直接漫游、路线可视化或电影镜头检查叙事；WebXR 可选择摇杆、传送或混合移动。这里的镜头不是展示后期，而是可编辑的策展对象。",
+          "pipeline": "作者明确披露的是产品能力与交付边界：编译后的 Web 客户端、Windows 包、内置场馆模板和便携项目；开发源码与可编辑展览文件并未公开。公开截图显示同一项目内的空间编辑、地图、场景集合与内容统计，但内部渲染和数据结构不可从仓库核验。",
+          "performance": "作者建议使用具备 WebGPU 和兼容显卡的桌面浏览器，并说明性能取决于硬件、质量和展览复杂度；XR 还需真实头显验证。没有公开统一帧率或移动端保证，因此移动访问应提供展览海报、楼层图和作品清单，而不是承诺完整编辑器。",
+          "transfer": "用于 Joey 的数字展览时，先把“作品—空间—动线—镜头—来源”做成一张关系树，让每个对象可从场景回到证据；比先追求空旷的大场馆更有复用价值。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开首页已核验五个场馆模板，并看到模板启动时的渲染／物理材质加载状态；作者仓库提供正式工作区截图、功能说明、当前 2026.3.2 版本与 WebXR 边界。本站本次未等到完整编辑器场景启动，也未用真实头显、Windows 包或跨浏览器项目导入；仓库明确为闭源专有软件，不能据此推断内部框架或提供代码下载。",
+          "image": "https://raw.githubusercontent.com/GreentailTohru-arch/Rds-Curatix/23a1c3db146e63d77620cef6d9180eed2da3b1fc/assets/workspace.png",
+          "imageSource": "https://github.com/GreentailTohru-arch/Rds-Curatix/blob/23a1c3db146e63d77620cef6d9180eed2da3b1fc/assets/workspace.png",
+          "imageCredit": "Rds / GreentailTohru-arch；作者官方分发仓库公开工作区截图",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "虚拟策展",
+              "数字展厅",
+              "WebXR"
+            ],
+            "collectedOn": "2026-10-24",
+            "pageTime": "Repository created · 2026.10.24",
+            "summary": "让空间、藏品、沉浸媒体、动线与镜头在同一 3D 策展工作台内保持关系。",
+            "audience": "做数字展览、博物馆级 3D、空间叙事或策展工具的创作者",
+            "value": "应用价值：学习如何围绕展览任务组织三维编辑，而不是把通用建模器换一层皮。",
+            "conditions": "闭源产品只能按公开能力与截图学习；完整 Web 编辑、XR 和性能仍需在目标设备上另行验收。"
+          }
+        },
+        {
+          "id": "roofline-lab",
+          "title": "Roofline Lab",
+          "author": "Hardik / hrdk6",
+          "platform": "Creator site / GitHub",
+          "pageTime": "Repository created · 2026.10.24",
+          "url": "https://roofline-lab.vercel.app/",
+          "accent": "#59e6d0",
+          "mechanisms": [
+            "数据变成空间",
+            "排版变成界面"
+          ],
+          "memory": "10 秒记忆点：一句“How fast will an LLM run on this device, and why?”占据左半屏，右侧一张屋顶线图把算力、带宽和模型工作点钉在同一坐标里；Measure → Predict → Verify → Recommend 把结论变成路径。",
+          "why": "它不是展示一组设备跑分。浏览器先测实际计算、带宽与调度开销，再用屋顶线模型预测真实 LLM，随后运行模型核对误差并解释原因；理论线、工作点和偏差都能在同一流程中被质疑。",
+          "input": "WebGPU WGSL 或 WebAssembly SIMD 微基准、设备内存、模型结构与量化格式、运行时调用和计时、真实模型的首 token 时间与解码速度，以及用户设定的内存／速度／质量约束。",
+          "layer": "仪表式界面把实测 ceilings、对数坐标 roofline、预测工作点、真实运行拆解、误差原因和推荐结果分为五步；GPU 走 WebGPU + WebLLM，CPU 回退为 WASM SIMD + wllama。",
+          "motion": "叙事由测量进度和证据状态推进，不依赖装饰转场。每一步都把前一步数据带入下一步；图上的 ridge、计算上限与带宽上限让性能瓶颈随设备改变位置。",
+          "pipeline": "作者明确披露：微基准预热后取 K 次中位数并报告离散度，kernel 先与参考实现核对；纯 roofline 预测不拟合，验证阶段运行真实模型，三次结果后才出现含两个参数、留一运行校验的修正模型。可选 Fleet 只在用户确认后提交聚合数据。",
+          "performance": "GPU 路径需要 WebGPU，CPU 路径以 WebAssembly SIMD 保持完整流程；完整演示约两分钟并一次下载约 200 MB 模型权重。作者已自动化覆盖桌面与手机尺寸，但明确说尚未在真实手机测试；移动端应先允许“只测量”，并把模型下载、内存和耗时写在按钮旁。",
+          "transfer": "用于 Joey 的作品集时，可把页面性能、加载包体或交互延迟做成“测量—预测—实测—解释”四步证据页；只有拿到真实设备数据后才画 roofline，不用假数字制造科技感。",
+          "difficulty": "1 天原型",
+          "evidence": "公开首页已核验 WebGPU ready、五步导航、屋顶线示例与约 200 MB／两分钟提示；README、方法文档和源码支持 WGSL／WASM 双路径、预测公式、真实模型验证和局限。本站没有执行完整模型下载与三轮生成，未复算作者开发机数据，也未验证 Fleet；作者明确说真实手机尚未测试，因此数值只按作者证据呈现。",
+          "image": "https://raw.githubusercontent.com/hrdk6/RooflineLab/033877ecd419d9511214ebedb3f0b709805a4a33/public/og.png",
+          "imageSource": "https://github.com/hrdk6/RooflineLab/blob/033877ecd419d9511214ebedb3f0b709805a4a33/public/og.png",
+          "imageCredit": "Hardik / hrdk6；作者仓库公开预览图；图内设备数据为作者示例",
+          "context": {
+            "type": "data",
+            "tags": [
+              "性能可视化",
+              "WebGPU / WASM",
+              "可验证模型"
+            ],
+            "collectedOn": "2026-10-24",
+            "pageTime": "Repository created · 2026.10.24",
+            "summary": "把端侧 LLM 的设备测量、理论预测、真实验证与误差解释排成可检查的数据界面。",
+            "audience": "做数据叙事、AI 工具、性能解释或证据型产品界面的创作者",
+            "value": "应用价值：学习如何让预测模型和真实测量互相校验，而不是把跑分当作唯一答案。",
+            "conditions": "完整验证需下载模型并占用明显算力；真实手机和跨设备结论不能由作者的开发机数据代替。"
+          }
+        }
+      ],
+      "dateLabel": "OCT 24",
+      "issueNo": "006"
+    },
     {
       "id": "2026-10-23",
       "note": "四件新作分别把地下雷达不确定度、南宋临安的程序化水墨、4D Gaussian Splat 与玩家行为预测变成可操作界面。共同价值不在视觉奇观，而在于画面由可追溯数据、模型状态或交互历史驱动；来源时间与收录日期分开保留。",
