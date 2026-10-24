@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#151515" />
-    <meta name="description" content="VIBE FRONTIER 是一间前端灵感杂货铺：按用途与机制翻找真实互动作品，也可以随机开箱，带走能复用的方法。" />
-    <meta property="og:title" content="VIBE FRONTIER｜前端灵感杂货铺" />
-    <meta property="og:description" content="新鲜的真实互动作品，每件都有作品图与来源。免费分享，认真拆解，只为学习。" />
+    <meta name="theme-color" content="#0b0e09" />
+    <meta name="description" content="VIBE FRONTIER 每天核验并拆解真实互动作品，把画面、来源、实现线索与可复用方法放在一起。" />
+    <meta property="og:title" content="VIBE FRONTIER｜前端实验档案" />
+    <meta property="og:description" content="真实作品，有图有来源。看懂它为什么成立，再带走可以复用的方法。" />
     <meta property="og:image" content="./vibe/og.png" />
-    <title>VIBE FRONTIER｜前端灵感杂货铺</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%230071e3'/%3E%3C/svg%3E" />
-    <link rel="preload" href="./vibe/fonts/Caveat-Latin.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="./vibe/academy.css?v=20261020-reading" />
+    <title>VIBE FRONTIER｜前端实验档案</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' rx='2' fill='%230b0e09' stroke='%23dfff52' stroke-width='2'/%3E%3Crect x='9' y='10' width='5' height='5' fill='%23dfff52'/%3E%3Crect x='18' y='10' width='5' height='5' fill='%23dfff52'/%3E%3Cpath d='M9 21h14' stroke='%23dfff52' stroke-width='2'/%3E%3C/svg%3E" />
+    <link rel="preload" href="./vibe/fonts/FusionPixel-Proportional-zhHans-12px.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="./vibe/academy.css?v=20261025-retro-pixel" />
   </head>
   <body>
     <a class="skip-link" href="#main">跳到主要内容</a>
@@ -20,14 +20,14 @@
       <nav class="nav-shell" aria-label="主要导航">
         <a class="wordmark" href="#top" aria-label="VIBE FRONTIER 首页">
           <span class="wordmark-mark" aria-hidden="true"></span>
-          <span>VIBE FRONTIER <small>杂货铺</small></span>
+          <span>VIBE FRONTIER <small>实验档案</small></span>
         </a>
         <div class="nav-links">
-          <a href="#issue">今日上新</a>
-          <a href="#shop-map">逛货架</a>
-          <a href="#mechanisms">拆原理</a>
-          <a class="nav-hackathons" href="#hackathons">赛场柜台</a>
-          <button class="nav-cta" id="nav-random-pick" type="button">随手拿一件</button>
+          <a href="#issue">本期新作</a>
+          <a href="#shop-map">按用途找</a>
+          <a href="#mechanisms">看实现</a>
+          <a class="nav-hackathons" href="#hackathons">黑客松</a>
+          <button class="nav-cta" id="nav-random-pick" type="button">随机调取</button>
         </div>
       </nav>
     </header>
@@ -35,28 +35,28 @@
     <main id="main">
       <section class="hero shop-hero" id="top" aria-labelledby="hero-title">
         <div class="shop-ticker" aria-hidden="true">
-          <div>OPEN DAILY · REAL WORKS ONLY · TAKE AN IDEA · LEAVE WITH A METHOD · OPEN DAILY · REAL WORKS ONLY · TAKE AN IDEA · LEAVE WITH A METHOD ·</div>
+          <div>VERIFIED WORKS · VISIBLE SOURCES · REUSABLE METHODS · VERIFIED WORKS · VISIBLE SOURCES · REUSABLE METHODS ·</div>
         </div>
         <div class="hero-layout wrap">
           <div class="hero-copy">
-            <p class="shop-open"><span aria-hidden="true"></span> 免费开放 · <span id="shop-count">有图作品</span> 在架</p>
-            <p class="eyebrow">AI 造物社 · DIGITAL CURIOSITY SHOP</p>
-            <h1 id="hero-title"><span>前端灵感</span><br /><em>杂货铺</em></h1>
-            <p class="hero-lead">这里不按热度堆链接。真实作品、奇怪机制、可用方法混在一间店里：你可以有目的地找，也可以随手拿起一件。</p>
+            <p class="shop-open"><span aria-hidden="true"></span> 公开浏览 · <span id="shop-count">有图案例</span> 已归档</p>
+            <p class="eyebrow">AI 造物社 · INTERACTIVE WEB ARCHIVE</p>
+            <h1 id="hero-title"><span>把好作品</span><br /><em>拆开来看</em></h1>
+            <p class="hero-lead">每天核验几件值得保存的前端作品。画面、来源和实现线索放在一起，帮你看懂它为什么成立，也带走能复用的方法。</p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#shop-map">进店逛逛 <span aria-hidden="true">↓</span></a>
-              <button class="button button-surprise" id="hero-random-pick" type="button">给我一件没见过的 <span aria-hidden="true">↗</span></button>
+              <a class="button button-primary" href="#shop-map">按用途浏览 <span aria-hidden="true">↓</span></a>
+              <button class="button button-surprise" id="hero-random-pick" type="button">随机调取一件 <span aria-hidden="true">↗</span></button>
             </div>
             <div class="shop-promise" aria-label="选品原则">
-              <span>01 作品真实可访问</span>
-              <span>02 方法可以说清楚</span>
-              <span>03 免费分享 · 尊重原创</span>
+              <span>01 原作可以访问</span>
+              <span>02 画面都有来源</span>
+              <span>03 判断与事实分开</span>
             </div>
           </div>
 
           <div class="hero-stage" aria-live="polite">
-            <div class="shelf-label shelf-label-top">老板私藏</div>
-            <button class="hero-visual-open" id="hero-feature-open" type="button" aria-label="拆开看看本期首选 Geomap">
+            <div class="shelf-label shelf-label-top">本期推荐</div>
+            <button class="hero-visual-open" id="hero-feature-open" type="button" aria-label="打开本期推荐 Geomap 的完整拆解">
               <figure class="hero-visual">
                 <img id="hero-image" src="./vibe/covers/geomap-webgpu-geology.jpg" alt="Geomap 的地质方块与剖面画面" />
                 <figcaption class="hero-caption">
@@ -68,7 +68,7 @@
                 </figcaption>
               </figure>
             </button>
-            <div class="shelf-label shelf-label-bottom">NO. 001 · 拿起来看看 ↗</div>
+            <div class="shelf-label shelf-label-bottom">NO. 001 · 打开完整拆解 ↗</div>
           </div>
         </div>
       </section>
@@ -76,28 +76,28 @@
       <section class="shop-map" id="shop-map" aria-labelledby="shop-map-title">
         <div class="shop-map-heading wrap reveal">
           <div>
-            <p class="eyebrow">PICK AN AISLE</p>
-            <h2 id="shop-map-title">今天想逛<br />哪一排货架？</h2>
+            <p class="eyebrow">CHOOSE A DIRECTION</p>
+            <h2 id="shop-map-title">你现在想<br />解决什么？</h2>
           </div>
-          <p>不用从头读到尾。按你手头的问题进店，或者让店员随手递给你一件。</p>
+          <p>选一个使用情境，直接查看相关案例。没有明确方向，也可以随机调取一件。</p>
         </div>
         <div class="aisle-grid wrap">
-          <button type="button" class="aisle-card aisle-data" data-shop-filter="data"><span>01</span><strong>把数据<br />摆出来</strong><small>数据表达 · 图形 · 实时变化</small><i>→</i></button>
-          <button type="button" class="aisle-card aisle-product" data-shop-filter="product"><span>02</span><strong>让品牌<br />会说话</strong><small>品牌与产品 · 传播 · 选择</small><i>→</i></button>
-          <button type="button" class="aisle-card aisle-space" data-shop-filter="space"><span>03</span><strong>钻进一个<br />新空间</strong><small>3D 展示 · 数字孪生 · 展陈</small><i>→</i></button>
-          <button type="button" class="aisle-card aisle-tools" data-shop-filter="tools"><span>04</span><strong>找件趁手<br />的工具</strong><small>生成工具 · 创作效率 · 输出</small><i>→</i></button>
-          <button type="button" class="aisle-card aisle-story" data-shop-filter="story"><span>05</span><strong>走进一段<br />互动故事</strong><small>滚动 · 游戏 · 参与叙事</small><i>→</i></button>
-          <button type="button" class="aisle-card aisle-random" id="aisle-random-pick"><span>?</span><strong>别选了，<br />随手拿</strong><small>从有图作品里随机开箱</small><i>↗</i></button>
+          <button type="button" class="aisle-card aisle-data" data-shop-filter="data"><span>01</span><strong>让数据<br />变得可读</strong><small>图形表达 · 实时变化 · 关系探索</small><i>→</i></button>
+          <button type="button" class="aisle-card aisle-product" data-shop-filter="product"><span>02</span><strong>给产品<br />一个现场</strong><small>品牌表达 · 产品讲解 · 用户选择</small><i>→</i></button>
+          <button type="button" class="aisle-card aisle-space" data-shop-filter="space"><span>03</span><strong>把空间<br />搬上屏幕</strong><small>3D 展示 · 数字孪生 · 在线展陈</small><i>→</i></button>
+          <button type="button" class="aisle-card aisle-tools" data-shop-filter="tools"><span>04</span><strong>找到可用<br />的工具</strong><small>生成工具 · 创作提速 · 结果输出</small><i>→</i></button>
+          <button type="button" class="aisle-card aisle-story" data-shop-filter="story"><span>05</span><strong>让交互<br />推动故事</strong><small>滚动叙事 · 游戏机制 · 参与体验</small><i>→</i></button>
+          <button type="button" class="aisle-card aisle-random" id="aisle-random-pick"><span>?</span><strong>随机调取<br />一个案例</strong><small>从有图案例中随机选择</small><i>↗</i></button>
         </div>
       </section>
 
       <section class="issue-section section-light" id="issue" aria-labelledby="issue-title">
         <div class="section-heading wrap reveal">
           <div>
-            <p class="eyebrow eyebrow-blue" id="issue-kicker">JUST IN · 今日上新</p>
-            <h2 id="issue-title">老板，今天<br />到了什么好货？</h2>
+            <p class="eyebrow eyebrow-blue" id="issue-kicker">LATEST ENTRY · 本期新增</p>
+            <h2 id="issue-title">本期新增<br />先看这几件</h2>
           </div>
-          <p id="issue-note">每件新货都保留作者、原作与证据。好看只是上架理由之一，更重要的是它解决什么问题、怎样实现。</p>
+          <p id="issue-note">每件案例都核对作者、原作和画面来源，再把实现线索、复用方法与证据边界写清楚。</p>
         </div>
 
         <div class="featured-grid wrap" id="featured-grid" aria-live="polite">
@@ -107,18 +107,18 @@
 
       <section class="editorial-break section-dark" aria-labelledby="editorial-title">
         <div class="editorial-inner wrap reveal">
-          <p class="eyebrow">SHOPKEEPER&apos;S NOTE · 店主小票</p>
-          <h2 id="editorial-title">不只分享“哇”。<br />也分享怎么做。</h2>
-          <p>这间店收藏视觉惊喜，也追问输入、交互、性能与落地条件。应用方向只是编辑判断，不冒充收入、转化或真实商业结果。</p>
+          <p class="eyebrow">EDITOR&apos;S LOG · 编辑记录</p>
+          <h2 id="editorial-title">好看之后<br />继续往下追</h2>
+          <p>每个案例都追到输入和实现条件，再把性能边界写清楚。应用价值属于编辑判断，不能替代真实业务验证。</p>
         </div>
       </section>
 
       <section class="mechanism-section section-white" id="mechanisms" aria-labelledby="mechanism-title">
         <div class="mechanism-layout wrap">
           <div class="mechanism-intro reveal">
-            <p class="eyebrow eyebrow-blue">HOW IT&apos;S MADE · 拆货台</p>
-            <h2 id="mechanism-title">翻到背面，<br />看看配方。</h2>
-            <p>视觉是包装，机制才是配方。点一种实现方式，直接去货架找同类作品。</p>
+            <p class="eyebrow eyebrow-blue">HOW IT WORKS · 实现机制</p>
+            <h2 id="mechanism-title">这些效果<br />怎么成立？</h2>
+            <p>选择一种实现机制，查看所有同类案例。</p>
           </div>
           <div class="mechanism-list" role="list" aria-label="五种前端机制">
             <button class="mechanism-row reveal" type="button" data-mechanism="数据变成空间"><span class="mechanism-number">01</span><span>数据可视化<small>把数据或计算结果画成图，观察变化与关系。</small></span><span class="mechanism-arrow" aria-hidden="true">↗</span></button>
@@ -133,21 +133,21 @@
       <section class="archive-section section-light" id="archive" aria-labelledby="archive-title">
         <div class="archive-heading wrap reveal">
           <div>
-            <p class="eyebrow eyebrow-blue">ALL STOCK · 全部库存</p>
-            <h2 id="archive-title">慢慢翻，<br />总有一件对味。</h2>
+            <p class="eyebrow eyebrow-blue">ALL ENTRIES · 全部案例</p>
+            <h2 id="archive-title">全部案例<br />从这里找</h2>
           </div>
-          <p><span id="archive-total">—</span> 个有图案例，按最新收录优先展示，也可按日期、应用价值、用途与机制组合筛选。这里免费分享作品与方法，不售卖代码或素材。</p>
+          <p>共 <span id="archive-total">—</span> 个有图案例。可按日期、用途和实现机制筛选，所有内容免费浏览。</p>
         </div>
 
         <div class="type-guide wrap" id="type-guide" aria-label="五种用途类型"></div>
-        <p class="value-notice wrap" id="image-notice">只展示有可核验作品图的案例；暂缺图的研究记录保留在档案中，不用占位图补数。收录日期不等于作品上线日；来源时间另行标注。</p>
+        <p class="value-notice wrap" id="image-notice">当前只展示有可核验作品图的案例。暂缺图片的历史研究记录继续保留，收录日期与作品上线时间分开标注。</p>
         <p class="value-notice wrap" id="value-notice"></p>
 
         <div class="archive-tools wrap reveal">
           <label class="search-field" for="archive-search">
             <span class="sr-only">搜索作品、作者、用途、价值标签、适用对象或机制</span>
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" /></svg>
-            <input id="archive-search" type="search" placeholder="翻找：作品、作者、用途、机制…" autocomplete="off" />
+            <input id="archive-search" type="search" placeholder="搜索作品、作者、用途或机制" autocomplete="off" />
           </label>
           <div class="archive-facets" aria-label="案例分类维度">
             <label class="facet-field" for="archive-date"><span>收录日期</span><select id="archive-date"><option value="all">全部日期</option></select></label>
@@ -188,10 +188,10 @@
       <section class="hackathon-section section-white" id="hackathons" aria-labelledby="hackathon-title">
         <div class="section-heading wrap reveal">
           <div>
-            <p class="eyebrow eyebrow-blue">FIELD TEST COUNTER · 赛场柜台</p>
-            <h2 id="hackathon-title">好点子，<br />拿去现场试试。</h2>
+            <p class="eyebrow eyebrow-blue">FIELD TESTS · 黑客松</p>
+            <h2 id="hackathon-title">把想法<br />放到现场验证</h2>
           </div>
-          <p>按国内、国际找活动。先确认还能不能参加，再看值得做什么：真实命题、可运行作品、协作与验证，不只看奖金。</p>
+          <p>先确认报名资格和截止时间，再看命题、交付要求与参与成本。活动信息以官方页面为准。</p>
         </div>
         <div class="hackathon-tools wrap">
           <div class="filter-scroller" id="hackathon-filters" aria-label="按国内国际筛选黑客松">
@@ -211,13 +211,13 @@
       <section class="about-section section-dark" id="about" aria-labelledby="about-title">
         <div class="about-grid wrap reveal">
           <div>
-            <p class="eyebrow">ABOUT THIS LITTLE SHOP</p>
-            <h2 id="about-title">逛的是作品，<br />带走的是方法。</h2>
+            <p class="eyebrow">ABOUT THIS ARCHIVE</p>
+            <h2 id="about-title">看完一件<br />带走一个方法</h2>
           </div>
           <div class="about-copy">
-            <p>VIBE FRONTIER 是 AI 造物社的免费前端作品分享站。收藏真实作品、拆开实现原理，让创作者一起学习、交流与尝试。本站不以盈利为目的，不售卖案例、代码或素材。</p>
-            <p>作品与代码的权利属于原作者。下载公开学习代码前，须勾选“不抄袭、不商用”承诺，保留署名与许可说明。本站学习约定不替代原作者许可证；未核验许可的作品只提供欣赏与来源，不提供下载。</p>
-            <a class="text-link" href="#issue">回到本期 <span aria-hidden="true">↑</span></a>
+            <p>VIBE FRONTIER 是 AI 造物社维护的免费前端实验档案。我们核验真实作品，记录实现原理，也把仍然无法确认的部分如实留下。</p>
+            <p>作品与代码的权利属于原作者。只有许可已经核验的公开仓库才提供学习下载，署名、素材条款与原许可证继续有效。其他案例只提供原作链接与研究记录。</p>
+            <a class="text-link" href="#issue">查看本期新作 <span aria-hidden="true">↑</span></a>
           </div>
         </div>
       </section>
@@ -225,14 +225,14 @@
 
     <footer class="site-footer">
       <div class="footer-inner wrap">
-        <div><strong>VIBE FRONTIER</strong><p>AI 造物社 · 前端灵感杂货铺</p></div>
-        <p>每日营业 · 真实作品 · 方法拆解 · 随便逛逛</p>
+        <div><strong>VIBE FRONTIER</strong><p>AI 造物社 · 前端实验档案</p></div>
+        <p>真实作品 · 公开来源 · 方法拆解</p>
       </div>
     </footer>
 
-    <aside class="browse-dock" aria-label="本次逛店记录">
-      <span>本次逛了 <strong id="view-count">0</strong> 件</span>
-      <button id="dock-random-pick" type="button">再拿一件 ↗</button>
+    <aside class="browse-dock" aria-label="本次查看记录">
+      <span>已查看 <strong id="view-count">0</strong> 个案例</span>
+      <button id="dock-random-pick" type="button">随机看下一件 ↗</button>
     </aside>
 
     <dialog class="case-dialog" id="case-dialog" aria-labelledby="dialog-title">
@@ -243,6 +243,6 @@
     </dialog>
 
     <noscript><p class="noscript-note">请启用 JavaScript 以浏览案例拆解与研究档案。</p></noscript>
-    <script src="./vibe/academy.js?v=20261020-reading" defer></script>
+    <script src="./vibe/academy.js?v=20261025-copy" defer></script>
   </body>
 </html>

@@ -118,7 +118,7 @@ function sourceTimeLabel(pageTime = "") {
 function caseDates(item) {
   const context = caseContext(item);
   const collectedOn = context?.collectedOn || (state.cases.includes(item) ? state.issue?.id : "");
-  return `<div class="case-dates"><p>收录：${collectedOn ? `<time datetime="${escapeHTML(collectedOn)}">${dateLabel(collectedOn)}</time>` : "未记录"}</p><p>来源时间：${escapeHTML(sourceTimeLabel(context?.pageTime || item.pageTime))}</p></div>`;
+  return `<div class="case-dates"><p>收录 ${collectedOn ? `<time datetime="${escapeHTML(collectedOn)}">${dateLabel(collectedOn)}</time>` : "未记录"}</p><p>来源时间 ${escapeHTML(sourceTimeLabel(context?.pageTime || item.pageTime))}</p></div>`;
 }
 
 function valueTags(item) {
@@ -129,7 +129,7 @@ function valueTags(item) {
 function valueSummary(item) {
   const context = caseContext(item);
   if (!context) return '<p class="case-value-note">应用价值尚待分析，不由视觉推定商业成果。</p>';
-  return `<div class="case-value"><p class="value-kicker">应用价值 · 待验证</p><p>${escapeHTML(context.value)}</p><p class="value-audience">适用对象：${escapeHTML(context.audience)}</p></div>`;
+  return `<div class="case-value"><p class="value-kicker">应用价值 · 待验证</p><p>${escapeHTML(context.value)}</p><p class="value-audience">适合 ${escapeHTML(context.audience)}</p></div>`;
 }
 
 function renderTypes() {
@@ -148,7 +148,7 @@ function renderHero() {
   const cover = safeCover(featured.id);
   if (cover) elements.heroImage.src = cover;
   elements.heroImage.alt = `${featured.title} 的作品画面`;
-  elements.heroLabel.textContent = `本期首选 · ${mechanismLabel(featured.mechanisms?.[0] || "实验前端")}`;
+  elements.heroLabel.textContent = `本期推荐 · ${mechanismLabel(featured.mechanisms?.[0] || "实验前端")}`;
   elements.heroWork.textContent = shortTitle(featured.title);
   elements.heroAuthor.textContent = `${featured.author} · ${sourceTimeLabel(caseContext(featured)?.pageTime || featured.pageTime)}`;
   elements.heroFeatureOpen.dataset.caseId = featured.id;
@@ -258,9 +258,9 @@ function archiveCardTemplate(item) {
           <p class="archive-summary">${escapeHTML(context?.summary || item.memory)}</p>
           ${cover && state.covers[item.id]?.source ? `<a class="archive-image-source" href="${escapeHTML(safeURL(state.covers[item.id].source))}" target="_blank" rel="noopener noreferrer">作品画面来源 ↗</a>` : ""}
           ${valueSummary(item)}
-          ${context ? `<details class="value-conditions"><summary>落地条件与验证方法</summary><p>${escapeHTML(context.conditions)}</p><p><strong>建议验证：</strong>${escapeHTML(context.measure || type?.measure || "先确认目标任务与判断指标。")}</p></details>` : ""}
-          <span class="archive-mechanism">实现方式：${escapeHTML(mechanismLabel(mechanism))}</span>
-          <button class="archive-open" type="button" data-case-id="${escapeHTML(item.id)}">拿起来拆开看 <span aria-hidden="true">↗</span></button>
+          ${context ? `<details class="value-conditions"><summary>落地条件与验证方法</summary><p>${escapeHTML(context.conditions)}</p><p><strong>建议怎么验证</strong> ${escapeHTML(context.measure || type?.measure || "先确认目标任务与判断指标。")}</p></details>` : ""}
+          <span class="archive-mechanism">实现机制 ${escapeHTML(mechanismLabel(mechanism))}</span>
+          <button class="archive-open" type="button" data-case-id="${escapeHTML(item.id)}">查看完整拆解 <span aria-hidden="true">↗</span></button>
       </div>
     </article>`;
 }
@@ -271,16 +271,16 @@ function renderArchive() {
 
   elements.archiveGrid.innerHTML = visible.length
     ? visible.map(archiveCardTemplate).join("")
-    : '<p class="empty-state">没有找到匹配的作品。试试更短的关键词、切换类型或清除筛选。</p>';
+    : '<p class="empty-state">没有匹配的案例。可以缩短关键词，或清除筛选后再试。</p>';
   elements.archiveStatus.textContent = visible.length ? `已显示 ${visible.length} / ${matches.length} · ${state.sortOrder === "oldest" ? "最早优先" : state.sortOrder === "title" ? "作品名排序" : "最新优先"}` : "";
   elements.loadMore.hidden = visible.length >= matches.length;
   const typeLabel = state.types.find((type) => type.id === state.activeFilter)?.label;
   const activeLabels = [
-    state.activeDate !== "all" ? `日期：${dateLabel(state.activeDate)}` : "",
-    state.activeValue !== "all" ? `应用价值：${state.activeValue}` : "",
-    typeLabel ? `用途：${typeLabel}` : "",
-    state.activeMechanism ? `机制：${mechanismLabel(state.activeMechanism)}` : "",
-    state.query ? `搜索：${state.query}` : ""
+    state.activeDate !== "all" ? `日期 ${dateLabel(state.activeDate)}` : "",
+    state.activeValue !== "all" ? `应用价值 ${state.activeValue}` : "",
+    typeLabel ? `用途 ${typeLabel}` : "",
+    state.activeMechanism ? `机制 ${mechanismLabel(state.activeMechanism)}` : "",
+    state.query ? `搜索 ${state.query}` : ""
   ].filter(Boolean);
   elements.filterSelection.hidden = !activeLabels.length;
   elements.selectedFilters.textContent = activeLabels.join(" / ");
@@ -333,9 +333,9 @@ function hackathonCardTemplate(item) {
     </dl>
     <div class="hackathon-value"><p class="value-kicker">参与价值 · 编辑判断</p><p>${escapeHTML(item.value)}</p></div>
     <details class="hackathon-details"><summary>交付要求、成本与证据</summary>
-      <p><strong>需要做什么：</strong>${escapeHTML(item.deliverables)}</p>
-      <p><strong>成本：</strong>${escapeHTML(item.cost)}</p>
-      <p><strong>证据边界：</strong>${escapeHTML(item.boundary)}</p>
+      <p><strong>需要做什么</strong> ${escapeHTML(item.deliverables)}</p>
+      <p><strong>参与成本</strong> ${escapeHTML(item.cost)}</p>
+      <p><strong>证据边界</strong> ${escapeHTML(item.boundary)}</p>
       <div class="hackathon-sources">${item.sources.map((source) => `<a href="${escapeHTML(safeURL(source.url))}" target="_blank" rel="noopener noreferrer">${escapeHTML(source.label)} ↗</a>`).join("")}</div>
     </details>
     <a class="hackathon-official text-link" href="${escapeHTML(safeURL(item.url))}" target="_blank" rel="noopener noreferrer">查看官方详情 <span aria-hidden="true">↗</span></a>
@@ -360,7 +360,7 @@ async function loadHackathons() {
   state.hackathons = data.events;
   state.hackathonCheckedAt = data.checkedAt;
   const checked = new Date(data.checkedAt).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai", hour12: false, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" });
-  elements.hackathonChecked.textContent = `官方信息核验：${checked}（北京时间）`;
+  elements.hackathonChecked.textContent = `官方信息核验 ${checked}（北京时间）`;
   elements.hackathonNotice.textContent = data.note;
   renderHackathons();
 }
@@ -377,15 +377,15 @@ function codeDownloadURL(item) {
 }
 
 function downloadTemplate(item) {
-  if (!codeDownloadURL(item)) return '<p class="code-unavailable">学习代码：尚未核验可下载许可，仅提供原作欣赏与来源。</p>';
+  if (!codeDownloadURL(item)) return '<p class="code-unavailable">学习代码尚未核验下载许可，当前只提供原作与来源。</p>';
   return `<section class="code-sharing" aria-labelledby="code-title">
     <p class="case-type">FREE TO LEARN · 尊重原创</p>
     <h3 id="code-title">下载公开学习代码</h3>
-    <p>来自作者原仓库的 ZIP，不是本站原创代码。代码许可：<a href="${escapeHTML(safeURL(item.code.licenseUrl))}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.code.license)} ↗</a>。</p>
+    <p>ZIP 直接来自作者原仓库，本站没有改写代码。查看原许可 <a href="${escapeHTML(safeURL(item.code.licenseUrl))}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.code.license)} ↗</a>。</p>
     <p>${escapeHTML(item.code.notice)}</p>
     <p class="code-boundary">以下是本站下载入口的学习承诺，不改写原作者许可，也不授予额外权利。图片、字体、数据等仍需分别遵守原始条款。</p>
     <form class="code-download-form" data-code-case="${escapeHTML(item.id)}">
-      <label class="code-agreement"><input type="checkbox" name="learning-agreement" required /><span>我已阅读并承诺：仅作个人学习，不抄袭、不商用，保留原作者署名与许可说明。</span></label>
+      <label class="code-agreement"><input type="checkbox" name="learning-agreement" required /><span>我已阅读并承诺仅作个人学习，不抄袭、不商用，保留原作者署名与许可说明。</span></label>
       <button class="button button-primary" type="submit" disabled>同意后下载代码 ZIP ↗</button>
       <small>每次打开需重新勾选；本站不收集个人信息，不提供付费解锁。</small>
     </form>
@@ -408,7 +408,7 @@ function openCase(caseId) {
       <p class="dialog-image-credit">${escapeHTML(state.covers[item.id]?.credit || "作品画面，权利归原作者所有")} · <a href="${escapeHTML(safeURL(state.covers[item.id]?.source || item.url))}" target="_blank" rel="noopener noreferrer">画面来源 ↗</a></p>
       <p class="feature-meta">${escapeHTML(item.platform)}</p>
       <h2 id="dialog-title">${escapeHTML(item.title)}</h2>
-      <p class="dialog-byline">作者：${escapeHTML(item.author)} · 复现难度：${escapeHTML(item.difficulty)}</p>
+      <p class="dialog-byline">作者 ${escapeHTML(item.author)} · 复现难度 ${escapeHTML(item.difficulty)}</p>
       ${caseDates(item)}
       ${valueTags(item)}
       <p class="dialog-memory">${escapeHTML(item.memory)}</p>
@@ -425,19 +425,19 @@ function openCase(caseId) {
         <p class="case-value-note">${escapeHTML(context ? state.valueNotice : "本案例的应用价值尚待分析；不由视觉推定商业成果。")}</p>
       </section>
       <div class="dialog-detail-grid">
-        ${detailTemplate("为什么不是普通特效", item.why)}
-        ${detailTemplate("输入", item.input)}
-        ${detailTemplate("表现层", item.layer)}
+        ${detailTemplate("为什么成立", item.why)}
+        ${detailTemplate("所需输入", item.input)}
+        ${detailTemplate("页面表现", item.layer)}
         ${detailTemplate("动效与镜头", item.motion)}
         ${detailTemplate("工程管线与难点", item.pipeline)}
         ${detailTemplate("性能与移动端降级", item.performance)}
-        ${detailTemplate("迁移到 Joey 作品集", item.transfer)}
+        ${detailTemplate("可以复用的方向", item.transfer)}
         ${detailTemplate("证据边界", item.evidence, "dialog-evidence")}
       </div>
       ${downloadTemplate(item)}
       <div class="dialog-action">
         <a class="button button-primary" href="${escapeHTML(safeURL(item.url))}" target="_blank" rel="noopener noreferrer">查看原作品 ↗</a>
-        <button class="button button-surprise" type="button" data-random-next>再从架上拿一件</button>
+        <button class="button button-surprise" type="button" data-random-next>随机看下一件</button>
       </div>
     </div>`;
 
@@ -511,9 +511,9 @@ async function loadData() {
   state.cases = (state.issue?.cases || []).map((item) => library.get(item.id)).filter((item) => safeCover(item.id));
   state.candidates = orderedCandidates([...library.values()]);
   elements.archiveTotal.textContent = String(state.candidates.length);
-  elements.shopCount.textContent = `${state.candidates.length} 件有图作品`;
+  elements.shopCount.textContent = `${state.candidates.length} 个有图案例`;
   const pendingImages = library.size - state.candidates.length;
-  elements.imageNotice.textContent = `只展示有可核验作品图的案例；${pendingImages} 件暂缺图的历史研究记录保留在档案中，不用占位图补数。收录日期不等于作品上线日；来源时间另行标注。`;
+  elements.imageNotice.textContent = `当前只展示有可核验作品图的案例。另有 ${pendingImages} 条历史研究记录暂缺图片，继续保留在档案中。收录日期与作品上线时间分开标注。`;
   populateFacets();
 
   renderHero();
