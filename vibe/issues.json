@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-24T10:36:17.316Z",
+  "updatedAt": "2026-10-25T10:42:26.314Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,187 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-10-25",
+      "note": "今天的四件作品都没有把三维当作装饰：Datasplore 把 SQLite 关系翻译成可步行空间；Point Cloud Studio 把单目深度、点云与时间线做成浏览器内创作工具；西交校园图志把公开地理数据、推断高度与程序化立面明确分层；Mandelbrot Mosaic 则把名字稳定映射为一段可重放的分形潜入。来源时间与收录日期分开保留。",
+      "featuredId": "datasplore-sqlite-world",
+      "experiment": {
+        "title": "把三张关系表变成一间可走的大厅",
+        "input": "准备三组各 10–20 条记录的 JSON，并声明两组可追踪的外键关系。",
+        "target": "中央大厅用三个入口代表表；进入后能浏览记录，并从一条关系线或门回到准确的目标记录。",
+        "stack": "单个 HTML、Three.js 或 Canvas 2D、原生 URL hash；不接后端，不加载大型模型。",
+        "acceptance": "同一份数据每次得到相同布局；任意外键都能追到准确记录；刷新后恢复当前位置；390 px 宽度仍保留表名、关系和二维降级入口。"
+      },
+      "restraint": "Creative Twin 只有在数据库关系、校园坐标、媒体深度或名字到分形坐标的映射真实、可追溯且能逐项解释时才值得接入；没有真实数据映射的三维场景仍应称为交互作品或空间原型。",
+      "cases": [
+        {
+          "id": "datasplore-sqlite-world",
+          "title": "Datasplore",
+          "author": "Simon Willison",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.25",
+          "url": "https://simonw.github.io/datasplore/",
+          "accent": "#42e8f5",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：17 张 SQLite 表被围成一圈发光入口，中央以弧线提示 10 组外键；用户不是先看图表，而是选择一张表并走进它的记录大厅。",
+          "why": "它不是数据库外面套一层霓虹。表、行、分页、正向与反向外键都被分配了空间语法，位置还能写入 URL；数据结构直接决定入口、房间和可走路径。",
+          "input": "一个可跨域获取的 SQLite 文件 URL，或用户本地拖入的 SQLite 文件；表结构、行记录、外键、图片 URL 与当前 URL hash。",
+          "layer": "sql.js 在浏览器内打开完整数据库，Three.js 构建大厅、入口、行房间、文字与关系弧线；EffectComposer 的 bloom 和自定义 portal shader 只负责强化层级，不替代数据关系。",
+          "motion": "鼠标和 WASD 控制第一人称移动；点入口进入表大厅，再从记录房间的外键门跳到目标行。浏览器历史和 URL hash 让空间位置可返回、可分享。",
+          "pipeline": "作者 README 与源码明确披露：数据库整体下载后由 sql.js 在本地打开，先读取 schema 和外键，再按 20 行一页生成空间；Three.js 0.170 负责渲染，URL hash 负责位置状态，触摸摇杆和 WebAudio 为辅助层。",
+          "performance": "渲染像素比上限为 2，雾和分页限制同时在场的几何与文字；但完整数据库会先进入内存，超大文件、复杂 schema 和移动端持续漫游都未见作者基准。手机应保留表清单与关系列表作为二维降级。",
+          "transfer": "Joey 的作品集可以把项目、素材、合作人与成果证据做成三张真实关系表：从项目入口走到一条交付记录，再沿关系门返回对应素材，而不是搭一座无数据的科技展厅。",
+          "difficulty": "1 天原型",
+          "evidence": "公开演示已实机加载 datasette.io 的 content.db，并核验 17 tables、104,116 rows、10 foreign keys、入口大厅和可进入的 portal；README 与源码支持 sql.js、Three.js、分页、URL hash、触摸控制和自定义 shader。104,116 是本次示例数据库行数，不代表容量上限；本站未用超大库或真实手机做性能测试。仓库未声明许可证，因此不提供代码下载。",
+          "image": "./vibe/covers/datasplore-sqlite-world.jpg",
+          "imageSource": "https://simonw.github.io/datasplore/?url=https://datasette.io/content.db",
+          "imageCredit": "Simon Willison；本站对作者公开演示的实机截图；示例数据来自 datasette.io/content.db",
+          "context": {
+            "type": "data",
+            "tags": [
+              "SQLite",
+              "关系数据",
+              "第一人称导航"
+            ],
+            "collectedOn": "2026-10-25",
+            "pageTime": "Repository created · 2026.10.25",
+            "summary": "把 SQLite 的表、记录与外键翻译成可步行、可返回的空间浏览器。",
+            "audience": "做数据可视化、档案浏览、知识图谱或浏览器三维界面的创作者",
+            "value": "应用价值：学习如何让真实关系决定空间结构，而不是用三维装饰一张普通数据表。",
+            "conditions": "完整数据库会下载到浏览器内存；大库、复杂 schema、触摸漫游和无 WebGL 场景需另设容量与二维降级。"
+          }
+        },
+        {
+          "id": "point-cloud-studio-ai-depth",
+          "title": "Point Cloud Studio",
+          "author": "OllieH99",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.25",
+          "url": "https://ollieh99.github.io/point-cloud-studio/",
+          "accent": "#c9f168",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：一张人物照片已被拆成可旋转的彩色点云，下面不是播放条，而是包含镜头、Melt、Swarm、音乐触发和强度曲线的创作时间线。",
+          "why": "它不是把图片均匀撒成粒子。单目深度先为像素提供空间位移，点预算、过渡、镜头、音乐分析与导出再被组织进同一时间线；结果是能编排的浏览器工具，而非一段固定 demo。",
+          "input": "本地照片、视频或示例媒体，Depth Anything V2 Small 产生的深度图，时间线片段、镜头、Swarm／Melt 参数、音乐与频段触发。",
+          "layer": "作者 README、NOTICE 与构建资源显示：Three.js 承载点云，onnxruntime-web 在 WebGPU 或 WASM Worker 中执行深度模型，Mediabunny、WebCodecs 与 fflate 参与媒体处理和本地导出。",
+          "motion": "时间线把源媒体、相机和粒子过渡分层；Swarm 让点云汇聚或解体，Melt 让深度表面产生坠落感，音乐触发器把频段能量映射到效果强度。轨道与预览共享同一播放头。",
+          "pipeline": "作者明确披露：照片与视频先在本地生成或读取深度，再重建点云；Depth Anything V2 Small 优先走 FP16 WebGPU，失败时回退到量化 WASM，并校验模型分片完整性；结果可导出 MP4、WebM 或 PNG。",
+          "performance": "公开界面按设备类别自动选择约 524K、262K 或 131K 的点预算，并提供质量选择；本次 HUD 的 60 FPS / 524K PTS 只是单次桌面示例快照，不是基准。手机、长视频、模型首次下载和离线导出仍应单独验收。",
+          "transfer": "Joey 可把一组真实作品照片转成带深度证据的点云章节：只保留一条 8 秒时间线，让镜头从原图平面进入空间，再用一次音乐触发揭示材料层，避免堆满粒子预设。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已实机加载作者示例，核验人物点云、8 张图、时间线、音乐触发、点预算和实时 HUD；README、NOTICE 与构建包支持 Three.js、Depth Anything V2 Small、onnxruntime-web、WebGPU/WASM 回退和本地导出。仓库只分发构建产物且未声明项目许可证；本站未检查源级实现、未执行导出，也未在手机上测试。",
+          "image": "./vibe/covers/point-cloud-studio-ai-depth.jpg",
+          "imageSource": "https://ollieh99.github.io/point-cloud-studio/",
+          "imageCredit": "OllieH99；本站对作者公开演示及其内置示例媒体的实机截图；示例素材署名与许可见项目 NOTICE",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "AI 单目深度",
+              "点云时间线",
+              "浏览器媒体导出"
+            ],
+            "collectedOn": "2026-10-25",
+            "pageTime": "Repository created · 2026.10.25",
+            "summary": "把本地媒体、AI 深度、点云过渡、音乐触发与导出整合成浏览器内创作时间线。",
+            "audience": "做点云影像、音乐可视化、浏览器创作工具或短片原型的创作者",
+            "value": "应用价值：学习如何让深度推理与粒子动效成为可编辑、可回放、可导出的制作流程。",
+            "conditions": "首次模型加载、长视频内存、移动端点预算和编码兼容性需按目标设备验证；HUD 数值不能外推为性能承诺。"
+          }
+        },
+        {
+          "id": "xjtu-campus-atlas",
+          "title": "西交 · 兴庆校园 3D 图志",
+          "author": "ndshuge",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.25",
+          "url": "https://ndshuge.github.io/xjtu-campus-atlas/",
+          "accent": "#7f9568",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：兴庆校区的建筑、道路、树林与湖面被收进一张可旋转的绿色图志；用户可以从总览跳到楼名搜索、俯视、环绕、步行与夜景，而不是只看一张静态鸟瞰图。",
+          "why": "它把“可核验地图”和“艺术化补全”主动拆开：建筑轮廓与道路来自 OpenStreetMap，少量高度来自公开资料，其余高度、立面、屋顶、树木和地形是明确标注的推断或程序化表达。可信度边界本身成为界面的一部分。",
+          "input": "2026-10-25 获取的 OSM 校园关系、建筑轮廓与名称、道路和景观要素，公开楼层／高度资料，以及对缺失高度、立面、屋顶和植被的规则化补全。",
+          "layer": "WGS84 坐标投影到本地米制平面；Three.js 构建合并建筑网格、道路、水体与约 2,100 棵实例化树。每栋楼保留顶点 ID 以支持拾取，搜索、迷你地图、图例和来源说明围绕模型组织。",
+          "motion": "总览、俯视、环绕、日夜与步行不是五段视频，而是五种读取同一校园数据的镜头模式；搜索结果把相机带到目标建筑，迷你地图同步位置，WASD 与触摸控制进入地面尺度。",
+          "pipeline": "作者文档披露：数据脚本读取 OSM relation 17568632，得到 139 个建筑轮廓、114 个命名建筑、115 个景观要素和 384 段道路；只有 12 栋带楼层、没有显式高度，缺失项按 3.5 米／层或类别规则估算。构建使用 Three.js 0.186.1 与 Vite。",
+          "performance": "建筑合并、树木实例化、移动端低质量默认值、DPR 上限 1.5（桌面 1.8）和手机关闭阴影共同降载；代码也检测 reduced motion 并关闭部分过渡。作者仍标注 iPhone Safari 连续移动闪烁需复测，390 × 844 只代表视口检查而非真机性能。",
+          "transfer": "Joey 做校园或展览空间时，应在界面内把“测得、公开资料、规则推断、艺术处理”做成四层图例；用户点一栋建筑时同时看到位置、来源和推断项，避免把漂亮模型误称精确孪生。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已实机核验校园总览、楼名搜索、镜头模式、日夜、图例与来源说明；README、数据清单和源码支持 OSM 获取时间、要素数量、坐标投影、合并建筑、实例树、拾取与移动降级。它不是测绘、摄影测量、BIM 或室内地图；多数高度与全部程序化外观不是实测。混合数据与素材条款需逐项遵守，本站不提供代码包。",
+          "image": "./vibe/covers/xjtu-campus-atlas.jpg",
+          "imageSource": "https://ndshuge.github.io/xjtu-campus-atlas/",
+          "imageCredit": "ndshuge；本站对作者公开演示的实机截图；地图数据 © OpenStreetMap contributors",
+          "context": {
+            "type": "space",
+            "tags": [
+              "校园三维图志",
+              "OpenStreetMap",
+              "证据分层"
+            ],
+            "collectedOn": "2026-10-25",
+            "pageTime": "Repository created · 2026.10.25",
+            "summary": "把真实地图轮廓、公开高度、规则推断与艺术化补全分层呈现为可搜索的校园三维图志。",
+            "audience": "做数字城市、校园导览、博物馆空间或地理数据叙事的创作者",
+            "value": "应用价值：学习如何让来源、推断和模型同时可见，建立比写实外观更可靠的空间可信度。",
+            "conditions": "只适合公共导览与视觉解释；不能替代测绘、BIM、导航安全或室内定位，真实 iPhone Safari 仍需复测。"
+          }
+        },
+        {
+          "id": "mandelbrot-mosaic",
+          "title": "Mandelbrot Mosaic",
+          "author": "Pranav Agarwal",
+          "platform": "Creator site / GitHub",
+          "pageTime": "Repository created · 2026.10.25",
+          "url": "https://mosaic-neon.vercel.app/",
+          "accent": "#ffd25b",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：输入 VIBE 后，界面从一个确定的 Mandelbrot 坐标不断下潜，最后把同一分形纹理包裹成一颗带大气与环带的黑金行星；名字变成一条可重放的旅程。",
+          "why": "它不是随机噪声换配色。规范化名字经 SHA-256 映射到策展过的分形区域，质量探针决定是否重选，固定点计算生成可复现纹理；输入、坐标、潜入和行星因此形成一条因果链。",
+          "input": "经 Unicode NFKC、去空格与小写处理的名称，SHA-256 摘要，300 个作者策展的 Mandelbrot 区域、质量探针、缩放进度与渲染参数。",
+          "layer": "WebGPU compute 以 Q8.24 固定点迭代分形，并按重负载子块分批计算；生成纹理随后进入带大气、光照与环带的三维行星材质，WebAudio 为潜入阶段提供声音反馈。",
+          "motion": "镜头先把名字锁定到一个坐标，再沿分形尺度连续推进，最后从二维纹理抬升为可旋转行星。Try another 保留同一规则但更换输入，使交互成为可比较的生成叙事。",
+          "pipeline": "作者 README 与源码说明：名称哈希后选择 300 个策展区域之一；质量探针失败会确定性重哈希；WebGPU 采用 Q8.24 整数路径与 128 × 128 或 64 × 64 的自适应分块，减少长 compute 对浏览器 watchdog 的压力。",
+          "performance": "自适应分块、固定点整数和分阶段生成避免一次性阻塞；但当前体验依赖 WebGPU，作者列出的支持目标为 Chrome / Edge 113+ 与 Safari 26+。本站未做跨 GPU 一致性、低端移动端耗时或所有浏览器兼容测试，需提供不支持提示而非假装已有回退。",
+          "transfer": "Joey 可以把作品名稳定映射到一组已策展的材料纹理或色彩坐标：同名必得同景，并显示映射依据；但只有输入确实改变结构时才保留三维终局，不把随机球体叫作个性化。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已实机输入 VIBE 并核验确定性潜入、最终行星和重新生成入口；README 与源码支持 NFKC + SHA-256、300 个策展区域、质量探针、Q8.24 WebGPU compute、自适应分块和 MIT 许可。跨 GPU 位级一致性与测试覆盖是作者披露，本站未独立在多设备复验；移动端和无 WebGPU 回退也未验证。",
+          "image": "./vibe/covers/mandelbrot-mosaic.jpg",
+          "imageSource": "https://mosaic-neon.vercel.app/?n=vibe",
+          "imageCredit": "Pranav Agarwal；本站在作者公开演示中输入 VIBE 后生成并截取的画面",
+          "context": {
+            "type": "data",
+            "tags": [
+              "Mandelbrot",
+              "WebGPU compute",
+              "确定性生成"
+            ],
+            "collectedOn": "2026-10-25",
+            "pageTime": "Repository created · 2026.10.25",
+            "summary": "把名字稳定映射到策展分形坐标，并转化为一段二维潜入到三维行星的生成旅程。",
+            "audience": "做生成艺术、WebGPU、身份可视化或互动开场的创作者",
+            "value": "应用价值：学习如何用可解释、可复现的输入映射替代纯随机生成，并把计算过程写成镜头叙事。",
+            "conditions": "当前依赖 WebGPU；跨设备一致性、低端移动耗时和无 WebGPU 降级必须在真实目标环境中另行验证。"
+          }
+        }
+      ],
+      "dateLabel": "OCT 25",
+      "issueNo": "007"
+    },
     {
       "id": "2026-10-24",
       "note": "今天的三件作品都把后台机制直接变成了界面：森林把浏览器内光照烘焙、缓存和层级细节暴露给观看者；策展工作室让空间、藏品、动线与关系树在同一模型中编辑；性能实验室则把设备测量、理论预测与真实模型验证排成可追问的证据链。来源时间与收录日期分开保留。",
