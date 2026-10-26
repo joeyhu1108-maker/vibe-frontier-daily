@@ -126,12 +126,6 @@ function valueTags(item) {
   return `<ul class="value-tags" aria-label="价值方向">${tags.map((tag) => `<li>${escapeHTML(tag)}</li>`).join("")}</ul>`;
 }
 
-function valueSummary(item) {
-  const context = caseContext(item);
-  if (!context) return '<p class="case-value-note">应用价值尚待分析，不由视觉推定商业成果。</p>';
-  return `<div class="case-value"><p class="value-kicker">应用价值 · 待验证</p><p>${escapeHTML(context.value)}</p><p class="value-audience">适合 ${escapeHTML(context.audience)}</p></div>`;
-}
-
 function renderTypes() {
   elements.typeGuide.innerHTML = state.types.map((type) => `
     <button class="type-tile" type="button" data-filter="${escapeHTML(type.id)}" aria-pressed="false">
@@ -161,23 +155,17 @@ function featureCardTemplate(item, index) {
   const cover = safeCover(item.id);
   return `
     <article class="feature-card reveal" data-type="${escapeHTML(caseContext(item)?.type || "unclassified")}">
-      <div class="feature-card-media">
+      <button class="feature-card-media" type="button" data-case-id="${escapeHTML(item.id)}" aria-label="查看 ${escapeHTML(item.title)} 的拆解">
         ${
           cover
             ? `<img src="${escapeHTML(cover)}" alt="${escapeHTML(item.title)} 的公开作品画面" loading="${index === 0 ? "eager" : "lazy"}" />`
             : `<div class="archive-placeholder"><span>${escapeHTML(shortTitle(item.title))}</span></div>`
         }
-        <span class="feature-index">0${index + 1}</span>
-      </div>
+      </button>
       <div class="feature-card-body">
-        <p class="case-type">${escapeHTML(caseType(item)?.label || "待分类")}</p>
-        <p class="feature-meta">${escapeHTML(item.platform)} · ${escapeHTML(item.author)}</p>
         <h3>${escapeHTML(item.title)}</h3>
-        ${caseDates(item)}
-        ${valueTags(item)}
-        <p class="feature-memory">${escapeHTML(item.memory)}</p>
-        ${valueSummary(item)}
-        <button class="feature-open" type="button" data-case-id="${escapeHTML(item.id)}">价值与技术拆解 ↗</button>
+        <p class="card-byline">${escapeHTML(item.author)}<span>${escapeHTML(caseType(item)?.label || "实验前端")}</span></p>
+        <button class="feature-open" type="button" data-case-id="${escapeHTML(item.id)}">查看拆解 <span aria-hidden="true">↗</span></button>
       </div>
     </article>`;
 }
@@ -236,31 +224,21 @@ function filteredCandidates() {
 
 function archiveCardTemplate(item) {
   const cover = safeCover(item.id);
-  const mechanism = item.mechanisms?.[0] || "实验前端";
   const context = caseContext(item);
   const type = caseType(item);
-  const url = escapeHTML(safeURL(item.url));
   return `
     <article class="archive-card reveal" data-type="${escapeHTML(context?.type || "unclassified")}">
-      <a class="archive-media${cover ? "" : " is-unavailable"}" href="${url}" target="_blank" rel="noopener noreferrer" aria-label="打开 ${escapeHTML(item.title)} 原作品">
+      <button class="archive-media${cover ? "" : " is-unavailable"}" type="button" data-case-id="${escapeHTML(item.id)}" aria-label="查看 ${escapeHTML(item.title)} 的拆解">
         ${
           cover
             ? `<img class="archive-image" src="${escapeHTML(cover)}" alt="${escapeHTML(item.title)} 的公开作品画面" loading="lazy" />`
             : '<span>暂缺可核验作品图</span><span>查看原作品 ↗</span>'
         }
-      </a>
+      </button>
       <div class="archive-card-body">
-          <p class="case-type">${escapeHTML(type?.label || "待分类")}</p>
-          <h3><a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.title)}</a></h3>
-          <p class="archive-author">${escapeHTML(item.author)} · ${escapeHTML(item.platform)}</p>
-          ${caseDates(item)}
-          ${valueTags(item)}
-          <p class="archive-summary">${escapeHTML(context?.summary || item.memory)}</p>
-          ${cover && state.covers[item.id]?.source ? `<a class="archive-image-source" href="${escapeHTML(safeURL(state.covers[item.id].source))}" target="_blank" rel="noopener noreferrer">作品画面来源 ↗</a>` : ""}
-          ${valueSummary(item)}
-          ${context ? `<details class="value-conditions"><summary>落地条件与验证方法</summary><p>${escapeHTML(context.conditions)}</p><p><strong>建议怎么验证</strong> ${escapeHTML(context.measure || type?.measure || "先确认目标任务与判断指标。")}</p></details>` : ""}
-          <span class="archive-mechanism">实现机制 ${escapeHTML(mechanismLabel(mechanism))}</span>
-          <button class="archive-open" type="button" data-case-id="${escapeHTML(item.id)}">查看完整拆解 <span aria-hidden="true">↗</span></button>
+          <h3>${escapeHTML(item.title)}</h3>
+          <p class="card-byline">${escapeHTML(item.author)}<span>${escapeHTML(type?.label || "实验前端")}</span></p>
+          <button class="archive-open" type="button" data-case-id="${escapeHTML(item.id)}">查看拆解 <span aria-hidden="true">↗</span></button>
       </div>
     </article>`;
 }

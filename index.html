@@ -11,7 +11,7 @@
     <title>VIBE FRONTIER｜前端实验档案</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' rx='2' fill='%230b0e09' stroke='%23dfff52' stroke-width='2'/%3E%3Crect x='9' y='10' width='5' height='5' fill='%23dfff52'/%3E%3Crect x='18' y='10' width='5' height='5' fill='%23dfff52'/%3E%3Cpath d='M9 21h14' stroke='%23dfff52' stroke-width='2'/%3E%3C/svg%3E" />
     <link rel="preload" href="./vibe/fonts/FusionPixel-Proportional-zhHans-12px.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="./vibe/academy.css?v=20261025-retro-pixel" />
+    <link rel="stylesheet" href="./vibe/academy.css?v=20261027-account" />
   </head>
   <body>
     <a class="skip-link" href="#main">跳到主要内容</a>
@@ -27,6 +27,7 @@
           <a href="#shop-map">按用途找</a>
           <a href="#mechanisms">看实现</a>
           <a class="nav-hackathons" href="#hackathons">黑客松</a>
+          <a class="nav-account" href="https://account.vibe.zone-y.com/">登录 / 我的账号 ↗</a>
           <button class="nav-cta" id="nav-random-pick" type="button">随机调取</button>
         </div>
       </nav>
@@ -97,7 +98,7 @@
             <p class="eyebrow eyebrow-blue" id="issue-kicker">LATEST ENTRY · 本期新增</p>
             <h2 id="issue-title">本期新增<br />先看这几件</h2>
           </div>
-          <p id="issue-note">每件案例都核对作者、原作和画面来源，再把实现线索、复用方法与证据边界写清楚。</p>
+          <details class="issue-observation"><summary>阅读本期观察 <span aria-hidden="true">＋</span></summary><p id="issue-note">每件案例都核对作者、原作和画面来源，再把实现线索、复用方法与证据边界写清楚。</p></details>
         </div>
 
         <div class="featured-grid wrap" id="featured-grid" aria-live="polite">
@@ -139,9 +140,11 @@
           <p>共 <span id="archive-total">—</span> 个有图案例。可按日期、用途和实现机制筛选，所有内容免费浏览。</p>
         </div>
 
-        <div class="type-guide wrap" id="type-guide" aria-label="五种用途类型"></div>
-        <p class="value-notice wrap" id="image-notice">当前只展示有可核验作品图的案例。暂缺图片的历史研究记录继续保留，收录日期与作品上线时间分开标注。</p>
-        <p class="value-notice wrap" id="value-notice"></p>
+        <div class="type-guide wrap" id="type-guide" aria-label="五种用途类型" hidden></div>
+        <details class="archive-notes wrap"><summary>收录与来源说明 <span aria-hidden="true">＋</span></summary>
+          <p class="value-notice" id="image-notice">当前只展示有可核验作品图的案例。暂缺图片的历史研究记录继续保留，收录日期与作品上线时间分开标注。</p>
+          <p class="value-notice" id="value-notice"></p>
+        </details>
 
         <div class="archive-tools wrap reveal">
           <label class="search-field" for="archive-search">
@@ -149,7 +152,9 @@
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z" /></svg>
             <input id="archive-search" type="search" placeholder="搜索作品、作者、用途或机制" autocomplete="off" />
           </label>
-          <div class="archive-facets" aria-label="案例分类维度">
+          <details class="archive-refine">
+            <summary>更多筛选 <span aria-hidden="true">＋</span></summary>
+            <div class="archive-facets" aria-label="案例分类维度">
             <label class="facet-field" for="archive-date"><span>收录日期</span><select id="archive-date"><option value="all">全部日期</option></select></label>
             <label class="facet-field" for="archive-value"><span>应用价值方向</span><select id="archive-value"><option value="all">全部价值方向</option></select></label>
             <label class="facet-field" for="archive-mechanism"><span>实现机制</span><select id="archive-mechanism"><option value="all">全部机制</option></select></label>
@@ -158,7 +163,8 @@
               <option value="oldest">最早收录优先</option>
               <option value="title">按作品名排列</option>
             </select></label>
-          </div>
+            </div>
+          </details>
           <div class="archive-purpose">
             <span>主要用途</span>
             <div class="filter-scroller" id="archive-filters" aria-label="按主要用途筛选">
@@ -243,6 +249,6 @@
     </dialog>
 
     <noscript><p class="noscript-note">请启用 JavaScript 以浏览案例拆解与研究档案。</p></noscript>
-    <script src="./vibe/academy.js?v=20261025-copy" defer></script>
+    <script src="./vibe/academy.js?v=20261027-account" defer></script>
   </body>
 </html>

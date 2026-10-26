@@ -3,6 +3,10 @@
   "name": "vibe-frontier-account",
   "main": "src/index.js",
   "compatibility_date": "2026-08-22",
+  "vars": {
+    "TEAM_DOMAIN": "https://royal-heart-3011.cloudflareaccess.com",
+    "POLICY_AUD": "55a056306340ba360f239716cb517d770040eaee53c6809338581ec9947cc18c"
+  },
   "routes": [
     {
       "pattern": "account.vibe.zone-y.com",
