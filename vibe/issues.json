@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-25T10:42:26.314Z",
+  "updatedAt": "2026-10-26T10:35:58.988Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,187 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-10-26",
+      "note": "今天四件作品共同证明：三维成立，不靠写实度，而靠结构有来处。The Measure of Teotihuacan 用同一份分镜统一研究计划、叙事影片与可操作图表，并主动标出合成数据；AETHER//NULL 用单一 WebGL 场景承接章节状态；Pastel Harbour 让建筑关系由规则生长；Алаас则把文化来源、语言与可操作行为放进同一座数字博物馆。来源时间与收录日期分开保留。",
+      "featuredId": "measure-of-teotihuacan",
+      "experiment": {
+        "title": "让一组带噪长度同时驱动空间与解释",
+        "input": "准备 40 个明确标注为合成的数据：28 个接近 80 厘米整数倍，12 个为随机噪声；保留生成种子。",
+        "target": "左侧把长度绕成圆环，右侧绘制 30–120 厘米候选单位的余弦得分；拖动候选单位时，两侧高亮同步变化。",
+        "stack": "单个 HTML、原生 JavaScript、SVG；不接后端，不用三维库。",
+        "acceptance": "80 厘米附近出现可辨识峰值；切换纯噪声组后峰值不再稳定；页面始终显示“合成实验数据”和生成种子；390 像素宽度仍能完成拖动与读数。"
+      },
+      "restraint": "Creative Twin 只有在内容版本、真实交互或可追溯的空间与文化资料被逐项映射时才值得接入；只有漂亮场景、虚构坐标或通用粒子反应时，应诚实称为交互叙事或视觉原型。",
+      "cases": [
+        {
+          "id": "measure-of-teotihuacan",
+          "title": "The Measure of Teotihuacan",
+          "author": "Jason Matney / webgpu-demos",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.26",
+          "url": "https://webgpu-demos.github.io/measure-of-teotihuacan/",
+          "accent": "#c7a562",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：在同一章节里，特奥蒂瓦坎的体块、测量圆环和余弦量图同步出现；拖动候选单位时，长度的相位聚合与统计峰值一起变化。",
+          "why": "它不是给研究计划配一段三维片头。同一份 story.js 同时规定影片时间线、章节文案和交互组件，renderAt(t) 让录制影片与网页播放共享确定性画面；统计图明确写着合成数据，视觉与证据边界也被纳入设计。",
+          "input": "作者编写的研究分镜、章节时间码、合成建筑尺寸、候选单位、余弦量图与蒙特卡洛噪声阈值；未来计划接入的 CAD、激光雷达和测量资料目前未公开进入演示。",
+          "layer": "Three.js WebGL 负责城市与测量场景，Canvas 2D 负责影片叠层，DOM 与 SVG 负责章节、图表和量图交互；共享时间码把三层锁在同一叙事位置。",
+          "motion": "选择研究步骤会同时跳转影片、章节和对应工具；拖动量图候选值时，圆环中的长度方向与曲线峰值同步更新。影片由同一个 renderAt(t) 逐帧生成，不另做一套不可追溯动画。",
+          "pipeline": "作者 README 与源码明确披露：story.js 是影片、步骤页与文字计划的单一来源；engine.js 提供确定性的 renderAt(t)，quanto.js 实现余弦量图和蒙特卡洛阈值，头less 渲染与浏览器播放器复用同一引擎。",
+          "performance": "网页将 3D 像素比限制在 0.5–1 之间，慢屏幕可低于 1080p，并在 prefers-reduced-motion 下移除过渡；但公开页没有移动设备帧率或长时运行基准，复杂研究数据也尚未进入当前演示。",
+          "transfer": "Joey 的研究型作品集可让同一份已核验项目数据同时驱动空间镜头、解释卡与可操作图表，并在画面内持续显示“实测、推断、合成示例”三种状态，而不是把研究叙事另做成装饰视频。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开页已实机核验研究步骤、同步影片与 Step 5 量图交互；README、story.js、engine.js、quanto.js 与页面源码支持单一分镜、Three.js、SVG、确定性 renderAt(t) 和蒙特卡洛阈值。作者明确说明影片场景不是测绘数据，示例测量与量图数据均为合成，真实 CAD／激光雷达受机构权限约束；本站未复算统计结果。仓库未声明明确许可证，因此不提供代码下载。",
+          "image": "./vibe/covers/measure-teotihuacan-quantogram.jpg",
+          "imageSource": "https://webgpu-demos.github.io/measure-of-teotihuacan/",
+          "imageCredit": "Jason Matney / webgpu-demos；本站对作者公开演示 Step 5 的实机截图",
+          "context": {
+            "type": "data",
+            "tags": [
+              "研究叙事",
+              "余弦量图",
+              "确定性影片引擎"
+            ],
+            "collectedOn": "2026-10-26",
+            "pageTime": "Repository created · 2026.10.26",
+            "summary": "用同一份分镜把研究计划、可重放影片与可操作统计图组织成一个证据明确的网页。",
+            "audience": "做研究可视化、数字人文、数据纪录片或博物馆解释界面的创作者",
+            "value": "应用价值：学习如何让叙事镜头与可复核工具共享状态，并把合成示例与真实资料的边界直接做进界面。",
+            "conditions": "当前只是研究计划与合成验证演示；使用真实 CAD、激光雷达或考古结论前必须取得权限并独立复核方法与数据。"
+          }
+        },
+        {
+          "id": "aether-null-last-signal",
+          "title": "AETHER//NULL — THE LAST SIGNAL",
+          "author": "yangwei251003",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.26",
+          "url": "https://yangwei251003.github.io/aether-null/",
+          "accent": "#8feaff",
+          "mechanisms": [
+            "滚动变成镜头",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：启动进度归零后，一枚细线信号核心在黑场中苏醒；继续滚动时，同一片空间依次承担遗物库、信号实验室、记忆海与星图章节。",
+          "why": "它不是把多个粒子 demo 串成页面。单个 WebGL Canvas 持续存在，章节、镜头、材质、声场和交互权限由统一状态切换；遗物、信号调谐、长按门户与隐藏实验室让观看动作改变叙事进度。",
+          "input": "滚动进度、指针位置、三路信号滑杆、遗物选择、长按充能、音频开关、设备能力与用户的 reduced-motion 偏好。",
+          "layer": "React 负责章节与 HUD，React Three Fiber／Three.js 维持一个 WebGL2 场景，GLSL 与实例几何生成信号体和粒子，GSAP ScrollTrigger、Lenis、Zustand 与 Web Audio 连接镜头、状态和声场。",
+          "motion": "滚动不是页面位移，而是驱动连续相机路径、章节曝光和材质参数；粗指针与减弱动态偏好会减少视差和镜头滚转，长按则把门户充能过程变成明确的叙事动作。",
+          "pipeline": "作者 README 与源码披露七章结构、单 Canvas、章节配置、质量预设和低频 Zustand 状态；运行时信号在逐帧层读取滚动与指针，避免把每一帧都写回 React 状态。",
+          "performance": "ULTRA、BALANCED、LITE 会调整粒子量、几何分段、反射分辨率和更新频率；小屏、无 hover 或粗指针改用横向卡片，并提供 reduced-motion 与二维回退。本站未完成全章节遍历，也未独立测量手机帧率。",
+          "transfer": "Joey 可把作品集的一次创作过程拆成三章，但只保留一套持续场景：滚动改变镜头与证据层，点击才打开项目材料；借用的是状态编排，不是复制黑底青色科幻皮肤。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已实机加载至 100% 并核验启动核心与 ENTER THE SIGNAL 入口；README、源码和作者公开截图支持七章、React Three Fiber、GLSL、ScrollTrigger、质量分级、reduced-motion 与二维回退。为避免自动启用音频，本站未进入完整旅程；后续章节的视觉与交互以作者说明和源码为证。作者明确声明所有编号、坐标和档案均为虚构。",
+          "image": "./vibe/covers/aether-null-awakening.jpg",
+          "imageSource": "https://yangwei251003.github.io/aether-null/",
+          "imageCredit": "yangwei251003；本站对作者公开演示启动完成画面的实机截图",
+          "context": {
+            "type": "story",
+            "tags": [
+              "连续 WebGL 场景",
+              "滚动章节",
+              "质量分级"
+            ],
+            "collectedOn": "2026-10-26",
+            "pageTime": "Repository created · 2026.10.26",
+            "summary": "以单一 WebGL 场景和统一状态承接七章滚动、信号交互与声场变化的虚构数字叙事。",
+            "audience": "做沉浸式作品集、互动章节、WebGL 叙事或实时视觉系统的创作者",
+            "value": "应用价值：学习如何用持续场景和明确状态机替代逐屏特效堆叠，并把性能降级纳入叙事结构。",
+            "conditions": "完整旅程、声音体验和移动端表现仍需目标设备实测；所有叙事档案为虚构，不能当作真实数据映射。"
+          }
+        },
+        {
+          "id": "pastel-harbour-procedural-town",
+          "title": "Pastel Harbour",
+          "author": "Danielius Isiunas",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.26",
+          "url": "https://danieliusisiunas.github.io/pastel-harbour/",
+          "accent": "#f39a84",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：海面上的 406 个彩色体块像陶土城镇一样连成港湾；点一下水面，街道、墙体、屋顶、拱门、树木与涟漪不是同时弹出，而是沿邻接关系逐层生长。",
+          "why": "它不是拖放预制房屋。街区先进入有机网格和双网格拓扑，规划器再依据邻接、边界与高度决定墙、屋顶、楼梯、阳台、商铺和装饰；一个点击改变的是规则系统中的关系。",
+          "input": "水面、街道或建筑格点上的点击，建造／擦除模式，昼暮夜状态、随机种子、调色板与当前邻接拓扑。",
+          "layer": "原生 ES modules 与 Three.js 承载程序化建筑、实例砖块、体素环境遮蔽、墨线轮廓、水面 shader 和 UI；没有图片资产，砖、瓦、波纹和装饰由代码生成。",
+          "motion": "点击触发弹簧式生长波，邻近体块按距离延迟升起，水面同时产生扩散涟漪；相机在新镇、重建和昼夜切换中保持城镇整体可读，而不是剪成固定动画。",
+          "pipeline": "作者 README、ARCHITECTURE 与源码显示：纯核心规划器把格点与种子转成稳定场景描述，再由验证器检查通道、楼梯和装饰约束，最后由几何与渲染注册表生成类型化数组和 Three.js 对象。",
+          "performance": "作者记录 514 格重建约 133–173 毫秒，主要成本是当前每次点击重建整座城，而规划器约 2 毫秒；渲染像素比上限 1.75，移动端保留 shader 砖面并减少实例细节，reduced-motion 会收敛动画。该数字为作者本机测量，本站未复跑。",
+          "transfer": "Joey 可把项目、素材与合作关系先转成有规则的邻接图，再生成一座会随真实新增内容长出的档案城；每一种屋顶或桥必须对应可解释关系，避免把随机城镇包装成数据作品。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已实机核验 406 格城镇、建造／擦除、昼夜、新镇和相机控制；README、ARCHITECTURE 与源码支持有机网格、规划器、程序化几何、实例砖块、体素环境遮蔽、弹簧波与移动降级。性能数字来自作者文档，视觉回归尚未完成；仓库未声明许可证，因此不提供代码下载。",
+          "image": "./vibe/covers/pastel-harbour-generated-town.jpg",
+          "imageSource": "https://danieliusisiunas.github.io/pastel-harbour/",
+          "imageCredit": "Danielius Isiunas；本站对作者公开演示生成城镇的实机截图",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "程序化建筑",
+              "拓扑规划器",
+              "弹簧生长"
+            ],
+            "collectedOn": "2026-10-26",
+            "pageTime": "Repository created · 2026.10.26",
+            "summary": "用稳定规划器和邻接规则把点击操作翻译成可生长、可验证的程序化港湾城镇。",
+            "audience": "做程序化建模、生成城市、关卡工具或空间化档案的创作者",
+            "value": "应用价值：学习如何把拓扑、验证器与渲染分层，使生成结果既丰富又能解释和复现。",
+            "conditions": "当前全量重建会造成可感知停顿；大城镇、连续编辑、手机性能和视觉回归必须另行优化与验证。"
+          }
+        },
+        {
+          "id": "alaas-sakha-living-museum",
+          "title": "Алаас / Alaas",
+          "author": "Georgii Antipin / Springfolk",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.26",
+          "url": "https://springfolk.github.io/alaas-game/",
+          "accent": "#d8be67",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事",
+            "数据变成空间"
+          ],
+          "memory": "10 秒记忆点：白桦、湖面和木屋围成一处会呼吸的雅库特夏季家园；标题退场后，用户不是看陈列柜，而是走近火塘、取水、劈柴、采莓，再从对象打开三语解释卡。",
+          "why": "它没有把文化材料贴成博物馆墙文。51 张说明卡、72 张参考图、萨哈语优先的三语文本和克制的可操作行为都锚定到场景对象；作者还明确把神圣仪式留在解释层，不把它们游戏化。",
+          "input": "第一人称移动与注视、键鼠或触摸、对象交互、语言切换、日志进度、昼夜与天气状态，以及作者整理的文化文本、图片和现场录音。",
+          "layer": "Three.js WebGPU renderer 与 TSL 构成天空、地表、植被和水体，实例化远景树与 LOD 控制密度；DOM 承载三语卡片、日志和来源，Web Audio 组织自然声与现场录音，WebGL2 提供兼容入口。",
+          "motion": "行走镜头把尺度从草地推进到器物；风、云、鸟虫和光照维持环境生命，只有进入上下文才出现取水、添柴等动作。文化信息由接近、观察和操作逐步展开，而不是自动播放。",
+          "pipeline": "作者 README 与源码披露：文化条目、对象与语言由结构化内容驱动，程序化植被与地形由渲染系统生成，素材和录音在 credits 与许可证中逐项保留；本地日志记录已见内容，无账号和后端。",
+          "performance": "设备探测选择 high、medium、low、mobile 或 lite，逐级降低 DPR、阴影、反射、纹理与植被密度；弱手机进入 mobile／lite，并可启用 30 FPS 省电模式，WebGPU 不可用时可走 WebGL2。本站未在真实手机复测帧率。",
+          "transfer": "Joey 做文化或档案空间时，可以让每个可触对象只解锁一条有来源的三语证据卡，并明确哪些行为可以体验、哪些只能说明；场景越沉浸，来源与文化边界越要靠近对象。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已实机加载至标题与可进入的三维家园画面；README、源码、credits 和许可证支持 51 张卡、72 张参考图、三语内容、WebGPU／TSL、WebGL2 回退、触摸、质量分级和现场录音。本站未完整步行遍历，也未独立审校萨哈文化准确性；文本复核与文化边界为作者披露，第三方图像和声音仍受各自条款约束。",
+          "image": "./vibe/covers/alaas-sakha-homestead.jpg",
+          "imageSource": "https://springfolk.github.io/alaas-game/",
+          "imageCredit": "Georgii Antipin / Springfolk；本站对作者公开演示标题场景的实机截图；第三方素材与录音署名见项目 credits",
+          "context": {
+            "type": "space",
+            "tags": [
+              "数字博物馆",
+              "WebGPU TSL",
+              "文化来源"
+            ],
+            "collectedOn": "2026-10-26",
+            "pageTime": "Repository created · 2026.10.26",
+            "summary": "把萨哈夏季家园、三语解释卡和克制的对象交互组织成一座可步行的数字博物馆。",
+            "audience": "做文化遗产、数字博物馆、空间叙事或多语言教育体验的创作者",
+            "value": "应用价值：学习如何让文化来源、语言、对象和可操作边界共同决定沉浸式场景，而不是只追求写实氛围。",
+            "conditions": "文化准确性需由相关社群和专家持续复核；第三方媒体必须逐项遵守许可，真实移动设备与无 WebGPU 路径仍需验收。"
+          }
+        }
+      ],
+      "dateLabel": "OCT 26",
+      "issueNo": "008"
+    },
     {
       "id": "2026-10-25",
       "note": "今天的四件作品都没有把三维当作装饰：Datasplore 把 SQLite 关系翻译成可步行空间；Point Cloud Studio 把单目深度、点云与时间线做成浏览器内创作工具；西交校园图志把公开地理数据、推断高度与程序化立面明确分层；Mandelbrot Mosaic 则把名字稳定映射为一段可重放的分形潜入。来源时间与收录日期分开保留。",
