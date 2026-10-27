@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-26T10:35:58.988Z",
+  "updatedAt": "2026-10-27T10:44:33.663Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,205 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-10-27",
+      "note": "今天四件作品共同证明：空间感不是把模型放进网页，而是让数据、判断与行动真正进入场景结构。Sensor Layout Studio 把传感器姿态、视锥、遮挡和共同可见区变成可操作的工程界面；Meridian Globe 把说明清楚的示意网络拆成点阵、球面路径与镜头；Turku3D 把城市开放数据组织成可步行、可驾驶的世界；The Deadlight Pantheon 则用持续空间承接 18 段见证与选择。四个仓库均于 2026-10-27 创建；收录日期不替代作品来源时间。",
+      "featuredId": "sensor-layout-studio",
+      "experiment": {
+        "title": "把两个视场的共同可见区画出来",
+        "input": "在二维平面放置两个可拖动观察点、两个扇形视场和三个矩形障碍；每个观察点可调整角度与距离。",
+        "target": "实时显示各自视场、被障碍截断的区域，以及同时被两个观察点看见的紫色区域；不输出覆盖率百分比。",
+        "stack": "单个 HTML、原生 JavaScript、Canvas 2D；用多边形裁切与线段相交，不接后端。",
+        "acceptance": "拖动观察点、方向或障碍后结果即时更新；共同区必须满足两个视场和两次可见性判断；390 像素宽度仍可操作；界面持续标注“几何近似，不代表检测概率”。"
+      },
+      "restraint": "Creative Twin 只应在真实项目、地点、时间、设备或作品关系能逐项映射并追溯时接入；示意路线、程序化角色和虚构世界即使很有空间感，也应保持为视觉原型或交互叙事。",
+      "cases": [
+        {
+          "id": "sensor-layout-studio",
+          "title": "Sensor Layout Studio",
+          "author": "matsushimax",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.27",
+          "url": "https://matsushimax.github.io/SensorLayoutStudio/",
+          "accent": "#b8d96b",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面"
+          ],
+          "memory": "10 秒记忆点：车体周围的相机视锥、LiDAR 体积、红色遮挡斜线和紫色共同可见区同时存在；切换 Common 后，同一处空间是否被两枚传感器共同看见立刻变得可读。",
+          "why": "它不是给机器人模型套半透明光锥。传感器姿态、近远距离、视场、障碍物与坐标系都是可编辑变量；紫色区域要求同一三维点同时位于所有已选体积内，并在开启遮挡时能从每个传感器原点看到。",
+          "input": "相机或 LiDAR 的位置、旋转、视场和量程，GLB／STL／STEP 车体或设备模型，障碍物，传感器选择以及遮挡开关。",
+          "layer": "React 与 Zustand 管理场景、选择和导出状态；Three.js／React Three Fiber 显示模型、传感器体积和操纵器；GPU 射线／三角形查询计算遮挡，并在世界空间合并多传感器可见性。",
+          "motion": "关键动效来自直接操纵：移动或旋转传感器、改变 FOV 与量程时，体积、红色盲区和紫色共同区同步重算；视图预设和 Focus 负责保持工程尺度可读，而不是自动运镜。",
+          "pipeline": "作者 README 与架构说明披露 Tauri v2、React、TypeScript、Three.js、React Three Fiber 和 Zustand；GLB 直接读取，STL 处理单位，STEP 在本机网格化，场景可保存并导出坐标变换。",
+          "performance": "作者将单文件限制为 100 MB，STL／STEP 限制到 50 万三角形，STEP 提供取消和 60 秒超时；但明确表示大规模生产模型的交互性能尚未建立。当前浏览器演示适合桌面宽屏，移动端编辑体验未给出验收数据。",
+          "transfer": "Joey 做实体展览、空间装置或多屏体验时，可先用同一方法验证观看点、投影锥与遮挡关系，再把结果做成作品集中的可操作证据层；不要把近似可见区包装成客流覆盖率。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已实机核验示例车体、双传感器选择、Common 共同覆盖与遮挡斜线；README、架构与源码支持本地模型处理、GPU 遮挡查询、坐标导出和格式限制。作者明确说明它不计算面积、体积、覆盖百分比、检测概率或反射特性，精度受网格、分辨率和数值容差影响。",
+          "image": "./vibe/covers/sensor-layout-studio-20261027.jpg",
+          "imageSource": "https://raw.githubusercontent.com/matsushimax/SensorLayoutStudio/main/docs/screenshots/common-coverage.png",
+          "imageCredit": "matsushimax；作者仓库公开的 Common coverage 应用截图",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "传感器布局",
+              "共同可见区",
+              "空间遮挡"
+            ],
+            "collectedOn": "2026-10-27",
+            "pageTime": "Repository created · 2026.10.27",
+            "summary": "把传感器姿态、视场、遮挡和共同可见区组织成可直接编辑与导出的三维布局工具。",
+            "audience": "做机器人、车载设备、空间装置或多视点展示规划的设计者与工程师",
+            "value": "应用价值：学习如何把空间判断做成可操纵、可解释、可导出的界面，而不是只展示漂亮视锥。",
+            "conditions": "用于真实工程前必须以目标模型、传感器规格和独立测量复核；可见性近似不能代替检测率、安全认证或生产验证。"
+          },
+          "code": {
+            "repository": "https://github.com/matsushimax/SensorLayoutStudio",
+            "revision": "12505a756298f1b8ec0cae58b8a825f6bd70e33b",
+            "license": "MIT（应用代码与原创示例资产）",
+            "licenseUrl": "https://github.com/matsushimax/SensorLayoutStudio/blob/12505a756298f1b8ec0cae58b8a825f6bd70e33b/LICENSE",
+            "notice": "应用代码、原创 rover 与示例模型为 MIT；STEP 支持涉及 LGPL-2.1 与 OCCT exception，使用前须同时保留 LICENSE、npm/Rust 第三方 notices 与 CAD runtime 说明。"
+          }
+        },
+        {
+          "id": "meridian-globe",
+          "title": "Meridian Globe",
+          "author": "Mountain Ghost. W / givingwu",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.27",
+          "url": "https://givingwu.github.io/meridian-globe/",
+          "accent": "#7f9cff",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面"
+          ],
+          "memory": "10 秒记忆点：19,580 个陆地点围出一枚安静的蓝色地球，跨城弧线从头部生长、尾部收走，结束后不留下淡线；城市选择会把镜头带到对应经纬度。",
+          "why": "它不是常见的发光飞线皮肤。海洋球体负责遮挡背面，单个 Points 对象负责陆地点阵，大圆插值决定跨球面路径，drawRange 与片元裁切共同控制路线的精确头尾；每层都解释了自己的空间职责。",
+          "input": "作者定义的 13 个城市、20 条有向示意路线、68,000 个等面积采样后筛出的陆地点，城市选择、指针旋转、连接开关、暂停与速度控制。",
+          "layer": "不透明球体与 GLSL 建立海洋体积和背面遮挡；BufferGeometry Points 绘制陆地；朝向相机的径向光晕标记城市；抬升的 TubeGeometry 承载大圆路线。",
+          "motion": "路线按错峰节奏先显出头部、再收回尾部；相机从当前方向收敛到选定城市，旋转、暂停与速度变化都由同一视觉时间控制，不靠预渲染视频。",
+          "pipeline": "作者 README 与源码明确披露 React、TypeScript、Three.js、React Three Fiber、Drei 和 GLSL；陆地点在构建阶段生成，路线几何在挂载时创建，帧更新只改 ref 与 uniform 并复用临时对象。",
+          "performance": "单 Points 对象避免为近两万个点创建 React 组件；drawRange 裁整段、shader 裁端点，关闭连接会释放对应几何。场景懒加载、DPR 上限 1.8、隐藏标签页停止帧循环；作者同时承认构建仍有 500 kB 分块警告，也不承诺所有设备 60 FPS。",
+          "transfer": "Joey 可把真实合作地点、展览流转或作品传播记录映射成可选择节点和有方向的路径，并让镜头只在选中真实关系时移动；若没有真实数据，就像作者一样明确标为示意网络。",
+          "difficulty": "1 天原型",
+          "evidence": "公开演示已实机核验点阵地球、城市选择、旋转与路线动画；README、源码和测试说明支持点数量、城市／路线数量、Three.js 分层、drawRange、shader 裁切、DPR 上限与降级策略。作者明确说明网络仅为视觉示意，不是实时支付、航班或服务覆盖数据；数量与时间参数来自作者文档，本站未独立重算。",
+          "image": "./vibe/covers/meridian-globe-20261027.jpg",
+          "imageSource": "https://raw.githubusercontent.com/givingwu/meridian-globe/master/docs/preview.png",
+          "imageCredit": "Mountain Ghost. W / givingwu；作者仓库公开预览图",
+          "context": {
+            "type": "data",
+            "tags": [
+              "点阵地球",
+              "大圆路线",
+              "GLSL 分层"
+            ],
+            "collectedOn": "2026-10-27",
+            "pageTime": "Repository created · 2026.10.27",
+            "summary": "把可解释的点阵、球面路径和镜头控制组合成克制的交互式示意地球。",
+            "audience": "做全球网络、地点关系、数据叙事或三维作品集封面的前端创作者",
+            "value": "应用价值：学习如何用少量职责清晰的几何和 shader 建立空间层次，并诚实标注示意数据。",
+            "conditions": "迁移到真实项目时必须替换为可追溯地点与关系数据；作者示例不能被引用为真实流量、航线或覆盖证据。"
+          },
+          "code": {
+            "repository": "https://github.com/givingwu/meridian-globe",
+            "revision": "0ed2337142963f1b00b5ac58edcaed325f4ba478",
+            "license": "MIT（项目代码）",
+            "licenseUrl": "https://github.com/givingwu/meridian-globe/blob/0ed2337142963f1b00b5ac58edcaed325f4ba478/LICENSE",
+            "notice": "项目代码为 MIT；第三方依赖、字体与地理数据保留各自许可。学习或改作时须保留 LICENSE，并继续核查第三方条款。"
+          }
+        },
+        {
+          "id": "turku3d-open-world",
+          "title": "Turku3D",
+          "author": "Jonni Madekivi / Wnt",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.27",
+          "url": "https://wnt.github.io/turku-game/",
+          "accent": "#83c6b0",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：加载结束后，芬兰图尔库真实街区不再是鸟瞰模型；人物站在街面，建筑、河岸、路网、小地图、日期和任务目标共同组成一个可以步行与驾驶的城市界面。",
+          "why": "它不是给开放地图套第三人称角色。城市建筑、激光雷达、道路、水体、树木和正射影像先被统一到 EPSG:3877 与分块管线，再进入可流式加载的视觉瓦片和独立碰撞瓦片；角色、车辆、导航和剧情都依赖同一空间坐标。",
+          "input": "图尔库市开放的建筑、激光雷达、街道与正射影像，OpenStreetMap 路网，作者生成的材质与游戏资产，以及键鼠或手柄移动、车辆操作、时间滑杆和任务选择。",
+          "layer": "Three.js r186 的 three/webgpu 渲染城市与角色，3DTilesRendererJS 流式加载视觉瓦片，Rapier WASM worker 处理碰撞和角色控制；HUD、小地图、任务与时间控制保留在 DOM。",
+          "motion": "步行、跑动、驾驶和镜头切换把城市尺度转成身体尺度；时间滑杆改变日照，任务目标把街道与地标组织成路线。滚动不是主角，真实坐标中的移动本身承担叙事推进。",
+          "pipeline": "作者 README、架构和数据 NOTICE 明确披露：Python 管线把市政开放数据与 OSM 统一到单一坐标、分块与清单，构建视觉 GLB、碰撞数据和路由图；浏览器端再由 WebGPU／WebGL2 与 Rapier 验证并运行。",
+          "performance": "视觉瓦片与碰撞瓦片分离并按位置流式加载，物理运行在 WASM worker；作者测试同时覆盖 WebGPU 与 WebGL2。公开说明把目标限定为桌面 Chrome，未承诺手机或触屏体验；本站只完成一轮桌面进入与静止场景核验，没有做长时驾驶和压力测试。",
+          "transfer": "Joey 若做城市或展览数字孪生，可先统一坐标、来源清单和碰撞语义，再决定镜头与任务；作品集里应把来源、许可、生成材质与真实测量分层展示，而不是把所有画面统称为实景复刻。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已实机等待世界加载并进入自由漫游，页面可见 WebGPU、EPSG:3877、瓦片与碰撞状态、小地图和任务；README、架构、NOTICE 与源码支持 City of Turku 开放数据、OSM、three/webgpu、3DTilesRendererJS、Rapier 和分块管线。剧情中的 2027 年设定是虚构；本站未核对城市几何精度，也未完成车辆、全任务或移动端测试。",
+          "image": "./vibe/covers/turku3d-live-20261027.jpg",
+          "imageSource": "https://wnt.github.io/turku-game/",
+          "imageCredit": "Jonni Madekivi / Wnt；本站于 2026-10-27 对作者公开演示的实机截图；城市数据 © City of Turku（CC BY 4.0），道路 © OpenStreetMap contributors（ODbL）",
+          "context": {
+            "type": "space",
+            "tags": [
+              "城市数字孪生",
+              "3D Tiles",
+              "开放数据"
+            ],
+            "collectedOn": "2026-10-27",
+            "pageTime": "Repository created · 2026.10.27",
+            "summary": "把市政开放数据、OSM 与游戏系统统一进可步行、可驾驶的浏览器城市世界。",
+            "audience": "做城市数字孪生、空间叙事、地理可视化或浏览器开放世界的团队",
+            "value": "应用价值：学习如何让坐标、瓦片、碰撞、导航和剧情共享同一空间事实，并把数据许可做进发布边界。",
+            "conditions": "代码 MIT 不等于城市数据和第三方素材可任意使用；复制前必须分别遵守 City of Turku、OSM 与资产条款，并在目标桌面设备完成性能和精度验收。"
+          },
+          "code": {
+            "repository": "https://github.com/Wnt/turku3d",
+            "revision": "447da3929a5e2d9b2cc3c5049b7495120eb31853",
+            "license": "MIT（项目代码）",
+            "licenseUrl": "https://github.com/Wnt/turku3d/blob/447da3929a5e2d9b2cc3c5049b7495120eb31853/LICENSE",
+            "notice": "代码为 MIT；City of Turku 数据为 CC BY 4.0，OpenStreetMap 为 ODbL，角色、车辆、声音与生成材质另有逐项说明。必须保留 LICENSE、NOTICE 和对应数据署名。"
+          }
+        },
+        {
+          "id": "deadlight-pantheon",
+          "title": "The Deadlight Pantheon",
+          "author": "westkitty / Stinky Weasel Productions",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "Repository created · 2026.10.27",
+          "url": "https://westkitty.github.io/Deadlight_Pantheon/",
+          "accent": "#d6c7ff",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：进入 VESPERA 后，角色、巨像、三处见证点、罗盘和文本面板共处同一黑紫空间；用户必须亲自走近遗物并见证，章节出口才会打开。",
+          "why": "它不是六张概念图之间的 3D 转场。六个领域、18 段见证、18 次选择与三种结局被编进空间门槛：走路找到见证点、读取材料、留下后果，世界中的纪念物再用颜色保存选择。",
+          "input": "键鼠或触摸移动、第一或第三人称镜头、见证点交互、章节顺序、18 次选择、已读记忆、动效与图形质量偏好。",
+          "layer": "本地内嵌的 Three.js r186 生成六个程序化场景、角色与巨像，来源影片帧承担见证材料；HUD、卷宗、罗盘与选择面板使用 DOM，全部打包成约 2.7 MB 的独立 index.html。",
+          "motion": "步行和跑动决定信息何时出现，罗盘把镜头导向三处 reliquary；相机可在第一与第三人称切换，完成记忆后传送门才推进。减弱动态与静态画廊保留叙事顺序。",
+          "pipeline": "作者 build.py 将固定版本 Three.js、原创 JavaScript、HTML／CSS、六张章节图与 18 张事件帧合并成单文件；烟雾测试遍历六个场景、18 条叙事路径、章节重排、结局门槛与 WebGL 丢失恢复。",
+          "performance": "粗指针设备默认使用省电图形设置，并提供 reduced-motion、质量选项和无 WebGL 静态画廊；作者只验证了 Chromium 软件 WebGL，明确没有验证实体触屏、硬件 GPU、长时运行和普遍设备性能。",
+          "transfer": "Joey 的叙事作品集可把项目证据放在必须靠近、查看、选择的空间节点里，让完成状态由真实阅读与行动决定；但程序化角色和巨像应保留为解释性造型，不能冒充来源影片中的精确模型。",
+          "difficulty": "3–5 天成品",
+          "evidence": "公开演示已实机通过 ENTER VESPERA 进入三维领域并核验角色、巨像、罗盘与见证点界面；README、质量报告与源码支持六个场景、18 段记忆、18 次选择、三种结局、单文件构建、触摸控制、静态回退和 WebGL 恢复。作者明确说明巨像是依据单一影片画面的程序化诠释，不是提取或获批的 3D 模型；仓库未声明许可证，因此不提供代码下载。",
+          "image": "./vibe/covers/deadlight-pantheon-20261027.jpg",
+          "imageSource": "https://raw.githubusercontent.com/westkitty/Deadlight_Pantheon/main/qa/current/three-live-desktop.png",
+          "imageCredit": "westkitty / Stinky Weasel Productions；作者仓库公开的 Three.js 实机 QA 截图；来源影片与帧的边界见项目说明",
+          "context": {
+            "type": "story",
+            "tags": [
+              "可步行叙事",
+              "见证记忆",
+              "WebGL 回退"
+            ],
+            "collectedOn": "2026-10-27",
+            "pageTime": "Repository created · 2026.10.27",
+            "summary": "用六个可步行领域、18 段见证与选择门槛把来源影像组织成交互式暗黑幻想图集。",
+            "audience": "做互动小说、可步行档案、三维章节或来源驱动虚构世界的创作者",
+            "value": "应用价值：学习如何把移动、见证、选择和结局做成同一空间状态机，并为无 WebGL 场景保留完整叙事。",
+            "conditions": "角色与巨像只是作者的程序化解释，不能当作来源影片的精确重建；许可未声明，本站只做研究链接，不开放源码下载。"
+          }
+        }
+      ],
+      "dateLabel": "OCT 27",
+      "issueNo": "009"
+    },
     {
       "id": "2026-10-26",
       "note": "今天四件作品共同证明：三维成立，不靠写实度，而靠结构有来处。The Measure of Teotihuacan 用同一份分镜统一研究计划、叙事影片与可操作图表，并主动标出合成数据；AETHER//NULL 用单一 WebGL 场景承接章节状态；Pastel Harbour 让建筑关系由规则生长；Алаас则把文化来源、语言与可操作行为放进同一座数字博物馆。来源时间与收录日期分开保留。",
