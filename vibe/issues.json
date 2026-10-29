@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-27T10:44:33.663Z",
+  "updatedAt": "2026-10-29T10:38:51.639Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,183 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-10-29",
+      "note": "今天最值得看 Nebulofi：空间参数直接参与生成音乐，视觉与行动有明确对应关系。Flat to 3D 用连续镜头解释构造，Slop New York 用开放地理数据建立可漫游世界，Body Layout 把模型组织成知识档案。四项均有本次实浏览截图；仓库创建、近期更新、网站声明发布日期与获奖时间分别标注，收录日期不替代发布时间。 复现难度为单一核心机制的简化复现工期预估，不代表原作完整重建或已验证交付周期。",
+      "featuredId": "nebulofi",
+      "experiment": {
+        "title": "让三个声源的位置拥有可听见的意义",
+        "input": "三个自产或明确可用的短音频／振荡器，三个可拖动圆点，页面中心作为听者；点击开始后才启用音频。",
+        "target": "左右位置控制声像，离中心的距离控制音量；选中圆点能看到当前声像和增益，不模拟天体物理。",
+        "stack": "单 HTML、原生 JavaScript、SVG、Web Audio API 的 GainNode 与 StereoPannerNode；无需模型、后端或外部采样。",
+        "acceptance": "左右拖动有可区分的声像，向外拖动音量递减；3 个声源可独立静音；音频参数平滑过渡；键盘能选择并移动圆点；390 像素宽仍可用；页面写清映射规则。"
+      },
+      "restraint": "Creative Twin 只接入可追溯的真实作品、地点、材料、录音或协作关系；先证明每个空间参数确实映射一项内容或行动。虚构建筑、天体音乐和模拟车流保持为体验研究，不包装成个人事实或实时数字孪生。",
+      "cases": [
+        {
+          "id": "nebulofi",
+          "title": "Nebulofi",
+          "author": "Arthur Chiquet",
+          "platform": "作者网站 / The FWA",
+          "pageTime": "FWA 页面获奖日期 · 2026.10.27；作品首次上线时间未披露",
+          "url": "https://nebulofi.vercel.app/",
+          "accent": "#cba67a",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：先在螺旋星系里挑选一种情绪，再进入会随和弦闪耀的恒星系统；环绕的每颗星都对应一个声音。",
+          "why": "轨道承担混音含义。作者明确说明距离影响混响和滤波、尺寸对应音量、速度对应活跃程度；视觉变量有可理解的声音职责，用户是在塑造一段音乐，而非观看配乐背景。",
+          "input": "情绪与预设系统、乐器选择、星体与轨道参数，以及 COLOR、PACE、SPACE、SWING、BREATH 等界面控制。此次实际选择 Focus 并将 PACE 从 355 调到 300，界面由 flowing 变为 still。",
+          "layer": "公开部署包可检查到 Three.js、Tone.js 与 Web Audio 相关实现；星体、轨道与后期效果承担空间呈现，HTML 控件提供参数入口。库的存在来自资源检查，精确听感和音乐质量未作独立评测。",
+          "motion": "从情绪星系进入局部系统，镜头把选择变成一次空间迁移；作者说明中心天体响应和弦。实时运行中可观察轨道运动、和弦文字与章节进度，不能据截图推定音频与画面达到采样级同步。",
+          "pipeline": "作者在 FWA 的说明披露有种子的生成音乐、情绪分区与轨道参数映射；部署 JS 可检查到音频调度、合成器、采样器和滤波／混响实现。复现关键是让状态参数同时驱动可视对象与音频，而不是另播一首成品曲。",
+          "performance": "源码有三级画质：降低 DPR，最后关闭 bloom；平均帧率低于阈值后可降低等级。本次页面实际出现 Eco mode 提示。仍未测实体手机、音频延迟、长时内存与电池消耗；不得宣称全设备流畅。",
+          "transfer": "Joey 可用三个可拖动声源做一段可探索的作品集声音导览，让位置、距离和音量关系可解释；先用原创声音证明控制关系，再考虑扩展星系美术。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者署名与参数含义由 FWA 2026-10-27 页面明确披露；公开演示、参数变化和 Eco mode 已实浏览核验；Three.js、Tone.js 与降画质分支来自部署包检查。未独立听审所有音色，未核验原项目完整源码许可；库的 MIT 许可不能代替作者作品和采样素材许可，本期不提供源码 ZIP。",
+          "image": "./vibe/covers/nebulofi-20261029.jpg",
+          "imageSource": "https://nebulofi.vercel.app/",
+          "imageCredit": "Arthur Chiquet / Nebulofi；VIBE 2026-10-29 实浏览截图",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "生成音乐",
+              "空间混音",
+              "创作体验"
+            ],
+            "collectedOn": "2026-10-29",
+            "pageTime": "FWA 获奖日期 2026-10-27；首发未披露",
+            "summary": "以天体系统组织声音参数，进入星系和调整轨道构成可参与的音乐创作过程。",
+            "audience": "声音艺术、交互装置、创作工具与体验设计者",
+            "value": "应用价值：让抽象控制参数拥有连续、可操作的空间含义。",
+            "conditions": "需要独立核验声音素材许可、参数可理解性和目标设备音频表现；作品视觉不代表真实天体或个人数据。"
+          }
+        },
+        {
+          "id": "flat-to-3d",
+          "title": "Flat to 3D",
+          "author": "Samnang Aing / Sam1983Aing",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "仓库创建 · 2026.10.28 23:56 北京时间；网页首次上线时间未核实",
+          "url": "https://sam1983aing.github.io/flat-to-3d/",
+          "accent": "#c96b38",
+          "mechanisms": [
+            "滚动变成镜头",
+            "模型成为界面"
+          ],
+          "memory": "10 秒记忆点：一张建筑爆炸轴测图，随滚动把地板、结构、玻璃、外皮和屋顶依次合拢；点击 LIVING 后，镜头直接进入同一座房子的客厅。",
+          "why": "平面图感与室内空间共用连续几何。源码用窄视场和远镜头制造轴测观感，再联动视场角与相机距离保留画面尺度；它教人读建筑的构成关系，而不是把两张渲染图交叉淡入。",
+          "input": "程序化建筑几何、材料分组、六层落位顺序、相机关键帧、滚动进度和房间跳转。本次核验 01 Exploded House 的 A 方向；未逐一验完七套。",
+          "layer": "Three.js 实体网格与描边线组织建筑；世界坐标投影到 HTML 标签与 SVG 引线。按材料合并几何，爆炸层位与镜头共用滚动状态。",
+          "motion": "首屏是 1.5° 窄视场的轴测观感；滚动先组装建筑，再进入室内关键帧。本次滚动后观察到六层成屋，点击 LIVING 到 SEQ 80%、56° 的客厅透视。",
+          "pipeline": "core.js 的 camAt 对视场角（FOV）和视框高度作对数插值，applyCam 根据视框与视场计算距离；dir-a.js 定义 floor 至 roof 的组装顺序及 Dining／Living／Loft／Ridge 关键帧；main.js 将滚动比例送入模型和相机。以上均有公开源码可核查。",
+          "performance": "源码按材料合并几何并设置 DPR 上限 2；小于 700 像素有手机关键帧分支。作者建议近期笔记本浏览器，且第 07 套尚未适配手机。本次仅实测桌面；没有手机触控、帧率、总下载量或无 WebGL 降级验收。",
+          "transfer": "Joey 可把真实展览或装置拆成材料层、构造层和最终观看点，用同一模型讲清楚自己的设计选择。只复现一个有解释价值的剖面，不必复制七套完整建筑。",
+          "difficulty": "1 天原型",
+          "evidence": "GitHub 元数据确认仓库 2026-10-28 创建，不能据此推定网页首发；实浏览已核验爆炸图、组装和进入客厅。技术来自固定提交 d7b9b69753d3af679535ee56695a05c8d955c3c6。作者明确房屋、事务所与地址是虚构设计研究，不能称为真实项目数字孪生。",
+          "image": "./vibe/covers/flat-to-3d-20261029.jpg",
+          "imageSource": "https://sam1983aing.github.io/flat-to-3d/01-exploded-house/index.html?dir=a",
+          "imageCredit": "Samnang Aing / Flat to 3D；VIBE 2026-10-29 实浏览截图",
+          "context": {
+            "type": "space",
+            "tags": [
+              "建筑叙事",
+              "构造展示",
+              "连续镜头"
+            ],
+            "collectedOn": "2026-10-29",
+            "pageTime": "仓库创建 2026-10-28；网页首发未核实",
+            "summary": "用同一套程序化几何，将建筑图纸观感、组装过程和室内漫游连续连接。",
+            "audience": "建筑、展陈、装置和空间作品集设计者",
+            "value": "应用价值：让观看者在一个连续场景里理解层级、构造与空间关系。",
+            "conditions": "需自行整理真实模型与可解释的构造顺序；虚构示例不能作为真实建筑或施工验证。"
+          }
+        },
+        {
+          "id": "slop-new-york",
+          "title": "Slop New York",
+          "author": "mrdoob",
+          "platform": "GitHub Pages / GitHub",
+          "pageTime": "近期更新提交 · 2026.10.29 18:25:26 北京时间；首次发布未核实",
+          "url": "https://mrdoob.github.io/slop-newyork/",
+          "accent": "#e2be45",
+          "mechanisms": [
+            "数据变成空间",
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：黄色出租车停在纽约街口，城市路网、建筑、树木与金色光线组成可进入的街道；界面提供步行、驾驶、骑行与飞行。",
+          "why": "开放地理数据承担可游走世界的骨架，移动方式决定观看尺度。城市不是一段不可触碰的航拍，数据也不只停留在平面地图图例。",
+          "input": "作者 README 列明 NYC Open Data 建筑轮廓与高度、树木位置、MTA 地铁入口及 OSM 资料；另有移动方式、方向输入、光照和场景控制。不能据此声称行人或车流是实时数据。",
+          "layer": "公开源码使用 Three.js 的 WebGPURenderer、TSL 与 SSRNode；实例化几何组织城市对象，半分辨率反射与 bloom 进入后期管线。源码中也有 WebGL2 缓冲上传路径，不能写成只能 WebGPU。",
+          "motion": "驾驶等模式让视线与地面尺度保持关系；近期提交仍在修改步态、转角和车辆材质。当前桌面演示与驾驶视图已可见，其余模式没有逐一完成操作验收。",
+          "pipeline": "地理资料先形成建筑与街道布局，再将重复对象批量组织；源码注释区分实例／姿态缓冲更新与 Object3D 变换，并按需上传存储属性。材质、交通与光照构成体验层，原始数据条款仍独立于应用代码许可。",
+          "performance": "实例化、按需缓冲更新和半分辨率 SSR 是可核验的成本控制。保存截图 HUD 为 41 fps，早先也见过 60，均只是瞬时读数。源码有粗指针检测和触摸摇杆；未测低端设备、实体手机或持续帧率。",
+          "transfer": "Joey 可以真实街区或展览路线的数据做一个小范围可步行作品说明，展示地点和观察路径的关系；先限制街区大小，再判断是否需要驾驶和飞行。",
+          "difficulty": "3–5 天成品",
+          "evidence": "已实浏览公开演示并保存纽约街道与出租车画面；README 与源码支撑数据来源、Three.js／TSL、实例化、反射和触摸控制。2026-10-29 时间对应提交 9cabaebb2f982d7cc822369448b0389a03ffb977 的车轮材质更新，不是已确认首发。没有持续性能或实时城市状态证明。",
+          "image": "./vibe/covers/slop-new-york-20261029.jpg",
+          "imageSource": "https://mrdoob.github.io/slop-newyork/",
+          "imageCredit": "mrdoob / Slop New York；VIBE 2026-10-29 实浏览截图；城市资料来源见作者 README",
+          "context": {
+            "type": "data",
+            "tags": [
+              "开放地理数据",
+              "城市漫游",
+              "实例化场景"
+            ],
+            "collectedOn": "2026-10-29",
+            "pageTime": "更新提交 2026-10-29 10:25:26 UTC；首发未核实",
+            "summary": "把纽约开放地理数据组织成具有多种移动尺度的可漫游城市。",
+            "audience": "城市叙事、地图体验、数字展览与实时图形设计者",
+            "value": "应用价值：学习如何把地理资料、渲染成本与人的观看尺度连接。",
+            "conditions": "需保留 NYC／MTA／OSM 等各自数据条款；示意行为与车辆不能冒充实时交通或工程级数字孪生。"
+          }
+        },
+        {
+          "id": "body-layout",
+          "title": "Body Layout",
+          "author": "DxL Agency",
+          "platform": "作者网站 / The FWA",
+          "pageTime": "网站声明发布 · 2026.10.15；FWA 获奖 · 2026.10.28",
+          "url": "https://yourinsides.com/",
+          "accent": "#ef7c3e",
+          "mechanisms": [
+            "模型成为界面",
+            "滚动变成镜头"
+          ],
+          "memory": "10 秒记忆点：人体被拆成一桌保持相对尺度的器官和骨骼，像博物馆里的材料档案；每个部件都能成为进入知识卡片的入口。",
+          "why": "同一模型先建立整体，再平铺比较，最后聚焦局部，视觉组织承担知识层级。保留相对比例的陈列比持续旋转一个人体更有解释力。因机制独特而收录较早作品，不把昨日获奖当作昨日上线。",
+          "input": "34 个部件、整体与平铺位置、部件选择、滚动进度及说明卡。本文只评估空间界面，不复述或验证其医学知识与健康建议。",
+          "layer": "公开部署包可核验 Three.js、GLTFLoader／DRACO 加载 body.glb，结合 3D 模型、屏幕文字与 DOM 导航；模型和对应卡片共同成为索引。",
+          "motion": "点击 Explore 后从整体过渡为平铺档案；滚动与部件导航控制聚焦、镜头和卡片进度。实际浏览已确认完整人体到 34 部件平铺，不把全部部件都已测试写成事实。",
+          "pipeline": "公开 HTML 的结构化数据声明 datePublished 为 2026-10-15；部署包显示 GLB 解码、逐部件场景处理、滚动／镜头状态与语音相关分支。页脚列明 BodyParts3D 与 Z-Anatomy，资产的来源和再加工署名是管线的一部分。",
+          "performance": "部署包设置 DPR 上限 2、DRACO 解码，并检测 prefers-reduced-motion 和小屏条件。正文在 HTML 中保留可读说明，避免信息只存在于 Canvas；未测真机、模型下载成本、读屏顺序和长时性能。",
+          "transfer": "Joey 可把一件真实装置或材料实验做成“整体—平铺—局部”的作品档案，让每个部件带出材料、工艺与设计决定。只在真实尺寸已核验时显示尺度标记。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者网站实浏览与 FWA 署名交叉核验；声明发布日期来自网站结构化数据，获奖日期来自 FWA，两者分列。模型加载、DPR 与 reduced-motion 分支来自部署资源检查。未核验医学准确性或物理显示尺寸；不提供原站代码 ZIP，三维资产许可必须单独保留。",
+          "image": "./vibe/covers/body-layout-20261029.jpg",
+          "imageSource": "https://yourinsides.com/",
+          "imageCredit": "DxL Agency / Body Layout；VIBE 实浏览截图。模型：BodyParts3D © The Database Center for Life Science（CC BY-SA 2.1 JP）、Z-Anatomy 肺部（CC BY-SA 4.0），原站修改及重着色",
+          "context": {
+            "type": "story",
+            "tags": [
+              "模型档案",
+              "知识陈列",
+              "博物馆展示"
+            ],
+            "collectedOn": "2026-10-29",
+            "pageTime": "网站声明发布 2026-10-15；FWA 获奖 2026-10-28",
+            "summary": "通过整体、平铺比较与局部聚焦，将一个三维对象转化为可读的知识索引。",
+            "audience": "博物馆、材料档案、产品结构展示与教育体验设计者",
+            "value": "应用价值：用空间陈列解释组成与关系，提供可追溯的部件入口。",
+            "conditions": "三维资产需保留各自署名与 CC BY-SA 条款；人体及健康内容需专业审校，视觉浏览不构成医学验证。"
+          }
+        }
+      ],
+      "dateLabel": "OCT 29",
+      "issueNo": "010"
+    },
     {
       "id": "2026-10-27",
       "note": "今天四件作品共同证明：空间感不是把模型放进网页，而是让数据、判断与行动真正进入场景结构。Sensor Layout Studio 把传感器姿态、视锥、遮挡和共同可见区变成可操作的工程界面；Meridian Globe 把说明清楚的示意网络拆成点阵、球面路径与镜头；Turku3D 把城市开放数据组织成可步行、可驾驶的世界；The Deadlight Pantheon 则用持续空间承接 18 段见证与选择。四个仓库均于 2026-10-27 创建；收录日期不替代作品来源时间。",
