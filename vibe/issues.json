@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-30T10:40:58.228Z",
+  "updatedAt": "2026-10-31T10:38:19.710Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,182 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-10-31",
+      "note": "让操作承担表达：职业能力变成技能，滚动方向改变立场，文字变成可制作的光丝，章节接缝从图像引向解释。四件新收录均有实测画面；来源时间与本期收录时间分开标注。",
+      "featuredId": "daiki-fujita-portfolio-v2",
+      "experiment": {
+        "title": "30 分钟实验：同一项目的阅读入口与空间入口",
+        "input": "选 Joey 已有的三个真实项目，每项只用名称、原创或已授权封面、一句明确成果说明和现有证据链接；没有结果证据的内容写为过程，不补造。",
+        "target": "页面左侧为可直接阅读的三个项目条目，右侧用三个可点击物件表达同一组内容；点击任一入口，始终打开同一张项目详情。先让空间帮助找内容。",
+        "stack": "单页 HTML、CSS 透视变换、原生 JavaScript 和一份只读 JSON；暂不引入 WebGL、模型或游戏战斗。",
+        "acceptance": "三个条目与三个物件逐一对应且链接一致；键盘能打开全部详情；默认无自动镜头。请一位未参与制作的人找到指定项目并说出其目标，再记录卡点。此为待执行实验，尚无测试结果。"
+      },
+      "restraint": "Creative Twin 只有在空间位置、状态和变化对应到可核对的真实项目记录或传感数据时才值得接入。今天四件作品主要提供表达与交互机制；光丝、梦境、亮度等高线本身不构成数字孪生数据。",
+      "cases": [
+        {
+          "id": "daiki-fujita-portfolio-v2",
+          "title": "Daiki Fujita — Portfolio V2：醒着阅读，入梦游玩",
+          "author": "Daiki Fujita",
+          "platform": "作者官网 / The FWA / Muzli",
+          "pageTime": "The FWA of the Day：2026-10-26；当前官网将 Portfolio V2 标为 2026；首次上线日期未披露。收录：2026-10-31。",
+          "url": "https://daikifujita.com/",
+          "accent": "#B8A0F5",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "浅色作品集中央是一块折射文字的冰晶；切到 DREAM，同一个人变成在发光碎片与巨型门框之间奔跑的蓝色角色，升级时出现 Design、3D、Motion 三张技能卡。",
+          "why": "作者把职业能力写进操作：Design 对应曲线斩击，3D 对应环绕护盾，Motion 对应诱饵。技能名称、视觉形态和作品集身份互相解释，世界有移动、受伤、升级和选择的后果。WAKE 同时保留 About、Works、Contact 的直接阅读入口，访问者不必玩完游戏才了解作者。",
+          "input": "已实测：WAKE/DREAM 开关、START、D 键移动、技能卡选择后按 Space 确认、返回 WAKE。屏幕教程还明确说明鼠标/WASD 移动、自动攻击、收集碎片、升级选卡、技能融合、Overdrive 与回收记忆；后几项只核验了教程，未逐一完成。",
+          "layer": "公开部署 HTML 可确认 Framer 页面、React 资源和 three@0.169.0；当前共享模块可检查到 WebGLRenderer、ShaderMaterial、透视相机及离屏渲染目标。页面文字与按钮仍是可读 DOM，梦境使用 3D 场景并叠加计时、生命值和技能选择。具体模型制作工具与美术资产来源未公开核验。",
+          "motion": "阅读模式用巨型横向文字、冰晶折射和环绕文字建立记忆点；入梦前先出现可翻页的 3D 操作书。实测场景使用跟随角色的透视镜头、前后景遮挡、光带与碎片形成纵深，升级会中断场景并切到三张倾斜技能卡。后处理的精确实现不能仅从画面确定。",
+          "pipeline": "从当前官网 HTML 顺着实际 modulepreload 读取部署模块，未运行或安装下载脚本。可确认 Framer/React 承载信息页，Three.js 负责 WebGL 层；渲染模块有材质、纹理、离屏目标与状态事件。复用时先让项目 ID 同时驱动阅读卡和场景入口，再同步模式、镜头与输入状态。完整战斗系统、模型与声音的制作流程没有作者说明，不推断为特定游戏引擎。",
+          "performance": "部署模块中可核验多处像素比上限，以及粗指针和 prefers-reduced-motion 判断；这些属于局部实现证据，不能推出整站在手机上流畅。本次只验证桌面 Chrome，未测帧率、显存和真机触控。迁移建议：手机默认 WAKE，梦境按需载入，先减后处理和场景复杂度，并始终保留文字项目入口。",
+          "transfer": "Joey 作品集可先做三个真实项目的双入口：列表能直接读案例，空间里点击对应的记忆物件也打开同一份案例。把某个专业动作转成反馈，例如改变构图后立即看到信息层级变化；先验证用户能否找到并讲清一个项目，再决定是否增加游戏流程。不要让奖励成为查看作品的必经门槛。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露：官网自述及 Muzli 作者页说明可阅读或在 3D 梦境中游玩，Muzli 标注 Three.js / WebGL。公开资源可核验：The FWA RSS 将获选日标为 2026-10-26，官网当前部署 HTML 与共享模块确认 Framer/React/Three.js。亲测：进入 Dream、移动后看到计时推进、Level 2 与生命值变化、出现三张能力卡，确认选择后返回场景，再切回 Wake。根据画面判断：空间叙事、镜头与职业能力映射的应用价值。未通关、未验证后半段技能或移动端，也未将 2025 年旧站的 Codrops 文章当作新版技术证据。难度指收敛为三张项目卡、一个可探索场景与模式切换的版本，不代表原作完整游戏可在该时限内复刻。来源：https://thefwa.com/cases/daiki-fujita-portfolio ；https://thefwa.com/rss/ ；https://me.muz.li/daikifujita/daiki-fujita-portfolio ；https://framerusercontent.com/sites/5MeOyhWZ1lHds7fz7oT6Xp/shared-lib.BwlR6whf.mjs 。",
+          "image": "./vibe/covers/daiki-fujita-20261031.jpg",
+          "imageSource": "https://daikifujita.com/",
+          "imageCredit": "Daiki Fujita；公开官网 DREAM 模式实测截图，2026-10-31。保留原作署名；未取得模型、音乐或源代码的再分发许可。",
+          "context": {
+            "type": "story",
+            "tags": [
+              "创作者作品集",
+              "可玩档案",
+              "空间叙事",
+              "双入口体验"
+            ],
+            "collectedOn": "2026-10-31",
+            "pageTime": "The FWA 获选日 2026-10-26；当前官网项目年份 2026；首次发布日期未披露。",
+            "summary": "同一位设计师的能力与作品，既能通过常规页面阅读，也能通过 3D 梦境和技能卡体验。",
+            "audience": "需要展示交互与创意技术能力的设计师、实验工作室、作品集作者。",
+            "value": "应用价值：让专业能力进入可操作的规则，同时保留快速阅读路径；这是一种表达方式，不是已验证的转化或商业成果。",
+            "conditions": "适合有明确作品内容、交互制作能力且允许较长探索的访问情境；求职或客户快速评估仍应先提供直接可读的案例。先测试一个内容与动作的对应，再扩大世界。"
+          }
+        },
+        {
+          "id": "palindrome-of-a-fall-20261031",
+          "title": "Palindrome of a Fall",
+          "author": "0xkev21",
+          "platform": "Three.js Forum / GitHub / Vercel",
+          "pageTime": "作者论坛帖 2026-10-30；仓库创建 2026-10-28，核验源码提交 2026-10-29；非本次收录日发布",
+          "url": "https://palindrome-of-a-fall.vercel.app/",
+          "accent": "#cfad58",
+          "mechanisms": [
+            "交互变成叙事",
+            "滚动变成镜头"
+          ],
+          "memory": "冷白粒子构成坠落的人；触底后往上滚，同一条路径变成金色上升，方向改变了阅读立场。",
+          "why": "滚动方向承载主题：先经历坠落，再主动回头，场景、文字顺序与人物姿态一同反转。粒子服务于破碎与重组的叙事，而非独立循环的装饰。",
+          "input": "滚动进度、触底状态与向上滚动；鼠标位置用于局部粒子扰动。已实测进入、关闭声音、下滚至底部、上滚切换为 ASCENT。",
+          "layer": "固定提交可核验 Three.js Points、BufferGeometry 与 ShaderMaterial；叙事图像采样成点，人物另由 BoyParticleHalo 绘制；Canvas 2D 叠加墙面、碎片和文字，DOM 显示状态。",
+          "motion": "GSAP ScrollTrigger 与 Lenis 驱动章节。触底后反向输入触发统一模式过渡，联动冷暖色、图像组、人物和文本；并非直接倒放一条视频。",
+          "pipeline": "每幕准备下降／上升两套图像，以统一进度和模式参数协调纹理、Canvas、DOM 与音频。难点是触底判定、反向切换和多层同步。源码提交 9f7cbffc894683968d82acbbccc0ff003483d148 可核验。",
+          "performance": "源码限制设备像素比，并响应 prefers-reduced-motion，关闭部分漂移和扰动。桌面交互已验；移动真机、帧率与无 WebGL 降级未验。迁移时建议降低采样密度，并保留静态图文阅读路径。",
+          "transfer": "Joey 的一个项目复盘可沿同一时间轴展示问题与修正：首次向下看当时约束，回看时加入实际修正证据。先验证方向提示是否被理解，再决定是否加入点云。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者论坛明确披露双向诗与技术栈：https://discourse.threejs.org/t/palindrome-of-a-fall-interactive-webgl-reverse-poem-where-scrolling-down-is-a-fall-and-scrolling-up-is-a-flight/96124 。源码核验与桌面交互相互支持。README 与实现中的采样数量不一致，本期不引用数量；声音关闭后测试，未验证音质。未核验完整素材许可，不提供源码 ZIP。",
+          "image": "./vibe/covers/palindrome-of-a-fall-20261031.jpg",
+          "imageSource": "https://palindrome-of-a-fall.vercel.app/",
+          "imageCredit": "0xkev21；作品公开页面实测截图，2026-10-31 收录；原作及素材权利归相应权利人",
+          "context": {
+            "type": "story",
+            "tags": [
+              "双向叙事",
+              "项目复盘",
+              "粒子图像"
+            ],
+            "collectedOn": "2026-10-31",
+            "pageTime": "作者论坛帖 2026-10-30；仓库创建 2026-10-28，核验源码提交 2026-10-29",
+            "summary": "用滚动方向重新解释同一段经历，可学习其状态与叙事的对应。",
+            "audience": "需要讲述变化过程的设计师、策展人和前端创作者。",
+            "value": "应用价值在于让回看成为有意义的操作，帮助理解前后视角；未验证理解率或商业结果。",
+            "conditions": "必须先有能双向成立的内容结构，保留直接阅读入口；素材和文字应自行创作或取得许可。"
+          }
+        },
+        {
+          "id": "pro-threads",
+          "title": "PRO Threads · 可编辑光线字体",
+          "author": "Kubai087",
+          "platform": "作者网站 / GitHub",
+          "pageTime": "仓库创建 · 2026.10.30 13:32:47 北京时间；固定提交 · 2026.10.31 00:11:00 北京时间；网站首发时间未核实",
+          "url": "https://www.kubai.design/pro-threads/",
+          "accent": "#d47c3a",
+          "mechanisms": [
+            "排版变成界面"
+          ],
+          "memory": "10 秒记忆点：成束的银色光丝折成高大的 PRO；在输入框敲下 VIBE，整组字形立即重新编织，切到 Ember 后，冷银光变成橙金色的丝束。",
+          "why": "字形、材质与控制面板共享同一套参数。字母的轮廓由光丝在端部的弯折构成，改变文字会重建轮廓，改变调色板会重新照亮同一结构；用户可以直接制作自己的结果。",
+          "input": "用户输入的英文大写字母、调色板、弯折形状、光照与时间参数。实测把 PRO 改为 VIBE，并从 XDR Blue 切到 Ember；字形和材质同步更新，设置也写入页面 URL。",
+          "layer": "WebGL 2 全屏片元着色器绘制字体，HTML / Tweakpane 提供编辑面板。letters.js 把每个字母拆成少量光丝片及端部弯折规则，再打包成 RGBA32F 浮点纹理供 shader 读取；它没有为每根可见细丝创建独立 DOM 或网格。",
+          "motion": "光照沿细丝缓慢漂移，叠加呼吸与亮带；轮廓保持可辨认，变化集中在丝束内部。已看壁纸模式并测试文字与配色，未逐一验完 Shapes 下的三维场景或导出功能。",
+          "pipeline": "固定提交 letters.js 的 pack() 编排字母，wallpaper.js 上传字形数据纹理，shader.js 按像素求解所在光丝并合成亮度、调色板与纤维。主绘制用一个全屏四顶点 TRIANGLE_STRIP。难点是窄缝、弯折端部和重叠处在不同尺寸下仍保持清晰。",
+          "performance": "源码以帧率上限、IntersectionObserver 和 document.hidden 控制绘制；连续慢帧会分步降低渲染分辨率。reduced-motion 会暂停时间，无 WebGL 2 时切到静态图。以上为代码核验；本次仅实测桌面 Chrome，未测实体手机、持续帧率、温升或静态降级实际效果。",
+          "transfer": "Joey 可将作品集的一组短标题做成可编辑的材质字样，让访客通过文字、光色和密度三个变量留下结果；先保证标题可读，并保留真正的 HTML 标题与静态封面。学习端部弯折与共享参数的机制，另作原创字形与视觉方向。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者 README、MIT 署名与固定提交 b2c7cd6fc6ac6cba3fbbc88e1833c9bc4545db5f 可核验作者、字形纹理和渲染管线；公开网站实际操作成功并保存截图。仓库创建和提交日期不等于网站首次发布时间。作者明确披露灵感来自 Apple 的 MacBook Pro PROLED XDR 壁纸，称独立从零编写，项目与 Apple 无关联；不把其视觉语言称作首创。README 明确 MIT 覆盖代码及 media 中项目渲染图，第三方库和字体条款另行适用。本期不提供代码 ZIP。",
+          "image": "./vibe/covers/pro-threads-20261031.jpg",
+          "imageSource": "https://www.kubai.design/pro-threads/?palette=ember&text=VIBE",
+          "imageCredit": "Kubai087；VIBE 2026-10-31 实浏览截图。作者披露 Apple 壁纸灵感；独立项目，与 Apple 无关联。",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "程序字体",
+              "光丝材质",
+              "实时编辑"
+            ],
+            "collectedOn": "2026-10-31",
+            "pageTime": "仓库创建 2026-10-30 05:32:47 UTC；固定提交 2026-10-30 16:11:00 UTC；网站首发未核实",
+            "summary": "把字母编排、光丝几何与材质控制连接成可编辑的实时字体工具。",
+            "audience": "实验字体、品牌交互、作品集与视觉工具设计者",
+            "value": "应用价值：把一张精致的动态字样发展为可修改、可分享的制作过程，帮助理解参数如何形成一致的视觉系统。",
+            "conditions": "A–Z 字形有设计边界，不是任意字体渲染器；发布应用应保持文本可读、提供静态与减少动态选项。采用代码、素材或字体须分别核查其许可，避开 Apple 商标与壁纸视觉的直接套用。"
+          }
+        },
+        {
+          "id": "seam-transitions-contour",
+          "title": "Seam Transitions · 05 Contour",
+          "author": "Manoela Ilic / Codrops",
+          "platform": "Codrops / GitHub",
+          "pageTime": "仓库创建 · 2026.10.29 19:01:13 北京时间；固定提交 · 2026.10.30 19:58:26 北京时间；演示站首发时间未核实",
+          "url": "https://tympanus.net/Demos/SeamTransitions/index5.html",
+          "accent": "#8e6d48",
+          "mechanisms": [
+            "交互变成叙事"
+          ],
+          "memory": "10 秒记忆点：向下滚动，葡萄梯田的图像边缘像水位上涨般让出纸面，棕色等高线从图像里接续出来；往回滚，纸面退去，梯田恢复。",
+          "why": "页面接缝参与解释“梯田沿地形生长”的主题：同一张图像从现场式观看转为地图式阅读。变化集中在首屏与正文的过渡处，并避开上下文字，内容仍是阅读的主体。",
+          "input": "滚动距离、方向、速度，首屏图片与可绘制的文字留白区域。本次切换到 05，向下滚出等高线，再向上滚动观察图像恢复；等高线随滚动进展变化，停下后保持。",
+          "layer": "HTML 图像与正文负责内容；局部 WebGL 2 画布覆盖接缝，用图片低级 mipmap 的明暗加噪声构造等值线，Canvas 2D 叠加点状高度标记。那些线条和高度数值是视觉演绎，并非地形测绘。",
+          "motion": "GSAP ScrollSmoother 的实际位移转换为接缝 progress / travel；白色区域由下向上侵入图片暗部，等值线沿滚动相位流动并逐渐淡出。反向滚动可撤回这一过程；镜头本身不在三维空间移动。",
+          "pipeline": "固定提交 js/index.js 计算接缝状态与上下文字安全区，只按页面类型动态加载一个模块。js/seams/contour.js 读取图片亮度生成等值线，以 fwidth 控制线宽；js/gl/Strip.js 把绘制限制在接缝条带，Canvas 标记按相同进度显现。难点是图片裁切、接缝和文字留白在响应式变化后仍对齐。",
+          "performance": "源码只在接缝可见且状态变化时通知绘制；Contour 的 DPR 上限为 2，下方条带最多 220 CSS px。reduced-motion 跳过接缝模块并保留普通边界，无 WebGL 2 时错误被捕获，内容继续显示。已实测桌面 Chrome 滚动，未测实体手机、持续帧率或降级效果；GSAP ticker 仍存在，不能宣称全页停止运行。",
+          "transfer": "Joey 可在一个空间或材料项目中，让首屏现场图在章节接缝转为结构解释，例如从建筑表皮转到材料层次。先定义图像与下一段文字的关系，只做一种过渡；涉及真实地形时应换成有来源的高程数据并另行校验。",
+          "difficulty": "1 天原型",
+          "evidence": "README 与固定提交 54ce5b6480b0502e0afa8781a6130b84638b77a3 的提交作者确认 Manoela Ilic / Codrops；已打开公开演示、切到 05 并双向滚动，保存实际截图。源码可核验亮度推导的等值线和 120–480m 示意高度，不能当成实际地理数据。README 明确照片为演示生成，提交说明各页面为虚构工作室，页面年份、四十公顷及品牌叙述均非经营证据。灵感署名为 Flabbergast 的 Mosaic 与 Jesper Landberg 的 PaperDrops。仓库列 MIT；未核实生成图片所用模型及完整上游素材权利，不据此承诺可商用。本期不提供代码 ZIP。",
+          "image": "./vibe/covers/seam-contour-20261031.jpg",
+          "imageSource": "https://tympanus.net/Demos/SeamTransitions/index5.html",
+          "imageCredit": "Manoela Ilic / Codrops；VIBE 2026-10-31 实浏览截图；背景图片由作者为演示生成。灵感来源：Flabbergast / Jesper Landberg。",
+          "context": {
+            "type": "story",
+            "tags": [
+              "章节转场",
+              "图像解读",
+              "滚动叙事"
+            ],
+            "collectedOn": "2026-10-31",
+            "pageTime": "仓库创建 2026-10-29 11:01:13 UTC；固定提交 2026-10-30 11:58:26 UTC；演示首发未核实",
+            "summary": "让首屏与正文的接缝，把梯田图像转换为一段地图式视觉解释。",
+            "audience": "空间、材料、文化内容和品牌故事页面设计者",
+            "value": "应用价值：章节交界可以承担解释职责，把观看引向理解，同时保持正文可读。",
+            "conditions": "这是虚构品牌与生成图像的技术演示；等高线源自亮度和噪声，不可作为地理信息或数字孪生证据。真实项目需使用获授权图像并标明数据来源，保留减少动态与普通边界的降级。"
+          }
+        }
+      ],
+      "dateLabel": "OCT 31",
+      "issueNo": "012"
+    },
     {
       "id": "2026-10-30",
       "note": "四个新收录的真实交互：从地貌问答、颜色粒子，到时间档案与飞行叙事。重点看输入如何改变结果；仓库时间、作者帖时间与获奖时间分别标注，不冒充首发。",
