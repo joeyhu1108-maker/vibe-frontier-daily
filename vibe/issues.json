@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-31T10:38:19.710Z",
+  "updatedAt": "2026-11-01T10:44:34.048Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,146 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-11-01",
+      "note": "把画面接回可解释的内容：Hearsay 用真实路由流解释网络关系，Sztanki 用空间章节组织作品集，Fiddle 用布局组织实验。日期分别为源码提交、获选与平台收录，不混作官网首发；三件均有本次浏览器实测展示图。",
+      "featuredId": "hearsay-live-bgp-globe",
+      "experiment": {
+        "title": "30 分钟实验：事件类型如何改变关系图（合成演示）",
+        "input": "手写六条合成事件，字段只含时间、类型、起点、终点，分别演示公告、路径变更和撤回；页面显著标注“合成数据，仅用于机制学习”，不称真实 BGP 记录。事件语义参考 Hearsay 的公开说明：https://github.com/NotAFlightRisk/hearsay/blob/e728a5dce749249da0f861c607d6f967333c7fb2/.github/README.md 。",
+        "target": "在二维关系图中区分新增、变更、撤回，点一条关系即可读到输入字段、事件类型、合成数据标记与机制参考链接；先检验图例和解释能否帮助读懂事件。",
+        "stack": "HTML、原生 JavaScript、Canvas 2D 与 DOM 说明卡；本地合成 JSON，不接实时流、不做定位或异常预测。",
+        "acceptance": "三类事件都有图例且不只靠颜色；选中关系与说明卡一致；合成标签持续可见，机制参考可访问；减少动态模式保留静态图与列表。此处是可立即测试的方案，本次没有制作或验收该实验。"
+      },
+      "restraint": "Creative Twin 只有拿到可公开、可追溯、带时间戳的真实关系数据时，才值得借用 Hearsay 的总览—解释卡结构。暂无这类数据就保留为视觉学习实验，不用虚构节点、定位或预测来营造数字孪生。",
+      "cases": [
+        {
+          "id": "hearsay-live-bgp-globe",
+          "title": "Hearsay · 互联网路由的实时地球",
+          "author": "Iain（NotAFlightRisk）",
+          "platform": "作者官网 / GitHub",
+          "pageTime": "GitHub 最早功能提交：2026-10-30 20:23:08 UTC（北京时间10月31日04:23）；官网首次发布日期未单独披露。收录：2026-11-01。",
+          "url": "https://hearsay.peng.ly/",
+          "accent": "#8395FF",
+          "mechanisms": [
+            "数据变成空间",
+            "交互变成叙事"
+          ],
+          "memory": "暗色点阵地球上，蓝紫色弧线一跳跳点亮网络，撤回事件留下琥珀色波纹；角落的实时路由统计和来源状态把这些光迹接回正在发生的消息。",
+          "why": "弧线颜色有可读含义：公告、路径变更和撤回对应不同事件；统计、异常说明和来源入口让观众能从整体气象进入具体网络。作者同时说明地理位置只是注册国大城市附近的估计，这使空间表达保留了诚实的误差边界。",
+          "input": "已实测：普通浏览器打开实时地球，Live peers 与统计持续变化，展开 Bulletins 和 About，看到异常解释、定位说明及外部来源入口；没有逐一打开外部来源验证事件。作者说明支持拖拽、缩放、键盘方向键和点击 ASN 查看历史/上游及关注，本次未逐一操作。",
+          "layer": "公开源码确认 SvelteKit/Three.js：DOM 承载菜单、统计和说明卡；WebGL 层由球面、点阵陆地、网络点、路由带和波纹组成。国家路由热度通过 DataTexture 映射到点阵颜色，不是随意播放的粒子视频。",
+          "motion": "每段 AS path 按跳数依次生成带尾迹的球面弧线，撤回触发环形波纹；OrbitControls 提供绕球查看，选中网络可使用相机飞行与其他路径变暗来聚焦。颜色和时间顺序用于解释事件；弧线位置不能代表真实海缆或路由器位置。",
+          "pipeline": "固定源码显示：RIPE RIS Live 消息经 relay 或备用直连进入 Web Worker，解析、统计、启发式检测、按预算采样，并将 ASN 注册国映射到近似城市坐标，批量发送带坐标的绘制帧；主线程据此更新 Three.js 缓冲几何与 ShaderMaterial。难点是同时保持可读的绘制密度、完整计数和事件来源，并把启发式异常与确认事件分开。",
+          "performance": "源码有固定容量循环槽批处理、DPR 上限2与三档路由绘制预算；省流模式或窄屏默认较轻档位，标签页隐藏20秒后停止监听，减少动态偏好默认关闭自动旋转。这些是实现证据；本次没有真机移动、帧率、显存或耗电测试，也没有证明后台完全停止渲染。迁移时优先减少路由密度并保留来源列表。",
+          "transfer": "Joey 可把一组真实、可公开且带时间戳的项目协作/活动流做成“总览→选中关系→解释卡”：线只表达有证据的关系，点击能看时间和来源。先验证用户能从画面找到一个事件及其依据，再增加地球或点云；没有真实关系数据时只做机制实验。",
+          "difficulty": "1 天原型",
+          "evidence": "作者明确披露：README 与 About 说明 BGP 来源、图例、操作及注册国近似城市定位。公开资源可核验：GitHub 用户资料 name=Iain，首次功能提交17a2b9d19587cd7ce8c81e7f7b354d3889715930；本次技术检查固定在e728a5dce749249da0f861c607d6f967333c7fb2。亲测：实时画面、变化统计、Bulletins、About 及可见的外部来源入口；未逐一打开这些外链验证事件。根据交互与源码判断：空间表达的应用价值；未验证任一异常为攻击/故障，不把解释性 forecast 当作已验证预测。难度指一组受控事件、三类路径和解释卡的收敛原型，非整套实时基础设施复刻。来源：https://github.com/NotAFlightRisk/hearsay/blob/e728a5dce749249da0f861c607d6f967333c7fb2/.github/README.md ；https://github.com/NotAFlightRisk/hearsay/blob/e728a5dce749249da0f861c607d6f967333c7fb2/src/lib/stream/stream.worker.ts ；https://github.com/NotAFlightRisk/hearsay/blob/e728a5dce749249da0f861c607d6f967333c7fb2/src/lib/geo/place.ts ；https://github.com/NotAFlightRisk/hearsay/blob/e728a5dce749249da0f861c607d6f967333c7fb2/src/lib/globe/layers.ts ；https://github.com/NotAFlightRisk/hearsay/blob/e728a5dce749249da0f861c607d6f967333c7fb2/src/lib/settings.ts 。",
+          "image": "./vibe/covers/hearsay-bgp-20261101.jpg",
+          "imageSource": "https://hearsay.peng.ly/",
+          "imageCredit": "Iain（NotAFlightRisk）；公开官网实测截图，2026-11-01。RIPE NCC 路由与 ASN 数据、Natural Earth 地图。",
+          "context": {
+            "type": "data",
+            "tags": [
+              "网络基础设施",
+              "实时数据叙事",
+              "关系可视化",
+              "来源追溯"
+            ],
+            "collectedOn": "2026-11-01",
+            "pageTime": "最早功能提交2026-10-30 20:23:08 UTC（北京时间10月31日）；官网首次发布日期未单独披露。",
+            "summary": "把真实 BGP 路由消息变成带图例、来源与误差说明的实时地球。",
+            "audience": "需要向公众解释网络关系、事件变化与数据来源的创作者、数据新闻和技术展示团队。",
+            "value": "应用价值：让复杂关系既能整体感知，也能追问具体事件及依据；未验证教育、转化或商业成果。",
+            "conditions": "必须有可公开且可追溯的数据、清晰的采样与定位说明，并区分启发式判断和确认事件。3D 是关系阅读入口，不能代替原始来源；手机需保留轻量列表。"
+          }
+        },
+        {
+          "id": "sztanki-spatial-portfolio",
+          "title": "Sztanki’s Portfolio · 分层空间作品集",
+          "author": "Attila Sztankovics / Ginrin",
+          "platform": "作者官网 / FWA",
+          "pageTime": "FWA of the Day：2026-11-01；这是获选日期，官网首次发布日期未核实。收录：2026-11-01。",
+          "url": "https://www.sztanki.com/",
+          "accent": "#537BF7",
+          "mechanisms": [
+            "滚动变成镜头",
+            "交互变成叙事"
+          ],
+          "memory": "深蓝雾状空间里，巨大 SZTANKI 字样让位给发光的人像轮廓；继续滚动，人物转到侧面，介绍面板像展签一样浮在身旁。",
+          "why": "人像、内容面板与作品索引沿浏览进程逐步出现，镜头位置承担章节切换。视觉材料围绕“认识作者—阅读介绍—进入作品”组织，而不是把同一种粒子叠在每一屏。是否提高阅读效率仍需用户测试。",
+          "input": "本次桌面浏览器实测：进入首页，点击 START JOURNEY，滚动进入 /about/，继续滚动看到侧面人像与介绍面板，点击 WORK 进入 /work/ 空间作品索引。Contact、键盘遍历和手机未测。",
+          "layer": "作者在 FWA 作品说明中披露：这是其新 layer-based 3D engine 的首个项目，运行于 WebGPU，组合组件与效果层。浏览器确实呈现全屏 Canvas、发光点状人像、空间面板与作品图；本次未直接核验 GPU 后端、几何数据形式或具体框架。",
+          "motion": "亲测滚动会改变人像视角与内容面板的空间关系，WORK 导航改变内容路由。复现时可把章节进度映射到镜头与面板位置，在正文处留稳定阅读停点；这是迁移建议，不是已读源码的动画时间线。",
+          "pipeline": "作者披露的证据到“分层引擎、WebGPU、组件和效果层”为止。可复用的原型管线（推断/建议）：先写 About 与 Work 的内容和路由，再定义场景层、文字层、章节状态和滚动进度，最后校准镜头；难点是内容定位、阅读停点与场景变化保持一致。官网脚本直读返回403，没有据此猜测着色器公式、Three.js 或资产管线。",
+          "performance": "FWA 标注适合桌面观看，本次仅验证桌面进入与操作，没有帧率、显存或移动测试。建议迁移时限制透明粒子叠加和分辨率，为减少动态偏好提供静止视角，并保留可检索的 HTML 正文/作品索引。当前 Canvas 的浏览器辅助树未提供可读正文，不能宣称其已有这些降级和可访问性方案。",
+          "transfer": "Joey 的一个作品集案例可以用“背景—关键决定—结果证据”三个阅读停点，镜头只在章节变化时移动，结果页保留真实交付图和直接来源。先做一个案例，测试读者能否复述关键决定；不把空间复杂度当作内容完整度。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露（FWA 作品说明）：WebGPU 分层3D引擎、组件与效果层。平台可核验：FWA 2026-11-01 获选及署名 Attila Sztankovics / Ginrin。亲测：官网 Start Journey、About 滚动及 Work 路由，展示图为本次 About 画面。推断/建议：叙事结构、复现管线与降级；未取得可读脚本，未验证具体渲染库、点数量或移动表现。难度仅指一个案例、三个阅读停点的收敛成品，非重写原作者引擎。来源：https://thefwa.com/cases/sztankis-portfolio ；https://thefwa.com/rss/ 。",
+          "image": "./vibe/covers/sztanki-portfolio-20261101.jpg",
+          "imageSource": "https://www.sztanki.com/about/",
+          "imageCredit": "Attila Sztankovics / Ginrin；公开官网 About 实测截图，2026-11-01。",
+          "context": {
+            "type": "story",
+            "tags": [
+              "作品集",
+              "空间叙事",
+              "作者介绍",
+              "章节导航"
+            ],
+            "collectedOn": "2026-11-01",
+            "pageTime": "FWA 获选2026-11-01；不是官网首发日期。",
+            "summary": "用点状人像、空间面板和章节镜头连接作者介绍与作品阅读。",
+            "audience": "有成熟案例内容、希望让阅读顺序更鲜明的创作者和展示设计团队。",
+            "value": "应用价值：把章节关系转成可感知的空间连续性；未验证阅读效率、获客或商业成果。",
+            "conditions": "内容必须先完整；保留直接到达章节的入口、稳定阅读停点和静态正文。WebGPU 为作者披露，本次未验证移动兼容及可访问性。"
+          }
+        },
+        {
+          "id": "fiddle-digital-experiments-hub",
+          "title": "Fiddle.Digital Experiments · 可变布局的实验索引",
+          "author": "Fiddle.Digital（Dmytro Troshchylo / Olha Skrypka / Vlad Penev）",
+          "platform": "作者实验站 / Mindsparkle Mag",
+          "pageTime": "Mindsparkle Mag 收录：2026-10-29；这是平台收录日期，实验站首次上线日期未核实。收录：2026-11-01。",
+          "url": "https://exp.fiddle.digital/",
+          "accent": "#CB765C",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "一组带短标签的影像卡片悬在浅色空间中；LIST / GRID 切换后，同一批实验从弧形排列展开为分散的画廊，点开卡片进入单个实验。",
+          "why": "布局变化对应探索方式变化：连续排列帮助浏览顺序，散开的预览帮助比较视觉题材；卡片保留身份，并通向可进入的实验页面。它的价值是组织一批实验，而不只是让缩略图漂浮。是否比普通索引更易找内容，尚无测试数据。",
+          "input": "桌面实测：拒绝可选 Cookie，切换 LIST / GRID，点击 3D FLLS 进入 /exp/7，打开 ABT 阅读说明，再点 CLS 回到索引；打开 ABOUT 核验团队署名。未完成子实验玩法、拖动、键盘路径或手机验证，因此不把子实验物理效果算作本次已验证能力。",
+          "layer": "实际画面与 DOM 可核验：Canvas 空间卡片、图片预览和短标签，页面提供布局切换、实验打开/关闭及 About 控件。Mindsparkle 将它标记为 WebGL；没有可读源码证明当前 Hub 的具体引擎、物理库或着色器实现。",
+          "motion": "同一批卡片在两个布局间改变空间位置与朝向，进入详情时卡片扩大、其余内容退出，关闭后回到索引。布局与进入/退出属于亲测；插值曲线、相机算法和子实验内部动画没有源码证据。",
+          "pipeline": "建议复现方案（推断）：为每个实验保留稳定 id、预览图和说明，定义两组位置/朝向，切换时只插值布局；详情按需装载，并在关闭后恢复原索引上下文。难点是卡片选择、详情路由与布局状态不丢失。这是可实现的收敛方案，不是对原站源码的还原。",
+          "performance": "本次没有移动真机、帧率或下载量测量。迁移建议：索引先用静态预览，只加载选中实验；限制离屏媒体和渲染分辨率，减少动态模式使用普通列表并保留键盘可达入口。原站是否采用这些优化尚未核实。",
+          "transfer": "Joey 的作品集可把六个已完成实验组织成可浏览索引，每张卡片带作者、输入方式、真实运行状态与来源，打开后能操作一个明确机制并返回原位置。用于免费分享与共学，先检验读者能否找到、进入和复述一个实验；不把卡片数量等同于交付或成交。",
+          "difficulty": "1 天原型",
+          "evidence": "作者当前 ABOUT 亲测可读署名：Dmytro Troshchylo（Design）、Olha Skrypka（Inspiration）、Vlad Penev（Engineering）。平台可核验：Mindsparkle 2026-10-29 收录及 WebGL 标签；一级官网确认团队身份。亲测：双布局、3D FLLS 详情入口、ABT、关闭返回、ABOUT；展示图为索引 Grid 状态。未核验子实验玩法、Hub 具体库和移动表现；普通浏览器可用，但脚本直读渠道返回403，未绕过。难度只指六张卡、双布局和详情返回的原型，非复制完整实验集合。来源：https://exp.fiddle.digital/about ；https://mindsparklemag.com/website/fiddle-digital-experiments ；https://fiddle.digital/ 。",
+          "image": "./vibe/covers/fiddle-experiments-20261101.jpg",
+          "imageSource": "https://exp.fiddle.digital/",
+          "imageCredit": "Fiddle.Digital；Dmytro Troshchylo（Design）、Olha Skrypka（Inspiration）、Vlad Penev（Engineering）；公开实验站 Grid 实测截图，2026-11-01。",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "实验索引",
+              "作品集",
+              "交互导航",
+              "共学"
+            ],
+            "collectedOn": "2026-11-01",
+            "pageTime": "Mindsparkle Mag 收录2026-10-29；不是实验站首发日期。",
+            "summary": "通过双布局与详情返回，将多个视觉实验组织成可探索的画廊。",
+            "audience": "需要展示一批可运行实验、清楚标明作者和使用方式的创作者及共学社区。",
+            "value": "应用价值：把实验集合变成可选择、可进入、可返回的索引；未验证发现效率、留存或商业成果。",
+            "conditions": "每件实验应有真实预览、署名、输入说明和来源；先保证列表可用及返回上下文，再加空间布局。展示不等于授予素材或代码复用许可。"
+          }
+        }
+      ],
+      "dateLabel": "NOV 1",
+      "issueNo": "013"
+    },
     {
       "id": "2026-10-31",
       "note": "让操作承担表达：职业能力变成技能，滚动方向改变立场，文字变成可制作的光丝，章节接缝从图像引向解释。四件新收录均有实测画面；来源时间与本期收录时间分开标注。",
