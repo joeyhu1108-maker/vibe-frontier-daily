@@ -16,5 +16,517 @@
     "source": "https://github.com/Keith-CY/linan/blob/0435eafa9ff835b7ff2442355a5d97956b930ea5/media/walk.mp4",
     "credit": "Keith / Keith-CY · 作者演示录屏节选（原片 1–9 秒）；基于 Leon Lin 的 Athenaion，MIT",
     "durationSeconds": 8
+  },
+  "murmurations-boids-canvas": {
+    "source": "https://evoluteur.github.io/murmurations/",
+    "credit": "Olivier Giulieri；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "作者原站实时 Boids 鸟群，未使用静态图片变形。真实采样约2.5fps，适合认识群体形态变化，不称流畅原始录屏。 按真实网页采样间隔编码，不补造中间运动；采样帧数17。",
+    "license": "原仓库 MIT；仍保留作者署名与原许可，短预览不替代源码许可说明。",
+    "src": "./vibe/previews/murmurations-boids-canvas.mp4"
+  },
+  "galaxies-webgpu-encounter-lab": {
+    "source": "https://galaxies.gillett-projects.com/",
+    "credit": "tonygillett136；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 6.333,
+    "method": "live-site-capture",
+    "evidence": "原作 WebGPU 银河相遇模拟，裁切保留天体与时间标尺。 按真实网页采样间隔编码，不补造中间运动；采样帧数26。",
+    "license": "作者公开演示；不声称素材开放许可。",
+    "src": "./vibe/previews/galaxies-webgpu-encounter-lab.mp4"
+  },
+  "dream-engine-browser-world-model": {
+    "source": "https://github.com/teshnizi2/dream-engine/blob/7e7168679e714390ccaaef658a14646c014709de/media/dream-1080x1080.mp4",
+    "credit": "Mohammadreza Ahmaditeshnizi / teshnizi2",
+    "durationSeconds": 7.0,
+    "method": "author-video",
+    "evidence": "作者仓库 media/dream-1080x1080.mp4 公开演示，截取原片前7秒。",
+    "license": "仓库 MIT；依赖与模型另见 THIRD_PARTY.md。预览不构成第三方素材授权。",
+    "src": "./vibe/previews/dream-engine-browser-world-model.mp4"
+  },
+  "insect-world-procedural-field-guide": {
+    "source": "https://github.com/xr843/insect-world/blob/f140a541239c16ac70fe774d077d4d1d8083a9dd/docs/promo/emerge-monarch-butterfly.gif",
+    "credit": "Tim Ren / xr843",
+    "durationSeconds": 7.0,
+    "method": "author-gif",
+    "evidence": "作者仓库 docs/promo/emerge-monarch-butterfly.gif，真实交互演示GIF转码；短片循环。",
+    "license": "作者公开演示素材，未在本步骤核验素材再分发许可。保留署名。",
+    "src": "./vibe/previews/insect-world-procedural-field-guide.mp4"
+  },
+  "wake-timeshear-plotter-research": {
+    "source": "https://wake-black.vercel.app/case.html",
+    "credit": "Preet Panchal",
+    "durationSeconds": 7.0,
+    "method": "author-gif",
+    "evidence": "原作研究页引用 case/live-flow.gif，实际流场演示GIF转码循环。",
+    "license": "作者原站公开演示，未声称开放媒体再分发许可。",
+    "src": "./vibe/previews/wake-timeshear-plotter-research.mp4"
+  },
+  "solar-sclipse": {
+    "source": "https://solar-sclipse.pages.dev/",
+    "credit": "Quincunx / Quincunx33；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 6.542,
+    "method": "live-site-capture",
+    "evidence": "原站日食地球与路径时间演示，使用网页自身播放。 按真实网页采样间隔编码，不补造中间运动；采样帧数42。",
+    "license": "作者公开演示；预览不构成地图/数据第三方素材授权。",
+    "src": "./vibe/previews/solar-sclipse.mp4"
+  },
+  "filter-fabjs-2-1-1": {
+    "source": "https://anthonychimming.github.io/filter-fabjs/",
+    "credit": "Anthony Chimming；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "原URL现为 ChromaMeld RGBA；现场选择Swirl并连续按原站Twist滑杆键盘调节，非照片伪动画。 按真实网页采样间隔编码，不补造中间运动；采样帧数78。",
+    "license": "作者公开演示，预览保留署名；输入为原站自带默认示例。",
+    "src": "./vibe/previews/filter-fabjs-2-1-1.mp4"
+  },
+  "worldseed-orbital-story-game": {
+    "src": "./vibe/previews/worldseed-orbital-story-game.mp4",
+    "source": "https://github.com/Southers/WORLDSEED/blob/936da3db778427fb5f91b321cded881ebb5a2664/submission/worldseed-showcase.mp4",
+    "credit": "Southers · 作者公开作品演示节选，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 8.0,
+    "method": "author-repository-video"
+  },
+  "partmode-browser-cad": {
+    "src": "./vibe/previews/partmode-browser-cad.mp4",
+    "source": "https://github.com/BOMWiki/partmode/blob/fe88558a34c8d7a3e03b34c2a374ba5ce6febe9f/docs/media/partmode-contributor-demo.mp4",
+    "credit": "BOMWiki / PartMode · 作者公开作品演示节选，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 8.0,
+    "method": "author-repository-video"
+  },
+  "ascii-render-video-editor": {
+    "src": "./vibe/previews/ascii-render-video-editor.mp4",
+    "source": "https://github.com/xand0dev/ascii-render/blob/3ca8224b7b002b3b6a057b4cb29080e6298ccdb3/docs/assets/demo.mp4",
+    "credit": "Oleksandr Riasnyi · 作者公开作品演示节选，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 8.0,
+    "method": "author-repository-video"
+  },
+  "measure-of-teotihuacan": {
+    "src": "./vibe/previews/measure-of-teotihuacan.mp4",
+    "source": "https://github.com/webgpu-demos/measure-of-teotihuacan/blob/9a41f956d34a3e1225d272fe455e495a652cfe34/docs/film.mp4",
+    "credit": "Jason Matney / webgpu-demos · 作者公开作品演示节选，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 8.0,
+    "method": "author-repository-video"
+  },
+  "hearsay-live-bgp-globe": {
+    "src": "./vibe/previews/hearsay-live-bgp-globe.mp4",
+    "source": "https://github.com/NotAFlightRisk/hearsay/blob/e728a5dce749249da0f861c607d6f967333c7fb2/.github/screenshot.gif",
+    "credit": "Iain（NotAFlightRisk） · 作者公开作品演示节选，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 8.0,
+    "method": "author-repository-animated-gif"
+  },
+  "minimum-distance-litton-2009": {
+    "src": "./vibe/previews/minimum-distance-litton-2009.mp4",
+    "source": "https://neovand.github.io/minimum-distance/",
+    "credit": "Neo Mohsenvand · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "luma-color-eye-experiments": {
+    "src": "./vibe/previews/luma-color-eye-experiments.mp4",
+    "source": "https://mowke.github.io/LUMA/",
+    "credit": "Samahith / MowkE · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "picnic-site-edogawa": {
+    "src": "./vibe/previews/picnic-site-edogawa.mp4",
+    "source": "https://jumpei-ishihara.github.io/picnic-site/edogawa.html",
+    "credit": "Ishihara · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "tetrafract": {
+    "src": "./vibe/previews/tetrafract.mp4",
+    "source": "https://sh1ftmaker.github.io/tetrafract/",
+    "credit": "sh1ftmaker · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "ascii-wisteria": {
+    "src": "./vibe/previews/ascii-wisteria.mp4",
+    "source": "https://ascii-wisteria.vercel.app/?intro=0",
+    "credit": "yeman / Yeman-sker · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "terra-prime": {
+    "src": "./vibe/previews/terra-prime.mp4",
+    "source": "https://www.terraprime.art/",
+    "credit": "Fang He · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "cerebrum-brain-explorer": {
+    "source": "https://3d-brain-explorer.vercel.app/",
+    "credit": "Prasenjit / StarKnightt；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 6.708,
+    "method": "live-site-capture",
+    "evidence": "原站脑模型，依次选择额叶、颞叶、小脑，记录原站选区与镜头转场。 按真实网页采样间隔编码，不补造中间运动；采样帧数29。",
+    "license": "作者公开网页演示。保留署名；本预览不声称第三方模型或纹理具备开放再分发许可。",
+    "src": "./vibe/previews/cerebrum-brain-explorer.mp4"
+  },
+  "why-zero-university": {
+    "source": "https://why.zero.university/",
+    "credit": "ZeroUniversity / Sindhur Dutta；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "原站已加载后的真实3D水面与手部开场、“DRAW A ZERO”动态引导。此片仅覆盖手势引导开场，未声称已完成全部五阶段滚动体验。 按真实网页采样间隔编码，不补造中间运动；采样帧数133。",
+    "license": "保留作者署名；用于短预览与原站导流，不推定项目与全部素材商用权。",
+    "src": "./vibe/previews/why-zero-university.mp4"
+  },
+  "gen-city-auto-webgpu": {
+    "source": "https://greggman.github.io/gen-city-auto/",
+    "credit": "Gregg Tavares / greggman；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 6.542,
+    "method": "live-site-capture",
+    "evidence": "原站生成城市完成后自动驾驶与导演镜头真实运动；未下载执行仓库源码。 按真实网页采样间隔编码，不补造中间运动；采样帧数40。",
+    "license": "作者公开网页演示。保留署名；本预览不声称第三方模型或纹理具备开放再分发许可。",
+    "src": "./vibe/previews/gen-city-auto-webgpu.mp4"
+  },
+  "outcrop-geology-window": {
+    "src": "./vibe/previews/outcrop-geology-window.mp4",
+    "source": "https://outcrop.rocks/",
+    "credit": "Flyover Country LLC；公开官网实时 3D 地质窗口采帧。地质 Macrostrat / USGS，地形 Mapterhorn，影像 USDA NAIP，地名 OpenStreetMap / USGS GNIS；素材署名见原作。",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "pro-threads": {
+    "src": "./vibe/previews/pro-threads.mp4",
+    "source": "https://www.kubai.design/pro-threads/?palette=ember&text=VIBE",
+    "credit": "Kubai087 · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "rings-of-empire": {
+    "src": "./vibe/previews/rings-of-empire.mp4",
+    "source": "https://studioanrk.com/work/empires/",
+    "credit": "Anrick · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "last-train-records": {
+    "src": "./vibe/previews/last-train-records.mp4",
+    "source": "https://hxmzaehsan.github.io/last-train-records/",
+    "credit": "Hamza Ehsan · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "mri-anatomy-physics-lab": {
+    "src": "./vibe/previews/mri-anatomy-physics-lab.mp4",
+    "source": "https://haosen-zhang.github.io/MRI-Anatomy-Physics-Lab/",
+    "credit": "Haosen Zhang（Haosen-Zhang） · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "digital-peony-webgpu-xpbd": {
+    "src": "./vibe/previews/digital-peony-webgpu-xpbd.mp4",
+    "source": "https://github.com/LewisOrton/digital-peony/blob/main/media/digital-peony.gif",
+    "credit": "Lewis Orton · 作者公开作品真实动态节选，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "author-repository-media"
+  },
+  "kasane-geometric-image-approximation": {
+    "src": "./vibe/previews/kasane-geometric-image-approximation.mp4",
+    "source": "https://github.com/kariyamaso/kasane/blob/HEAD/docs/assets/video-demo.svg",
+    "credit": "So Kariyama · 作者重建管线输出的动画 SVG 实际播放采帧；原输入为 Eadweard Muybridge《动马》（1878，公有领域），权利归相应作者所有",
+    "durationSeconds": 6.0,
+    "method": "author-repository-animation-screen-capture",
+    "evidence": "README「動画版」明确标注 docs/assets/video-demo.svg 为视频管线实际输出；原示例 example-horse.gif 为输入素材，已排除。"
+  },
+  "undercover-ph-shaded-walks": {
+    "src": "./vibe/previews/undercover-ph-shaded-walks.mp4",
+    "source": "https://github.com/xmpuspus/undercover-ph/blob/HEAD/docs/demo/walkthrough.mp4",
+    "credit": "Xavier Puspus · 作者公开作品真实动态节选，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "author-repository-media"
+  },
+  "sensor-layout-studio": {
+    "src": "./vibe/previews/sensor-layout-studio.mp4",
+    "source": "https://github.com/matsushimax/SensorLayoutStudio/blob/HEAD/docs/demo.webm",
+    "credit": "matsushimax · 作者公开作品真实动态节选，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "author-repository-media"
+  },
+  "robotic-arm-simulator": {
+    "source": "https://niceskipperchen-coder.github.io/robotic-arm-simulator/",
+    "credit": "Skipper Chen；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 6.375,
+    "method": "live-site-capture",
+    "evidence": "原站Run circle动作，末端轨迹与机械臂关节运动连续采集。 按真实网页采样间隔编码，不补造中间运动；采样帧数28。",
+    "license": "作者公开演示；保留作者署名。",
+    "src": "./vibe/previews/robotic-arm-simulator.mp4"
+  },
+  "aeolus-webgpu-wind-tunnel": {
+    "source": "https://ylfeid.github.io/aeolus/",
+    "credit": "YL Fei / ylfeid；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 6.625,
+    "method": "live-site-capture",
+    "evidence": "作者公开 WebGPU 风洞中的圆柱尾流，模拟运行后连续采帧。保留实际交替涡街运动。 按真实网页采样间隔编码，不补造中间运动；采样帧数33。",
+    "license": "仅作作品归属明确的短预览与原站导流；未将源码许可推定为素材商用授权。",
+    "src": "./vibe/previews/aeolus-webgpu-wind-tunnel.mp4"
+  },
+  "gpr-horizon-uncertainty": {
+    "source": "https://zhaoyhtj.github.io/GPR_horizon_3d/horizon3d.html",
+    "credit": "zhaoyhtj；Schillerslage 数据：Igel et al. 2019（CC BY 4.0）；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "公开 GPR 层位可视化实站。用原站拖拽旋转模型；采帧较低，仅作交互状态变化预览，不称流畅录屏。 按真实网页采样间隔编码，不补造中间运动；采样帧数7。",
+    "license": "页面科学数据与作者实现的版权仍归各自权利人；预览不代表完整复用授权。",
+    "src": "./vibe/previews/gpr-horizon-uncertainty.mp4"
+  },
+  "pure-art": {
+    "src": "./vibe/previews/pure-art.mp4",
+    "source": "https://pureart-xyz.vercel.app/",
+    "credit": "Pure Studio / Exos45xyz · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "palindrome-of-a-fall-20261031": {
+    "src": "./vibe/previews/palindrome-of-a-fall-20261031.mp4",
+    "source": "https://palindrome-of-a-fall.vercel.app/",
+    "credit": "0xkev21 · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "alaas-sakha-living-museum": {
+    "src": "./vibe/previews/alaas-sakha-living-museum.mp4",
+    "source": "https://springfolk.github.io/alaas-game/",
+    "credit": "Springfolk；Alaas 公开页面实浏览采帧，第三方素材署名见 https://github.com/Springfolk/alaas-game/blob/main/docs/credits.md 。",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "solaris-ephemeris-orrery": {
+    "src": "./vibe/previews/solaris-ephemeris-orrery.mp4",
+    "source": "https://tiancanxia.github.io/solaris/",
+    "credit": "Tiancan Xia · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "slop-new-york": {
+    "src": "./vibe/previews/slop-new-york.mp4",
+    "source": "https://mrdoob.github.io/slop-newyork/",
+    "credit": "mrdoob · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "little-rain-cloud-procedural-world": {
+    "src": "./vibe/previews/little-rain-cloud-procedural-world.mp4",
+    "source": "https://dososo.github.io/little-rain-cloud/",
+    "credit": "dososo / BLCaptain · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "datasplore-sqlite-world": {
+    "source": "https://simonw.github.io/datasplore/?url=https://datasette.io/content.db",
+    "credit": "Simon Willison；示例数据 datasette.io/content.db；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "公开示例数据库加载完成后，17 表、104116 行、10 外键的入口大厅；采集原站发光关系线、门户着色的真实时间动画。未伪造数据或相机运动。 按真实网页采样间隔编码，不补造中间运动；采样帧数33。",
+    "license": "仓库未声明代码许可；本短预览保留作者与数据来源，不提供源码下载或推定商用素材授权。",
+    "src": "./vibe/previews/datasplore-sqlite-world.mp4"
+  },
+  "flat-to-3d": {
+    "src": "./vibe/previews/flat-to-3d.mp4",
+    "source": "https://sam1983aing.github.io/flat-to-3d/",
+    "credit": "Samnang Aing / Sam1983Aing · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "turku3d-open-world": {
+    "src": "./vibe/previews/turku3d-open-world.mp4",
+    "source": "https://wnt.github.io/turku-game/",
+    "credit": "Wnt / Turku3D；实浏览采帧。地图、lidar、航拍 © City of Turku (CC BY 4.0)；街道 © OpenStreetMap contributors (ODbL)；模型等条款见原作。",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "point-cloud-studio-ai-depth": {
+    "src": "./vibe/previews/point-cloud-studio-ai-depth.mp4",
+    "source": "https://ollieh99.github.io/point-cloud-studio/",
+    "credit": "Ollie Harvey / Point Cloud Studio；作者内置样片实浏览采帧。Portrait: Curly hair and freckles man (Unsplash), Wikimedia Commons, CC0；AI depth: Depth Anything V2 Small；素材声明见原仓库 NOTICE.md。",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "geomap-webgpu-geology": {
+    "src": "./vibe/previews/geomap-webgpu-geology.mp4",
+    "source": "https://ngublag.com/geomap/",
+    "credit": "Ardin Fardiansyah · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "prehistoric-animal-museum": {
+    "src": "./vibe/previews/prehistoric-animal-museum.mp4",
+    "source": "https://leon-made-this.work/museum/",
+    "credit": "Leon Made This · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "noise-adaptive-stealth-city": {
+    "src": "./vibe/previews/noise-adaptive-stealth-city.mp4",
+    "source": "https://askretik.github.io/noise/",
+    "credit": "Kretik / ASKretik · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "codemap": {
+    "src": "./vibe/previews/codemap.mp4",
+    "source": "https://codemap-3d.netlify.app/",
+    "credit": "Joel Lithgow · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "pastel-harbour-procedural-town": {
+    "source": "https://danieliusisiunas.github.io/pastel-harbour/",
+    "credit": "Danielius Isiunas；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "作者原站默认406块港湾，原生方向键环绕视角，同时保留实际鸟群、水面和帆船动画。 按真实网页采样间隔编码，不补造中间运动；采样帧数51。",
+    "license": "原作者作品版权与第三方素材条款保留；此预览不授予完整项目商用权。",
+    "src": "./vibe/previews/pastel-harbour-procedural-town.mp4"
+  },
+  "meridian-globe": {
+    "source": "https://givingwu.github.io/meridian-globe/",
+    "credit": "MountainGhost.W / givingwu；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "原站默认地球自转、点阵闪烁与连接弧线流光；画面为示意网络，并非实时交易数据。 按真实网页采样间隔编码，不补造中间运动；采样帧数144。",
+    "license": "保留作者署名；此短预览不将示意数据当成真实运营指标，也不推定全部素材商用授权。",
+    "src": "./vibe/previews/meridian-globe.mp4"
+  },
+  "nebulofi": {
+    "source": "https://nebulofi.vercel.app/",
+    "credit": "Arthur Chiquet；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "原站 Living Forest 声景预设的6个行星与轨道，捕获原站实时运行画面；本预览静音，不代表声音体验。 按真实网页采样间隔编码，不补造中间运动；采样帧数20。",
+    "license": "保留原作者与必要素材署名；短预览与原站导流，不推定完整作品或素材商用权。",
+    "src": "./vibe/previews/nebulofi.mp4"
+  },
+  "tongjiang-river-step": {
+    "source": "https://lab.tongjiang.app/river-step",
+    "credit": "铜匠十点睡觉 / 铜匠实验室；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "教学沙盘原站从认识沙盘到山区V形谷、凹岸凸岸的真实步骤切换；数值与比例均为作者标明的教学示意。 按真实网页采样间隔编码，不补造中间运动；采样帧数46。",
+    "license": "保留原作者与必要素材署名；短预览与原站导流，不推定完整作品或素材商用权。",
+    "src": "./vibe/previews/tongjiang-river-step.mp4"
+  },
+  "the-aviator-2026": {
+    "source": "https://aviator.yakudoo.games/",
+    "credit": "Karim Maaloul / Yakudoo / EPIC；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "当前公开2026版，选择 FLY CHILL 后录制真实飞行与障碍场景；未使用2016旧版视频。 按真实网页采样间隔编码，不补造中间运动；采样帧数28。",
+    "license": "短预览用于作品介绍与原站导流；作者及原素材许可继续适用，不推定商用素材授权。",
+    "src": "./vibe/previews/the-aviator-2026.mp4"
+  },
+  "seam-transitions-contour": {
+    "source": "https://tympanus.net/Demos/SeamTransitions/index5.html",
+    "credit": "Manoela Ilic / Codrops；原演示示例图片版权依其原条款；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "Codrops 第5变体原站，以三次真实滚动捕获轮廓遮罩转场；不是静态图片平移动效。 按真实网页采样间隔编码，不补造中间运动；采样帧数20。",
+    "license": "短预览用于作品介绍与原站导流；作者及原素材许可继续适用，不推定商用素材授权。",
+    "src": "./vibe/previews/seam-transitions-contour.mp4"
+  },
+  "perigee-nasa-asteroid-explorer": {
+    "src": "./vibe/previews/perigee-nasa-asteroid-explorer.mp4",
+    "source": "https://perigee.zakjrademacher.workers.dev/",
+    "credit": "Zak Rademacher；公开页面真实轨道交互采帧。近地小行星数据与预测向量 NASA / JPL，地球/月球纹理 NASA；尺寸标记为示意，原作方法说明适用。",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "rds-curatix-2026": {
+    "src": "./vibe/previews/rds-curatix-2026.mp4",
+    "source": "https://greentailtohru-arch.github.io/Rds-Curatix/",
+    "credit": "Rds / GreentailTohru-arch · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.5,
+    "method": "live-page-screen-capture"
+  },
+  "deadlight-pantheon": {
+    "src": "./vibe/previews/deadlight-pantheon.mp4",
+    "source": "https://westkitty.github.io/Deadlight_Pantheon/",
+    "credit": "westkitty / Stinky Weasel Productions · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "aether-null-last-signal": {
+    "src": "./vibe/previews/aether-null-last-signal.mp4",
+    "source": "https://yangwei251003.github.io/aether-null/",
+    "credit": "yangwei251003 · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "xjtu-campus-atlas": {
+    "src": "./vibe/previews/xjtu-campus-atlas.mp4",
+    "source": "https://ndshuge.github.io/xjtu-campus-atlas/",
+    "credit": "ndshuge · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "peinten-browser-paint-engine": {
+    "src": "./vibe/previews/peinten-browser-paint-engine.mp4",
+    "source": "https://peinten.vercel.app/demo",
+    "credit": "7xrk / peinten contributors · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "sztanki-spatial-portfolio": {
+    "src": "./vibe/previews/sztanki-spatial-portfolio.mp4",
+    "source": "https://www.sztanki.com/",
+    "credit": "Attila Sztankovics / Ginrin · 作品公开页面真实交互采帧，权利归原作者及相应素材权利人所有",
+    "durationSeconds": 6.0,
+    "method": "live-page-screen-capture"
+  },
+  "fiddle-digital-experiments-hub": {
+    "source": "https://exp.fiddle.digital/",
+    "credit": "Fiddle.Digital（Dmytro Troshchylo / Olha Skrypka / Vlad Penev）；各实验素材依原作者条款；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "作者 Experiments Hub 的动态三维卡片索引，包含 CNVS BLR / CSS BLR / HP VLCT / MTN CPTR / 3D FLLS 等实际实验缩略预览与空间排布；展示的是索引，不把某单项效果归为全部项目共同实现。 按真实网页采样间隔编码，不补造中间运动；采样帧数28。",
+    "license": "短预览保留实验作者与第三方素材边界；不提供整体模板或素材下载授权。",
+    "src": "./vibe/previews/fiddle-digital-experiments-hub.mp4"
+  },
+  "eighty-years-of-talking-ungdc": {
+    "status": "unavailable",
+    "source": "https://github.com/Niklas-dev/ungdc-drift#outputs",
+    "reason": "作者公开仓库仅提供静态研究图，动态网页与视频需本地重建，暂未取得可核验短片。",
+    "checkedOn": "2026-11-03"
+  },
+  "inkwell-webgpu-water-tethys": {
+    "status": "unavailable",
+    "source": "https://github.com/siliconjungle/inkwell-webgpu-water",
+    "reason": "作者未提供公开演示文件；本次构建原项目后，WebGPU 在常规与低负载配置均未完成首帧渲染。",
+    "checkedOn": "2026-11-03"
+  },
+  "four-d-gaussian-splat-viewer": {
+    "status": "unavailable",
+    "source": "https://t5dev10.github.io/4dviewer/",
+    "reason": "本次核验时，原演示网站与作者仓库均返回 404，暂无法取得对应作品的真实短片。",
+    "checkedOn": "2026-11-03"
+  },
+  "roofline-lab": {
+    "status": "unavailable",
+    "source": "https://roofline-lab.vercel.app/",
+    "reason": "本次核验时，原站部署与作者仓库均已不可访问，暂无法取得对应作品的真实短片。",
+    "checkedOn": "2026-11-03"
+  },
+  "baked-voxel-lighting": {
+    "source": "https://samg-coder.github.io/BakedVoxelLighting/",
+    "credit": "SamG-Coder；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "首次生成与烘焙完成、ready后进入Fly模式，以原生W键穿过实际林地。不是生成进度或静态封面；本次当前版本已显示145331棵树，不能沿用旧期刊的旧数量作为此帧统计。 按真实网页采样间隔编码，不补造中间运动；采样帧数29。",
+    "license": "原仓库标注MIT；保留作者及第三方资源条款，本预览不替代原许可。",
+    "src": "./vibe/previews/baked-voxel-lighting.mp4"
+  },
+  "mandelbrot-mosaic": {
+    "source": "https://mosaic-neon.vercel.app/?n=joey",
+    "credit": "Pranav Agarwal；VIBE FRONTIER 实站采帧",
+    "durationSeconds": 7.0,
+    "method": "live-site-capture",
+    "evidence": "作者原站，以非敏感示例名字 Joey 生成并实际渲染的 Mandelbrot 星球下潜；采集真实分形镜头演进到星球，不是静态图缩放。缩至 960×540 以降低 GPU 采集负载；实际约 3 帧/秒采样，保留原始采样节奏，不称高帧率录屏。 按真实网页采样间隔编码，不补造中间运动；采样帧数22。",
+    "license": "保留作者与原素材署名；短预览用于作品介绍和原站导流，不推定完整作品商用授权。",
+    "src": "./vibe/previews/mandelbrot-mosaic.mp4"
   }
 }
