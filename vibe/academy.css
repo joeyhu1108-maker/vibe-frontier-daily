@@ -4492,3 +4492,66 @@ body::after {
     animation: none;
   }
 }
+
+.card-preview,
+.card-preview > .feature-card-media,
+.card-preview > .archive-media {
+  position: relative;
+}
+
+.preview-filter {
+  min-height: 44px;
+  white-space: nowrap;
+}
+
+.card-preview-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease-out;
+}
+
+.card-preview-video.is-playing {
+  opacity: 1;
+}
+
+.preview-toggle {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 0;
+  background: rgba(20, 20, 18, 0.88);
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.preview-toggle:hover {
+  background: #141412;
+}
+
+.preview-toggle:focus-visible {
+  outline: 3px solid var(--shop-yellow);
+  outline-offset: 3px;
+}
+
+.preview-toggle:disabled {
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-preview-video {
+    transition: none;
+  }
+}

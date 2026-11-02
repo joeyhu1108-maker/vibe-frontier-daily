@@ -1,0 +1,20 @@
+{
+  "daiki-fujita-portfolio-v2": {
+    "src": "./vibe/previews/daiki-fujita-portfolio-v2.mp4",
+    "source": "https://me.muz.li/daikifujita/daiki-fujita-portfolio",
+    "credit": "Daiki Fujita · 作者在 Muzli 发布的公开演示节选，权利归原作者所有",
+    "durationSeconds": 6.6
+  },
+  "body-layout": {
+    "src": "./vibe/previews/body-layout.mp4",
+    "source": "https://www.mesh3d.gallery/website/body-layout",
+    "credit": "DxL Agency · mesh3d 平台公开预览节选（原片 2–10 秒），权利归原权利人所有",
+    "durationSeconds": 8
+  },
+  "linan-walkable-ink-world": {
+    "src": "./vibe/previews/linan-walk.mp4",
+    "source": "https://github.com/Keith-CY/linan/blob/0435eafa9ff835b7ff2442355a5d97956b930ea5/media/walk.mp4",
+    "credit": "Keith / Keith-CY · 作者演示录屏节选（原片 1–9 秒）；基于 Leon Lin 的 Athenaion，MIT",
+    "durationSeconds": 8
+  }
+}

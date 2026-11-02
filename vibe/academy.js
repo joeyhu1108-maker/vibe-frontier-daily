@@ -3,6 +3,7 @@ const state = {
   cases: [],
   candidates: [],
   covers: {},
+  previews: {},
   types: [],
   contexts: {},
   valueNotice: "",
@@ -15,6 +16,7 @@ const state = {
   activeValue: "all",
   sortOrder: "newest",
   query: "",
+  previewOnly: false,
   visibleCount: 12,
   viewed: new Set()
 };
@@ -35,6 +37,7 @@ const elements = {
   issueNote: document.querySelector("#issue-note"),
   archiveStatus: document.querySelector("#archive-status"),
   archiveSearch: document.querySelector("#archive-search"),
+  previewFilter: document.querySelector("#preview-filter"),
   archiveFilters: document.querySelector("#archive-filters"),
   archiveDate: document.querySelector("#archive-date"),
   archiveValue: document.querySelector("#archive-value"),
@@ -152,16 +155,9 @@ function renderHero() {
 }
 
 function featureCardTemplate(item, index) {
-  const cover = safeCover(item.id);
   return `
     <article class="feature-card reveal" data-type="${escapeHTML(caseContext(item)?.type || "unclassified")}">
-      <button class="feature-card-media" type="button" data-case-id="${escapeHTML(item.id)}" aria-label="查看 ${escapeHTML(item.title)} 的拆解">
-        ${
-          cover
-            ? `<img src="${escapeHTML(cover)}" alt="${escapeHTML(item.title)} 的公开作品画面" loading="${index === 0 ? "eager" : "lazy"}" />`
-            : `<div class="archive-placeholder"><span>${escapeHTML(shortTitle(item.title))}</span></div>`
-        }
-      </button>
+      ${cardMediaTemplate(item, "feature", index === 0)}
       <div class="feature-card-body">
         <h3>${escapeHTML(item.title)}</h3>
         <p class="card-byline">${escapeHTML(item.author)}<span>${escapeHTML(caseType(item)?.label || "实验前端")}</span></p>
@@ -171,9 +167,129 @@ function featureCardTemplate(item, index) {
 }
 
 function renderFeatured() {
+  clearPreviews(elements.featuredGrid);
   elements.featuredGrid.innerHTML = state.cases.map(featureCardTemplate).join("");
+  observePreviews(elements.featuredGrid);
   observeReveals();
 }
+
+function cardMediaTemplate(item, variant, eager = false) {
+  const cover = safeCover(item.id);
+  const preview = state.previews[item.id];
+  const src = preview?.src;
+  const hasPreview = typeof src === "string" && (src.startsWith("./vibe/previews/") || /^https:\/\//.test(src));
+  return `<div class="card-preview">
+    <button class="${variant === "feature" ? "feature-card-media" : "archive-media"}" type="button" data-case-id="${escapeHTML(item.id)}" aria-label="查看 ${escapeHTML(item.title)} 的拆解">
+      ${cover ? `<img class="${variant === "archive" ? "archive-image" : ""}" src="${escapeHTML(cover)}" alt="${escapeHTML(item.title)} 的公开作品画面" loading="${eager ? "eager" : "lazy"}" />` : '<span>暂缺可核验作品图</span>'}
+      ${hasPreview ? `<video class="card-preview-video" data-preview-id="${escapeHTML(item.id)}" data-src="${escapeHTML(src)}" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>` : ""}
+    </button>
+    ${hasPreview ? `<button class="preview-toggle" type="button" data-preview-toggle aria-label="播放 ${escapeHTML(item.title)} 的短视频预览"><span aria-hidden="true">▶</span> <span data-preview-label>播放 · ${escapeHTML(preview.durationSeconds)} 秒</span></button>` : ""}
+  </div>`;
+}
+
+const previewPlayers = new Map();
+const pausedPreviews = new Set();
+const requestedPreviews = new Set();
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let previewObserver;
+
+function canPlayPreview(video, player) {
+  return video.isConnected && player.visible && !document.hidden && !elements.dialog.open &&
+    !player.failed && !player.blocked && !pausedPreviews.has(video.dataset.previewId) &&
+    ((!reducedMotion.matches && !navigator.connection?.saveData) || requestedPreviews.has(video.dataset.previewId));
+}
+
+function updatePreviewButton(video, player) {
+  const playing = !video.paused && !player.failed;
+  const title = video.parentElement.getAttribute("aria-label").replace(/^查看 /, "").replace(/ 的拆解$/, "");
+  player.button.setAttribute("aria-label", `${playing ? "暂停" : "播放"} ${title} 的短视频预览`);
+  player.button.querySelector("[aria-hidden]").textContent = playing ? "Ⅱ" : "▶";
+  player.button.querySelector("[data-preview-label]").textContent = player.failed ? "预览暂不可用" : `${playing ? "暂停" : "播放"} · ${state.previews[video.dataset.previewId].durationSeconds} 秒`;
+  player.button.disabled = player.failed;
+}
+
+function syncPreview(video, player) {
+  if (!canPlayPreview(video, player)) {
+    video.pause();
+    video.classList.remove("is-playing");
+  } else if (video.paused && !player.pending) {
+    if (!video.hasAttribute("src")) video.src = video.dataset.src;
+    player.pending = true;
+    video.play().then(() => {
+      if (!canPlayPreview(video, player)) video.pause();
+    }).catch((error) => {
+      if (error.name !== "AbortError") player.blocked = true;
+      video.classList.remove("is-playing");
+    }).finally(() => {
+      player.pending = false;
+      if (video.isConnected) syncPreview(video, player);
+    });
+  }
+  updatePreviewButton(video, player);
+}
+
+function syncPreviews() {
+  previewPlayers.forEach((player, video) => syncPreview(video, player));
+}
+
+function clearPreviews(container) {
+  container.querySelectorAll(".card-preview-video").forEach((video) => {
+    previewPlayers.delete(video);
+    previewObserver?.unobserve(video);
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+  });
+}
+
+function observePreviews(container) {
+  if (!previewObserver && "IntersectionObserver" in window) {
+    previewObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const player = previewPlayers.get(entry.target);
+        if (!player) return;
+        player.visible = entry.isIntersecting && entry.intersectionRatio >= 0.25;
+        syncPreview(entry.target, player);
+      });
+    }, { threshold: [0, 0.25] });
+  }
+  container.querySelectorAll(".card-preview-video").forEach((video) => {
+    const player = { button: video.closest(".card-preview").querySelector("[data-preview-toggle]"), visible: false, pending: false, failed: false, blocked: false };
+    previewPlayers.set(video, player);
+    video.muted = true;
+    video.addEventListener("playing", () => {
+      if (!canPlayPreview(video, player)) return video.pause();
+      video.classList.add("is-playing");
+      updatePreviewButton(video, player);
+    });
+    video.addEventListener("pause", () => {
+      video.classList.remove("is-playing");
+      if (video.isConnected) updatePreviewButton(video, player);
+    });
+    video.addEventListener("error", () => {
+      player.failed = true;
+      video.classList.remove("is-playing");
+      updatePreviewButton(video, player);
+    });
+    player.button.addEventListener("click", () => {
+      const id = video.dataset.previewId;
+      if (!video.paused) pausedPreviews.add(id);
+      else {
+        pausedPreviews.delete(id);
+        requestedPreviews.add(id);
+        player.blocked = false;
+        if (!previewObserver) player.visible = true;
+      }
+      syncPreviews();
+    });
+    previewObserver?.observe(video);
+  });
+}
+
+document.addEventListener("visibilitychange", syncPreviews);
+reducedMotion.addEventListener("change", syncPreviews);
+navigator.connection?.addEventListener("change", syncPreviews);
+elements.dialog.addEventListener("close", syncPreviews);
 
 function orderedCandidates(candidates) {
   return candidates.filter((candidate) => safeCover(candidate.id));
@@ -218,23 +334,16 @@ function filteredCandidates() {
     const haystack = [item.title, item.author, item.platform, item.memory, caseType(item)?.label, context?.summary, context?.audience, context?.value, context?.conditions, ...(context?.tags || []), ...(item.mechanisms || []), ...(item.mechanisms || []).map(mechanismLabel)]
       .join(" ")
       .toLocaleLowerCase("zh-CN");
-    return matchesFilter && matchesMechanism && matchesDate && matchesValue && (!query || haystack.includes(query));
+    return matchesFilter && matchesMechanism && matchesDate && matchesValue && (!state.previewOnly || state.previews[item.id]) && (!query || haystack.includes(query));
   }));
 }
 
 function archiveCardTemplate(item) {
-  const cover = safeCover(item.id);
   const context = caseContext(item);
   const type = caseType(item);
   return `
     <article class="archive-card reveal" data-type="${escapeHTML(context?.type || "unclassified")}">
-      <button class="archive-media${cover ? "" : " is-unavailable"}" type="button" data-case-id="${escapeHTML(item.id)}" aria-label="查看 ${escapeHTML(item.title)} 的拆解">
-        ${
-          cover
-            ? `<img class="archive-image" src="${escapeHTML(cover)}" alt="${escapeHTML(item.title)} 的公开作品画面" loading="lazy" />`
-            : '<span>暂缺可核验作品图</span><span>查看原作品 ↗</span>'
-        }
-      </button>
+      ${cardMediaTemplate(item, "archive")}
       <div class="archive-card-body">
           <h3>${escapeHTML(item.title)}</h3>
           <p class="card-byline">${escapeHTML(item.author)}<span>${escapeHTML(type?.label || "实验前端")}</span></p>
@@ -247,6 +356,7 @@ function renderArchive() {
   const matches = filteredCandidates();
   const visible = matches.slice(0, state.visibleCount);
 
+  clearPreviews(elements.archiveGrid);
   elements.archiveGrid.innerHTML = visible.length
     ? visible.map(archiveCardTemplate).join("")
     : '<p class="empty-state">没有匹配的案例。可以缩短关键词，或清除筛选后再试。</p>';
@@ -254,6 +364,7 @@ function renderArchive() {
   elements.loadMore.hidden = visible.length >= matches.length;
   const typeLabel = state.types.find((type) => type.id === state.activeFilter)?.label;
   const activeLabels = [
+    state.previewOnly ? "只看短片" : "",
     state.activeDate !== "all" ? `日期 ${dateLabel(state.activeDate)}` : "",
     state.activeValue !== "all" ? `应用价值 ${state.activeValue}` : "",
     typeLabel ? `用途 ${typeLabel}` : "",
@@ -262,6 +373,7 @@ function renderArchive() {
   ].filter(Boolean);
   elements.filterSelection.hidden = !activeLabels.length;
   elements.selectedFilters.textContent = activeLabels.join(" / ");
+  observePreviews(elements.archiveGrid);
   observeReveals();
 }
 
@@ -384,6 +496,7 @@ function openCase(caseId) {
     ${cover ? `<img class="dialog-cover" src="${escapeHTML(cover)}" alt="${escapeHTML(item.title)} 的公开作品画面" />` : ""}
     <div class="dialog-body">
       <p class="dialog-image-credit">${escapeHTML(state.covers[item.id]?.credit || "作品画面，权利归原作者所有")} · <a href="${escapeHTML(safeURL(state.covers[item.id]?.source || item.url))}" target="_blank" rel="noopener noreferrer">画面来源 ↗</a></p>
+      ${state.previews[item.id] ? `<p class="dialog-image-credit">短片：${escapeHTML(state.previews[item.id].credit)} · <a href="${escapeHTML(safeURL(state.previews[item.id].source))}" target="_blank" rel="noopener noreferrer">视频来源 ↗</a></p>` : ""}
       <p class="feature-meta">${escapeHTML(item.platform)}</p>
       <h2 id="dialog-title">${escapeHTML(item.title)}</h2>
       <p class="dialog-byline">作者 ${escapeHTML(item.author)} · 复现难度 ${escapeHTML(item.difficulty)}</p>
@@ -420,6 +533,7 @@ function openCase(caseId) {
     </div>`;
 
   if (!elements.dialog.open) elements.dialog.showModal();
+  syncPreviews();
   elements.dialogClose.focus();
 }
 
@@ -457,11 +571,12 @@ function observeReveals() {
 }
 
 async function loadData() {
-  const [issuesResponse, candidatesResponse, coversResponse, contextsResponse] = await Promise.all([
+  const [issuesResponse, candidatesResponse, coversResponse, contextsResponse, previewsData] = await Promise.all([
     fetch("./vibe/issues.json", { cache: "no-cache" }),
     fetch("./vibe/site-candidates.json"),
     fetch("./vibe/cover-map.json"),
-    fetch("./vibe/case-context.json")
+    fetch("./vibe/case-context.json"),
+    fetch("./vibe/video-previews.json", { cache: "no-cache" }).then((response) => response.ok ? response.json() : {}).catch(() => ({}))
   ]);
 
   if (!issuesResponse.ok || !candidatesResponse.ok || !coversResponse.ok || !contextsResponse.ok) throw new Error("Data request failed");
@@ -473,6 +588,7 @@ async function loadData() {
   ]);
 
   state.covers = coversData || {};
+  state.previews = previewsData || {};
   state.types = contextsData.types || [];
   state.contexts = contextsData.cases || {};
   state.valueNotice = contextsData.valueNotice || "";
@@ -491,7 +607,10 @@ async function loadData() {
   elements.archiveTotal.textContent = String(state.candidates.length);
   elements.shopCount.textContent = `${state.candidates.length} 个有图案例`;
   const pendingImages = library.size - state.candidates.length;
-  elements.imageNotice.textContent = `当前只展示有可核验作品图的案例。另有 ${pendingImages} 条历史研究记录暂缺图片，继续保留在档案中。收录日期与作品上线时间分开标注。`;
+  const previewCount = state.candidates.filter((item) => state.previews[item.id]).length;
+  elements.previewFilter.hidden = !previewCount;
+  elements.previewFilter.textContent = `▶ 只看短片 · ${previewCount}`;
+  elements.imageNotice.textContent = `当前只展示有可核验作品图的案例。${previewCount ? `其中 ${previewCount} 件提供短片预览，进入画面后静音循环，可随时暂停。` : ""}另有 ${pendingImages} 条历史研究记录暂缺图片，继续保留在档案中。收录日期与作品上线时间分开标注。`;
   populateFacets();
 
   renderHero();
@@ -523,6 +642,14 @@ document.querySelector("#shop-map").addEventListener("click", (event) => {
 elements.archiveSearch.addEventListener("input", (event) => {
   state.query = event.target.value;
   state.visibleCount = 12;
+  renderArchive();
+});
+
+elements.previewFilter.addEventListener("click", () => {
+  state.previewOnly = !state.previewOnly;
+  state.visibleCount = 12;
+  elements.previewFilter.setAttribute("aria-pressed", String(state.previewOnly));
+  elements.previewFilter.classList.toggle("is-active", state.previewOnly);
   renderArchive();
 });
 
@@ -584,8 +711,11 @@ elements.clearArchiveFilters.addEventListener("click", () => {
   state.activeValue = "all";
   state.sortOrder = "newest";
   state.query = "";
+  state.previewOnly = false;
   state.visibleCount = 12;
   elements.archiveSearch.value = "";
+  elements.previewFilter.setAttribute("aria-pressed", "false");
+  elements.previewFilter.classList.remove("is-active");
   elements.archiveDate.value = "all";
   elements.archiveValue.value = "all";
   elements.archiveMechanism.value = "all";
