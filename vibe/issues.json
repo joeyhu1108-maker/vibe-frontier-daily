@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-01T10:44:34.048Z",
+  "updatedAt": "2026-11-02T10:47:55.106Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,146 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-11-02",
+      "note": "让空间成为解释工具：Outcrop 用移动窗口解释地质图层，MRI Lab 把设备结构接到可调物理实验，Gen City Auto 用种子规则生成可驾驶城市。三件均已打开并操作；公开介绍、仓库创建与提交时间分别标注，不冒充官网首发。",
+      "featuredId": "outcrop-geology-window",
+      "experiment": {
+        "title": "30 分钟实验：同一坐标里的两层信息",
+        "input": "自己画一张场地平面图及三个材料分区，共用一个 SVG viewBox；每个区写清名称、一个解释字段和“自制教学示意”标记。只用自己制作的图与文字，不搬用 Outcrop 地质数据。",
+        "target": "移动一个矩形窗口，窗内显示分区、窗外显示原始平面；窗口中心的准星选中哪个区域，说明卡就显示同一个区域的名称与解释。核心是可核对的对应关系。",
+        "stack": "HTML、原生 JavaScript、SVG clipPath、Pointer Events；先做二维，暂不接相机、AI、地图服务或 Three.js。参考 Outcrop 的同坐标揭示机制：https://outcrop.rocks/ 。",
+        "acceptance": "三个区域都能正确查询；缩放页面后两层仍对齐；移出区域显示“无覆盖”；点击或触摸可定位，键盘可逐区选择；关闭动态仍能读静态图和列表。30分钟只验证遮罩与查询，不包含三维地形烘焙。本次交付实验方案，未制作该实验。"
+      },
+      "restraint": "Creative Twin 只有取得可公开、带来源与时间的真实空间、设备或传感数据时，才接入“总览—选中对象—解释卡”。Outcrop 的预制场景、MRI 的教学近似与 City 的虚构城市分别标明；没有实际对象和数据映射，就保留为机制学习，不称数字孪生或康复评估。",
+      "cases": [
+        {
+          "id": "outcrop-geology-window",
+          "title": "Outcrop · 把山景变成可查询的地质图层",
+          "author": "Flyover Country LLC",
+          "platform": "作者官网 / Show HN / Website Design Awards",
+          "pageTime": "作者 Show HN 公开介绍：2026-10-29 15:22:41 UTC（北京时间10月29日23:22）；WDA 获选2026-11-01。均非已证实的官网首发日期。收录：2026-11-02。",
+          "url": "https://outcrop.rocks/",
+          "accent": "#A2BA72",
+          "mechanisms": [
+            "数据变成空间",
+            "交互变成叙事"
+          ],
+          "memory": "峡谷保持航拍质感，只有手机形状的取景窗内露出粉、绿、黄的地质填色；移动窗口，山体轮廓连续，准星下的岩层名与距离跟着变化。",
+          "why": "同一个位置同时对应地貌、图层与解释。观众亲手移动窗口，就能理解产品把什么信息叠到哪里；颜色有数据归属，准星能读出名称，不止是把手机模型放在漂亮山景前。其地质准确性和理解效果仍需另行验证。",
+          "input": "桌面实测：切换 Grand Canyon 与 Rocky Mountain；把手机窗从画面中部向右拖动，窗内地质覆盖、岩层读数和距离随查询位置更新。当前网页是三个预制地形场景的产品演示；本次未安装原生应用、启用相机或检验任意地点识别。",
+          "layer": "公开内联 module 与 importmap 可确认 Three.js、BufferGeometry 与 GLSL3 ShaderMaterial。航拍与地质填色在同一地形网格上共用世界 xz 坐标；片元着色器用屏幕空间圆角矩形距离生成窗口遮罩，窗内混合地质填色和构造线，DOM 承载手机框、标签与解释。",
+          "motion": "拖动既移动 DOM 窗口，也在按住时把指针偏移用于缓慢转动镜头；松手恢复自动游移。每帧把窗口矩形换算到实际像素并翻转 Y 轴，保持 DOM 与 WebGL 遮罩对齐；标签裁剪沿用同一窗口。镜头服务于查看同一地点，不独立播放一段展示视频。",
+          "pipeline": "已读调用方：场景目录提供预烘焙地形、远近两级图层、ID 与说明数据，经 scene-worker.js 返回网格和查询数组；主线程建立材质、窗口和标签。准星射线命中地形后，用同一 xz→UV 映射查询岩层 ID。难点是地形、照片、地质图与查询坐标一致，以及无覆盖时不编造答案。Worker 内部和上游烘焙脚本未检查，不称实时全球数据管线。",
+          "performance": "公开代码有 compact 纹理1024/2048、桌面2048/4096与 DPR 上限1.75/2；隐藏标签页和首屏离开视口会停绘，切场景释放旧几何/纹理，上传纹理分摊到多帧。减少动态会关自动游移和部分动画，仍保留渲染循环。这些是实现策略；没有真机、帧率、内存或无WebGL2回退实测。迁移可先提供静态分层图和区域列表。",
+          "transfer": "Joey 可在一个已有真实现场资料的展陈/场地案例中，让窗口揭示同坐标的材料层或历史层，准星读到名称、记录时间、来源与缺失状态。先保证两层对齐和解释可信，再决定是否增加三维；不复用原作品牌或未经授权的数据素材。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露：官网页脚 Flyover Country LLC 与数据署名，Show HN 为作者公开介绍。公开资源可核验：主页内联 module 的同网格着色、屏幕遮罩、岩层ID查询与降级代码；three importmap 为0.186.1。亲测：场景切换与窗口拖动，封面为本次正常浏览器截图。推断/建议：解释效率和作品集迁移，未有教育或商业结果。日期来源：https://news.ycombinator.com/item?id=50290533 ；https://hn.algolia.com/api/v1/items/50290533 ；https://websitedesignawards.com/site/outcrop 。技术原文：https://outcrop.rocks/ （公开内联脚本）；https://outcrop.rocks/privacy 。难度只指已有合法、对齐素材的一处场景和查询卡，不含数据生产、地质核验或原生AR。未核完整素材许可，不提供代码ZIP。",
+          "image": "./vibe/covers/outcrop-geology-window-20261102.jpg",
+          "imageSource": "https://outcrop.rocks/",
+          "imageCredit": "Flyover Country LLC；公开官网实测截图，2026-11-02。页面署名：地质 Macrostrat / Paleobiology Database，地形 Mapterhorn，地名 OpenStreetMap，影像 USDA NAIP，峰名 USGS GNIS。",
+          "context": {
+            "type": "data",
+            "tags": [
+              "地质科普",
+              "空间图层",
+              "展陈解释",
+              "产品演示"
+            ],
+            "collectedOn": "2026-11-02",
+            "pageTime": "作者公开介绍2026-10-29；WDA获选2026-11-01；首发未独立核实。",
+            "summary": "把同一地形的照片、地质图层和查询读数放到一个可移动窗口里。",
+            "audience": "已有可靠空间资料、需要解释现场与隐藏信息关系的科普、展陈和产品团队。",
+            "value": "应用价值：让读者亲手检验图层与地点的对应；未验证学习提升、下载转化或商业成果。",
+            "conditions": "必须有同坐标、可追溯且许可清楚的资料；保留覆盖缺失与精度说明。网页预制演示不等于原生AR完整能力，移动端与数据精度需单独验收。"
+          }
+        },
+        {
+          "id": "mri-anatomy-physics-lab",
+          "title": "MRI Anatomy & Physics Lab · 从拆解设备到运行实验",
+          "author": "Haosen Zhang（Haosen-Zhang）",
+          "platform": "作者 GitHub / GitHub Pages",
+          "pageTime": "GitHub仓库创建：2026-11-01 13:40:45 UTC；技术核验提交：2026-11-02 06:48:53 UTC。仓库创建不等于网站首发。收录：2026-11-02。",
+          "url": "https://haosen-zhang.github.io/MRI-Anatomy-Physics-Lab/",
+          "accent": "#81C2D4",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "深色工作台上，MRI 的外壳、线圈和内筒沿轴向散开；选中线圈立即出现技术档案，再进入 k-space 实验，采样行与重建图像同步变化。",
+          "why": "拆解不是终点。部件身份连接空间模型、结构解释和物理实验，用户可以从“它在哪里”追到“它做什么”。更值得学习的是参数改变后的可见结果，以及作者对典型工程、教学示意和文献关系的明确区分。",
+          "input": "桌面实测：切换100%拆解，选中主超导线圈查看档案；进入物理实验的 K-space，暂停采样并把欠采样倍数从2×改为4×，可见采样行数和零填充重建画面更新。没有逐项验收全部21部件、六实验、触屏或辅助技术路径。",
+          "layer": "固定源码可核验 Three.js WebGLRenderer、参数化几何、Raycaster 拾取、clippingPlanes 与 DOM 档案/控制台。剖切使用实际裁剪平面，彩色截面补片另作教学示意；k-space分析面板使用Canvas显示数值体模的频域与逆变换结果。不是厂商CAD或患者扫描数据。",
+          "motion": "拆解进度按部件分阶段移动，选中状态同步档案、高亮与聚焦控制；相机支持绕转及预设。物理时序把线圈高亮、读数与采样进度连在一起。作者说明可见旋转/时间被缩放，不能把屏幕动画速度当真实Larmor频率或临床序列时长。",
+          "pipeline": "固定代码由部件数据、参数化建模、场景和统一交互状态连接模型与档案。physics.js 对128×128合成体模执行行列二维FFT，只拷贝采集的ky行、缺失行置零，再逆FFT生成重建图。难点是同一参数驱动模型、数值与解释，并把示意和求解分清；这里不做Maxwell/FEM或临床重建验证。",
+          "performance": "scene.js封顶DPR为2，低性能开关降为1；README展示移动抽屉与横向控制台，并说明触屏操作。以上是源码/作者证据，本轮只有桌面实测，未做真机帧率、功耗与医学知识审校。迁移时先保留一个子系统与一个实验，手机用结构列表、静态剖面和轻量分析面板。",
+          "transfer": "Joey 可做“一个设备子系统、三个部件、一个可调实验”的教学案例：选部件看到作用，改一个参数看到输出，再读明确假设与来源。若以后转向运动康复，应另找动作、关节或训练数据及专业审校，不能把这个MRI设备教学站直接称康复产品。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露：README为通用MRI教学模型，几何运行时生成，使用DeepSeek-V4.1-Flash1017开发，非厂商CAD/制造规格/临床性能；Level A/B/C为作者自己的证据分层，不是外部医学认证。公开源码可核验：14990b689c986c6038e65f6a1b56e517b5b8a270中的scene.js、main.js、physics.js。亲测：拆解、部件档案与K-space倍数调整；未审校全部医学内容。难度仅指一个子系统与一个简化实验，非整站复刻。源码：https://github.com/Haosen-Zhang/MRI-Anatomy-Physics-Lab/blob/14990b689c986c6038e65f6a1b56e517b5b8a270/js/scene.js ；https://github.com/Haosen-Zhang/MRI-Anatomy-Physics-Lab/blob/14990b689c986c6038e65f6a1b56e517b5b8a270/js/physics.js ；https://github.com/Haosen-Zhang/MRI-Anatomy-Physics-Lab/blob/14990b689c986c6038e65f6a1b56e517b5b8a270/README.md 。",
+          "image": "./vibe/covers/mri-anatomy-physics-20261102.jpg",
+          "imageSource": "https://github.com/Haosen-Zhang/MRI-Anatomy-Physics-Lab/blob/14990b689c986c6038e65f6a1b56e517b5b8a270/previews/05-exploded.png",
+          "imageCredit": "Haosen Zhang（Haosen-Zhang）；作者公开预览图05-exploded.png，固定提交14990b689c986c6038e65f6a1b56e517b5b8a270；作者README将原创预览图声明为MIT。Three.js等第三方条款另见仓库说明。",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "设备教学",
+              "可交互拆解",
+              "物理实验",
+              "证据分层"
+            ],
+            "collectedOn": "2026-11-02",
+            "pageTime": "仓库创建2026-11-01；核验提交2026-11-02；网站首发未独立核实。",
+            "summary": "把程序化设备拆解、部件档案与可调成像物理实验接到同一对象身份上。",
+            "audience": "需要解释设备结构与基本原理的教学、科普及交互展示团队。",
+            "value": "应用价值：从结构识别走向参数与结果的可见联系；未验证学习成效、临床准确性或商业成果。",
+            "conditions": "明确教学近似、时间缩放与数据来源；专业内容需领域审校。不能用作诊断、康复评估、设备操作或MR安全决策；移动和无障碍需单独验证。"
+          }
+        },
+        {
+          "id": "gen-city-auto-webgpu",
+          "title": "Gen City Auto · 从种子规则生成可驾驶城市",
+          "author": "Greggman（greggman）",
+          "platform": "作者 GitHub / GitHub Pages",
+          "pageTime": "GitHub仓库创建：2026-11-01 20:02:32 UTC（北京时间11月2日04:02）；核验提交：2026-11-02 04:41:55 UTC。仓库创建不等于网站首发。收录：2026-11-02。",
+          "url": "https://greggman.github.io/gen-city-auto/",
+          "accent": "#E2AD5B",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "一辆车驶过招牌密集的街口，高架列车、路口车流和建筑持续展开；同一座城可以从跟车视角切到直升机，再让阳光变成雨夜。",
+          "why": "城市由可重现的种子和规则生成，交通、角色与镜头提供探索路径。用户能进入街道、接管车辆、改变环境，而不是只观看背景飞行。它是程序化虚构城市；风格名带Tokyo或Hong Kong，不代表真实测绘或交通数字孪生。",
+          "input": "桌面实测：WebGPU成功渲染，切换雨天与晴天、把时刻设为13:00并暂停时钟、关闭自动导演、切换车/直升机；按W后HUD由AUTOPILOT变为MANUAL，车辆前进。未遍历全部城市/种子，也没有做碰撞、交通真实性或手机手感验收。",
+          "layer": "作者说明与固定代码确认自研WebGPU渲染器，不是Three.js。城市网格按cluster组织，GPU计算可见性后间接绘制；车辆与行人使用参数化模型及实例化。DOM提供天气、时刻、镜头和画质控制；画面中的湿路反射、天空与雨滴是渲染系统的一部分。",
+          "motion": "车辆无输入时可自动驾驶，键盘接管后进入MANUAL；镜头包含追车、第一人称、环绕与自动导演。实测环境切换有渐变，不能把刚选中的天气标签当作已经完全过渡的每个像素。镜头让同一布局在街道与高空尺度之间可读。",
+          "pipeline": "固定源码：preset和seed进入生成流程；Worker生成地形/路网/几何并分簇，数组转交渲染端；GPU执行视锥/遮挡相关剔除、LOD和间接绘制，随后处理光照、反射与后期。难点是让生成规则、道路拓扑、交通路径与多尺度观察保持一致，并控制CPU生成峰值及GPU预算。未运行其开发命令或重建全管线。",
+          "performance": "代码有基于GPU耗时的动态渲染比例、分档画质、低内存设备的轻量几何与交通减量，以及触屏输入分支。无navigator.gpu或adapter时直接报错，未见WebGL回退；这些策略不保证任意手机帧率。本次未测传输体积、内存或长期帧率，也没有采信“under400k”为实测结果。迁移需另给静态/二维索引。",
+          "transfer": "Joey 可把十栋建筑的固定小街区做成作品目录：建筑对应真实项目，走近后出现标题与直接进入入口；保留普通列表和返回位置。先验证读者能找到一个项目，再考虑驾驶、天气和全城生成，不把随机建筑当成真实项目或真实城市数据。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露：README为程序化城市、自研WebGPU和可驾驶/飞行体验。公开源码可核验：537f10ee4fbb479f313e64d3826ec12ebb41db10的device.ts、city-worker.ts、renderer.ts与settings.ts。亲测：正常渲染、天气/时刻/镜头、车辆模式与W手动接管。推断/建议：空间目录的应用价值，未验证可用性或商业结果；作者开发记录里的手机probe不是本轮真机测试。难度仅指十栋建筑、单车与双镜头的小场景，不指重写全引擎。仓库未见明确LICENSE，不提供源码ZIP。来源：https://github.com/greggman/gen-city-auto/blob/537f10ee4fbb479f313e64d3826ec12ebb41db10/README.md ；https://github.com/greggman/gen-city-auto/blob/537f10ee4fbb479f313e64d3826ec12ebb41db10/src/gpu/device.ts ；https://github.com/greggman/gen-city-auto/blob/537f10ee4fbb479f313e64d3826ec12ebb41db10/src/workers/city-worker.ts ；https://github.com/greggman/gen-city-auto/blob/537f10ee4fbb479f313e64d3826ec12ebb41db10/src/ui/settings.ts 。",
+          "image": "./vibe/covers/gen-city-auto-20261102.jpg",
+          "imageSource": "https://greggman.github.io/gen-city-auto/",
+          "imageCredit": "Greggman（greggman）；公开作品的正常浏览器实测截图，2026-11-02。未取得代码或素材的再分发许可，不提供代码下载。",
+          "context": {
+            "type": "space",
+            "tags": [
+              "程序化城市",
+              "WebGPU",
+              "空间导航",
+              "生成规则"
+            ],
+            "collectedOn": "2026-11-02",
+            "pageTime": "仓库创建2026-11-01 20:02:32 UTC（北京时间11月2日）；核验提交2026-11-02。",
+            "summary": "用种子生成、可驾驶角色和多尺度镜头组织一个持续可探索的虚构城市。",
+            "audience": "研究程序化场景、浏览器图形管线和空间探索的创作者及交互团队。",
+            "value": "应用价值：学习生成规则、导航与渲染预算的协作；未验证作品发现效率、城市真实性或商业成果。",
+            "conditions": "需要WebGPU支持与明确预算；提供普通索引和不支持设备的退出路径。城市是风格化生成，不冒充真实测绘；许可未明的代码/素材不再分发。"
+          }
+        }
+      ],
+      "dateLabel": "NOV 2",
+      "issueNo": "014"
+    },
     {
       "id": "2026-11-01",
       "note": "把画面接回可解释的内容：Hearsay 用真实路由流解释网络关系，Sztanki 用空间章节组织作品集，Fiddle 用布局组织实验。日期分别为源码提交、获选与平台收录，不混作官网首发；三件均有本次浏览器实测展示图。",
