@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02T10:47:55.106Z",
+  "updatedAt": "2026-11-03T10:40:21.735Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,146 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-11-03",
+      "note": "让物件承接内容与行动：Discography 把打开、翻阅与试听组织成内容路径；Ocarina 把按键、演奏与学习记录相连；Haunted Pumpkin 用碎裂与重建完成一次短叙事。三件均已在正常浏览器操作，并核对公开源码；来源时间与收录日期分开标注。",
+      "featuredId": "discography-physical-cd",
+      "experiment": {
+        "title": "30 分钟实验：一个物件，三层真实内容",
+        "input": "选一个自己有资料的项目，准备一张自制封面、三张过程图、一条真实成果链接。每条内容附标题与来源；只用自有或获授权素材。",
+        "target": "一个可点击的档案盒：点击封面打开，点纸册阅读过程，点内部物件进入成果。关闭回到同一项目；空间变化必须对应内容深度。",
+        "stack": "HTML、CSS transform 与原生 JavaScript；用 data-project-id 共用身份，hash 记录概览/过程/成果，先不用 Three.js、物理引擎或外部服务。参考 Discography 的物件与内容关系：https://dmtrbrl.github.io/discography/ 。",
+        "acceptance": "三个入口都指向准备好的真实内容；直接打开 hash 能定位对应层，返回不丢项目；键盘可完成打开与关闭；减少动态时直接切换内容。邀请一位未看说明的人找过程和成果，只记录是否独立找到，不虚构成功率。30分钟验证状态和内容关系，不含3D材质或完整档案站。本次交付方案，未制作实验。"
+      },
+      "restraint": "Creative Twin 只在有可公开、带来源与时间的真实对象和记录时，才映射“对象—状态—证据”。专辑美术、粉丝演奏游戏与节日南瓜分别是内容展示、交互练习和艺术叙事；没有真实数据映射，就不称数字孪生，也不把游戏进度当学习效果或康复指标。",
+      "cases": [
+        {
+          "id": "discography-physical-cd",
+          "title": "Discography · 打开唱片盒，内容才开始",
+          "author": "Dmytro Barylo（dmtrbrl）",
+          "platform": "作者 GitHub Pages / GitHub / Codrops Creative Hub",
+          "pageTime": "Codrops Creative Hub 收录：2026-11-01；GitHub 仓库创建：2026-10-27 22:40:23 UTC；核验提交：2026-11-02 08:38:08 UTC。均不冒充官网首次上线日期。收录：2026-11-03。",
+          "url": "https://dmtrbrl.github.io/discography/",
+          "accent": "#A98964",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "奶油色桌面上，一只真实专辑的透明 CD 盒展开；从盒里抽出歌词册，翻页读内文，再把同一张唱片放进试听机。物件一直在，内容随着操作逐层出现。",
+          "why": "唱片盒、歌词册与播放器分别承接专辑概览、深入阅读和试听；三维物件承担信息结构，操作后的去向清楚。打开、抽出、归位仍是同一专辑，没有每一步重新换一个展示模型。值得学习的是内容身份与空间状态连续，而非只复制塑料高光。",
+          "input": "桌面实测：打开 It's Blitz! 唱片盒，进入 Booklet，翻到第2–3页，再关闭回到原盒；进入 Listen 后看到唱片进入播放器，触发播放及暂停按钮。未独立验证声音品质、完整试听时长、全部曲目和手机触控。",
+          "layer": "作者 README 与固定源码可核验 Three.js、Solid 界面层和 LeafThrough 翻页对象。封面、盘面、封底及歌词册来自具体 CD 版本的真实图片；DOM 提供标题、按钮与页码，三维对象表达盒、纸和唱片的材质及位置。",
+          "motion": "盒盖展开、纸册从盒中取出并展开阅读、唱片进入播放器；同一 LeafThrough 对象在存放、飞出、阅读及归位之间持续存在。纸张弯曲使用几何滚动路径与变形钩子；作者规格明确排除布料和刚体模拟，不把看似柔软的纸误写为物理求解。",
+          "pipeline": "collection.json 为每张专辑记录版本、曲目、素材路径与 sources；加载器选择 AVIF/WebP 和手机小图。hash 路由把专辑身份与 open/listen/booklet 状态连接起来，可直接定位并返回。程序纹理交给 Worker，内部页按需加载；难点是盒中纸册与阅读纸册的一致性、翻页碰撞间距、相机和投影过渡，以及音频来源缺失时的状态处理。",
+          "performance": "固定源码有 DPR 上限、像素总量限制、逐帧分摊纹理上传、内部页懒加载与自适应质量。Worker 失败可回主线程。这些是实现策略，不是本轮帧率基准；作者自动化测试也不等于本轮执行。源码的减少动态判断只在较宽视口生效，不能宣称手机无障碍完整；未做真机、持续帧率或内存测试。迁移可保留静态封面、普通目录及内容直达入口。",
+          "transfer": "Joey 可把一个有真实过程资料的项目装进原创档案盒：盒面是概览，纸册是过程，内部物件是可操作成果；三者共用项目 ID 与可分享链接，关闭后回到原项目。先用一个项目验证访客能独立找到过程和成果，再扩展为目录。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露：README 说明实体 CD 的内容结构、素材来源、hash 视图和技术栈；BOOKLET_ANIMATION 说明几何弯曲及非物理模拟边界。公开资源可核验：固定提交 b9cf73f28aea787158054612c58db29e24ab8fa7 的 src/scene.ts、src/main.tsx、src/collection.ts 与专辑 sources。亲测：2026-11-03 正常浏览器完成打开、翻页、归位与进入播放器，封面是实测截图。推断/建议：为什么成立及作品集迁移，未验证检索效率或商业成果。仓库未见明确 LICENSE，唱片美术另有权利人，不开放代码或素材 ZIP。难度仅指一个自有项目的盒/册/成果与状态衔接，不包含整站、扫描素材和音频服务。来源：https://tympanus.net/codrops/hub/tag/webgl/ ；https://github.com/dmtrbrl/discography/blob/b9cf73f28aea787158054612c58db29e24ab8fa7/README.md ；https://github.com/dmtrbrl/discography/blob/b9cf73f28aea787158054612c58db29e24ab8fa7/src/scene.ts ；https://github.com/dmtrbrl/discography/blob/b9cf73f28aea787158054612c58db29e24ab8fa7/specs/BOOKLET_ANIMATION.md 。",
+          "image": "./vibe/covers/discography-physical-cd-20261103.jpg",
+          "imageSource": "https://dmtrbrl.github.io/discography/#/its-blitz/open",
+          "imageCredit": "Dmytro Barylo（dmtrbrl）；2026-11-03 公开作品实测截图，用于评论与原理拆解。It's Blitz! 的封面、盘面与唱片美术归 Yeah Yeah Yeahs、发行方及原权利人；作者列图片来源为 Cover Art Archive / MusicBrainz，封面与试听来源含 Apple Music；署名不代表取得再分发许可。",
+          "context": {
+            "type": "product",
+            "tags": [
+              "内容容器",
+              "实体隐喻",
+              "档案展示",
+              "项目阅读"
+            ],
+            "collectedOn": "2026-11-03",
+            "pageTime": "Codrops Hub 收录2026-11-01；核验提交2026-11-02；官网首发未独立核实。",
+            "summary": "让一件三维物件的打开、翻阅与使用状态对应不同内容深度。",
+            "audience": "有真实档案、项目过程或产品内容，希望组织分层阅读的设计师与创意开发团队。",
+            "value": "应用价值：学习同一内容身份如何跨空间状态保持连续；没有发现效率、试听转化或商业成果的独立证据。",
+            "conditions": "需要自有或获授权图文和成果，先明确每个操作通向什么内容；保留普通目录和直达链接，并单独验证触控、音频与减少动态。"
+          }
+        },
+        {
+          "id": "ocarina-songs-of-hyrule",
+          "title": "Ocarina · 把按键、演奏与学习记录连成闭环",
+          "author": "Thibaut Lefrançois（thibautlfr）",
+          "platform": "Codrops / 作者公开体验 / GitHub",
+          "pageTime": "作者 Codrops 技术文章：2026-10-27；核验代码提交：2026-10-12；作品首次上线日期未独立核实。",
+          "url": "https://ocarina.thibaut-lefrancois.com/",
+          "accent": "#b7a254",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "木屋中央，一只蓝色陶笛悬在树桩上；敲方向键，它随音符倾斜，输入一段旋律后出现“学会了”的反馈，灰色歌谱中的一个音符随之点亮。",
+          "why": "场景中的陶笛同时是操作对象与反馈载体：按键发声、物体反应、旋律识别、歌谱进度共同说明用户做成了什么。值得复用的是可见的练习闭环，而非照搬任天堂素材或把房间装饰做得更复杂。",
+          "input": "桌面 Space 与方向键输入五种音符；作者触控层把屏幕按钮送入同一输入模块。识别器匹配最近按键序列的尾部，不判断演奏节拍；节奏用于成功后的重播。",
+          "layer": "原生 Three.js / TypeScript / Vite 场景，DOM dialog 呈现歌谱、设置与署名。屋内模型、陶笛与翅膀资产和像素 UI 形成分层界面；素材条款必须与代码分开处理。",
+          "motion": "GSAP 驱动按音方向倾斜、持续按住的衰减摆动与松手回弹；陶笛监听实际发声模块，现场输入和成功重播共用同一套表演。启动镜头先转动，给出可旋转的操作提示。",
+          "pipeline": "固定提交可核验输入事件分别进入采样器和序列识别器，再由成功事件驱动重播与进度；发声不等待识别。模型 Meshopt 与 WebP 压缩时须保留代码依赖的命名节点，不能盲目合并。二进制资产不在公开仓库，拉取与校验不是可直接交付的开源资源包。",
+          "performance": "源码将 DPR 限为2，渲染器直接渲染场景；作者说明不使用后期处理，并简化精灵身体。作者移动触控和 UI reduced-motion 分支有公开实现，但本轮只做桌面浏览器交互，未测手机、音频延迟或持续帧率。若迁移到自有项目，可先用自制音色与轻量物体保留按键/歌谱闭环。",
+          "transfer": "Joey 的作品集可用三个原创音色分别代表三类创作方法：访客敲出一个短序列，物体即时响应，完成后解锁该方法对应的真实项目卡。先验证访客能否独立完成和解释，不把漂亮房间当作学习有效性的证明。",
+          "difficulty": "1 天原型",
+          "evidence": "作者明确披露：2026-10-27 Codrops 文章讲解技术栈、输入/识别/重播及素材来源。公开资源可核验：固定提交 c6cadb60f9eb625c853190e867b7877e48c7a149 的 song-detector.ts、ocarina.ts、ocarina-sampler.ts、sizes.ts 与 ASSETS.md。亲测：2026-11-03 正常浏览器进入 PRESS START，按 ←↑→←↑→，见“You learned Zelda's Lullaby!”；Songs 中首项点亮，其余仍标未学；About 显示作者与第三方署名。边界：未验证全部21曲、全部设置、声音品质或手机；仓库时间不等于首发。任天堂相关素材、公开 OG 图等并无再分发授权，ASSETS.md 明确提醒署名不等于许可，本期不提供 ZIP 或二进制资产下载。展示图为评论性拆解的实测截图，原素材权利保留。来源： https://tympanus.net/codrops/2026/10/27/songs-of-hyrule-from-a-fans-idea-to-a-three-js-mini-game-in-a-few-days/ ；https://github.com/thibautlfr/ocarina/blob/c6cadb60f9eb625c853190e867b7877e48c7a149/src/experience/songs/song-detector.ts ；https://github.com/thibautlfr/ocarina/blob/c6cadb60f9eb625c853190e867b7877e48c7a149/src/experience/world/ocarina.ts ；https://github.com/thibautlfr/ocarina/blob/c6cadb60f9eb625c853190e867b7877e48c7a149/src/experience/audio/ocarina-sampler.ts ；https://github.com/thibautlfr/ocarina/blob/c6cadb60f9eb625c853190e867b7877e48c7a149/src/experience/utils/sizes.ts ；https://github.com/thibautlfr/ocarina/blob/c6cadb60f9eb625c853190e867b7877e48c7a149/ASSETS.md",
+          "image": "./vibe/covers/ocarina-songs-20261103.jpg",
+          "imageSource": "https://ocarina.thibaut-lefrancois.com/",
+          "imageCredit": "Thibaut Lefrançois；2026-11-03 公开体验实测截图，用于作品评论与原理拆解。陶笛模型 pau_alma_3D、精灵翅膀 darkewne（作者列 CC BY 4.0）；屋内模型 BrittanyOfKoppai，声音 HelpTheWretched；The Legend of Zelda 相关设计与素材权利归 Nintendo，非官方非商业粉丝项目。",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "音乐交互",
+              "学习反馈",
+              "创作者作品集"
+            ],
+            "collectedOn": "2026-11-03",
+            "pageTime": "作者技术文章 2026-10-27；非已核验官网首发时间",
+            "summary": "用一个可演奏物体承接输入、反馈和学习记录。",
+            "audience": "设计音乐玩具、互动教程或有行为反馈的作品集的创作者。",
+            "value": "把“我按了按钮”推进为“我完成了一段任务，并看见完成记录”的可迁移机制；无独立学习效果或商业结果证据。",
+            "conditions": "需自有或合法授权音色、模型和曲目；保留键盘/触控一致输入，先验证一个任务；不得把原作素材随代码二次分发。"
+          }
+        },
+        {
+          "id": "haunted-pumpkin-emotion",
+          "title": "Haunted Pumpkin · 可以打碎再重建的活海报",
+          "author": "Emotion Agency",
+          "platform": "作者公开演示 / GitHub",
+          "pageTime": "GitHub 仓库创建：2026-10-28 10:12:18 UTC；本次固定提交作者时间：2026-10-28 10:08:41 UTC。页面标注31.10.2026为万圣节主题日期，不作为首发日期；官网首发未独立核实。收录：2026-11-03。",
+          "url": "https://halloween-2026-iota.vercel.app/",
+          "accent": "#EE6F32",
+          "mechanisms": [
+            "模型成为界面",
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "黑色树林里一只燃着烛光的南瓜，背后是巨大橙色海报字；点中南瓜，厚壳碎块向外飞，幽灵从中出现，随后碎块逐块回到原位。",
+          "why": "南瓜既是场景主角，也是可直接操作的界面：打碎、释放、重建构成短而完整的状态变化。海报字与场景共用光感和指针扰动，标题没有脱离三维画面。成立的是一个动作带来的前后关系；视觉反馈足够明确，观众不必先读操作说明。吸引力和传播效果属于策展判断，没有转化数据。",
+          "input": "桌面正常浏览器实测：移动指针、两次点中南瓜；观察到壳片散开、幽灵出现和逐块重建。作者另披露指针/手指搅动、点击幽灵捕获、拖动或滚动环视；本次未验证捕获链路、触屏设备或全部环视边界。",
+          "layer": "作者README明确披露且固定源码可核验：Three.js r186 的 WebGPURenderer 与 TSL 节点材质，自动回落 WebGL 2。程序化南瓜厚壳用 BatchedMesh 绘制，幽灵由顶点着色器驱动。海报保留供屏幕阅读器使用的 HTML，以 CSS 排版位置测量字母，将大字烘焙为纹理，再在 GPU 合成到同一画面；小型流体 ping-pong 纹理扰动同时影响场景和海报。",
+          "motion": "进入时镜头绕行，随后随指针轻微倾斜和摆动；击碎把壳片抛出，短暂慢动作后按脚本重建。实测看到了碎裂与重建。作者说明的幽灵捕获另包含光束、火花和镜头震动，本次未亲测该段。动画把同一个物件的可操作状态串起来，不是独立循环播放的装饰视频。",
+          "pipeline": "固定源码与README：用程序化棱纹构造南瓜、polygon-clipping 切面孔，Web Worker 执行带约束的 Delaunay 三角化，再把有厚度与切面颜色的壳片交给 BatchedMesh。碎裂采用简单物理，重建采用脚本。环境模型、地面纹理和 HDRI 来自 Poly Haven，GLB 采用 Meshopt 几何与 WebP 纹理。难点在于切面、厚度、碎片状态与烛光一致，以及 DOM 字体布局准确映射到 GPU；素材生产和完整美术打磨不包含在小型复现范围。",
+          "performance": "源码可核验：canvas DPR 上限2，默认场景 DPR 上限桌面1.5、无悬停触屏1.25，并按平均帧时自适应下降；预热隐藏对象并异步编译管线，幽灵复用固定数量点光以避免灯光集合变化触发重编译。代码检测减少动态偏好，部分镜头震动会关闭；不能据此声称所有动态均停用。作者声明自动 WebGL 2 回退，本次未强制测试该路径。未做手机真机、帧率或内存基准；迁移时仍需保留静态海报和直接内容入口。",
+          "transfer": "Joey 可为一件已有真实制作记录的装置或产品做一张活海报：先让观众看到完整物件，点击拆成三个真实部件，每个部件连到对应的材料、过程或项目证据；再次操作重组。先把一个物件、一次拆解和清晰入口做完整，再决定是否需要全屏环境，不照搬万圣节意象。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露：仓库README的渲染器、程序化几何、幽灵、海报、流体光标、加载预热与第三方署名。公开资源可核验：固定提交 f0e214d22fa2bfc0da1869d3fbf9d155887e3505 的 src/main.js、src/pumpkin.js、src/poster.js、src/wake.js 与 package.json。亲测：公开官网可加载，点击南瓜出现散片、幽灵和重建；封面为该仓库作者公开OG图，已下载并实际解码为1200×630 JPEG，画面对应官网。推断/建议：为何成立、作品集迁移和应用价值；没有教育、传播或商业结果证据。难度只指一个自有物件的一次拆解/重建和标题合成，不等于完整复制原作。仓库MIT已核验，但Thunder字体及全部第三方素材的再分发条件未完整核实，不开放代码ZIP。技术与署名：https://github.com/Emotion-Agency/emotion-halloween-2026/blob/f0e214d22fa2bfc0da1869d3fbf9d155887e3505/README.md ；源码：https://github.com/Emotion-Agency/emotion-halloween-2026/blob/f0e214d22fa2bfc0da1869d3fbf9d155887e3505/src/main.js ；仓库日期：https://api.github.com/repos/Emotion-Agency/emotion-halloween-2026 。",
+          "image": "./vibe/covers/haunted-pumpkin-20261103.jpg",
+          "imageSource": "https://github.com/Emotion-Agency/emotion-halloween-2026/blob/f0e214d22fa2bfc0da1869d3fbf9d155887e3505/public/og-image.jpg",
+          "imageCredit": "Emotion Agency；作者公开作品预览图。环境模型、纹理与HDRI：Poly Haven（CC0）；字体：Thunder（作者README所列字体）。",
+          "context": {
+            "type": "story",
+            "tags": [
+              "互动海报",
+              "程序化模型",
+              "产品拆解",
+              "节日叙事"
+            ],
+            "collectedOn": "2026-11-03",
+            "pageTime": "仓库创建2026-10-28；固定提交2026-10-28；官网首发未独立核实。",
+            "summary": "同一只程序化南瓜承担完整物件、碎裂、释放幽灵和重建四种状态，GPU海报与场景共用指针扰动。",
+            "audience": "有自有物件、装置或清晰活动主题，希望做短时互动入口的创意开发者与设计团队。",
+            "value": "应用价值：把物件的内部结构或叙事变化变成可亲手触发的反馈，学习模型状态、排版与场景统一的方法；未验证传播、成交或商业成果。",
+            "conditions": "需要合法可用的模型、字体与素材，明确一次操作后的信息去向；保留静态内容与减少动态路径。WebGPU/WebGL回退、触屏和低性能设备需要另行实测。"
+          }
+        }
+      ],
+      "dateLabel": "NOV 3",
+      "issueNo": "015"
+    },
     {
       "id": "2026-11-02",
       "note": "让空间成为解释工具：Outcrop 用移动窗口解释地质图层，MRI Lab 把设备结构接到可调物理实验，Gen City Auto 用种子规则生成可驾驶城市。三件均已打开并操作；公开介绍、仓库创建与提交时间分别标注，不冒充官网首发。",
