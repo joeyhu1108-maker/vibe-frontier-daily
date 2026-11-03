@@ -1,5 +1,5 @@
 const $ = (selector) => document.querySelector(selector);
-const state = { works: [], issues: [], covers: {}, previews: {}, contexts: {}, types: [], query: '', type: 'all', mechanism: 'all', date: 'all', sort: 'newest', count: 12, view: 'discover', events: [], checkedAt: '', returnHash: '#discover', pushedWork: false };
+const state = { works: [], issues: [], covers: {}, previews: {}, contexts: {}, types: [], query: '', type: 'all', source: 'all', mechanism: 'all', date: 'all', sort: 'newest', count: 12, view: 'discover', events: [], checkedAt: '', returnHash: '#discover', pushedWork: false };
 const escapeHTML = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const url = (value = '') => { try { const parsed = new URL(value, location.href); return ['https:', 'http:'].includes(parsed.protocol) ? parsed.href : '#'; } catch { return '#'; } };
 const localMedia = (value = '', folder) => typeof value === 'string' && (value.startsWith(`./vibe/${folder}/`) || /^https:\/\//.test(value)) ? value : '';
@@ -20,14 +20,14 @@ function media(item, detail = false, eager = false) {
   return `<div class="media">${detail ? '<div class="media-open">' : `<a class="media-open" href="${workLink(item)}" data-work="${escapeHTML(item.id)}" aria-label="查看 ${escapeHTML(label)}">`}<img src="${escapeHTML(cover(item))}" alt="${escapeHTML(item.title)} 的公开作品画面" loading="${detail || eager ? 'eager' : 'lazy'}" /><span class="media-fallback" aria-hidden="true">公开画面暂不可用<br />可查看拆解与原始来源</span>${source ? `<video data-preview="${escapeHTML(item.id)}" data-src="${escapeHTML(source)}" data-detail="${detail}" muted loop playsinline preload="none" aria-hidden="true"></video>` : ''}${detail ? '</div>' : '</a>'}${!source && state.previews[item.id]?.status === 'unavailable' ? '<span class="preview-note">动态暂缺</span>' : ''}${source ? `<button class="preview-toggle" type="button" aria-label="播放 ${escapeHTML(title(item))} 的短片" data-toggle><span aria-hidden="true">▶</span><b>${escapeHTML(duration(item))}</b></button>` : ''}</div>`;
 }
 function card(item, index) {
-  return `<article class="work-card" data-id="${escapeHTML(item.id)}">${media(item, false, index < 3)}<div class="work-meta"><span>${escapeHTML(typeName(item))}</span><time datetime="${escapeHTML(context(item).collectedOn || '')}">${dateName(context(item).collectedOn)} 收录</time></div><h2><a href="${workLink(item)}" data-work="${escapeHTML(item.id)}">${escapeHTML(title(item))}</a></h2><p class="work-author">${escapeHTML(item.author)}</p><p class="work-summary">${escapeHTML(context(item).summary || item.memory)}</p><div class="card-actions"><a href="${escapeHTML(url(item.url))}" target="_blank" rel="noopener noreferrer">体验原作 ↗</a><a href="${workLink(item)}" data-work="${escapeHTML(item.id)}">拆开看看 →</a></div></article>`;
+  return `<article class="work-card" data-id="${escapeHTML(item.id)}">${media(item, false, index < 3)}<div class="work-meta"><span>${escapeHTML(typeName(item))}</span><time datetime="${escapeHTML(context(item).collectedOn || '')}">${dateName(context(item).collectedOn)} 收录</time></div><h2><a href="${workLink(item)}" data-work="${escapeHTML(item.id)}">${escapeHTML(title(item))}</a></h2><p class="work-author">${escapeHTML(item.author)}</p><p class="work-summary">${escapeHTML(context(item).summary || item.memory)}</p>${codeURL(item) ? `<p class="source-label">已核验源码 · <a href="${escapeHTML(url(item.code.licenseUrl))}" target="_blank" rel="noopener noreferrer">${escapeHTML(item.code.license)} 原许可 ↗</a></p>` : ''}<div class="card-actions"><a href="${escapeHTML(url(item.url))}" target="_blank" rel="noopener noreferrer">体验原作 ↗</a><a href="${workLink(item)}" data-work="${escapeHTML(item.id)}">拆开看看 →</a></div></article>`;
 }
 function matches() {
   const query = state.query.trim().toLocaleLowerCase('zh-CN');
   return state.works.filter((item) => {
     const ctx = context(item);
     const text = [item.title, item.author, item.platform, item.memory, item.transfer, typeName(item), ctx.summary, ctx.audience, ctx.value, ...(ctx.tags || []), ...(item.mechanisms || []), ...(item.mechanisms || []).map((m) => mechanismNames[m])].join(' ').toLocaleLowerCase('zh-CN');
-    return (state.type === 'all' || ctx.type === state.type) && (state.date === 'all' || ctx.collectedOn === state.date) && (state.mechanism === 'all' || item.mechanisms?.includes(state.mechanism)) && (!query || text.includes(query));
+    return (state.type === 'all' || ctx.type === state.type) && (state.source === 'all' || state.source === (codeURL(item) ? 'free' : 'pending')) && (state.date === 'all' || ctx.collectedOn === state.date) && (state.mechanism === 'all' || item.mechanisms?.includes(state.mechanism)) && (!query || text.includes(query));
   }).sort((a, b) => state.sort === 'title' ? a.title.localeCompare(b.title, 'zh-CN') : (state.sort === 'oldest' ? 1 : -1) * (context(a).collectedOn || '').localeCompare(context(b).collectedOn || ''));
 }
 function renderWorks(append = false) {
@@ -35,7 +35,7 @@ function renderWorks(append = false) {
   const prior = append ? $('#works').children.length : 0;
   if (!append) { releasePlayers($('#works')); $('#works').replaceChildren(); }
   $('#works').insertAdjacentHTML('beforeend', items.slice(prior, state.count).map((item, i) => card(item, prior + i)).join('') || (!append ? '<div class="empty">没有找到相关作品。试试更短的关键词，或清除筛选。<br /><button class="button secondary" data-reset type="button">清除筛选</button></div>' : ''));
-  const filtered = state.query || state.type !== 'all' || state.mechanism !== 'all' || state.date !== 'all';
+  const filtered = state.query || state.type !== 'all' || state.source !== 'all' || state.mechanism !== 'all' || state.date !== 'all';
   $('#results').textContent = filtered ? `${items.length} 件结果 / ${state.works.length} 件作品` : `${state.works.length} 件作品 · 最新收录优先`;
   if (!filtered && state.sort !== 'newest') $('#results').textContent = `${items.length} 件作品 · ${state.sort === 'title' ? '作品名称排序' : '最早收录优先'}`;
   $('#clear').hidden = !filtered;
@@ -45,8 +45,8 @@ function renderWorks(append = false) {
   attachPlayers($('#works'));
 }
 function resetFilters() {
-  Object.assign(state, { query: '', type: 'all', date: 'all', mechanism: 'all', sort: 'newest', count: 12 });
-  $('#search').value = ''; $('#date').value = 'all'; $('#mechanism').value = 'all'; $('#sort').value = 'newest'; renderWorks();
+  Object.assign(state, { query: '', type: 'all', source: 'all', date: 'all', mechanism: 'all', sort: 'newest', count: 12 });
+  $('#search').value = ''; $('#source').value = 'all'; $('#date').value = 'all'; $('#mechanism').value = 'all'; $('#sort').value = 'newest'; renderWorks();
 }
 
 const players = new Map();
@@ -198,7 +198,7 @@ async function load() {
 }
 $('#search').addEventListener('input', (event) => { state.query = event.target.value; state.count = 12; renderWorks(); });
 $('#types').addEventListener('click', (event) => { const button = event.target.closest('[data-type]'); if (button) { state.type = button.dataset.type; state.count = 12; renderWorks(); } });
-['mechanism', 'date', 'sort'].forEach((name) => $(`#${name}`).addEventListener('change', (event) => { state[name] = event.target.value; state.count = 12; renderWorks(); }));
+['source', 'mechanism', 'date', 'sort'].forEach((name) => $(`#${name}`).addEventListener('change', (event) => { state[name] = event.target.value; state.count = 12; renderWorks(); }));
 $('#refine-toggle').addEventListener('click', () => { const open = $('#refine').hidden; $('#refine').hidden = !open; $('#refine-toggle').setAttribute('aria-expanded', String(open)); $('#refine-toggle').textContent = `精细筛选 ${open ? '−' : '＋'}`; });
 $('#clear').addEventListener('click', resetFilters);
 $('#more').addEventListener('click', () => { state.count += 12; renderWorks(true); });

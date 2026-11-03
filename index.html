@@ -11,7 +11,7 @@
     <title>VIBE FRONTIER｜前端实验档案</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' rx='2' fill='%23f7f6f2' stroke='%23b34831' stroke-width='2'/%3E%3Crect x='9' y='10' width='5' height='5' fill='%23b34831'/%3E%3Crect x='18' y='10' width='5' height='5' fill='%23b34831'/%3E%3Cpath d='M9 21h14' stroke='%23b34831' stroke-width='2'/%3E%3C/svg%3E" />
     <link rel="preload" href="./vibe/fonts/FusionPixel-Proportional-zhHans-12px.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="./vibe/frontier.css?v=20261103-applications" />
+    <link rel="stylesheet" href="./vibe/frontier.css?v=20261103-source-filter" />
   </head>
   <body>
     <a class="skip-link" href="#main">跳到作品</a>
@@ -27,6 +27,7 @@
         <div class="browser-tools">
           <div class="search-row"><label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">搜索作品、作者、用途或机制</span><input id="search" type="search" placeholder="搜索作品、作者、用途或机制" autocomplete="off" /></label><button class="random-button" id="random" type="button">随机一件 <span aria-hidden="true">↗</span></button></div>
           <div class="filter-row"><div id="types" class="type-filters" aria-label="按用途筛选"></div><button id="refine-toggle" class="refine-toggle" type="button" aria-expanded="false" aria-controls="refine">精细筛选 ＋</button></div>
+          <div class="source-filter-row"><label for="source"><span id="source-label">源码获取</span><select id="source" aria-labelledby="source-label" aria-describedby="source-access-note"><option value="all">全部</option><option value="free">已核验免费源码</option><option value="pending">下载待核验／授权</option></select></label><p id="source-access-note">作品免费浏览，源码按原许可与素材条款提供；“下载待核验／授权”不代表收费。作者付费学习包尚未上线。</p></div>
           <div id="refine" class="refine" hidden><label>实现机制<select id="mechanism"><option value="all">全部机制</option></select></label><label>收录日期<select id="date"><option value="all">全部日期</option></select></label><label>排序<select id="sort"><option value="newest">最新收录</option><option value="oldest">最早收录</option><option value="title">作品名称</option></select></label></div>
         </div>
         <div class="results-line"><p id="results" role="status">正在载入作品…</p><button id="clear" type="button" hidden>清除筛选 ×</button><span id="media-status"></span></div>
@@ -45,6 +46,6 @@
     <footer class="site-footer wrap"><div><strong>VIBE FRONTIER</strong><p>AI 造物社 · 前端作品档案与技术应用库。</p></div><details><summary>关于收录、证据与使用</summary><p>作品与画面的权利归原作者。收录时间与作品发布时间分开标注；技术推断与作者披露分别说明。应用价值为学习判断，不代表已验证的商业结果。</p><p>原作者 ZIP 仅在公开仓库的许可已经核验时提供学习下载，原许可与第三方素材条款继续有效。暂缺核验画面的研究记录仍保留在档案数据中。应用库原创示例采用各包所附 MIT 许可；当前示例免费试用，会员方案尚未开放购买。</p><a href="https://github.com/joeyhu1108-maker/vibe-frontier-daily" target="_blank" rel="noopener noreferrer">公开档案与来源 ↗</a></details><a href="https://account.vibe.zone-y.com/">我的账号 ↗</a></footer>
     <dialog id="work-dialog" class="work-dialog" aria-labelledby="work-title"><div class="dialog-toolbar"><span>WORK / 作品拆解</span><button id="close" type="button" aria-label="关闭作品详情">关闭 ×</button></div><div id="detail"></div></dialog>
     <noscript><p class="wrap">请启用 JavaScript 以浏览作品、筛选和案例拆解。<a href="./vibe/issues.json">读取公开档案</a></p></noscript>
-    <script src="./vibe/frontier.js?v=20261103-rebuild" defer></script>
+    <script src="./vibe/frontier.js?v=20261103-source-filter" defer></script>
   </body>
 </html>
