@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f5f4ee" />
+  <title>活动数据空间 · VIBE FRONTIER 应用实验</title>
+  <style>
+    :root{--paper:#f5f4ee;--ink:#272924;--muted:#686d62;--line:#d9dbd2;--accent:#a7432e;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);font-synthesis:none}
+    *{box-sizing:border-box}body{margin:0}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit;color:inherit}button,a,input,select,textarea{touch-action:manipulation}button{cursor:pointer}button:disabled{cursor:default;opacity:.45}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}h1,h2,p{margin-top:0}[hidden]{display:none!important}
+    .shell{width:min(1320px,calc(100% - 72px));margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:76px;border-bottom:1px solid var(--line);font-size:12px}.top span{font:10px ui-monospace,monospace;letter-spacing:1.5px;color:var(--muted)}.top a{padding:14px 0}.heading{padding:34px 0 28px;display:flex;justify-content:space-between;gap:24px;align-items:flex-end}.eyebrow{font:10px ui-monospace,monospace;letter-spacing:1.8px;color:var(--accent);margin-bottom:10px}h1{font-size:32px;font-weight:500;letter-spacing:-1px;margin-bottom:12px}.lead{font-size:13px;color:var(--muted);line-height:1.9;margin:0}.pack{font:11px/1.8 ui-monospace,monospace;color:var(--muted);text-align:right;white-space:nowrap}
+    .workbench{display:grid;grid-template-columns:minmax(0,1fr) 310px;border:1px solid var(--line);align-items:start}.preview{min-width:0;background:#202822;color:#eef0df;align-self:stretch}.stage-head{padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid #ffffff17;font:10px ui-monospace,monospace;letter-spacing:1px;color:#bdc4b8}.stage-head strong{font-weight:400;color:#f0d7b5}.stage{padding:4px 16px 0}svg{display:block;width:100%;height:auto;overflow:visible}svg [role=button]{cursor:pointer;outline:none}svg [role=button]:focus-visible .bar-front{stroke:#fff;stroke-width:3}svg text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}.insight{border-top:1px solid #ffffff17;padding:20px 24px 22px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.insight p{margin:0;color:#bdc4b8;font-size:11px;line-height:1.8}.insight strong{display:block;color:#f0d7b5;font-size:23px;line-height:1.5;font-weight:400}.insight select{width:100%;color:#eef0df;border:0;border-bottom:1px solid #778476;background:transparent;padding:5px 0;font-size:12px;border-radius:0}.insight select option{color:var(--ink);background:var(--paper)}.insight .selected-value{font-size:18px}.selection{min-width:0}.small{font-size:10px!important;line-height:1.8;color:#bdc4b8}
+    .controls{padding:22px;border-left:1px solid var(--line);min-width:0}.controls h2{font-size:14px;font-weight:500;margin-bottom:8px}.controls>p,.hint{font-size:11px;line-height:1.8;color:var(--muted);margin-bottom:18px}.field{display:block;margin-top:18px;font-size:11px}.label-line{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}.label-line output{font:10px ui-monospace,monospace;color:var(--muted)}textarea{display:block;width:100%;min-height:206px;resize:vertical;line-height:1.8;font-size:12px;font-family:ui-monospace,"PingFang SC",monospace;background:#fffdf6;border:1px solid var(--line);padding:12px;border-radius:0}input[type=text]{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);padding:9px 0;border-radius:0;font-size:12px}input[type=range]{display:block;width:100%;accent-color:var(--accent)}input[type=color]{height:34px;width:60px;border:1px solid var(--line);padding:2px;background:var(--paper)}.color-field{display:flex;align-items:center;justify-content:space-between}.button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:11px 16px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);font-size:12px;line-height:1.6;text-align:center}.apply{width:100%;margin-top:16px}.secondary{background:transparent;color:var(--ink);border-color:var(--line)}.reset{padding:10px 0;border:0;background:transparent;color:var(--accent);font-size:11px}.controls .status{font-size:11px;line-height:1.8;min-height:38px;margin:12px 0 0}.status.error{color:#a32b20}.status.success{color:#496145}
+    .handoff{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}.handoff p{font-size:12px;line-height:1.8;margin:0;color:var(--muted)}.handoff strong{font-weight:500;color:var(--ink)}.actions{display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0}.notes{padding:24px 0 48px;display:grid;grid-template-columns:1fr 1fr;gap:36px}.notes details{border-top:1px solid var(--line);padding-top:16px;min-width:0}.notes summary{font-size:13px;cursor:pointer;line-height:1.8}.notes p,.notes li{font-size:12px;line-height:1.9;color:var(--muted)}.notes p{margin:16px 0 0}.notes ul{padding-left:18px}.notes a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.notes code{font:11px ui-monospace,monospace;overflow-wrap:anywhere}.table-scroll{overflow-x:auto;margin-top:16px}table{width:100%;border-collapse:collapse;font-size:12px;text-align:left}th,td{border-bottom:1px solid var(--line);padding:10px 8px;line-height:1.6}th{font-weight:500;color:var(--muted)}td:last-child,th:last-child{text-align:right}caption{text-align:left;color:var(--muted);font-size:11px;margin-bottom:12px}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+    @media(max-width:1050px){.shell{width:calc(100% - 40px)}.workbench{grid-template-columns:minmax(0,1fr) 280px}.controls{padding:18px}.handoff{align-items:flex-start;flex-direction:column;gap:16px}.actions{flex-shrink:1}}
+    @media(max-width:760px){.shell{width:calc(100% - 32px)}.top{min-height:62px}.top span{font-size:9px;letter-spacing:.4px}.heading{padding:26px 0 22px;display:block}h1{font-size:27px}.lead{font-size:12px}.pack{display:none}.workbench{grid-template-columns:1fr}.controls{border-left:0;border-top:1px solid var(--line);padding:22px}.stage{padding-inline:0}.stage-head{padding:16px;flex-wrap:wrap;font-size:9px}.insight{padding:16px;gap:16px}.insight strong{font-size:21px}.insight .selected-value{font-size:16px}.notes{grid-template-columns:1fr;gap:24px}.actions{width:100%}.actions .button{flex:1;white-space:nowrap;padding:10px 12px;font-size:11px}textarea{min-height:180px}.heading .eyebrow{font-size:9px}.button{min-height:44px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+    html.embedded,html.embedded body{height:100%;background:#202822}.embedded .shell{width:100%;height:100%}.embedded .top,.embedded .heading,.embedded .controls,.embedded .handoff,.embedded .notes,.embedded .insight{display:none}.embedded .workbench{display:block;border:0}.embedded .stage-head{padding:12px 16px;font-size:9px}.embedded .stage{padding:0}.embedded #chart{height:calc(100dvh - 40px);width:100%}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top"><a href="../index.html">← VIBE FRONTIER / 应用实验</a><span>03 / DATA → SPACE</span></header>
+    <main>
+      <div class="heading"><div><p class="eyebrow">A SMALL TOOL, READY FOR YOUR DATA</p><h1>把活动数据，放进空间。</h1><p class="lead">换成自己的数据，做一张能解释、能导出的活动对比图。<br />先试输入，再看映射，最后带走完整代码。</p></div><p class="pack">SVG · 无外部依赖<br />输入 → 高度 → 可读图表</p></div>
+      <div class="workbench">
+        <section class="preview" aria-label="数据可视化预览">
+          <div class="stage-head"><span>INTEREST FIELD / 活动对比</span><strong id="source-label">演示数据 · 非经营结果</strong></div>
+          <div class="stage"><svg id="chart" viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg" aria-labelledby="chart-title chart-description" role="group"></svg></div>
+          <div class="insight">
+            <div><p>本表合计 / <span id="unit-label">人次</span></p><strong id="total">—</strong><p id="count-label">—</p></div>
+            <div class="selection"><label for="category" class="small">选择活动 · 图上也可点击 / ← →</label><select id="category" aria-label="选择活动"></select><strong id="selected-value" class="selected-value">—</strong><p id="share">—</p></div>
+          </div>
+        </section>
+        <form class="controls" id="data-form" novalidate>
+          <h2>01 / 换成你的数据</h2><p>每行：名称,数值。2–12 项，数值不小于 0。下方是演示，不代表实际报名。</p>
+          <label class="field" for="data"><span class="label-line">活动名称,数值</span><textarea id="data" maxlength="2000" spellcheck="false" aria-describedby="data-help status"></textarea></label>
+          <p class="hint" id="data-help">名称最多 16 字；不含逗号。可保留第一行表头。数值最多 3 位小数，不超过 1,000,000。</p>
+          <label class="field" for="unit"><span class="label-line">数值单位</span><input type="text" id="unit" value="人次" maxlength="8" required /></label>
+          <button type="submit" class="button apply">生成图表 →</button>
+          <p id="status" class="status" role="status" aria-live="polite">可以直接试，也可以粘贴自己的数据。</p>
+          <label class="field" for="height"><span class="label-line">最高柱高度 <output id="height-value" for="height">100%</output></span><input type="range" id="height" min="70" max="115" value="100" step="5" /></label>
+          <label class="field" for="depth"><span class="label-line">立体深度 <output id="depth-value" for="depth">18</output></span><input type="range" id="depth" min="0" max="30" value="18" step="1" /></label>
+          <label class="field color-field" for="color">图表主色<input type="color" id="color" value="#c7734f" /></label>
+          <button type="button" class="reset" id="reset">恢复演示数据与参数 ↺</button>
+        </form>
+      </div>
+      <div class="handoff"><p><strong>02 / 用进项目</strong><br />SVG 可放进报告；JSON 保存数据与参数；源码 ZIP 可离线运行和修改。</p><div class="actions"><button type="button" class="button secondary" id="export-svg">导出 SVG ↗</button><button type="button" class="button secondary" id="export-config">保存 JSON ↓</button><a class="button" href="../downloads/data-space.zip" download>完整源码 ↓</a></div></div>
+      <div class="notes">
+        <details><summary>03 / 原理、适用范围与限制</summary><p><strong>明确映射：</strong><code>柱高 = 数值 ÷ 本表最大值 × 220 × 高度比例</code>。零值柱高为 0；所有值都为 0 时不产生除零。立体深度只影响外观，不改变数值比例。</p><p><strong>适合：</strong>活动人次、项目数量等同一单位的非负分类对比。不同批次会按各自最大值缩放，跨图比较前要统一尺度。立体图用于展示；需要精确阅读时展开右侧数值表，或把立体深度调为 0。</p><p><strong>实现：</strong>原生 SVG 绘制正面、侧面和顶面。仅在数据、参数或选择变化时更新，没有持续动画。SVG 自适应尺寸，窄屏可用选择框读完整名称与数值；键盘可在图上用方向键、Home 和 End 选择。</p><p><strong>边界：</strong>没有后台、数据采集、归因分析或经营结论。所有输入仅在当前浏览器处理；刷新会重置，可先保存 JSON。独立编写的应用实验，不是任何参考作品的录屏或原作者源码。</p><p><a href="./README.md">使用与迁移说明 ↗</a> · <a href="./LICENSE.txt">本实验 MIT 许可 ↗</a></p></details>
+        <details><summary>读取完整数值表</summary><div class="table-scroll"><table><caption id="table-caption">当前输入 · 与图表同一份数据</caption><thead><tr><th scope="col">活动</th><th scope="col" id="table-unit">数值 / 人次</th></tr></thead><tbody id="data-table"></tbody></table></div></details>
+      </div>
+    </main>
+  </div>
+  <script>
+    'use strict';
+    if (new URLSearchParams(location.search).get('embed') === '1') document.documentElement.classList.add('embedded');
+    if (location.protocol === 'file:') {
+      document.querySelector('.top a').href = 'https://joeyhu1108-maker.github.io/vibe-frontier-daily/vibe/lab/';
+      document.querySelector('a[download]').hidden = true;
+    }
+    // Original, dependency-free example. The chart is a view of the same data as the table.
+    const $ = (id) => document.getElementById(id);
+    const SAMPLE = '名称,数值\n摄影,48\n陶艺,36\n攀岩,62\n即兴戏剧,28\n咖啡,45\n绘画,54\n园艺,22\n城市漫步,71';
+    const NS = 'http://www.w3.org/2000/svg';
+    const defaults = { unit: '人次', height: 100, depth: 18, color: '#c7734f' };
+    const state = { rows: [], selected: 0, ...defaults, dirty: false, demo: true };
+    const format = (value) => new Intl.NumberFormat('zh-CN', { maximumFractionDigits: 3 }).format(value);
+    function node(tag, attrs = {}, text) {
+      const element = document.createElementNS(NS, tag);
+      Object.entries(attrs).forEach(([key, value]) => element.setAttribute(key, value));
+      if (text !== undefined) element.textContent = text;
+      return element;
+    }
+    function parseData(value) {
+      if (value.length > 2000) throw new Error('数据太长，请限制在 2,000 个字符内。');
+      const lines = value.trim().replace(/\r/g, '').split('\n');
+      if (/^(名称|label),(数值|value)$/i.test(lines[0].replace(/\s/g, ''))) lines.shift();
+      if (lines.length < 2 || lines.length > 12) throw new Error('请提供 2–12 行数据；表头不计入数量。');
+      const labels = new Set();
+      return lines.map((line, index) => {
+        const parts = line.split(',').map((part) => part.trim());
+        if (parts.length !== 2 || !parts[0] || !parts[1]) throw new Error(`第 ${index + 1} 条需要完整的“名称,数值”，不接受空行。`);
+        const [label, raw] = parts;
+        if (Array.from(label).length > 16) throw new Error(`第 ${index + 1} 条名称超过 16 字。`);
+        if (labels.has(label)) throw new Error(`名称“${label}”重复，请使用不同名称。`);
+        if (!/^(?:0|[1-9]\d*)(?:\.\d{1,3})?$/.test(raw)) throw new Error(`“${label}”的数值需要是非负数字，最多 3 位小数，不使用千位逗号。`);
+        const number = Number(raw);
+        if (!Number.isFinite(number) || number > 1000000) throw new Error(`“${label}”的数值不能超过 1,000,000。`);
+        labels.add(label);
+        return { label, value: number };
+      });
+    }
+    function message(text, kind = '') {
+      $('status').textContent = text;
+      $('status').className = `status ${kind}`;
+    }
+    function setDirty() {
+      state.dirty = true;
+      $('export-svg').disabled = $('export-config').disabled = true;
+      message('内容尚未应用。点击“生成图表”后，可导出更新后的图表。');
+    }
+    function shade(hex, multiplier) {
+      const components = hex.slice(1).match(/../g).map((part) => Math.max(0, Math.min(255, Math.round(parseInt(part, 16) * multiplier))));
+      return `rgb(${components.join(',')})`;
+    }
+    function renderChart() {
+      const svg = $('chart'), maximum = Math.max(...state.rows.map((row) => row.value));
+      svg.replaceChildren(node('title', { id: 'chart-title' }, '活动数值对比'), node('desc', { id: 'chart-description' }, `柱高与数值成正比，单位${state.unit}。${state.demo ? '当前为演示数据。' : '当前为用户输入，未经核验。'}完整数值在下方表格。`));
+      svg.append(node('rect', { width: 900, height: 470, fill: '#202822' }));
+      const floor = node('g', { fill: 'none', stroke: '#677363', 'stroke-width': 1, opacity: .24 });
+      for (let y = 65; y <= 365; y += 60) floor.append(node('path', { d: `M55 ${y}H820`, 'stroke-dasharray': '3 6' }));
+      floor.append(node('path', { d: 'M55 365H820L867 338H102Z', fill: '#a4b99a', opacity: .15 }));
+      svg.append(floor, node('text', { x: 55, y: 35, fill: '#aebaa6', 'font-size': 11, 'letter-spacing': 2 }, `VALUE / ${state.unit}`));
+      const step = 735 / state.rows.length, width = Math.min(42, step * .5), dx = state.depth, dy = -dx * .55;
+      state.rows.forEach((row, index) => {
+        const x = 67 + index * step + (step - width) / 2;
+        const h = maximum ? row.value / maximum * 220 * state.height / 100 : 0;
+        const y = 365 - h;
+        const group = node('g', { role: 'button', tabindex: index === state.selected ? 0 : -1, 'data-index': index, 'aria-label': `${row.label}，${format(row.value)}${state.unit}`, 'aria-pressed': index === state.selected });
+        group.append(node('title', {}, `${row.label} · ${format(row.value)} ${state.unit}`));
+        group.append(node('path', { d: `M${x + width} ${365}L${x + width + dx} ${365 + dy}L${x + width + dx} ${y + dy}L${x + width} ${y}Z`, fill: shade(state.color, .65) }));
+        group.append(node('rect', { class: 'bar-front', x, y, width, height: h, fill: state.color, stroke: '#ffe2b8', 'stroke-width': index === state.selected ? 1.5 : 0 }));
+        group.append(node('path', { d: `M${x} ${y}L${x + dx} ${y + dy}L${x + width + dx} ${y + dy}L${x + width} ${y}Z`, fill: shade(state.color, 1.3) }));
+        group.append(node('text', { x: x + width / 2 + dx / 2, y: y + dy - 14, fill: '#f0d7b5', 'text-anchor': 'middle', 'font-size': state.rows.length > 9 ? 13 : 15 }, format(row.value)));
+        const chars = Array.from(row.label), short = chars.length > 4 ? chars.slice(0, 4).join('') + '…' : row.label;
+        group.append(node('text', { x: x + width / 2, y: 395, fill: '#c2cabc', 'text-anchor': 'middle', 'font-size': state.rows.length > 9 ? 12 : 14 }, short));
+        group.append(node('text', { x: x + width / 2, y: 419, fill: '#8c9a84', 'text-anchor': 'middle', 'font-size': 10 }, String(index + 1).padStart(2, '0')));
+        svg.append(group);
+      });
+      svg.append(node('text', { x: 55, y: 455, fill: '#aebaa6', 'font-size': 10 }, `${state.demo ? '演示数据 · 非经营结果' : '用户输入 · 数据未经核验'} / VIBE FRONTIER`));
+      selectRow(state.selected);
+    }
+    function selectRow(index) {
+      state.selected = index;
+      const row = state.rows[index], total = state.rows.reduce((sum, entry) => sum + entry.value, 0);
+      $('category').value = index;
+      $('selected-value').textContent = `${format(row.value)} ${state.unit}`;
+      $('share').textContent = total ? `占本表合计 ${(row.value / total * 100).toFixed(1)}%` : '全表为 0，暂无占比';
+      $('chart').querySelectorAll('[data-index]').forEach((bar) => {
+        const selected = Number(bar.dataset.index) === index;
+        bar.setAttribute('aria-pressed', selected);
+        bar.setAttribute('tabindex', selected ? 0 : -1);
+        bar.querySelector('.bar-front').setAttribute('stroke-width', selected ? 1.5 : 0);
+      });
+    }
+    function render() {
+      const total = state.rows.reduce((sum, row) => sum + row.value, 0);
+      $('total').textContent = format(total);
+      $('unit-label').textContent = state.unit;
+      $('count-label').textContent = `${state.rows.length} 类活动 · 同一单位对比`;
+      $('source-label').textContent = state.demo ? '演示数据 · 非经营结果' : '用户输入 · 未核验';
+      $('table-caption').textContent = `${state.demo ? '演示数据' : '用户输入 · 未核验'} · 与图表同一份数据`;
+      $('table-unit').textContent = `数值 / ${state.unit}`;
+      $('category').replaceChildren(...state.rows.map((row, index) => new Option(row.label, index)));
+      $('data-table').replaceChildren(...state.rows.map((row) => {
+        const tr = document.createElement('tr');
+        [row.label, format(row.value)].forEach((text) => { const td = document.createElement('td'); td.textContent = text; tr.append(td); });
+        return tr;
+      }));
+      $('height-value').textContent = `${state.height}%`;
+      $('depth-value').textContent = state.depth;
+      renderChart();
+    }
+    function download(name, content, type) {
+      const blobURL = URL.createObjectURL(new Blob([content], { type }));
+      const link = document.createElement('a');
+      link.href = blobURL; link.download = name; document.body.append(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(blobURL), 1000);
+    }
+    $('data-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      try {
+        const rows = parseData($('data').value), unit = $('unit').value.trim();
+        if (!unit || Array.from(unit).length > 8) throw new Error('请填写 1–8 字的单位，如“人次”“个”或“元”。');
+        Object.assign(state, { rows, unit, selected: 0, dirty: false, demo: JSON.stringify(rows) === JSON.stringify(parseData(SAMPLE)) && unit === defaults.unit });
+        $('data').removeAttribute('aria-invalid'); $('unit').removeAttribute('aria-invalid');
+        $('export-svg').disabled = $('export-config').disabled = false;
+        render();
+        message(`已生成 ${rows.length} 类活动。可选择柱体，或导出当前图表。`, 'success');
+      } catch (error) {
+        state.dirty = true;
+        $('export-svg').disabled = $('export-config').disabled = true;
+        $('data').setAttribute('aria-invalid', 'true');
+        message(`${error.message} 当前图表仍保留上次成功生成的数据。`, 'error');
+      }
+    });
+    ['data', 'unit'].forEach((id) => $(id).addEventListener('input', setDirty));
+    ['height', 'depth', 'color'].forEach((id) => $(id).addEventListener('input', () => {
+      state[id] = id === 'color' ? $(id).value : Number($(id).value);
+      $('height-value').textContent = `${state.height}%`; $('depth-value').textContent = state.depth;
+      renderChart();
+    }));
+    $('category').addEventListener('change', () => selectRow(Number($('category').value)));
+    ['click', 'focusin', 'pointerover'].forEach((eventName) => $('chart').addEventListener(eventName, (event) => {
+      const target = event.target.closest('[data-index]');
+      if (target) selectRow(Number(target.dataset.index));
+    }));
+    $('chart').addEventListener('keydown', (event) => {
+      if (!event.target.closest('[data-index]')) return;
+      const keys = { ArrowRight: state.selected + 1, ArrowLeft: state.selected - 1, ArrowDown: state.selected + 1, ArrowUp: state.selected - 1, Home: 0, End: state.rows.length - 1 };
+      if (Object.hasOwn(keys, event.key)) {
+        event.preventDefault();
+        selectRow(Math.max(0, Math.min(state.rows.length - 1, keys[event.key])));
+        $('chart').querySelector(`[data-index="${state.selected}"]`).focus();
+      } else if (event.key === ' ' || event.key === 'Enter') { event.preventDefault(); selectRow(Number(event.target.closest('[data-index]').dataset.index)); }
+    });
+    $('export-svg').addEventListener('click', () => {
+      if (state.dirty) return;
+      const exportSVG = $('chart').cloneNode(true);
+      exportSVG.setAttribute('width', 900); exportSVG.setAttribute('height', 470);
+      download('vibe-data-space.svg', new XMLSerializer().serializeToString(exportSVG), 'image/svg+xml;charset=utf-8');
+      message('已请求下载 SVG。图中保留了数据来源标记。', 'success');
+    });
+    $('export-config').addEventListener('click', () => {
+      if (state.dirty) return;
+      const config = { version: 1, example: 'data-space', source: state.demo ? 'demo' : 'user-input-unverified', unit: state.unit, rows: state.rows, height: state.height, depth: state.depth, color: state.color };
+      download('vibe-data-space.json', JSON.stringify(config, null, 2), 'application/json;charset=utf-8');
+      message('已请求下载 JSON。它保存数据与参数；可按 README 说明再次应用。', 'success');
+    });
+    function reset() {
+      Object.assign(state, defaults, { rows: parseData(SAMPLE), selected: 0, dirty: false, demo: true });
+      $('data').value = SAMPLE;
+      Object.entries(defaults).forEach(([key, value]) => $(key).value = value);
+      $('data').removeAttribute('aria-invalid');
+      $('export-svg').disabled = $('export-config').disabled = false;
+      render(); message('已恢复演示数据。数据仅在当前浏览器处理。');
+    }
+    $('reset').addEventListener('click', reset);
+    reset();
+  </script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f5f4ee" />
+  <title>三幕滚动介绍 · VIBE FRONTIER 应用实验</title>
+  <style>
+    :root{--paper:#f5f4ee;--ink:#272924;--muted:#72766b;--line:#d9dbd2;--accent:#a7432e;color:var(--ink);background:var(--paper);font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-synthesis:none}
+    *{box-sizing:border-box}body{margin:0}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit;color:inherit}button,a,input,textarea,select{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:default}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:4px}h1,h2,p{margin:0}button{border:0}svg{display:block;max-width:100%}[hidden]{display:none!important}.mono{font-family:ui-monospace,"SFMono-Regular",monospace}.shell{max-width:1440px;margin:auto;padding:0 36px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;min-height:70px;border-bottom:1px solid var(--line);gap:20px}.wordmark{font:13px/1.4 ui-monospace,monospace;letter-spacing:.5px}.wordmark b{color:var(--accent);font-size:23px;vertical-align:-2px;margin-right:8px}.back{font-size:12px;white-space:nowrap}.back:hover{text-decoration:underline}.intro{display:flex;align-items:end;justify-content:space-between;gap:24px;padding:30px 0 26px}.eyebrow{font:10px ui-monospace,monospace;letter-spacing:1.6px;color:var(--accent);margin-bottom:10px}h1{font:400 32px/1.3 "Songti SC","STSong",Georgia,serif;letter-spacing:.5px}.intro p:last-child{font-size:12px;line-height:1.8;color:var(--muted);margin-top:10px}.steps{font-size:11px;line-height:1.8;white-space:nowrap;color:var(--muted)}.steps span{margin:0 9px;color:#abae9f}
+    .workspace{display:grid;grid-template-columns:minmax(0,1fr) 310px;border:1px solid var(--line);align-items:start}.preview-column{min-width:0;background:#20241f;position:relative}.preview-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 20px;color:#c9ccbf;font-size:10px;border-bottom:1px solid #ffffff18;min-height:54px}.preview-toolbar button{font-size:10px;background:transparent;border:1px solid #73796a;padding:7px 10px;color:#e3e5da}.preview-toolbar button:hover{border-color:#e4d9b6}.viewport{height:520px;overflow-y:auto;overscroll-behavior:contain;scrollbar-color:#89917d #20241f;scrollbar-width:thin;position:relative}.runway{height:1600px;position:relative}.stage{position:sticky;top:0;height:520px;overflow:hidden;color:#efeee6;background-image:linear-gradient(#d8dec408 1px,transparent 1px),linear-gradient(90deg,#d8dec408 1px,transparent 1px);background-size:32px 32px}.coordinate{position:absolute;left:24px;top:22px;font-size:9px;letter-spacing:1.3px;color:#8c9581}.diagram{position:absolute;left:0;top:0;width:100%;height:77%;overflow:visible}.lamp{transform-origin:400px 230px;animation:breathe 6s ease-in-out infinite}.ambient-paused .lamp{animation-play-state:paused}.scene-surface{opacity:0;stroke:#bec5a7;fill:#8993710b}.shade,.core,.base,.halo{transform-box:fill-box;transform-origin:center;will-change:transform}.narrative{position:absolute;left:28px;bottom:30px;right:28px;display:grid;grid-template-columns:40px minmax(0,1fr);gap:16px;align-items:start;pointer-events:none}.scene-number{font:12px/1.5 ui-monospace,monospace;color:#bdc5ad;padding-top:7px}.narrative h2{font:400 28px/1.4 "Songti SC","STSong",Georgia,serif;max-width:600px;overflow-wrap:anywhere}.narrative p{font-size:12px;line-height:1.9;max-width:520px;margin-top:9px;color:#b7bead;white-space:pre-wrap;overflow-wrap:anywhere}.light-line{stroke:var(--accent)}.diagram-caption{fill:#aab39b;font:9px ui-monospace,monospace;letter-spacing:1.4px}.preview-bottom{padding:14px 20px;color:#b8bfaa;font-size:10px;display:flex;align-items:center;gap:18px;border-top:1px solid #ffffff18}.progress{height:2px;flex:1;min-width:30px;background:#535b4b}.progress span{display:block;width:0%;height:100%;background:#d8c58f}.stage-links{display:flex;gap:14px}.stage-links button{padding:4px 0;min-width:28px;background:transparent;color:#9ba58d;font:11px ui-monospace,monospace}.stage-links button[aria-current="step"]{color:#eee4c4}.scroll-hint{position:absolute;right:22px;top:67px;color:#9ba58d;font:9px/1.7 ui-monospace,monospace;pointer-events:none;text-align:right}.fallback{font-size:11px;line-height:1.7;padding:12px 20px;color:#ead3a8;border-top:1px solid #ffffff18}
+    .inspector{padding:21px 22px 23px;min-width:0}.inspector-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.inspector h2{font-size:13px;font-weight:500}.inspector small{font:9px ui-monospace,monospace;color:var(--muted)}.field{display:block;font-size:10px;color:var(--muted);margin:15px 0}.field input,.field textarea,.field select{display:block;width:100%;min-width:0;margin-top:7px;border:1px solid var(--line);border-radius:0;background:#fcfbf5;padding:10px;font-size:12px;line-height:1.65;resize:vertical}.field textarea{min-height:70px}.field input[type=color]{padding:3px;height:34px;cursor:pointer}.stage-editor{padding:15px 0;border-top:1px solid var(--line)}.stage-editor summary{font-size:12px;cursor:pointer;line-height:1.6}.stage-editor[open] summary{margin-bottom:12px}.stage-editor .field:last-child{margin-bottom:0}.accent-row{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:14px}.button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;background:var(--ink);color:var(--paper);padding:10px 16px;font-size:12px;border:1px solid var(--ink)}.button:hover{background:#424738}.button.secondary{color:var(--ink);background:transparent;border-color:var(--line)}.button.secondary:hover{border-color:var(--ink)}.inspector .button{width:100%;margin-top:12px}.reset{background:transparent;border-bottom:1px solid var(--line);padding:5px 0;font-size:11px;justify-self:end;margin-bottom:16px}.reset:hover{color:var(--accent)}.status{font-size:10px;line-height:1.7;color:var(--muted);min-height:34px;margin-top:12px}
+    .notes{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin:28px 0 40px;font-size:12px;line-height:1.9}.notes details{border-top:1px solid var(--line);padding-top:15px;min-width:0}.notes summary{cursor:pointer;font-size:13px}.notes p{margin-top:12px;color:var(--muted)}.notes code{font:11px/1.8 ui-monospace,monospace;color:var(--ink);overflow-wrap:anywhere}.foot{border-top:1px solid var(--line);padding:18px 0 28px;display:flex;justify-content:space-between;gap:20px;font-size:10px;line-height:1.8;color:var(--muted)}
+    @keyframes breathe{0%,100%{translate:0 0}50%{translate:0 -5px}}@media(prefers-reduced-motion:reduce){.lamp{animation:none}.shade,.core,.base,.halo{will-change:auto}}
+    @media(min-width:1500px){.viewport,.stage{height:580px}.runway{height:1800px}}@media(max-width:1000px){.shell{padding:0 24px}.workspace{grid-template-columns:minmax(0,1fr) 280px}.intro{align-items:start}.steps{display:none}.narrative h2{font-size:24px}.narrative{left:22px;right:22px;gap:8px;grid-template-columns:28px 1fr}.inspector{padding:20px 18px}.diagram{height:72%}}
+    @media(max-width:720px){.shell{padding:0 16px}.topbar{min-height:60px}.wordmark{font-size:11px}.back{font-size:11px}.intro{padding:24px 0 20px}h1{font-size:28px}.intro p:last-child{font-size:11px}.workspace{grid-template-columns:1fr}.viewport,.stage{height:460px}.runway{height:1420px}.preview-toolbar{padding:12px 15px;font-size:9px}.preview-toolbar button{font-size:9px}.coordinate{left:18px;top:20px;font-size:8px}.scroll-hint{right:18px;top:63px;font-size:8px}.diagram{top:15px;height:70%}.narrative{left:18px;right:18px;bottom:26px;grid-template-columns:25px 1fr;gap:8px}.narrative h2{font-size:23px}.narrative p{font-size:11px;line-height:1.8}.preview-bottom{padding:12px 15px;gap:12px}.inspector{border-top:1px solid var(--line);padding:22px 20px}.notes{grid-template-columns:1fr;gap:22px;margin:24px 0 30px}.foot{display:block}.foot span{display:block;margin-top:7px}.stage-links{gap:8px}}
+    @media(max-width:720px){.diagram{width:145%;max-width:none;left:-22.5%}}
+    @supports not (position:sticky){.runway{height:520px}.stage{position:relative}.viewport{height:auto;overflow:visible}.scroll-hint{display:none}}
+    .embedded .shell{max-width:none;padding:0}.embedded .topbar,.embedded .intro,.embedded .inspector,.embedded .notes,.embedded .foot,.embedded .preview-toolbar,.embedded .preview-bottom,.embedded .scroll-hint,.embedded .fallback{display:none!important}.embedded .workspace{display:block;border:0}.embedded .viewport,.embedded .stage{height:100dvh;min-height:240px}.embedded .viewport{overflow:hidden}.embedded .runway{height:100%}.embedded .stage{position:relative}.embedded .diagram{top:0;height:78%}.embedded .coordinate{font-size:8px;left:18px;top:16px}.embedded .narrative{left:18px;right:18px;bottom:18px;gap:10px;grid-template-columns:24px 1fr}.embedded .narrative h2{font-size:22px}.embedded .narrative p{font-size:10px;line-height:1.6;max-width:470px;margin-top:6px}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar"><a class="wordmark" href="../index.html"><b aria-hidden="true">✳</b>VIBE FRONTIER / LAB</a><a class="back" href="../index.html">全部应用实验 ↗</a></header>
+    <section class="intro" aria-labelledby="title"><div><p class="eyebrow">02 / SCROLL → STORY</p><h1 id="title">把产品介绍，变成三幕故事。</h1><p>换成你的文案，再滚动一次。适用于产品介绍、项目提案与作品集。</p></div><p class="steps">修改内容<span>→</span>滚动预览<span>→</span>带走代码</p></section>
+    <main class="workspace">
+      <section class="preview-column" aria-label="滚动叙事实时预览">
+        <div class="preview-toolbar"><span class="mono">FIELD NOTES / 三幕产品介绍</span><button id="pause" type="button" aria-pressed="false">暂停漂浮</button></div>
+        <div id="viewport" class="viewport" tabindex="0" aria-label="在此区域滚动，或使用下方章节按钮切换三幕介绍">
+          <div id="runway" class="runway"><div id="stage" class="stage">
+            <span class="coordinate mono">FIG. 02 — FIELD LAMP<br />ORIGINAL SVG / LIVE DEMO</span>
+            <svg class="diagram" viewBox="0 0 800 460" role="img" aria-label="随滚动展开的原创灯具构造示意">
+              <defs><linearGradient id="shade-fill" x1="0" x2="1"><stop stop-color="#dfdfcb"/><stop offset=".5" stop-color="#f7f3da"/><stop offset="1" stop-color="#a9af98"/></linearGradient><linearGradient id="stem-fill"><stop stop-color="#8d9878"/><stop offset=".5" stop-color="#d2d8bb"/><stop offset="1" stop-color="#758364"/></linearGradient><radialGradient id="glow"><stop stop-color="#eddda0" stop-opacity=".25"/><stop offset="1" stop-color="#eddda0" stop-opacity="0"/></radialGradient></defs>
+              <g id="surface" class="scene-surface"><path d="M120 345 405 224 695 345 407 459Z"/><path d="m215 304 292 120m-200-160 292 120m-384 1 291-120m-194 160 291-121" opacity=".35"/><ellipse cx="405" cy="351" rx="112" ry="29" stroke="none" fill="#d9dc9b10"/></g>
+              <g class="lamp">
+                <ellipse id="shadow" cx="400" cy="355" rx="105" ry="18" fill="#000" opacity=".27"/>
+                <g id="halo" class="halo"><ellipse cx="400" cy="306" rx="150" ry="72" fill="url(#glow)"/></g>
+                <g id="base" class="base"><path d="M332 324v17c0 22 136 22 136 0v-17" fill="#889578" stroke="#b8c3a7"/><ellipse cx="400" cy="324" rx="68" ry="19" fill="#b8c3a7" stroke="#dde3cb"/><ellipse cx="400" cy="324" rx="34" ry="8" fill="#8f9b7b"/></g>
+                <g id="core" class="core"><path d="M387 192h26v132c0 5-26 5-26 0Z" fill="url(#stem-fill)" stroke="#c7d1b5"/><ellipse cx="400" cy="192" rx="13" ry="5" fill="#e1e7cb"/><path d="M396 221v80" stroke="#f7f1cf" stroke-width="2" opacity=".6"/></g>
+                <g id="shade" class="shade"><path d="M292 196 332 131c18-22 118-22 136 0l40 65c12 52-228 52-216 0Z" fill="url(#shade-fill)" stroke="#e8e8d5"/><ellipse cx="400" cy="196" rx="108" ry="28" fill="#bfc5a7" stroke="#dce0c5"/><ellipse cx="400" cy="196" rx="87" ry="19" fill="#ecdfae"/><ellipse cx="400" cy="126" rx="68" ry="16" fill="#e3e3cc" stroke="#f0efdf"/><path d="M329 150c28 12 115 12 143 0" stroke="#fbf7e1" fill="none" opacity=".55"/></g>
+              </g>
+              <g id="annotations" opacity="0"><path d="M510 118h63m-156 146h156m-106 126h106" stroke="#8f9b7e" fill="none"/><circle cx="510" cy="118" r="3" fill="var(--accent)"/><circle cx="417" cy="264" r="3" fill="var(--accent)"/><circle cx="467" cy="390" r="3" fill="var(--accent)"/><text x="583" y="122" class="diagram-caption">01 / SHADE</text><text x="583" y="268" class="diagram-caption">02 / CORE</text><text x="583" y="394" class="diagram-caption">03 / BASE</text></g>
+            </svg>
+            <div class="narrative"><span id="scene-number" class="scene-number">01</span><div><h2 id="scene-title">一盏灯，陪你换个地方。</h2><p id="scene-description">从书桌到露台，让光跟着生活移动。先让用户认识产品，再讲它的细节。</p></div></div>
+          </div></div>
+        </div>
+        <span class="scroll-hint">SCROLL INSIDE ↓<br />在画面里滚动</span>
+        <p id="fallback" class="fallback" hidden></p>
+        <div class="preview-bottom"><nav class="stage-links" aria-label="预览章节"><button data-scene="0" type="button" aria-label="预览第一幕" aria-current="step">01</button><button data-scene="1" type="button" aria-label="预览第二幕">02</button><button data-scene="2" type="button" aria-label="预览第三幕">03</button></nav><div class="progress" aria-hidden="true"><span id="progress-fill"></span></div><output id="progress-label" class="mono" aria-label="滚动进度">0%</output></div>
+      </section>
+      <aside class="inspector" aria-labelledby="editor-title">
+        <div class="inspector-title"><h2 id="editor-title">换成你的内容</h2><small>LIVE EDITOR</small></div>
+        <label class="field">内容预设<select id="preset"><option value="product">产品介绍</option><option value="portfolio">作品集提案</option></select></label>
+        <form id="editor" autocomplete="off">
+          <details class="stage-editor" open><summary>01 / 让人认识</summary><label class="field">标题 · 最多 24 字<input name="title0" maxlength="24" required value="一盏灯，陪你换个地方。" /></label><label class="field">正文 · 最多 80 字<textarea name="description0" maxlength="80" rows="3">从书桌到露台，让光跟着生活移动。先让用户认识产品，再讲它的细节。</textarea></label></details>
+          <details class="stage-editor"><summary>02 / 看清细节</summary><label class="field">标题 · 最多 24 字<input name="title1" maxlength="24" required value="拆开看，细节才被记住。" /></label><label class="field">正文 · 最多 80 字<textarea name="description1" maxlength="80" rows="3">用分层说明灯罩、光源与底座。让文字与对应结构出现在同一时刻。</textarea></label></details>
+          <details class="stage-editor"><summary>03 / 放进场景</summary><label class="field">标题 · 最多 24 字<input name="title2" maxlength="24" required value="把它，放进真实生活。" /></label><label class="field">正文 · 最多 80 字<textarea name="description2" maxlength="80" rows="3">最后回到完整产品，交代使用情境。在项目里，这一幕可以接预约、咨询或购买入口。</textarea></label></details>
+          <div class="accent-row"><label class="field">标注强调色<input id="accent" name="accent" type="color" value="#a7432e" /></label><button id="reset" class="reset" type="button">恢复初始内容 ↺</button></div>
+        </form>
+        <a class="button" href="../downloads/scroll-story.zip" download>下载完整源码 ZIP ↗</a>
+        <button id="export" class="button secondary" type="button">导出我的文案 JSON ↓</button>
+        <p id="status" class="status" role="status">内容只在当前页面处理，不上传。<br />先点 02，再修改这一幕的内容。</p>
+      </aside>
+    </main>
+    <section class="notes" aria-label="实现与应用说明">
+      <details><summary>技术拆解 / 滚动如何变成镜头？ ＋</summary><p>将滚动距离映射到 0–1 的进度，再在三幕关键位置间插值。灯罩上移、底座下移、标注淡入，最后重组到使用场景。SVG 是分组示意图；这里没有 3D 模型，也不需要 WebGL。</p><p><code>p = scrollTop / (scrollHeight − clientHeight)</code><br /><code>拆解量 = 1 − |2p − 1|</code></p><p>滚动监听只排队一帧更新；离开页面暂停漂浮。系统减少动态时取消漂浮，并按章节切换静态构图。</p></details>
+      <details><summary>拿去应用 / 从实验接到项目 ＋</summary><p>替换 <code>presets</code> 文案与 SVG 分组，就能使用同样的滚动机制。产品页用“整体 → 构造 → 使用”，作品集用“问题 → 方法 → 交付”。先让内容顺序成立，再增加镜头。</p><p>下载包可直接打开 <code>index.html</code>。独立编写的示例代码与 SVG 使用 MIT 许可；灯具为虚构示意，无产品性能或商业结果承诺。</p></details>
+    </section>
+    <footer class="foot"><p>VIBE FRONTIER / 原创应用实验 02 · v1.0</p><span>零依赖 · 本地可运行 · MIT 许可</span></footer>
+    <noscript><p>此实验需要 JavaScript。启用后可编辑文案并预览滚动构图；当前画面保留第一幕静态说明。</p></noscript>
+  </div>
+  <script>
+    // Original demonstration. No third-party code, artwork, fonts or services.
+    const $ = (selector) => document.querySelector(selector);
+    const viewport = $('#viewport');
+    const editor = $('#editor');
+    const embedded = new URLSearchParams(location.search).get('embed') === '1';
+    if (embedded) document.documentElement.classList.add('embedded');
+    const reduced = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : null;
+    const presets = {
+      product: [
+        ['一盏灯，陪你换个地方。', '从书桌到露台，让光跟着生活移动。先让用户认识产品，再讲它的细节。'],
+        ['拆开看，细节才被记住。', '用分层说明灯罩、光源与底座。让文字与对应结构出现在同一时刻。'],
+        ['把它，放进真实生活。', '最后回到完整产品，交代使用情境。在项目里，这一幕可以接预约、咨询或购买入口。']
+      ],
+      portfolio: [
+        ['一个问题，作为故事的起点。', '先让观看者理解你在解决什么。用一个核心对象承载项目，减少首屏的信息负担。'],
+        ['把方法拆开，让判断可见。', '用分层图形对应你的关键决策。这里替换成调研发现、交互结构或制作过程。'],
+        ['回到交付，展示如何被使用。', '给出具体应用情境与可核验成果。不要把漂亮的动态本身写成已经验证的业务收益。']
+      ]
+    };
+    let scenes = presets.product.map((scene) => [...scene]);
+    let current = 0;
+    let progress = 0;
+    let pending = false;
+    let paused = Boolean(reduced?.matches);
+    const sticky = Boolean(window.CSS?.supports('position', 'sticky'));
+    const animateFrame = window.requestAnimationFrame?.bind(window) || ((callback) => setTimeout(() => callback(Date.now()), 16));
+    const clamp = (value, low = 0, high = 1) => Math.min(high, Math.max(low, value));
+    const toNumber = (value) => Number(value.toFixed(3));
+    const sceneButtons = [...document.querySelectorAll('[data-scene]')];
+
+    function updateAmbient() {
+      $('.preview-column').classList.toggle('ambient-paused', paused || document.hidden);
+      $('#pause').textContent = reduced?.matches ? '系统减少动态' : paused ? '继续漂浮' : '暂停漂浮';
+      $('#pause').disabled = Boolean(reduced?.matches);
+      $('#pause').setAttribute('aria-pressed', String(paused));
+    }
+    function draw(value) {
+      progress = clamp(value);
+      // Reduce motion keeps scroll input, but switches between three still compositions.
+      const p = reduced?.matches ? Math.round(progress * 2) / 2 : progress;
+      const spread = 1 - Math.abs(2 * p - 1);
+      const atScene = clamp((p - .55) / .45);
+      $('#shade').style.transform = `translateY(${-76 * spread}px)`;
+      $('#core').style.transform = `translateY(${12 * spread}px)`;
+      $('#base').style.transform = `translateY(${66 * spread}px)`;
+      $('#halo').style.opacity = String(toNumber((1 - spread) * .9));
+      $('#annotations').setAttribute('opacity', String(toNumber(clamp((spread - .25) / .65))));
+      $('#surface').style.opacity = String(toNumber(atScene));
+      $('#shadow').setAttribute('opacity', String(toNumber(.27 - .15 * spread)));
+      $('.lamp').style.transform = `translate(${toNumber(-44 * atScene)}px,${toNumber(-14 * atScene)}px) scale(${toNumber(1 - .06 * atScene)})`;
+      current = Math.min(2, Math.floor(progress * 3));
+      $('#scene-number').textContent = `0${current + 1}`;
+      $('#scene-title').textContent = scenes[current][0] || '添加这一幕的标题';
+      $('#scene-description').textContent = scenes[current][1];
+      $('#progress-fill').style.width = `${progress * 100}%`;
+      $('#progress-label').textContent = `${Math.round(progress * 100)}%`;
+      sceneButtons.forEach((button, index) => {
+        if (index === current) button.setAttribute('aria-current', 'step');
+        else button.removeAttribute('aria-current');
+      });
+    }
+    function fromScroll() {
+      const distance = viewport.scrollHeight - viewport.clientHeight;
+      draw(distance > 0 ? viewport.scrollTop / distance : progress);
+      pending = false;
+    }
+    function requestDraw() {
+      if (!pending) { pending = true; animateFrame(fromScroll); }
+    }
+    function goToScene(index) {
+      const target = index / 2;
+      if (!sticky) { draw(target); return; }
+      // Native scrollTop avoids unsupported smooth-scroll options and accidental motion.
+      viewport.scrollTop = target * (viewport.scrollHeight - viewport.clientHeight);
+      draw(target);
+    }
+    function usePreset(key) {
+      scenes = presets[key].map((scene) => [...scene]);
+      scenes.forEach(([title, description], index) => {
+        editor.elements[`title${index}`].value = title;
+        editor.elements[`description${index}`].value = description;
+      });
+      draw(progress);
+    }
+    viewport.addEventListener('scroll', requestDraw, { passive: true });
+    sceneButtons.forEach((button) => button.addEventListener('click', () => goToScene(Number(button.dataset.scene))));
+    window.addEventListener('resize', requestDraw, { passive: true });
+    document.addEventListener('visibilitychange', updateAmbient);
+    editor.addEventListener('submit', (event) => event.preventDefault());
+    editor.addEventListener('input', (event) => {
+      const match = /^(title|description)([0-2])$/.exec(event.target.name);
+      if (match) {
+        const index = Number(match[2]);
+        scenes[index][match[1] === 'title' ? 0 : 1] = event.target.value;
+        goToScene(index);
+      }
+      if (event.target.name === 'accent') document.documentElement.style.setProperty('--accent', event.target.value);
+      $('#status').textContent = '已更新预览。内容只在当前页面处理，刷新后恢复初始值。';
+    });
+    $('#preset').addEventListener('change', (event) => {
+      usePreset(event.target.value);
+      goToScene(0);
+      $('#status').textContent = '已切换文案预设。图形保持同一套原创 SVG，可在源码中替换。';
+    });
+    $('#reset').addEventListener('click', () => {
+      $('#preset').value = 'product';
+      $('#accent').value = '#a7432e';
+      document.documentElement.style.setProperty('--accent', '#a7432e');
+      usePreset('product'); goToScene(0);
+      $('#status').textContent = '已恢复初始产品介绍。';
+    });
+    $('#pause').addEventListener('click', () => { paused = !paused; updateAmbient(); });
+    $('#export').addEventListener('click', () => {
+      const payload = { version: 1, example: 'scroll-story', accent: $('#accent').value, scenes: scenes.map(([title, description]) => ({ title, description })) };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json;charset=utf-8' });
+      const href = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = href; link.download = 'my-scroll-story.json';
+      document.body.append(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(href), 1000);
+      $('#status').textContent = '已生成文案 JSON。重新应用时，将 scenes 文案填入源码中的 presets；此页不提供导入。';
+    });
+    if (reduced?.addEventListener) reduced.addEventListener('change', () => { paused = reduced.matches; updateAmbient(); draw(progress); });
+    else if (reduced?.addListener) reduced.addListener(() => { paused = reduced.matches; updateAmbient(); draw(progress); });
+    if (!sticky) {
+      $('#runway').style.height = '520px';
+      $('#stage').style.position = 'relative';
+      viewport.style.height = 'auto';
+      viewport.style.overflow = 'visible';
+      $('.scroll-hint').hidden = true;
+      $('#fallback').hidden = false;
+      $('#fallback').textContent = '当前浏览器不支持吸附布局，已切换为静态章节模式。用 01 / 02 / 03 按钮查看完整内容。';
+    }
+    if (reduced?.matches) $('#status').textContent = '系统已减少动态：取消漂浮，按章节切换静态构图。仍可编辑与导出。';
+    if (location.protocol === 'file:') {
+      document.querySelectorAll('a[href="../index.html"]').forEach((link) => { link.href = 'https://joeyhu1108-maker.github.io/vibe-frontier-daily/vibe/lab/'; });
+      $('a[download]').href = 'https://joeyhu1108-maker.github.io/vibe-frontier-daily/vibe/lab/downloads/scroll-story.zip';
+      $('#status').textContent = '当前为离线示例，编辑与导出可用。返回应用库与源码下载链接会打开线上网站。';
+    }
+    updateAmbient(); draw(0);
+    // The archive's small live preview runs a six-second mechanism cycle.
+    // The full application never scrolls or advances without the user's input.
+    if (embedded) {
+      let visible = true;
+      let running = false;
+      let elapsed = 0;
+      let previous = 0;
+      function tick(time) {
+        running = false;
+        if (!visible || document.hidden || reduced?.matches) { previous = 0; return; }
+        if (previous) elapsed += Math.min(time - previous, 60);
+        previous = time;
+        draw((elapsed % 6000) / 6000);
+        running = true; animateFrame(tick);
+      }
+      function resume() {
+        $('.preview-column').classList.toggle('ambient-paused', !visible || document.hidden || Boolean(reduced?.matches));
+        if (!running && visible && !document.hidden && !reduced?.matches) { running = true; animateFrame(tick); }
+        if (reduced?.matches) draw(.5);
+      }
+      if ('IntersectionObserver' in window) new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; resume(); }).observe($('.preview-column'));
+      document.addEventListener('visibilitychange', resume);
+      if (reduced?.addEventListener) reduced.addEventListener('change', resume);
+      resume();
+    }
+  </script>
+</body>
+</html>

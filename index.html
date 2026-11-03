@@ -11,18 +11,19 @@
     <title>VIBE FRONTIER｜前端实验档案</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='3' width='26' height='26' rx='2' fill='%23f7f6f2' stroke='%23b34831' stroke-width='2'/%3E%3Crect x='9' y='10' width='5' height='5' fill='%23b34831'/%3E%3Crect x='18' y='10' width='5' height='5' fill='%23b34831'/%3E%3Cpath d='M9 21h14' stroke='%23b34831' stroke-width='2'/%3E%3C/svg%3E" />
     <link rel="preload" href="./vibe/fonts/FusionPixel-Proportional-zhHans-12px.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="stylesheet" href="./vibe/frontier.css?v=20261103-rebuild" />
+    <link rel="stylesheet" href="./vibe/frontier.css?v=20261103-applications" />
   </head>
   <body>
     <a class="skip-link" href="#main">跳到作品</a>
     <header class="site-header">
       <a class="brand" href="#discover" aria-label="VIBE FRONTIER 首页"><span class="brand-mark" aria-hidden="true">✳</span><span>VIBE FRONTIER<small>前端实验档案</small></span></a>
-      <nav aria-label="主要导航"><a href="#discover" data-nav="discover">作品</a><a href="#journals" data-nav="journals">每日期刊</a><a href="#events" data-nav="events">活动</a></nav>
-      <span class="header-note">真实作品，拆开来看。</span>
+      <nav aria-label="主要导航"><a href="#discover" data-nav="discover">作品</a><a href="./vibe/lab/index.html">应用库</a><a href="#journals" data-nav="journals">每日期刊</a><a href="#events" data-nav="events">活动</a></nav>
+      <span class="header-note">看懂机制，带进项目。</span>
     </header>
     <main id="main">
       <section id="discover" class="view wrap" aria-labelledby="discover-title">
         <div class="page-heading"><div><p class="eyebrow">THE INTERACTIVE WEB, IN MOTION</p><h1 id="discover-title">先看见，再看懂。</h1><p>发现值得拆解的前端作品，带走一个能复用的方法。</p></div><a class="latest-link" id="latest-link" href="#journals">阅读最新一期 <span aria-hidden="true">↗</span></a></div>
+        <a class="application-entry" href="./vibe/lab/index.html"><span>想直接做出来？试用 3 个原创应用案例。</span><b>修改内容，带走源码 →</b></a>
         <div class="browser-tools">
           <div class="search-row"><label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">搜索作品、作者、用途或机制</span><input id="search" type="search" placeholder="搜索作品、作者、用途或机制" autocomplete="off" /></label><button class="random-button" id="random" type="button">随机一件 <span aria-hidden="true">↗</span></button></div>
           <div class="filter-row"><div id="types" class="type-filters" aria-label="按用途筛选"></div><button id="refine-toggle" class="refine-toggle" type="button" aria-expanded="false" aria-controls="refine">精细筛选 ＋</button></div>
@@ -41,7 +42,7 @@
         <p id="event-check" class="source-note"></p><div id="event-list" class="event-list"></div>
       </section>
     </main>
-    <footer class="site-footer wrap"><div><strong>VIBE FRONTIER</strong><p>AI 造物社维护的免费前端实验档案。</p></div><details><summary>关于收录、证据与使用</summary><p>作品与画面的权利归原作者。收录时间与作品发布时间分开标注；技术推断与作者披露分别说明。应用价值为学习判断，不代表已验证的商业结果。</p><p>仅在公开仓库的许可已经核验时提供学习下载，原许可与第三方素材条款继续有效。暂缺核验画面的研究记录仍保留在档案数据中。</p><a href="https://github.com/joeyhu1108-maker/vibe-frontier-daily" target="_blank" rel="noopener noreferrer">公开档案与来源 ↗</a></details><a href="https://account.vibe.zone-y.com/">我的账号 ↗</a></footer>
+    <footer class="site-footer wrap"><div><strong>VIBE FRONTIER</strong><p>AI 造物社 · 前端作品档案与技术应用库。</p></div><details><summary>关于收录、证据与使用</summary><p>作品与画面的权利归原作者。收录时间与作品发布时间分开标注；技术推断与作者披露分别说明。应用价值为学习判断，不代表已验证的商业结果。</p><p>原作者 ZIP 仅在公开仓库的许可已经核验时提供学习下载，原许可与第三方素材条款继续有效。暂缺核验画面的研究记录仍保留在档案数据中。应用库原创示例采用各包所附 MIT 许可；当前示例免费试用，会员方案尚未开放购买。</p><a href="https://github.com/joeyhu1108-maker/vibe-frontier-daily" target="_blank" rel="noopener noreferrer">公开档案与来源 ↗</a></details><a href="https://account.vibe.zone-y.com/">我的账号 ↗</a></footer>
     <dialog id="work-dialog" class="work-dialog" aria-labelledby="work-title"><div class="dialog-toolbar"><span>WORK / 作品拆解</span><button id="close" type="button" aria-label="关闭作品详情">关闭 ×</button></div><div id="detail"></div></dialog>
     <noscript><p class="wrap">请启用 JavaScript 以浏览作品、筛选和案例拆解。<a href="./vibe/issues.json">读取公开档案</a></p></noscript>
     <script src="./vibe/frontier.js?v=20261103-rebuild" defer></script>

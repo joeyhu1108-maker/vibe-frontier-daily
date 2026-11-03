@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#f5f4ee" />
+  <meta name="description" content="VIBE FRONTIER 原创技术应用示例：修改自己的内容，看懂实现机制，带走独立运行的代码。" />
+  <title>技术应用库 · VIBE FRONTIER</title>
+  <link rel="stylesheet" href="../frontier.css?v=20261103-applications" />
+  <link rel="stylesheet" href="./lab.css?v=20261103" />
+</head>
+<body>
+  <a class="skip-link" href="#applications">跳到应用案例</a>
+  <header class="site-header">
+    <a class="brand" href="../../index.html#discover"><span class="brand-mark" aria-hidden="true">✳</span><span>VIBE FRONTIER<small>技术拆解与应用</small></span></a>
+    <nav aria-label="主要导航"><a href="../../index.html#discover">作品</a><a href="./index.html" aria-current="page">应用库</a><a href="#membership">会员方案</a></nav>
+    <span class="header-note">先试用，再判断价值。</span>
+  </header>
+  <main class="lab-wrap">
+    <div class="lab-heading"><div><p class="eyebrow">UNDERSTAND IT. MAKE IT YOURS.</p><h1>把一个效果，用进自己的项目。</h1><p>修改内容，观察变化，理解原理，再带走能独立运行的代码。</p></div><span class="edition">FIRST APPLICATIONS<br /><b>首批 3 件 · 免费试用</b></span></div>
+    <div class="library-caption"><span>原创应用案例 / 01—03</span><span>无安装依赖 · 可离线运行 · 附源码与说明</span></div>
+    <section class="application-grid" id="applications" aria-label="三个可运行的应用案例">
+      <article class="application">
+        <a class="application-preview" href="./particle-word/index.html" aria-label="开始修改粒子品牌开场"><iframe src="./particle-word/index.html?embed=1" title="粒子品牌开场的实时运行画面" loading="eager" tabindex="-1" aria-hidden="true"></iframe><span class="live-label">● 实时运行</span><span class="preview-enter" aria-hidden="true">进入编辑 ↗</span></a>
+        <p class="application-meta"><span>01 / 品牌与作品集</span><span>Canvas 2D</span></p>
+        <h2>粒子品牌开场</h2><p class="application-promise">把自己的名字变成粒子，让开场有一个可记住的动作。</p>
+        <dl><dt>你来修改</dt><dd>品牌文字、颜色、密度与聚合速度</dd><dt>你能带走</dt><dd>独立源码、配置 JSON、静态 SVG</dd></dl>
+        <div class="application-actions"><a class="button" href="./particle-word/index.html">开始修改 →</a><a href="./downloads/particle-word.zip" download>源码 ZIP ↓</a></div>
+        <details><summary>这里练习什么机制？</summary><p>离屏字形采样 → 目标点 → 缓动插值与指针扰动。适合装饰性开场，普通标题仍需保留。</p><a href="../../index.html#work/point-cloud-studio-ai-depth">关联阅读：Point Cloud Studio ↗</a></details>
+      </article>
+      <article class="application">
+        <a class="application-preview" href="./scroll-story/index.html" aria-label="开始修改三幕滚动介绍"><iframe src="./scroll-story/index.html?embed=1" title="三幕滚动介绍的实时示意，自动轮播三个阶段" loading="eager" tabindex="-1" aria-hidden="true"></iframe><span class="live-label">● 实时示意</span><span class="preview-enter" aria-hidden="true">进入编辑 ↗</span></a>
+        <p class="application-meta"><span>02 / 产品与项目介绍</span><span>SVG + Scroll</span></p>
+        <h2>三幕滚动介绍</h2><p class="application-promise">用整体、结构与使用场景，把一个产品逐步讲清楚。</p>
+        <dl><dt>你来修改</dt><dd>三幕标题与正文、主题色</dd><dt>你能带走</dt><dd>独立源码、三幕配置 JSON</dd></dl>
+        <div class="application-actions"><a class="button" href="./scroll-story/index.html">开始修改 →</a><a href="./downloads/scroll-story.zip" download>源码 ZIP ↓</a></div>
+        <details><summary>这里练习什么机制？</summary><p>滚动距离 → 归一化进度 → SVG 状态插值。示例图形独立绘制，自己的产品素材需自行替换。</p><a href="../../index.html#work/flat-to-3d">关联阅读：Flat to 3D ↗</a></details>
+      </article>
+      <article class="application">
+        <a class="application-preview" href="./data-space/index.html" aria-label="开始修改活动数据空间"><iframe src="./data-space/index.html?embed=1" title="活动数据空间，使用明确标记的演示数据" loading="eager" tabindex="-1" aria-hidden="true"></iframe><span class="live-label">● 可编辑数据</span><span class="preview-enter" aria-hidden="true">进入编辑 ↗</span></a>
+        <p class="application-meta"><span>03 / 活动与运营汇报</span><span>Data → Space</span></p>
+        <h2>活动数据空间</h2><p class="application-promise">把活动人数放进同一尺度，快速看见不同项目的差异。</p>
+        <dl><dt>你来修改</dt><dd>分类与数值 CSV、颜色与图形参数</dd><dt>你能带走</dt><dd>独立源码、配置与可导出图表</dd></dl>
+        <div class="application-actions"><a class="button" href="./data-space/index.html">开始修改 →</a><a href="./downloads/data-space.zip" download>源码 ZIP ↓</a></div>
+        <details><summary>这里练习什么机制？</summary><p>数据校验 → 数值映射 → 空间几何。演示数据不代表实际活动结果，立体视图应与数值表一起阅读。</p><a href="../../index.html#work/datasplore-sqlite-world">关联阅读：Datasplore ↗</a></details>
+      </article>
+    </section>
+    <section class="takeaway" aria-labelledby="takeaway-title"><p class="eyebrow">A SMALL, COMPLETE LOOP</p><h2 id="takeaway-title">从“看起来不错”，走到“我能用了”。</h2><ol><li><b>换成自己的内容</b><p>在编辑器中修改文字或数据，看画面是否仍然成立。</p></li><li><b>看懂关键机制</b><p>对照输入、映射与输出，知道该改哪里、有什么限制。</p></li><li><b>带走并独立运行</b><p>解压 ZIP 后打开 HTML，按 README 接入自己的项目。</p></li></ol><p class="boundary">这三件是独立编写的机制示例，不是原作复刻。代码采用随包 MIT 许可，可按许可用于个人与客户项目；关联作品的代码、字体、模型及画面各自遵守原许可。</p></section>
+    <section class="membership" id="membership" aria-labelledby="membership-title"><div class="membership-heading"><div><p class="eyebrow">MEMBERSHIP / WORK IN PROGRESS</p><h2 id="membership-title">为技术拆解与应用付费。</h2><p>以下是权益草案，价格待定，尚未开放购买。当前三个示例可直接试用和下载。</p></div><span class="draft-label">会员方案预览</span></div>
+      <div class="plan-grid"><article><span class="plan-code">01 / ONE-TIME</span><h3>首版全库 · 一次购买</h3><p>适合有具体项目、想集中学习和使用的人。</p><ul><li>永久取得首版清单中的全部案例、深度拆解与应用包</li><li>包含该版本勘误，清单与版本在购买前明确</li><li>未来新增内容与独立版本不自动包含</li></ul><p class="plan-price">价格待定 <span>一次付费</span></p></article><article><span class="plan-code">02 / MONTHLY</span><h3>持续更新 · 月度会员</h3><p>适合持续做项目、需要不断补充方法的人。</p><ul><li>有效期内访问完整最新库</li><li>获得新增拆解、应用包与适配更新</li><li>取消后可使用至本期结束</li></ul><p class="plan-price">价格待定 <span>按月付费</span></p></article></div>
+      <p class="membership-note">首版收费内容尚未形成最终清单，这三个示例不代表全部历史案例已具备应用包。MIT 示例已取得的许可不因会员到期失效。收款、账号权限与内容交付完成验证后再开放购买。</p>
+    </section>
+  </main>
+  <footer class="site-footer lab-wrap"><div><strong>VIBE FRONTIER</strong><p>AI 造物社 · 技术拆解与应用库</p></div><a href="../../index.html#discover">继续探索真实作品 ↗</a></footer>
+</body>
+</html>
