@@ -1,45 +1,54 @@
-const cards = [...document.querySelectorAll('.application')];
+const applications = document.querySelector('#applications');
+const planned = document.querySelector('#planned-applications');
 const search = document.querySelector('#library-search');
-const scenario = document.querySelector('#scenario');
-const filters = [...document.querySelectorAll('.access-filters button')];
+const filters = [...document.querySelectorAll('[data-access]')];
 const clear = document.querySelector('#clear-filters');
-let access = 'all';
+const empty = document.querySelector('#library-empty');
+let access = 'free';
+let scenario = 'all';
 
 function render(syncURL = true) {
   const query = search.value.trim().toLocaleLowerCase('zh-CN');
+  const activeSection = access === 'free' ? applications : planned;
+  const cards = [...activeSection.querySelectorAll('[data-search]')];
   let count = 0;
+  applications.hidden = access !== 'free';
+  planned.hidden = access !== 'planned';
   cards.forEach((card) => {
-    const matches = (access === 'all' || card.dataset.access === access) && (scenario.value === 'all' || card.dataset.scenario === scenario.value) && (!query || `${card.dataset.search} ${card.textContent}`.toLocaleLowerCase('zh-CN').includes(query));
-    card.hidden = !matches;
-    if (matches) count++;
-    const frame = card.querySelector('iframe');
-    if (frame && !matches && frame.hasAttribute('src')) { frame.dataset.previewSrc = frame.getAttribute('src'); frame.removeAttribute('src'); }
-    if (frame && matches && !frame.hasAttribute('src')) frame.src = frame.dataset.previewSrc;
+    card.hidden = (scenario !== 'all' && card.dataset.scenario !== scenario) || (query && !`${card.dataset.search} ${card.textContent}`.toLocaleLowerCase('zh-CN').includes(query));
+    if (!card.hidden) count++;
   });
+  document.querySelector('#library-note').textContent = access === 'free' ? '独立源码 / 无需安装 / MIT 许可' : '专题规划 / 尚未交付 / 价格待定';
   filters.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.access === access)));
-  const filtered = query || access !== 'all' || scenario.value !== 'all';
+  applications.classList.toggle('is-filtered', count < 3);
+  const filtered = query || scenario !== 'all';
   clear.hidden = !filtered;
-  document.querySelector('#library-empty').hidden = count !== 0;
-  document.querySelector('#library-results').textContent = filtered ? `${count} 个结果 / ${cards.length} 个条目` : '3 个可用示例 · 3 个筹备中的付费专题';
+  empty.hidden = count !== 0;
+  document.querySelector('#library-results').textContent = filtered ? `${count} 个结果` : access === 'free' ? '3 个原创实验 · 可在线编辑' : '3 个专题规划 · 尚未开放购买';
+  document.querySelectorAll('.application iframe').forEach((frame) => {
+    const visible = access === 'free' && !frame.closest('.application').hidden;
+    if (!visible && frame.hasAttribute('src')) { frame.dataset.previewSrc = frame.getAttribute('src'); frame.removeAttribute('src'); }
+    if (visible && !frame.hasAttribute('src')) frame.src = frame.dataset.previewSrc;
+  });
   if (syncURL) {
     const url = new URL(location.href);
-    for (const [key, value] of [['access', access], ['scenario', scenario.value], ['q', search.value.trim()]]) {
-      if (!value || value === 'all') url.searchParams.delete(key); else url.searchParams.set(key, value);
+    if (['#plan-particle', '#plan-scroll', '#plan-data'].includes(url.hash) && access === 'free') url.hash = '';
+    for (const [key, value] of [['access', access], ['scenario', scenario], ['q', search.value.trim()]]) {
+      if (!value || value === 'all' || (key === 'access' && value === 'free')) url.searchParams.delete(key); else url.searchParams.set(key, value);
     }
     history.replaceState(null, '', url);
   }
 }
 function restore() {
   const params = new URLSearchParams(location.search);
-  access = ['free', 'planned'].includes(params.get('access')) ? params.get('access') : 'all';
-  scenario.value = ['brand', 'product', 'data'].includes(params.get('scenario')) ? params.get('scenario') : 'all';
+  access = params.get('access') === 'planned' || ['#plan-particle', '#plan-scroll', '#plan-data'].includes(location.hash) ? 'planned' : 'free';
+  scenario = ['brand', 'product', 'data'].includes(params.get('scenario')) ? params.get('scenario') : 'all';
   search.value = params.get('q') || '';
   render(false);
 }
-function reset() { access = 'all'; search.value = ''; scenario.value = 'all'; render(); }
-filters.forEach((button) => button.addEventListener('click', () => { access = button.dataset.access; render(); }));
-search.addEventListener('input', () => render());
-scenario.addEventListener('change', () => render());
+function reset() { search.value = ''; scenario = 'all'; render(); }
+filters.forEach((button) => button.addEventListener('click', () => { access = button.dataset.access; scenario = 'all'; render(); }));
+search.addEventListener('input', () => { scenario = 'all'; render(); });
 clear.addEventListener('click', reset);
 document.querySelector('[data-reset]').addEventListener('click', reset);
 window.addEventListener('popstate', restore);
