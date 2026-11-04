@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-03T10:40:21.735Z",
+  "updatedAt": "2026-11-04T12:10:25.717Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,146 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-11-04",
+      "note": "让变化有因果：Fold 用供料、重力和拖拽塑造材料；Abandoned House 用近景草地、遮挡和光束组织空间；Finding my way 把个人文字与镜头阶段连接。本期关注可复用的控制关系，区分公开源码、作者陈述与本次桌面实测，来源时间与收录日期分开标注。",
+      "featuredId": "fold-codevember-2026",
+      "experiment": {
+        "title": "30 分钟实验：一个控制量，三种可解释状态",
+        "input": "用自己有版权的材料照片或自绘 SVG，准备三种明确标为示意的状态：平展、松弛折叠、紧密折叠；每种附一条设计判断。不使用未经许可的原作截图作为可编辑素材。",
+        "target": "一个滑杆控制折叠状态，画面与状态说明同步变化；按钮可还原初态。让访客看清参数改变了什么，并明确这是视觉示意，不是材料力学计算。",
+        "stack": "HTML 原生 range、SVG 三组路径与少量 JavaScript；不引入物理引擎。借鉴 Fold 的参数—形态—反馈关系：https://mrdoob.github.io/codevember-2026/01/ 。",
+        "acceptance": "滑杆的三个停点与说明一一对应；键盘方向键可操作，还原能回到同一初态；减少动态时直接切换。请一位未看说明的人指出控制量和变化对象，记录原话。30分钟只检验因果是否看得懂，不含真实布料、折射或性能测量。本次为实验方案，尚未制作。"
+      },
+      "restraint": "Creative Twin 仅在存在真实对象、可追溯测量、时间戳与明确映射时接入。Fold 是近似物理玩具，森林是艺术场景，个人宇宙是叙事隐喻；不能由画面真实感推出工程精度、生态监测能力或个人能力画像。",
+      "cases": [
+        {
+          "id": "fold-codevember-2026",
+          "title": "Fold · 让拖拽改变下一道褶皱",
+          "author": "Mr.doob（mrdoob）",
+          "platform": "作者 GitHub Pages / GitHub",
+          "pageTime": "作者添加 Fold 的提交：2026-11-03 09:59:52 UTC；仓库创建：2026-11-03 09:26:54 UTC。01是题号，不当作11月1日发布日期；演示站首次上线时间未独立核实。收录：2026-11-04。",
+          "url": "https://mrdoob.github.io/codevember-2026/01/",
+          "accent": "#497bc8",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "一条彩虹薄膜从画面顶端持续落下，在地面堆出透光的褶皱；边缘高光和重叠颜色让它既轻又有厚度。参数变化会改变下一段材料的形态。",
+          "why": "供料、重力、接触和材质是同一条可操作因果链。值得学习的是让用户改变材料状态，再看见后续结果；美感来自约束持续作用，不只是把鼠标位置映射成一层扭曲。",
+          "input": "作者提供布面拖拽、Space暂停，以及供料速度、弯曲刚度和材质面板。桌面实测打开Settings，将Feed speed从2改为0.8并Reset，确认控件值与重新供料画面；也尝试拖拽与暂停，但未逐帧隔离验证这两项的效果，不据此声称全交互验收。",
+          "layer": "固定源码是原生JavaScript、Three.js 0.187.0和TSL。重要区分：CPU上的XPBD约束求解更新布料，WebGPU负责渲染；不是GPU布料模拟。稀疏物理网格插值成平滑壳面，沿法线挤出厚度并连接边缘。",
+          "motion": "固定步长推进供料和约束；行循环回收，旧尾部淡出后沉入地板下方，避免网格无限增长。颜色跟随粒子的出生时间，因此折叠时仍附着在材料上。屏幕空间折射让前后褶皱相互透见，不能当成完整体积光学。",
+          "pipeline": "源码可核验伸长、剪切、弯曲、自接触和地板约束；独立深度/法线层与下一层剥离的颜色/深度共同服务薄板折射，再经过GTAO、去噪、调色与FXAA。难点是模拟网格和显示壳面一致、回收时不跳色，以及透明层次的可控近似。",
+          "performance": "已实现固定行预算、默认DPR上限1、质量倍率和可调GTAO分辨率。作者明确说明紧折处仍可能相交，单层屏幕空间折射不能恢复视野外和更多遮挡层。本轮未测手机或持续帧率，也未验证独立WebGL降级。迁移建议先降低分辨率/遮蔽成本，无法运行时保留带说明的静态状态。",
+          "transfer": "Joey可制作原创材料试验台：只开放两个确有设计意义的参数，旁边解释它们如何影响某个装置或品牌方案的视觉选择。先做一条薄片、一个拖拽区和还原按钮，不将示意模拟包装成真实材料工程分析。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露及公开源码：固定提交ad366b82661af592884f99eab5bb9b14363edee4的01/README.md、cloth-simulation.js、sheet.js、plastic.js、main.js和cloth-drag.js。亲测：2026-11-04正常浏览器渲染、调参和重置，展示图为本次截图；未完整验收拖拽、暂停、移动端或帧率。推断/建议：材料的因果表达与作品集迁移，没有工程精度或商业效果证据。难度只指一个原创可控薄片原型，不含完整折射器或物理库。本期不提供代码ZIP。来源：https://github.com/mrdoob/codevember-2026/commit/ad366b82661af592884f99eab5bb9b14363edee4 ；https://github.com/mrdoob/codevember-2026/blob/ad366b82661af592884f99eab5bb9b14363edee4/01/README.md ；https://github.com/mrdoob/codevember-2026/blob/ad366b82661af592884f99eab5bb9b14363edee4/01/cloth-simulation.js ；https://github.com/mrdoob/codevember-2026/blob/ad366b82661af592884f99eab5bb9b14363edee4/01/plastic.js 。",
+          "image": "./vibe/covers/fold-codevember-20261104.jpg",
+          "imageSource": "https://mrdoob.github.io/codevember-2026/01/",
+          "imageCredit": "Mr.doob / Codevember 2026；VIBE于2026-11-04在作者公开演示中截取，用于作品评论与原理拆解。",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "材料试验",
+              "参数反馈",
+              "布料约束",
+              "交互展陈"
+            ],
+            "collectedOn": "2026-11-04",
+            "pageTime": "作者添加Fold的提交2026-11-03；题号01非首发日期。",
+            "summary": "把参数、材料形态和可见反馈接成一条可探索的因果链。",
+            "audience": "制作材料演示、交互装置说明或创意技术作品集的设计师和开发者。",
+            "value": "应用价值：让访客看见参数怎样改变形态；尚无独立理解度、工程精度或商业结果证据。",
+            "conditions": "限定有界模拟和明确的视觉示意；说明CPU/GPU分工及接触、折射近似；另行验证手机兼容。"
+          }
+        },
+        {
+          "id": "abandoned-house-grassworks",
+          "title": "Abandoned House · 用近景细节建立空间尺度",
+          "author": "Muhammad Bilal Khan / Tech Redux",
+          "platform": "作者公开演示 / Three.js论坛 / Grassworks文档",
+          "pageTime": "作者论坛初帖：2026-10-30 07:27:05 UTC；公布可访问live：2026-11-03 11:48:47 UTC。两者与收录日期分开，官网首发未独立核实。收录：2026-11-04。",
+          "url": "https://grassworks.techredux.co/forest-demo",
+          "accent": "#697b3d",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "破木屋位于被风吹动的草地尽头，近处草叶遮住小路，远处树冠与雾把光束切成层次；镜头高度让人先感到自己站在林中。",
+          "why": "小路、屋体和近景植被给出接近目标的尺度与方向，草、光和遮挡共同组织空间。核心可迁移点是视觉层级随距离改变，而不是把每株草都做成高精度模型；本作没有可验证的真实森林数据映射。",
+          "input": "作者设置Click to enter、WASD、鼠标和Shift；面板可调画质、草高、风、视场与后期。桌面亲测完成Start并看到实时场景，关闭Sound和God Rays后控件值确实改变，打开统计面板；行走和指针锁未完整验收，不承诺导航可用性。",
+          "layer": "作者11月3日说明Three.js r187与WebGPU；公开部署bundle的REVISION=187可交叉核验。草来自作者Grassworks，树由EZTree生成，木屋等来自Sketchfab。文档披露草地实例化、分块、LOD与交互图；这些属于库架构说明，不等于逐项追踪了当前演示的运行路径。",
+          "motion": "作者披露光束是实例化假光束，接近相机时淡出，并非物理体积散射。风、落叶、孢子与雾维持环境运动，第一人称镜头让近处草与远处屋体产生不同视差。声音默认开启，本轮只核对关闭状态，不评价声音品质。",
+          "pipeline": "作者说明场景组合六类EZTree树、草系统、外部模型和调色/泛光/颗粒/暗角/鱼眼；11月3日更新提到树和其他物件采用meshlet管线，草与叶除外。草库文档另讲相机附近分块、四级LOD及初始化高度图；不要把库文档0.185版本误写成当前场景187的完整源码审计。",
+          "performance": "统计面板可显示树、草地分块和各级LOD，说明性能取舍可被观察；屏幕上的即时FPS不是本轮控制变量基准，也不代表手机。作者设备帧率仅为作者报告。演示明确要求支持WebGPU的浏览器；未验证独立WebGL回退。迁移建议优先限视距、降低近景密度与后期，保留普通地图和静态导览。",
+          "transfer": "Joey可为一个有真实资料的社区空间制作一条短导览路径：入口、活动点和出口分别对应公开照片与活动记录；只把近景植物用于尺度和方向提示，关键内容仍能从普通列表直达。先验证访客能否找到一个活动点，不先追求整片森林。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露：论坛10月30日场景说明及11月3日live公告、草库官方文档。公开资源可核验：部署bundle包含Three.js REVISION=187；其他模块字符串只证明存在，不证明活跃路径。亲测：桌面实时场景、Start、Sound/God Rays关闭及统计面板；未完整验证行走、手机、持续帧率或生态真实性。第三方模型的逐项作者与许可未核，不开放软件或素材ZIP。难度仅指使用合法素材的一屋一路有限原型，不是复制Grassworks。来源：https://discourse.threejs.org/t/forest-environment-built-with-three-js-and-webgpu/96126 ；https://grassworks.techredux.co/docs/performance/tiling-and-culling ；https://grassworks.techredux.co/devlog/threejs-grass-on-terrain-height-map ；https://grassworks.techredux.co/docs/interaction 。",
+          "image": "./vibe/covers/abandoned-house-20261104.jpg",
+          "imageSource": "https://grassworks.techredux.co/forest-demo",
+          "imageCredit": "Muhammad Bilal Khan / Tech Redux；作者演示页公开og-image.jpg。作者说明树由EZTree生成，木屋、石块、木头及小植物来自Sketchfab；具体资产权利人及许可未逐项核实，展示署名不构成素材再分发授权。",
+          "context": {
+            "type": "space",
+            "tags": [
+              "空间导览",
+              "植被层级",
+              "场景优化",
+              "环境叙事"
+            ],
+            "collectedOn": "2026-11-04",
+            "pageTime": "论坛初帖2026-10-30；作者live公告2026-11-03；官网首发未独立核实。",
+            "summary": "用近景草、远景树和近似光束建立可探索空间的距离与方向。",
+            "audience": "制作小型场地导览、自然主题展陈或实时环境演示的团队。",
+            "value": "应用价值：学习空间尺度、视觉层次和画质预算的协同；不构成生态监测、导航可用性或商业成果证明。",
+            "conditions": "需合法模型与明确目标点；先做有限路径并验证输入、兼容和降级；不得将艺术场景称为真实森林数字孪生。"
+          }
+        },
+        {
+          "id": "finding-my-way-jehad",
+          "title": "Finding my way · 让章节成为镜头骨架",
+          "author": "Jehad Uddin（jehaduddin72）",
+          "platform": "作者个人站 / Three.js论坛",
+          "pageTime": "作者论坛介绍：2026-11-01 22:21:56 UTC（北京时间11月2日06:21）；这是公开介绍时间，官网首次上线日期未独立核实。收录：2026-11-04。",
+          "url": "https://jehaduddin.vercel.app/",
+          "accent": "#6785b8",
+          "mechanisms": [
+            "滚动变成镜头",
+            "交互变成叙事"
+          ],
+          "memory": "宇航员从灰色山谷出发，漂入行星和蓝色黑洞；作者描述他随后解体、在故乡湖面重组，让关于自我寻找的文字获得空间去向。黑洞展示图来自作者原帖。",
+          "why": "Dream、Dig、Decode、Direct、Draft、Drop是叙事骨架，场景变化服务于每段文字的含义。可借鉴的是先写章节、再分配镜头和作品入口，而非在文字之外额外堆一段宇宙特效；是否更利于读者理解仍需用户验证。",
+          "input": "滚动与键盘推进故事，顶部Works提供直接作品入口，Sound默认关闭。桌面实测看到山谷起始画面、Dream文字与宇航员/行星阶段；未完整走完黑洞到湖面的全程，因此后半叙事按作者说明标注。",
+          "layer": "作者披露Three.js / React Three Fiber、定制GLSL和GSAP。公开部署JS包含语义章节、文字和链接的渲染结构，也能核验章节区间、减少动态检测和画质控制。原始HTML主要提供应用挂载点；搜索引擎索引情况未核验。未获得完整原始源码仓库。",
+          "motion": "章节区间将文字、滚动手感与镜头阶段绑定；公开脚本分别列出ground、adrift、hole、pieces等段落。黑洞、碎片与归家构成作者设定的情绪转折。这里描述叙事结构，不把画面中的黑洞或湖面当作经核验的物理模型。",
+          "pipeline": "先有章节文案与阶段范围，再把渲染场景和DOM文字接到同一进度；项目页与联系页另有直达入口。部署脚本可见按需导入GLRoot及独立渲染资源。难点是慢滚和快速跳转时镜头、文字、资源加载保持同一状态，且普通阅读入口仍然成立。",
+          "performance": "公开脚本有DPR上限、画面像素预算和按帧时采样调整质量的阶梯。作者另称手机项目区仅展示图片、减少动态时短交叉淡化，并有legacy/no-WebGL版本；本轮未强制测试这些分支，也未重跑作者所称axe零违规或延迟编译检查。迁移应先保留普通作品目录，再验证一条短镜头路径。",
+          "transfer": "Joey可把一个真实项目写成三章：问题、关键选择、结果，每章只给一个可解释的空间变化与一条证据链接；顶部始终保留作品目录直达。先找一位访客复述项目选择，再决定是否值得加长叙事。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露：2026-11-01论坛介绍的技术栈、故事与降级策略；页面直接署名Jehad Uddin。公开资源可核验：部署JS中的语义DOM结构及/assets/main-DTyWc6eg.js中的章节、媒介查询与质量阶梯。亲测仅覆盖起始山谷、Dream与宇航员行星画面，未完成全篇、移动端、减少动态、音频或性能基准。黑洞封面为作者发帖图片，非本轮黑洞截图。没有可核实的整站代码/素材再分发许可，不开放ZIP。难度指三章一项目的有限原创叙事，非全站复刻。来源：https://discourse.threejs.org/t/finding-my-way-a-portfolio-that-falls-into-a-black-hole-and-comes-home/96252 ；https://jehaduddin.vercel.app/assets/main-DTyWc6eg.js 。",
+          "image": "./vibe/covers/finding-my-way-20261104.jpg",
+          "imageSource": "https://discourse.threejs.org/t/finding-my-way-a-portfolio-that-falls-into-a-black-hole-and-comes-home/96252",
+          "imageCredit": "Jehad Uddin；作者在Three.js论坛公开发布的The blue black hole作品展示图，用于评论与原理拆解；模型、字体等第三方资产条款未逐项核实。",
+          "context": {
+            "type": "story",
+            "tags": [
+              "作品集叙事",
+              "章节镜头",
+              "语义内容",
+              "分级渲染"
+            ],
+            "collectedOn": "2026-11-04",
+            "pageTime": "作者论坛介绍2026-11-01 22:21:56 UTC；官网首发未独立核实。",
+            "summary": "先确立文字章节，再让镜头、情绪和作品入口共享叙事进度。",
+            "audience": "有真实项目过程，想用空间叙事呈现创作判断的设计师与创意开发者。",
+            "value": "应用价值：将项目叙述与镜头阶段组织在同一结构；没有访客理解度、联系转化或商业结果的独立证据。",
+            "conditions": "先有可读的真实内容，保留作品直达；必须分别验证跳转、加载、减少动态、手机和无WebGL路径。"
+          }
+        }
+      ],
+      "dateLabel": "NOV 4",
+      "issueNo": "016"
+    },
     {
       "id": "2026-11-03",
       "note": "让物件承接内容与行动：Discography 把打开、翻阅与试听组织成内容路径；Ocarina 把按键、演奏与学习记录相连；Haunted Pumpkin 用碎裂与重建完成一次短叙事。三件均已在正常浏览器操作，并核对公开源码；来源时间与收录日期分开标注。",
