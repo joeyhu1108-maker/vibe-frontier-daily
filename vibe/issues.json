@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-04T12:10:25.717Z",
+  "updatedAt": "2026-11-05T15:21:02.067Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,146 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-11-05",
+      "note": "让交互留下结果：Tangle 的牵拉改变毛线形态，Particle Sculpture 以表面目标组织散开与归位，Text Character Animations 让字母的出现方式参与阅读。三件作品都具有可检查的源码与真实画面；本期重点是输入、状态与可读反馈，技术实现和桌面实测分开说明。",
+      "featuredId": "tangle-codevember-yarn",
+      "experiment": {
+        "title": "30 分钟实验：一枚会归位的项目标记",
+        "input": "用自写项目标题与48个由椭圆公式生成的点，标记原创示意；点击“散开”给每个点一次偏移。不要读取任何访客个人数据。",
+        "target": "点短暂离开轮廓再回到各自初始位置，项目标题和链接始终可读；按钮可重复触发，也能一键还原。只测试状态反馈，不模仿原作全部形状或品牌视觉。",
+        "stack": "HTML 按钮、SVG 圆点、少量 JavaScript requestAnimationFrame；每点保存初始位置、当前位置与速度，用简化弹簧与阻尼更新。不引入 Three.js 或物理引擎。机制参考：https://cojeev.com/ui/docs/particle-sculpture/ 。",
+        "acceptance": "鼠标和键盘都能触发；归位后与初始轮廓一致，还原能清除残余运动；减少动态偏好时直接显示静态轮廓。请一位读者说出哪一步输入改变了什么，并记录原话。该实验目前仅为方案，未制作或验收。"
+      },
+      "restraint": "Creative Twin 只在有真实对象、可追溯数据、时间戳和明确映射时接入。本期毛线和粒子是视觉模拟，字级动画是叙事方法；不能由画面真实感推出材料精度、健康判断或个人能力画像。先用真实项目决策记录，再讨论可视化映射。",
+      "cases": [
+        {
+          "id": "tangle-codevember-yarn",
+          "title": "Tangle · 让牵拉留在毛线的形态里",
+          "author": "Mr.doob（mrdoob）",
+          "platform": "作者公开演示 / GitHub",
+          "pageTime": "作者加入 /04 Tangle 的提交：2026-11-04 13:04:36 UTC；本次核验提交：2026-11-04 14:25:25 UTC。04 是题号；演示站首次上线时间未独立核实。收录：2026-11-05。",
+          "url": "https://mrdoob.github.io/codevember-2026/04/",
+          "accent": "#D65339",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "五色毛线从上方落到米色地面，绕成有绒感的线团。抓起一股，附近的圈结跟着抬起、绷紧，松手后重新落下。",
+          "why": "每次拉动都改变正在累积的形态，前一刻留下的线圈又成为下一次接触的条件；材料、动作与结果属于同一套状态。毛线的高光随弯曲方向变化，让牵拉更容易被看懂。它适合研究可感知的因果反馈，不能据此当作工程级纺织仿真。",
+          "input": "桌面公开演示亲测：场景持续落线，拖动橙色线段将它抬起；按 Space 暂停，并在 Settings 中确认暂停状态。README 另列背景拖动转视角、滚轮缩放、R 重置与 C 换色，本轮未逐一验收。未做手机、触控或持续性能测试。",
+          "layer": "固定源码 main.js 使用 Three.js WebGPURenderer，根据实际后端选择 GPURopeSimulation 或 CPU RopeSimulation；不是仅由文件名推断 WebGPU。yarn.js 用三个螺旋股线的网格沿模拟中心线变形，结合程序化绒面纹理、凹凸与纤维方向高光。GPU 路径直接读取 storage buffer 来驱动几何。",
+          "motion": "落线、重力、牵拉和接触构成连续动作；相机默认缓慢环绕，用户也可在设置中关闭。抓取位置不是贴在画面上的装饰：模拟围绕受力点分配拉动，局部变化传到邻近线段。松手后的形态由当前状态继续演化，不是循环播放的固定片段。",
+          "pipeline": "源码可核验的管线：共享绳索参数 → GPU 固定步长积分 → 分块的拉伸/弯曲约束 → 空间哈希接触与摩擦 → 支撑条件下的休眠/唤醒 → 中心线平滑与股线网格 → 灯光、软阴影及后处理。gpu-rope.js 以分离的读写缓冲处理接触，抓取开始才做少量结果回读；常规动画不回读整条绳索。难点是增长、切除旧端和抓取都保持材料连续，以及支撑消失后沉睡线段能重新下落。未运行仓库测试或作者诊断脚本。",
+          "performance": "源码与 README：WebGL2 回退采用更短的 CPU 绳索及简化阴影，运动结果不保证与 GPU 路径相同；像素比设上限，暂停且镜头稳定时停止重绘，后台标签停止推进，减少动态偏好令场景初始暂停。本轮没有强制回退、移动端或 FPS 基准；不能把作者测试记录当作本轮验收。作者明确提示紧密交叉和强拉仍可能穿透。",
+          "transfer": "为 Joey 的材料或手作项目做一个小型交互说明：用一根短线展示“放下—牵拉—松手”的三种状态，旁边标出真实的设计决定与制作照片。先验证读者能否理解材料关系，再增加线条数量；示意模拟不替代真实材料测量或结构结论。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露：README 的交互、渲染/求解路径、回退与模型局限。公开源码核验固定在 339821ba510312093672dcb9f1a08ddd903e8aad，核读 main.js、gpu-rope.js、rope-simulation.js 与 yarn.js。亲测仅为桌面落线、牵拉、暂停；未核验所有设置、手机、强制 WebGL2、长时间稳定性或帧率。难度指一根短线与三步讲解的有限原创成品，不是重写原作完整 GPU 求解器。来源：https://github.com/mrdoob/codevember-2026/blob/339821ba510312093672dcb9f1a08ddd903e8aad/04/README.md ；https://github.com/mrdoob/codevember-2026/blob/339821ba510312093672dcb9f1a08ddd903e8aad/04/main.js ；https://github.com/mrdoob/codevember-2026/blob/339821ba510312093672dcb9f1a08ddd903e8aad/04/gpu-rope.js ；https://github.com/mrdoob/codevember-2026/blob/339821ba510312093672dcb9f1a08ddd903e8aad/04/yarn.js 。",
+          "image": "./vibe/covers/tangle-codevember-20261105.jpg",
+          "imageSource": "https://mrdoob.github.io/codevember-2026/04/",
+          "imageCredit": "Mr.doob / Codevember 2026；VIBE 2026-11-05 在作者公开演示中截取的桌面画面，用于作品评论与原理拆解。",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "材料交互",
+              "触感反馈",
+              "可视化原型",
+              "过程讲解"
+            ],
+            "collectedOn": "2026-11-05",
+            "pageTime": "加入 Tangle 的作者提交：2026-11-04 13:04:36 UTC；并非已核验的演示首发日期。",
+            "summary": "让抓取、接触和留下的形态形成同一条可观察的反馈链。",
+            "audience": "研究材料表现、创意工具或过程展示的设计师与前端开发者。",
+            "value": "应用价值：用可操作的形态解释局部动作与整体结果的关系；没有学习效率、成交或商业成果证据。",
+            "conditions": "先收敛材料与交互范围；完整 GPU 管线复杂，必须准备简化或静态版本。模型存在穿透与顺应性近似，不能作工程或医疗验证。"
+          }
+        },
+        {
+          "id": "particle-sculpture-000h",
+          "title": "Particle Sculpture · 散开以后，仍记得自己的形状",
+          "author": "Sanjay Kumar Gautam（luv-jeri / Cojeev）",
+          "platform": "作者组件演示 / GitHub / Three.js 论坛",
+          "pageTime": "作者 Three.js 论坛介绍：2026-10-31 09:31:23 UTC；本次核验仓库提交：2026-10-29 13:32:31 UTC。粒子组件早于本次介绍，不能把发帖日当首发日期。收录：2026-11-05。",
+          "url": "https://cojeev.com/ui/docs/particle-sculpture/",
+          "accent": "#718FBF",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "浅色粒子在深色画布中组成缓慢转动的 Bloom 雕塑；切到 Seed 后轮廓随之改变。Scatter 按钮提供扰动入口，散开再归位的机制可由源码核验。",
+          "why": "散开的粒子始终保留各自的表面归位目标，输入有明确的形态反馈。更值得学习的是它如何成为有参数、有停止条件、有静态替代的组件，而非只能在独立全屏演示里运转的效果。应用价值在可嵌入性，不代表已提升任何网站的转化。",
+          "input": "桌面公开文档亲测：滚动后看到实时粒子，切换 Bloom 为 Seed，并点击 Scatter and return。未独立记录完整散开至归位过程。其他控制、触屏、屏幕阅读器和长时间稳定性不在本轮验收范围；指针扰动与回弹过程由源码核验。",
+          "layer": "固定源码把组件参数交给共享 SculptureStage；三角面按面积权重采样，再通过重心坐标得到表面点。每个点保存 rest、position 与 velocity；Three.js Points / BufferGeometry 负责显示，位置数组在 CPU 更新后标记需要上传。这里是 CPU 弹簧积分配合 WebGL 绘制，不是 GPU 计算粒子系统。",
+          "motion": "物体本身只作缓慢姿态变化。指针在雕塑局部空间形成有半径衰减的排斥和旋转作用；Scatter 给粒子速度脉冲，归位靠向原始表面的弹簧力与指数阻尼。源码对时间步、速度和位移做边界约束，能量很小时恢复静态位置；不把这套视觉模型解释为真实材料物理。",
+          "pipeline": "先从内置形状或输入几何生成三角网格 → 面积加权表面采样 → 创建弹簧状态 → 将屏幕指针转换为局部坐标 → CPU 计算回弹与扰动 → 更新动态位置缓冲 → WebGL 绘制。外层 Stage 管理可见性、尺寸、输入、失败回退和资源释放。难点是几何改变后重建正确归位目标，同时让动画停止和恢复都保持组件完整。",
+          "performance": "源码可核验：按可见区域和标签状态停止推进，尊重减少动态/关闭动效设置，WebGL 不可用时保留 SVG 静态形状；低功耗渲染器、约 30Hz 调度上限与卸载资源清理已实现，但本轮未逐项强制触发。触摸指针被明确排除在悬停扰动之外，因此手机不能承诺同等玩法。未测真实手机、FPS 或多实例页面的资源消耗。",
+          "transfer": "给 Joey 的作品集做一张可交互的原创项目标记：读者散开形状后仍能看见稳定的标题、项目摘要和进入案例的链接；用一个图形比较静态、可扰动、减少动态三种体验。粒子只承载一个明确动作，正文与导航保持 HTML；不把创作者的整套品牌样式当作可复制资产。",
+          "difficulty": "1 天原型",
+          "evidence": "作者明确披露：2026-10-31 论坛介绍组件、无远程场景贴图及降级意图。固定源码 81f1bc0331189b3d9729ed63609752332074228c 可核验表面采样、CPU 弹簧、WebGL 绘制与 Stage 生命周期；粒子组件文件历史早于本次论坛发帖。亲测实时粒子、Bloom/Seed 切换和 Scatter 按钮触发，完整归位过程未独立记录；未验证全部控制、触屏、无 WebGL 和减少动态。仓库为 MIT，字体保留 OFL、图标保留各自声明；本期未新增下载包。来源：https://discourse.threejs.org/t/000h-an-open-source-react-component-library-with-three-js-sculptures-you-can-stir-scatter-and-reshape/96192 ；https://github.com/luv-jeri/cojeev-ui/blob/81f1bc0331189b3d9729ed63609752332074228c/registry/cojeev/lib/sculpture-particles.ts ；https://github.com/luv-jeri/cojeev-ui/blob/81f1bc0331189b3d9729ed63609752332074228c/registry/cojeev/lib/sculpture-stage.tsx ；https://github.com/luv-jeri/cojeev-ui/blob/81f1bc0331189b3d9729ed63609752332074228c/registry/cojeev/lib/sculpture-renderer.tsx 。",
+          "image": "./vibe/covers/particle-sculpture-000h-20261105.jpg",
+          "imageSource": "https://cojeev.com/ui/docs/particle-sculpture/",
+          "imageCredit": "Sanjay Kumar Gautam / Cojeev；VIBE 2026-11-05 在作者公开 Particle Sculpture 演示中截取的桌面画面（局部裁切），用于作品评论与原理拆解。",
+          "context": {
+            "type": "product",
+            "tags": [
+              "粒子组件",
+              "作品集",
+              "可嵌入交互",
+              "减少动态"
+            ],
+            "collectedOn": "2026-11-05",
+            "pageTime": "作者论坛介绍：2026-10-31；组件此前已存在，首发未核实。",
+            "summary": "把可散开、可归位的表面粒子封装成具有生命周期与静态替代的组件。",
+            "audience": "需要在现有 React 页面加入少量交互雕塑的设计师与前端开发者。",
+            "value": "应用价值：将效果从独立演示迁移到可管理的页面组件，并学习状态恢复与降级；没有转化或商业成果证据。",
+            "conditions": "需要 React 与作者组件所需依赖，遵守代码及字体/图标声明；正文和导航独立存在。触控不提供同等悬停扰动，实际项目需单独验证性能和可访问性。"
+          }
+        },
+        {
+          "id": "text-character-animations-gsap",
+          "title": "Text Character Animations · 让文字带着行为出现",
+          "author": "Codrops（平台署名 Manoela Ilic；代码提交 Pedro Botelho）",
+          "platform": "Codrops Creative Hub / GitHub / 作者演示",
+          "pageTime": "Codrops Creative Hub 收录：2026-11-03；首个代码提交：2026-11-03 08:17:33 UTC；本次核验提交：2026-11-03 08:23:17 UTC。收录及提交时间不等于已独立核实的演示站首发时间。",
+          "url": "https://tympanus.net/Demos/TextCharacterAnimations/",
+          "accent": "#DF3F16",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "黑色颗粒纸面上，橙红色 time 几乎占满作者预览；进入第16段 Filament 并点击 Replay，LAMPS 的字母依次泛起红橙色亮光，像光丝逐字通电，再成为可读文字。现场核验范围为这一段；十九种变体的总量来自作者说明与页面结构。",
+          "why": "同一段文字仍占据稳定版面，变化发生在字母到达、改写与恢复的过程：校对、字幕、读屏、拍照等媒介行为与段落情境对应。值得学习的是“怎样被读到”的时间结构；若只是给所有正文加逐字延迟，会破坏阅读节奏。十九种变化是学习集合，不是同一产品页面应全部叠加的功能。",
+          "input": "正常浏览器现场点击顶部16进入 Filament，并点击该段 Replay，观察到 LAMPS 文字逐字泛起红橙光亮。固定源码另证实滚动进入视区触发、离开后重新待播，以及点击段落和 Replay 的监听；未将全部交互路径写成现场验收。",
+          "layer": "作者 README 披露 GSAP 3.15 的 SplitText、Flip、ScrollTrigger、ScrollSmoother；十九种字级变化中后四种为 WebGL。固定 glText.js 可核验：原 DOM 保留排版，动画期间由覆盖 Canvas 绘制同位置字形，结束后交接回普通 DOM；不是 Three.js 粒子场，也没有真实声音识别或语音合成证据。",
+          "motion": "index.js 以滚动进入视区和 Replay 控制离散播放，不把正文持续绑定为滚动进度。Filament 源码将每个字的时间错开，用片元着色器让笔画从暗红升温到暖白，局部光晕随之变亮，再冷却回普通文字；其余变体有各自实现，不能把这一机制泛化到十九种效果。镜头保持固定，读者可停下阅读。",
+          "pipeline": "源码可核验：等待字体加载完成后测量和拆字；建立普通文字与辅助阅读副本；按段懒构建效果。WebGL 变体把字形、模糊、开始时间与种子写入 RGBA 纹理，纹理计算交给 Worker，按统一时钟重绘，最后渐隐 Canvas 并恢复 DOM。难点是字体基线、换行与缩放后的像素对齐，以及交接时不闪白、不让文字重复被朗读。",
+          "performance": "固定代码中可核验按空闲时间或接近视区时构建；WebGL 像素比上限为2，上下文保留目标为8，超限时回收较早的闲置实例；活跃实例可能暂时超过该目标。减少动态偏好直接显示文字并使用原生滚动；创建 WebGL 失败或上下文丢失时有普通文字回退。以上是实现策略，未做帧率、真实手机、读屏软件或强制回退实测，不能据此保证流畅或无障碍合规。",
+          "transfer": "Joey 的案例页可在“原始判断—一次关键修正—最终结论”中只挑一个校对型变化，让读者看见具体改了哪个词，并提供重播和直接阅读全文。先用一段真实、已获准公开的设计决策测试能否复述改动，不把装饰性动效当作学习或转化结果。",
+          "difficulty": "1 天原型",
+          "evidence": "作者明确披露：README 的十九种变化、GSAP 插件与四种 WebGL 效果。平台可核验：Codrops Creative Hub 将收录日列为2026-11-03、作者列为Manoela Ilic；固定Git提交作者为Pedro Botelho，故并列说明，不猜测两人分工。公开资源可核验：提交ac0fe97a4e4f786ef5d514d7030b6eb5855da05b的index.js、glText.js与Filament实现；作者og-image已下载解码核验。现场核验：正常浏览器点击16进入Filament并点击该段Replay，画面中LAMPS字母逐步出现红橙色光亮；仅这一段被现场核验。移动、帧率、读屏及十九种全覆盖均未验收。难度只指一段正文、两种变化、重播与静态回退的有限原创原型，非整套复刻。本期不开放代码ZIP。来源：https://github.com/codrops/TextCharacterAnimations/blob/ac0fe97a4e4f786ef5d514d7030b6eb5855da05b/README.md ；https://github.com/codrops/TextCharacterAnimations/blob/ac0fe97a4e4f786ef5d514d7030b6eb5855da05b/js/index.js ；https://github.com/codrops/TextCharacterAnimations/blob/ac0fe97a4e4f786ef5d514d7030b6eb5855da05b/js/variations/glText.js ；https://github.com/codrops/TextCharacterAnimations/blob/ac0fe97a4e4f786ef5d514d7030b6eb5855da05b/js/variations/filament.js ；https://tympanus.net/codrops/hub/all/codrops/ 。",
+          "image": "./vibe/covers/text-character-20261105.jpg",
+          "imageSource": "https://raw.githubusercontent.com/codrops/TextCharacterAnimations/ac0fe97a4e4f786ef5d514d7030b6eb5855da05b/og-image.jpg",
+          "imageCredit": "Codrops；平台署名 Manoela Ilic，公开代码提交 Pedro Botelho；作者仓库 og-image.jpg。Cursor Scramble 灵感：halfof8 的 SQNCR 帮助面板；字体：Tokotype 的 Plus Jakarta Sans、Element Type 的 Host Grotesk。展示与署名不代替原始许可。",
+          "context": {
+            "type": "tools",
+            "tags": [
+              "文字动效",
+              "阅读节奏",
+              "案例叙事",
+              "DOM与WebGL"
+            ],
+            "collectedOn": "2026-11-05",
+            "pageTime": "Codrops Hub收录2026-11-03；首代码提交2026-11-03 08:17:33 UTC；演示站首发未独立核实。",
+            "summary": "以可重播的字级变化研究文字进入、改写与恢复为稳定正文的过程。",
+            "audience": "需要把短叙事、编辑过程或关键结论做得可感知的创意开发者与内容设计团队。",
+            "value": "应用价值：让一次具体的文字修正或语义转折成为可重看的过程；未验证阅读理解、学习成效或商业转化。",
+            "conditions": "优先保留直接可读的原文和减少动态路径；只挑与内容行为一致的一种效果。MIT代码、字体OFL与GSAP条件分别核验；本期不提供再分发下载。"
+          }
+        }
+      ],
+      "dateLabel": "NOV 5",
+      "issueNo": "017"
+    },
     {
       "id": "2026-11-04",
       "note": "让变化有因果：Fold 用供料、重力和拖拽塑造材料；Abandoned House 用近景草地、遮挡和光束组织空间；Finding my way 把个人文字与镜头阶段连接。本期关注可复用的控制关系，区分公开源码、作者陈述与本次桌面实测，来源时间与收录日期分开标注。",
