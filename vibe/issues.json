@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-05T15:21:02.067Z",
+  "updatedAt": "2026-11-07T10:37:41.146Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,145 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-11-07",
+      "note": "从看见作品到进入内容：Bricelab 把项目选择放进混凝土中庭，Mathias Adolfsson 让弧面卡片成为详情入口，Brandon Yasin 把真实页面缩进菜单。重点拆解视觉对象、项目状态与导航的连续性；平台收录日、作者文章日和本站收录日分开标注。",
+      "featuredId": "bricelab-concrete-atrium",
+      "experiment": {
+        "title": "30 分钟实验：一张能展开的目的页卡片",
+        "input": "用两个自写页面标题和一张自有项目图。点击“浏览页面”看见两个目的页预览，再选择其中一个；不用作者素材或抓取访客数据。",
+        "target": "预览卡片在原位放大成为目的页，标题始终可读；按返回恢复目录。只测试“选择了哪个页面”是否清楚，不复刻完整原站。",
+        "stack": "HTML 原生链接、CSS transform 与 clip-path、少量 JavaScript 或 Web Animations API。用一个状态保存当前页及返回位置；不加入 WebGL、CMS 或额外动效库。机制参考：https://tympanus.net/codrops/2026/11/04/brandon-yasin-portfolio/ 。",
+        "acceptance": "鼠标与键盘可选择、返回；动效结束没有两份重叠内容，焦点落在目的页标题，返回后焦点回到入口。减少动态偏好时直接切换。请一位读者指出当前页和返回入口，记录原话。实验仅为待测试方案，尚未制作。"
+      },
+      "restraint": "Creative Twin 只在有真实对象、可追溯数据和明确映射时接入。本期的粒子形态、建筑和页面预览属于内容呈现，不能据此推断个人能力或商业结果。若将来映射项目进展，先用带时间戳的真实阶段记录对应空间节点，并给出原记录入口。",
+      "cases": [
+        {
+          "id": "bricelab-concrete-atrium",
+          "title": "Bricelab · 在混凝土中庭中选择粒子展品",
+          "author": "Brice Deguigne",
+          "platform": "作者站 / WebGL・WebGPU Showcase",
+          "pageTime": "WebGL・WebGPU Showcase 收录：2026-11-07 05:15 UTC；作者站首次上线时间未独立核实。",
+          "url": "https://www.bricelab.dev/",
+          "accent": "#9da68c",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "按住入口后进入昏暗的混凝土中庭：顶棚光阵、斜射光与植物包围中央粒子展品；选择下一个项目，粒子形态和项目标注一起改变。",
+          "why": "建筑为展示提供固定参照，中央粒子对象与旁边的标题、年份和项目入口同步换场。用户看得见自己选中了什么，空间因内容切换而成为界面。烘焙光与有限动态元素的层次是设计判断，不代表已验证易用性或转化。",
+          "input": "按住中央入口进入、点击项目索引或 Previous／Next project 选择内容。2026-11-07 正常 Chrome 已完成入口按住，并用 Next project 将 BTQ 切到 AEGIS，确认粒子外形与标题／年份联动改变；未逐一打开外部项目。",
+          "layer": "公开部署资源可核验Three.js r186、React Three Fiber9.8.2与WebGPURenderer；场景清单列出主scene.glb、独立植被GLB、烘焙光与方向贴图。作者OG显示混凝土墙体、树、反射地面与顶棚灯阵。",
+          "motion": "入口的结构线条过渡到完成中庭，场景保持空间连续。桌面实测 Next project 后中央粒子从 BTQ 形态换成 AEGIS，并同步更新旁侧信息。公开部署资源含粒子／水幕、镜头与进入时间线；不根据画面臆造流体方程或物理精度。",
+          "pipeline": "公开部署场景文件含 Blender 导出清单、GLB 与独立植被、烘焙光／方向贴图、节点材质和反射管线；入口协调按住进入与页面状态。难点是让静态建筑、动态粒子、镜头与项目说明使用一致的状态，兼顾透明层和反射开销；没有公开完整教程可据此复原全部工程。",
+          "performance": "部署入口可核验设备画质分档，控制反射、植被、雾／灰尘、粒子规模、抗锯齿与像素比，并含自适应画质逻辑。代码链路确认：减少动态偏好会让场景进入时间线跳到终态并免去按住积累；不代表持续水幕／粒子均停止。渲染器含 WebGL2 回退路径，但实际回退成功、手机表现与帧率未测。",
+          "transfer": "Joey作品集可让一件原创展品以线框先显露结构，按住后过渡到最终材质；每个空间焦点对应一个真实项目章节。先做一个小展台、一盏烘焙光与一段构建，不复制整座中庭。是迁移建议，无转化或商业结果证据。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者站 https://www.bricelab.dev/ 署名 Brice Deguigne，专属 OG https://www.bricelab.dev/og-2.jpg 本次 HTTP 200、已解码核对。今日正常 Chrome 完成按住入口与 BTQ→AEGIS 项目切换，保存实际画面。技术判断来自公开部署资源 https://www.bricelab.dev/assets/index-DYvq9MR2.js 与 https://www.bricelab.dev/assets/Scene-CsROdmrW.js ，只做文本检查；Three r186／R3F 9.8.2、实际渲染器调用和资产清单可检查，不把库内通用代码视为功能实测。平台来源 https://webgpu.com/showcase/bricelab-webgpu-concrete-atrium/ 仅证明当日收录，不证明当日首发；其视频 CDN 返回 403，未绕过或转载。未见作品整体再分发许可，不提供源码 ZIP。难度仅指原创小展台与一次构建过渡，非整座中庭复刻。",
+          "image": "./vibe/covers/bricelab-20261107.jpg",
+          "imageSource": "https://www.bricelab.dev/og-2.jpg",
+          "imageCredit": "Brice Deguigne；图片为作者站公开Open Graph预览图。",
+          "context": {
+            "type": "space",
+            "tags": [
+              "建筑可视化",
+              "作品集入口",
+              "数字展陈"
+            ],
+            "collectedOn": "2026-11-07",
+            "pageTime": "平台收录：2026-11-07 05:15 UTC；作者站首发时间未知。",
+            "summary": "在固定中庭里以粒子形态和项目说明联动切换内容，学习空间怎样承担目录与展示。",
+            "audience": "制作建筑/空间作品集、展览导览与艺术家数字展厅的设计师和前端工程师。",
+            "value": "学习如何把进入动作变成空间构建叙事，以及如何用烘焙光与有限动态元素保持画面层次。",
+            "conditions": "需具备原创模型和材质来源、预算透明粒子与反射开销、为减少动态偏好保留直接进入；未取得作者素材再分发许可。"
+          }
+        },
+        {
+          "id": "mathias-adolfsson-curved-portfolio",
+          "title": "Mathias Adolfsson ’26 · 从弧面卡片进入项目",
+          "author": "Mathias Adolfsson",
+          "platform": "作者官网 / Codrops 作者技术文章",
+          "pageTime": "作者技术文章：2026-11-05；网站首次上线日期未独立核实，文章日不当作首发日。",
+          "url": "https://mathiasadolfsson.dev/",
+          "accent": "#d9c5a5",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "黑色空间里的项目卡片排成弧面。选中一张后，同一张画面逐渐展平并占据屏幕，成为项目详情的入口。",
+          "why": "曲面既组织项目之间的空间关系，也承担从目录进入详情的状态过渡；看起来不同的两个页面由同一个视觉对象衔接。",
+          "input": "滚轮／拖动切换项目、指针反馈、点击进入与详情滚动。今日桌面实际点击 Tentipi，URL 进入 /projects/tentipi，随后关闭返回；未做全站、触屏和键盘全流程测试。",
+          "layer": "作者披露 Nuxt、Three.js WebGPURenderer 与 TSL、GSAP，以及 DOM 文字／控件。今日部署组件中可直接看到 WebGPURenderer 的实际创建与节点材质位置变换。",
+          "motion": "代码使用 sin／cos 与 uPanelRadius 生成弯曲截面，再以 uWrapAmount 在平面和曲面间插值；另有速度相关形变、点击位置牵引和图库曲率参数。应复用这些输入到状态的关系，不照搬作者素材。",
+          "pipeline": "难点在于让列表卡片、打开的项目与滚动图库共享场景和过渡状态。作者另说明纹理预处理、KTX2 与视频纹理管线；这些是作者披露，公开部署的压缩脚本不等于获准再分发的源工程。",
+          "performance": "作者说明 WebGPU 不可用时回退 WebGL2，触屏减少部分指针效果，纹理有尺寸控制；这不等于所有移动设备均已测过。作者也把 reduced-motion 支持列为后续改进。未做移动端、帧率或内存基准测试。",
+          "transfer": "Joey 可先用三张自有项目图制作弧形目录，点击时保留同一卡片并展平，进入有真实 URL 的详情，关闭后回到原位置。用 DOM 保留标题与链接，先验证用户是否更容易理解目录到详情的关系。",
+          "difficulty": "1 天原型",
+          "evidence": "作者原文：https://tympanus.net/codrops/2026/11/05/mathias-adolfsson-portfolio/ 。2026-11-07 正常 Chrome 阅读全文；官网、OG 图及实际组件 https://mathiasadolfsson.dev/_nuxt/CGSB9ROS.js 均 HTTP 200。作者披露与部署组件相互印证曲面参数和 WebGPURenderer；桌面实测弧形目录、点击 Tentipi 进入真实项目 URL、关闭返回。图库弯曲公式来自作者说明，未测其所有边界。封面来自官网 og:image，已解码核对。首次上线时间、完整工程许可、第三方素材再分发权和移动性能未确认，不提供源工程下载。",
+          "image": "./vibe/covers/mathias-adolfsson-20261107.jpg",
+          "imageSource": "https://mathiasadolfsson.dev/images/og.jpg?v=3",
+          "imageCredit": "Mathias Adolfsson；作者官网公开 OG 预览图。图中项目影像、客户品牌及第三方素材归各权利人；展示署名不构成素材再分发授权。",
+          "context": {
+            "type": "product",
+            "tags": [
+              "作品集",
+              "项目导航",
+              "曲面卡片",
+              "WebGPU / TSL"
+            ],
+            "collectedOn": "2026-11-07",
+            "pageTime": "作者技术文章：2026-11-05；首次上线日期未独立核实。",
+            "summary": "以同一张项目卡片连接目录与详情，学习几何变化如何服务导航连续性。",
+            "audience": "需要展示少量高质量视觉项目的创意开发者与作品集设计者。",
+            "value": "可把项目浏览与内容展开组织成同一条可理解的交互路径；没有用户研究或商业结果证明转化提升。",
+            "conditions": "需自有或获授权的项目素材、清晰的内容层级和真实链接；原型限定三张卡片与打开／关闭，不能据此承诺完整 CMS、压缩管线或移动性能。"
+          }
+        },
+        {
+          "id": "brandon-yasin-live-page-menu",
+          "title": "Brandon Yasin · 把真实页面缩进菜单",
+          "author": "Brandon Yasin（设计）／Aslan GM（开发）",
+          "platform": "作者官网 / Codrops 作者技术文章",
+          "pageTime": "作者技术文章：2026-11-04；官网标注 SOTD 24 OCT ’26，文章日不等于首次上线日。",
+          "url": "https://brandonyasin.com/",
+          "accent": "#b3a088",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "安静的作品集打开 Menu 后，页面成为并排的小卡片；选择目的地，缩小的真实页面展开接管全屏。页面色调随当地时间变化，今日桌面显示暖橄榄色。",
+          "why": "预览不是装饰缩略图，而是目的页面的组成部分。菜单用空间关系说明“我在哪里、接下来去哪里”，并让切换有连续的方向。",
+          "input": "点击 Menu，选择真实页面预览；今日桌面已打开三卡片菜单并选 About，确认 URL 进入 /about，再用浏览器返回。作者另说明移动端卡片拖动；触屏、时钟拖动与键盘全流程未测。",
+          "layer": "作者明确披露 Nuxt 4、GSAP 3.14 与 Lenis。部署代码可核验 DOM 页面、transform、CSS 自定义属性 --cut 及真实菜单预览状态；不需要将这一效果归因于 WebGL。",
+          "motion": "实际转场组件协调旧页／新页的 scale、xPercent 与 --cut；菜单组件把目的页面放到选中预览的位置，并在同一帧隐藏替身，避免切换时出现双重画面。",
+          "pipeline": "核心是页面、菜单和滚动状态的一致性。代码打开菜单时暂停 ScrollTrigger 与自动刷新，关闭时恢复；转场协调 Lenis 回顶与页面就绪。作者说明旧页／新页同驻，真实页面预览以 inert 禁止交互，并用 preview 标记跳过 SEO、入场动画与部分观察器；这不等于关闭全部响应性。",
+          "performance": "同时渲染多个真实页面会增加内存与计算；减少预览内观察器可降低重复工作，但没有实测数字支持。未完成移动端、帧率、内存或端到端无障碍验证。迁移时宜为减少动态效果偏好提供普通导航路径，这是复用建议。",
+          "transfer": "Joey 可用“项目／实验／关于”三个自有页面试做可展开目录，先限制为两个目的页并压缩媒体负担。验收应检查打开、选页、关闭后的滚动位置与焦点恢复；让页面内容决定导航，而非堆叠动效。",
+          "difficulty": "1 天原型",
+          "evidence": "作者原文：https://tympanus.net/codrops/2026/11/04/brandon-yasin-portfolio/ 。2026-11-07 官网、OG 图与实际菜单 /_nuxt/DLIfx4oD.js、转场 /_nuxt/CDDUvVXK.js 均 HTTP 200；可核验 ScrollTrigger 停启、目的页面接管与 CSS 裁切参数。原文抓取接口 403；2026-11-07 已通过正常 Chrome 阅读作者全文，未绕过限制。封面为官网公开首页预览，不冒称菜单实测截图。源码许可、再分发权、全移动端体验和商业结果未确认。 今日桌面已验证 Menu 的页面预览、选择 About 后进入 /about、浏览器返回；截图留存。时钟与移动端交互仍以作者说明为证。",
+          "image": "./vibe/covers/brandon-yasin-20261107.jpg",
+          "imageSource": "https://brandonyasin.com/og-image.jpg",
+          "imageCredit": "Brandon Yasin／Aslan GM；作者官网公开 OG 预览图。客户项目影像、人物照片及品牌归各权利人；不含再分发许可。",
+          "context": {
+            "type": "product",
+            "tags": [
+              "作品集",
+              "页面预览导航",
+              "DOM 转场",
+              "滚动状态"
+            ],
+            "collectedOn": "2026-11-07",
+            "pageTime": "作者技术文章：2026-11-04；官网另标注 SOTD 24 OCT ’26，首次上线日期未独立核实。",
+            "summary": "把真实页面缩进菜单再展开，学习布局、裁切与状态衔接如何共同构成导航。",
+            "audience": "内容页数量少、希望让导航预览直接解释页面差异的作品集与创意网站。",
+            "value": "提供一种可看见目的地的导航方式，适合比较页面差异；没有数据证明它比普通导航更易用或更高转化。",
+            "conditions": "先确保常规链接、路由、滚动和焦点恢复正确；避免为预览重复加载所有视频和大图。有限原型不包含完整 CMS、全部设备或无障碍验收。"
+          }
+        }
+      ],
+      "dateLabel": "NOV 7",
+      "issueNo": "018"
+    },
     {
       "id": "2026-11-05",
       "note": "让交互留下结果：Tangle 的牵拉改变毛线形态，Particle Sculpture 以表面目标组织散开与归位，Text Character Animations 让字母的出现方式参与阅读。三件作品都具有可检查的源码与真实画面；本期重点是输入、状态与可读反馈，技术实现和桌面实测分开说明。",
