@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-07T10:37:41.146Z",
+  "updatedAt": "2026-11-08T10:42:03.699Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,144 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-11-08",
+      "note": "课程怎样成为可选择的空间，壳层怎样维持连续深入，数据怎样决定材质。本期 3 件新收录均有原作画面与可追溯技术来源；作者发帖／提交时间和收录日分开记录。",
+      "featuredId": "happy-hour-workshop-worlds",
+      "experiment": {
+        "title": "30 分钟实验：一张桌面上的三场真实体验",
+        "input": "取三条自有且已确认的课程信息：主题、主理人、时间、时长和价格；若尚无供给，明确标为模拟资料。配一张自有桌面照片，使用三个原生链接。",
+        "target": "把课程入口放到同一张桌面的三张菜单卡上；点一张，只展开该课程的关键说明和预约入口。先验证“选什么、什么时候、下一步在哪”是否清楚。",
+        "stack": "HTML＋CSS 透视与 transform＋少量 JavaScript 状态切换，不必先做 Three.js 场景。保留普通列表和链接，减少动态偏好下直接展开。机制参考：https://thehappyhourandco.com/。",
+        "acceptance": "键盘和鼠标均能选择、返回；展开后主题／时间／价格和预约入口可读，焦点跟随并能回到原卡。让一位读者指出适合自己的场次及下一步，记录原话；没有真实场次时不开放预约。仅为待测试方案，本轮未制作。"
+      },
+      "restraint": "Creative Twin 只在有真实、可追溯且获得授权的数据时接入。GitHub Planet 的本期预览使用固定样例；语言字节比例与贡献次数不能代表个人能力。课程场景与金属剖面也不能冒充个人状态或真实产品结构。若接入项目档案，应保留数据时间、口径、数值图例和原记录入口。",
+      "cases": [
+        {
+          "id": "happy-hour-workshop-worlds",
+          "title": "The Happy Hour & Co. · 从长桌菜单走进工作坊",
+          "author": "The Quixotic Studios（设计、3D 与开发；作者 Nikhil_Dhayatkar 发布）",
+          "platform": "作者官网／Three.js Forum",
+          "pageTime": "2026-11-07（作者在 Three.js Forum 公开介绍；未独立核验上线日期）",
+          "url": "https://thehappyhourandco.com/",
+          "accent": "#d49b49",
+          "mechanisms": [
+            "滚动变成镜头",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "屋顶的长桌、灯笼与手作器皿组成入口；桌上的课程菜单把庆祝、亲子、团队、线上等体验分到不同空间。线上课把笔记本通话画面转成灯串上的拍立得。",
+          "why": "场景与具体课程用途一一对应：浏览者从一次聚会或一堂课的情境进入服务，而非观看一段与内容无关的镜头秀。它值得学习的是“空间怎样帮助选择课程”；是否改善报名转化没有公开结果可证明。",
+          "input": "滚动驱动章节和镜头；菜单链接选择派对、周末、儿童、企业、线上与礼赠等公开页面。官网还有预约与礼赠入口，本次未提交表单。",
+          "layer": "作者明确披露 three.js＋postprocessing，包含 HDR bloom 与 ACES 调色；绘制纹理与面向镜头的植物／道具降低建模负担。实站有独立 DOM 标题、课程说明和链接，3D 负责空间与氛围。",
+          "motion": "作者披露 GSAP＋Lenis 驱动滚动叙事，每页一套相机，桌面、平板、手机分别取景。现场从首页点击 Explore the Workshops 后，镜头抵达桌面菜单，再选择线上课程到达独立的居家桌面场景；该页加载期间曾停留在过渡画面，之后正常显示。online 部署代码可核验 Canvas 通话屏幕到灯串照片的状态编排，本次未完整实测其全部滚动阶段。",
+          "pipeline": "作者披露 Vite 多页面构建。部署代码可核验：裁切植物配 customDepthMaterial 保持影子；玻璃通过 onBeforeCompile 加 Fresnel 边缘；warm() 在小渲染目标上调用 compileAsync 后预热，避免第一幕集中编译。难点是同时安排 DOM 阅读、菜单命中区域、镜头位置与页面切换，不能只把服务文字贴在模型旁。",
+          "performance": "作者称全量着色器异步预编译使冷启动由 6–18 秒降至约 1.5 秒，测试设备、网络与测量方法未公布，本次未复测。部署代码可核验默认 DPR 上限 1.75、响应式 profile、部分 reduced-motion 分支与加载失败后释放 DOM 的处理；这些不等于已证明低端手机流畅。移植时先保留课程 DOM 与直达预约，再按设备减少后处理和可见道具。",
+          "transfer": "给 Joey 的兴趣社群合作做一桌真实可报名的课程：每个菜单项对应实际主理人、时间、时长与价格，只为当前选择载入一间示意空间。先验证用户能否快速找到合适场次并完成预约，再决定是否扩展六种场景；不复制其模型、纹理或品牌。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露：2026-11-07 的 Three.js Forum 首帖署名 The Quixotic Studios，介绍技术与优化。公开资源可核验：官网首页、online 页面、课程链接、部署 JS、OG 预览图均 HTTP 200。现场观察：Chrome 中真实屋顶长桌、课程菜单与线上课程居家场景均已显示并保存截图，完成首页→菜单→线上课程导航；未提交任何预约表单。视觉判断：生活场景帮助组织课程服务。未核验全部六类课程交互、手机帧率、报名率或收入；难度仅估计一间自有素材场景与 DOM 导流，不代表重做全站。来源：https://discourse.threejs.org/t/96713；https://thehappyhourandco.com/workshops/online/。",
+          "image": "./vibe/covers/20261108-happy-hour-workshop-worlds.jpg",
+          "imageSource": "https://thehappyhourandco.com/media/img/og.jpg",
+          "imageCredit": "The Quixotic Studios／The Happy Hour & Co.；官网公开 OG 预览图，品牌及第三方素材权利归各权利人。",
+          "context": {
+            "type": "product",
+            "tags": [
+              "线下工作坊",
+              "兴趣社群",
+              "课程发现",
+              "空间导航"
+            ],
+            "collectedOn": "2026-11-08",
+            "pageTime": "2026-11-07（作者论坛发帖时间；非独立核验的上线日期）",
+            "summary": "把真实手作课程与不同生活场景关联的 3D 服务网站；可学习空间入口与课程选择的关系。",
+            "audience": "有真实课程供给、需要介绍不同体验场景的工作坊或社群运营者，以及学习滚动叙事的前端设计师。",
+            "value": "应用价值是让用户在场景中理解课程用途，同时通过 DOM 说明与直达链接继续选择。尚无证据说明它带来新增报名或收入。",
+            "conditions": "先有真实主理人、可预约场次与明确的课程信息；需要自有或获授权的场景资产、设备降级与预约路径测试。场景数量应服从用户选择任务。"
+          }
+        },
+        {
+          "id": "hollow-codevember-2026",
+          "title": "Hollow · 用有限壳层制造无限深入",
+          "author": "Mr.doob（mrdoob）",
+          "platform": "作者演示 / GitHub",
+          "pageTime": "源码首次提交：2026-11-07 07:47:17 UTC；当前版本提交：2026-11-07 08:10:57 UTC。演示首发时间未独立核实。",
+          "url": "https://mrdoob.github.io/codevember-2026/07/",
+          "accent": "#9ca6ac",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "银色几何体的接缝与彩色金属内壁构成视觉焦点，推进后下一种形状接替中心。现场已看到不同层的物体、分离的外壳与拖拽后的转向；无限层级的实现细节由固定源码佐证。",
+          "why": "每次剖开都延续同一物体的旋转与空间位置，让下一层接替上一层成为视觉中心。无限深入来自有限对象的循环复用，剖面、镜头焦点与阶段状态共同表达“进入里面”；不是把一个循环背景贴在页面后面。这是机制分析，不代表已验证用户理解或商业效果。",
+          "input": "拖拽转动，空格播放／暂停，右箭头进入下一层：本次在 Chrome 中操作并记录前后画面。作者说明与源码另有 R 重启，以及速度、材质、分辨率等设置。减少动态偏好下从静态剖开状态开始，下一层静态切换，此分支仅做源码核验。",
+          "layer": "固定源码可核验 Three.js 0.187.0 的 WebGPURenderer；壳体有真实外表面、内衬与切口厚度，程序生成金属纹理；小型局部立方体反射探针叠加静态环境。前景、背景分别模糊再合成景深，不是完整光学镜头模拟。",
+          "motion": "物体在剖开前后继承同一连续旋转，半壳沿切口边缘铰接并分离；雕塑与摄像机共享环绕变换，焦点在当前层和下一层之间衔接。阶段由整数层号与相位表示，向内推进时重新归一化尺度，避免坐标越走越大。",
+          "pipeline": "geometry.js 从完整外壳裁切三角形、生成内表面与闭合切口；shells.js 预建 8 个可复用槽位，正常状态最多激活前一层、当前层与三个内层。同步壳层开合、镜头、局部反射和景深，难点在于切口闭合、开合前后运动连续，以及对象退出时不跳变。以上均可在固定版本源码查证。",
+          "performance": "源码将默认像素比限制在 1.5 以内；页面隐藏时不推进和绘制，暂停后在镜头稳定且无脏状态时停止重绘。减少动态偏好从暂停状态开始。明确依赖 WebGPU，并关闭渲染器的后备路径；不支持时展示提示，原作没有可核验的 WebGL 替代场景。手机表现、耗电和帧率未实测；局部反射与屏幕空间景深均是视觉近似。",
+          "transfer": "Joey 可以把一件原创展品的“成品—结构—过程”做成三层，每次打开都进入对应的真实项目章节，标题与普通链接同步保留。先用三种原创几何或一件物体的两半验证连贯性，再加材质与景深；为非 WebGPU 和减少动态用户提供普通图文路径。这是迁移建议，不能把示意壳体当成产品真实结构。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者说明 https://github.com/mrdoob/codevember-2026/blob/83f55d549bce66af63b8d81b53d805074b66b0ff/07/README.md 与固定源码 https://github.com/mrdoob/codevember-2026/blob/83f55d549bce66af63b8d81b53d805074b66b0ff/07/main.js 、https://github.com/mrdoob/codevember-2026/blob/83f55d549bce66af63b8d81b53d805074b66b0ff/07/journey.js 、https://github.com/mrdoob/codevember-2026/blob/83f55d549bce66af63b8d81b53d805074b66b0ff/07/geometry.js 、https://github.com/mrdoob/codevember-2026/blob/83f55d549bce66af63b8d81b53d805074b66b0ff/07/shells.js 、https://github.com/mrdoob/codevember-2026/blob/83f55d549bce66af63b8d81b53d805074b66b0ff/07/depth-of-field.js 支持上述机制。固定版本 83f55d549bce66af63b8d81b53d805074b66b0ff；部署 main.js 本次 HTTP 200，字节与固定版本相同。首次 /07 提交为 2f55cfbb18fe672c654f839dad24c23ba3b7baaa（2026-11-07 07:47:17 UTC），不把提交时间冒充部署首发。仓库根 LICENSE 在固定版本声明 MIT，Copyright (c) 2026 mrdoob；本期不提供源码 ZIP。未执行作者测试、脚本或安装命令；无作者 OG 图，本期采用 2026-11-08 在公开演示现场取得的 Chrome 截图。已操作空格、右箭头与拖拽，确认层级形状和视角变化；截图中的金属、切缝与分离外壳确实渲染。未测低端手机、耗电、帧率或全部几何。难度只指三层原创展示的小型成品，不指完整十一种几何与全部管线复刻。",
+          "image": "./vibe/covers/20261108-hollow-codevember-07.jpg",
+          "imageSource": "https://mrdoob.github.io/codevember-2026/07/",
+          "imageCredit": "Mr.doob（mrdoob）／Codevember 2026 · Hollow；本站于 2026-11-08 核验的原作截图。",
+          "context": {
+            "type": "story",
+            "tags": [
+              "分层内容",
+              "过程叙事",
+              "三维展品"
+            ],
+            "collectedOn": "2026-11-08",
+            "pageTime": "源码首次提交：2026-11-07 07:47:17 UTC；当前版本提交：2026-11-07 08:10:57 UTC。演示首发时间未独立核实。",
+            "summary": "让同一物体剖开后成为下一层内容的入口，学习有限渲染对象怎样维持连续的深入叙事。",
+            "audience": "制作交互展品、创意作品集和分层内容导览的设计师与前端工程师。",
+            "value": "可学习切口几何与连续运动怎样保留对象身份，以及如何用相对尺度和对象池限制长期运行的状态增长；没有用户留存或成交数据。",
+            "conditions": "需要原创模型／内容层级、WebGPU 设备与足够渲染预算，并为键盘、减少动态与非 WebGPU 用户设计普通图文入口；原作近似反射／景深不适合作为医学、CAD 或物理精度证据。"
+          }
+        },
+        {
+          "id": "github-planet-typescript",
+          "title": "GitHub Planet · TypeScript 防护壳星球",
+          "author": "nitr0yukkuri",
+          "platform": "Three.js Forum / 作者站 / GitHub",
+          "pageTime": "2026-11-07（作者论坛帖时间；并非首次上线日期）",
+          "url": "https://githubplanet.dev/card.html?showcase=typescript",
+          "accent": "#007acc",
+          "mechanisms": [
+            "数据变成空间"
+          ],
+          "memory": "蓝色星球外围叠着半透明发光壳，表面细纹与边缘光随时间缓慢变化；它首先是一张可展示的个人星球卡片。",
+          "why": "可复用的核心是“数据类别决定视觉语法”：主语言从注册表选取材质、附属物与更新函数，而不是把一套粒子效果套给所有人。TypeScript 的防护壳是作者赋予语言的视觉隐喻，不是对代码安全性或开发能力的测量。本次免登录演示使用固定样例，只证明渲染机制，不能证明实时个人数据映射。",
+          "input": "本次输入为公开 TypeScript showcase JSON 和动画时间：mainLanguage=TypeScript、languageStats={TypeScript:100}、planetSizeFactor=2、totalCommits=2000，均为确定性测试值。卡片禁用了 OrbitControls；不要描述为可拖拽探索。作者另有 OAuth/GitHub 数据版本，本次未登录、未核验个人数据流程。",
+          "layer": "源码可核验：Three.js 球体使用贴图 MeshStandardMaterial；TypeScript 模块叠加多层球壳 ShaderMaterial，透明叠加、边缘光与经纬方向的程序纹理共同塑造壳层。独立的语言轨迹模块读取 languageStats 的正数字节值：主语言固定在首位，其余按字节数排序，仅取第2、3名生成轨迹。轨迹宽度和透明度使用份额平方根映射，并非线性比例尺。单语言样例中这两条轨迹隐藏。",
+          "motion": "固定卡片镜头下星球自动旋转；共享 time uniform 驱动球壳纹样相位与轻微呼吸。轨迹模块在曲线上移动亮头与短尾，背面按朝向淡出；这是源码机制，本次 TypeScript 单语言画面不含可见的多语言轨迹。",
+          "pipeline": "作者说明与固定 SHA 源码一致：registry 把 mainLanguage 解析为材质/场景物件/update/dispose；主页与卡片共享 runtime。材质负责星球表面，附属壳层独立构建，切换数据时更新语言轨迹并释放几何与材质。难点是球体前后遮挡、透明多层排序、语言特征与通用轨迹的职责边界。已比对线上 card.js、registry.js、language-composition-trails.js、typescript-planet-shell.js 与 SHA 9d63dccb9e27ff96c7eb5b8c7cbb6408fcca46a5 完全一致。",
+          "performance": "源码已有 DPR 上限2、页面隐藏暂停 RAF、prefers-reduced-motion 时静止绘制、WebGL 初始化失败/上下文丢失的静态回退。透明叠层仍可能增加移动端填充开销；手机减少壳层、降低球体分段属于迁移建议，未测手机帧率，也未验证这些降级的实际显示。",
+          "transfer": "Joey 作品集可把已核验的项目技术构成映射到一颗项目星球：主技术决定材质，另外两项技术以带数值图例的轨迹表达。先用明确标注的样例数据复现视觉；只有获得真实数据后再接入 Creative Twin。贡献次数、代码字节比例不能等同于技术能力、工作量或商业成绩。",
+          "difficulty": "1 天原型",
+          "evidence": "作者论坛新帖（2026-11-07）解释 language feature registry、TypeScript shell 与 language trails；README 明确免登录 demo 使用固定测试数据。公开 showcase API 与固定 SHA 的 showcase-planets.js 一致。技术细节来自已固定的源码，四个线上 JS 已逐字节比对。本次 Chrome 已打开公开 TypeScript 卡片，真实显示蓝色半透明球壳与卡片，并取得现场截图；卡片上的 2000 contributions 是固定样例数据。未登录、未访问用户/token 接口、未调用 GitHub/OAuth/Gemini 业务链路，未测移动端性能。源码根目录为 MIT，但未完成全部贴图/字体等第三方素材权利核查，因此不提供下载字段。 作者帖子：https://discourse.threejs.org/t/96726；固定源码：https://github.com/nitr0yukkuri/githubplanet/tree/9d63dccb9e27ff96c7eb5b8c7cbb6408fcca46a5。",
+          "image": "./vibe/covers/20261108-github-planet-typescript.jpg",
+          "imageSource": "https://githubplanet.dev/card.html?showcase=typescript",
+          "imageCredit": "GitHub Planet／nitr0yukkuri；本站于 2026-11-08 核验的公开 TypeScript 样例截图，非真实用户数据。",
+          "context": {
+            "type": "data",
+            "tags": [
+              "开发者身份展示",
+              "技术构成可视化",
+              "数据驱动材质"
+            ],
+            "collectedOn": "2026-11-08",
+            "pageTime": "2026-11-07（作者论坛帖时间；并非首次上线日期）",
+            "summary": "学习如何把离散类别映射到材质系统，把有限的次级构成映射为带宽轨迹；免登录样例不代表实时 GitHub 数据。",
+            "audience": "希望为作品集、社区个人页或技术档案设计数据视觉的前端与创意技术开发者。",
+            "value": "应用价值在于可替换的视觉注册表、共享渲染 runtime，以及明确的数据与图形变量关系，可用于个人身份或项目技术构成展示。",
+            "conditions": "必须解释数据口径与映射尺度，保留数值图例；真实接入需获得相应授权并核验来源。不能拿贡献量或语言份额评估人员能力；不得把固定 showcase 当成实时记录。"
+          }
+        }
+      ],
+      "dateLabel": "NOV 8",
+      "issueNo": "019"
+    },
     {
       "id": "2026-11-07",
       "note": "从看见作品到进入内容：Bricelab 把项目选择放进混凝土中庭，Mathias Adolfsson 让弧面卡片成为详情入口，Brandon Yasin 把真实页面缩进菜单。重点拆解视觉对象、项目状态与导航的连续性；平台收录日、作者文章日和本站收录日分开标注。",
