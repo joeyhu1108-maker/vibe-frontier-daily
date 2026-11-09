@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-08T10:42:03.699Z",
+  "updatedAt": "2026-11-09T10:37:09.440Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,146 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-11-09",
+      "note": "三种可解释的空间交互：拆开相机理解部件、走入街巷看见高斯、切换频率比较膜与沙粒。展示图均来自实际原作，技术事实与移植建议分开。",
+      "featuredId": "camera-lab-jude",
+      "experiment": {
+        "title": "用同一份部件数据驱动展开、选择与说明",
+        "input": "原创的五个简单几何部件；每个部件含 id、名称、说明、home 和 offset。",
+        "target": "五个部件从整体展开；点选部件后高亮，并出现同一 id 对应的说明。",
+        "stack": "Three.js + 原生 DOM；单一 progress 插值；不引入资产下载、物理求解或新框架。",
+        "acceptance": "30 分钟实验方案，尚未构建：展开/收起可逆；连续选择三个部件时模型高亮与文字始终匹配；提供立即收起/减少动态效果选项。"
+      },
+      "restraint": "Creative Twin 只在有来源明确的真实部件状态、空间扫描或测量数据时接入，并说明映射和误差。示意相机与理想圆膜不能当作已校准的数字孪生。",
+      "cases": [
+        {
+          "id": "camera-lab-jude",
+          "title": "Camera Lab — 把相机拆成可探索的界面",
+          "author": "Jude Onohwosafe（论坛账号 Jude_Onohwosafe）",
+          "platform": "作者独立站 / Three.js Forum",
+          "pageTime": "2026-11-08 13:35 UTC（作者论坛首帖；独立站上线日期未披露）",
+          "url": "https://the-camera.vercel.app/",
+          "accent": "#c5ad80",
+          "mechanisms": [
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "一台深色单反悬浮在画面中；爆炸展开后，镜头、反光镜、快门、传感器各自成为可选中的知识入口。",
+          "why": "值得借鉴的是同一套部件关系同时控制空间位置、选择状态、说明与导览。拆开相机不是一次播放完的表演，读者可以带着“光如何抵达传感器”的问题改变视角和展开程度。",
+          "input": "直接源码可核验：每个部件记录含 id、名称、类别、说明、连接关系、原位 home 和爆炸偏移 offset；输入来自展开滑杆、部件选择、预设视角、透明度与分步导览。",
+          "layer": "可检查应用代码用 Three.js 基础几何与材质组合相机；螺丝和镜头齿纹实际调用实例化网格。DOM 承担筛选、说明与投影标签，3D 负责位置与部件选择。",
+          "motion": "直接源码可核验：GSAP 同时过渡部件位置、相机和 OrbitControls 目标点；切到内部视角会展开并提高外壳透明度。镜头跟着问题移动，而非依赖长段被动滚动。",
+          "pipeline": "先定义部件的 home/offset 与说明，再在同一数据记录下构建几何和类别索引；raycasting 读取 userData.part，将点击绑定到说明与聚焦。难点在爆炸后标签、选中高亮与镜头仍指向同一部件，以及透明壳体的深度排序。",
+          "performance": "作者明确披露 DPR 上限 1.75、简化模式关阴影、重复几何实例化；应用代码也能核验这些分支，并在页面隐藏或场景静止时跳过绘制。prefers-reduced-motion 会取消过渡时长和自动旋转。移动端未做设备实测，不能据此保证流畅；可沿用简化模式并把说明放在画布下方。",
+          "transfer": "Joey 可用原创或已获授权的设备/展品模型，做“整体—拆开—选中—解释关联”四态样机：例如传感装置的外壳、电源、感应部件和反馈部件。先标注实际结构，避免把示意模型当作工程精度承诺。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者论坛首帖确认作品归属、Three.js 与真实访问地址；回帖披露性能取舍；公开部署 bundle 可核验部件数据、GSAP 调用、picking、实例化和渲染降级。本站于 2026-11-09 在 Chrome 实测 Explode 到 100%、Components 中选择 CMOS image sensor 后出现对应标签与说明，并启用 Simplified rendering；展示图为实测后的 100% 展开截图。页面明确内部排列不是制造商蓝图。未核验物理/光学精度、跨设备帧率或学习效果；公开可访问不代表允许分发其源码。",
+          "image": "./vibe/covers/20261109-camera-lab-jude.jpg",
+          "imageSource": "https://the-camera.vercel.app/",
+          "imageCredit": "Jude Onohwosafe / Camera Lab；本站于 2026-11-09 核验后的公开演示截图",
+          "context": {
+            "type": "product",
+            "tags": [
+              "产品结构讲解",
+              "交互教学",
+              "设备展示"
+            ],
+            "collectedOn": "2026-11-09",
+            "pageTime": "2026-11-08 13:35 UTC（作者论坛首发；独立站上线日期未披露）",
+            "summary": "用可选择的三维部件、爆炸展开和说明建立产品结构的阅读路径。",
+            "audience": "需要讲清内部结构的产品设计师、展陈设计师与教学内容创作者。",
+            "value": "把抽象的组件关系变成可指认、可切换视角的解释过程；这是学习与展示应用判断，未观察到转化或教学成效数据。",
+            "conditions": "需要可信的部件关系与有权使用的模型；透明材质和屏幕标签必须在小屏幕单独验证，不能用示意模型替代真实工程说明。"
+          }
+        },
+        {
+          "id": "splat-walk-artillery-passage",
+          "title": "Splat Walk — 走进扫描街巷，再看见它的高斯结构",
+          "author": "Will Eastcott；场景扫描 David Fletcher",
+          "platform": "作者演示 / GitHub（经 Codrops 发现）",
+          "pageTime": "2026-11-05T14:29:15Z（源码首次提交；独立站最早上线日期未披露）；原扫描照片摄于 2024-06",
+          "url": "https://willeastcott.github.io/splat-walk/",
+          "accent": "#e2914d",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面",
+            "交互变成叙事"
+          ],
+          "memory": "伦敦窄巷看起来像手持手机拍下的一段步行。作者设置的点击会让实景逐渐显露为发光的椭圆轮廓与漂浮小点，再由青色波前恢复：原来“视频”一直是可交互的三维扫描。",
+          "why": "它让真实感与结构解释出现在同一个空间：步态、视线、声音和手机镜头模型先建立“有人正在走”的感觉，点击再揭示构成影像的高斯椭圆。效果依据每个 splat 的形状与位置变化，并非在截图上叠一层随机粒子；这是让观众理解扫描媒介的交互。",
+          "input": "David Fletcher 的 Artillery Passage 高斯扫描；作者设定的步行路线、地面/墙面代理与注视目标；时间、步态及生成环境声音；观众点击位置。点击以相机射线与简化地面/墙面相交定位，没有对每个高斯执行精确网格拾取。",
+          "layer": "作者 README 和固定版本源码可核验：PlayCanvas，优先 WebGPU、回退 WebGL 2；高斯扫描以 SOG 分块加载；gsplatModifyVS/gsplatModifyPS 自定义每个高斯的位置、尺度、颜色和片元外观，分别包含 WGSL 与 GLSL 实现。光环、描边和小点来自同一批场景高斯。",
+          "motion": "现场播放沿预设路径自动行走；作者把行走写成时间函数：脚步起伏、身体侧摆、头部注视弹簧与手机跟随弹簧分层。HDR 场景再经过运动模糊、滚动快门与镜头后处理；深度使用地面/墙面的解析代理。点击触发空间扩散，再转为上浮点；约五秒后开始恢复波，固定源码保留两个可重叠触发槽。",
+          "pipeline": "作者披露原扫描约 5M 高斯、PLY 约 1.18GB，压成约 76MB 的 SOG 并分为六个空间块；这不是本次独立测量。扫描 → 测量路线和代理几何 → 时间驱动步态与视线 → 高斯着色钩子 → HDR 场景与手机成像后处理 → 音频时钟同步输出。工程重点是把相机、声音与材质变化维持在同一时间线上。",
+          "performance": "源码可核验启动 GPU 基准、动态调整高斯内部渲染分辨率、输出像素比与高度上限，以及 WebGL 2 回退；没有为手机另配小体积场景。作者称目标 30fps、加载约 78MB，本次未做设备基准。作者 Nov6 的引擎 issue #9961 说明：透明淡出的高斯当时仍有排序成本；引擎 main 后已修复，本次未证明已部署应用含该修复。移植到移动端应先用较小扫描，再实测加载、温升与最低清晰度。",
+          "transfer": "Joey 若有自有空间、展览或社区的真实扫描，可先让人“走进现场”，再点击切换实景与扫描结构，并在指定位置显示有来源的现场记录。让数据揭示与观众当前所看位置对应；没有真实采集数据时，先做普通空间导览，不把生成场景称为数字孪生。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者 README 与 8a140e75fb64043b9fa334eae2bc8230727cbdf8 源码交叉核验引擎、步态、代理拾取、着色钩子、后处理及动态分辨率。GitHub API 确认源码首提交 2026-11-05，不能等同最早上线时间；SuperSplat 公开页与仓库场景 LICENSE 一致署名 David Fletcher / CC BY 4.0。音频由 ElevenLabs 生成，不是现场实录。本站于 2026-11-09 在 Chrome 实测 Play 后镜头自动步行，点击出现局部发光轮廓/烧散反馈，并操作暂停；展示图为当场画面。未实测手机性能；步行沿作者路线播放，不是自由行走。应用仓库未声明根许可证，不提供 ZIP 下载。源码：https://github.com/willeastcott/splat-walk/blob/8a140e75fb64043b9fa334eae2bc8230727cbdf8/README.md；着色：https://github.com/willeastcott/splat-walk/blob/8a140e75fb64043b9fa334eae2bc8230727cbdf8/src/burn.js；性能边界：https://github.com/playcanvas/engine/issues/9961",
+          "image": "./vibe/covers/20261109-splat-walk.jpg",
+          "imageSource": "https://willeastcott.github.io/splat-walk/",
+          "imageCredit": "Will Eastcott / Splat Walk；场景扫描 Artillery Passage © David Fletcher（artfletch），CC BY 4.0；本站于 2026-11-09 核验后的演示截图",
+          "context": {
+            "type": "space",
+            "tags": [
+              "真实空间导览",
+              "高斯扫描结构展示",
+              "空间记忆",
+              "数字展陈"
+            ],
+            "collectedOn": "2026-11-09",
+            "pageTime": "源码首提交 2026-11-05；扫描照片 2024-06",
+            "summary": "把真实街巷扫描组织成带步态、镜头与声音的第一人称观看，再用点击揭示影像的高斯组成。",
+            "audience": "拥有真实空间扫描的展览团队、建筑/文化空间记录者、研究高斯交互的前端开发者。",
+            "value": "可学习如何让扫描空间具有身体尺度，以及让结构揭示承担解释作用；没有观众理解率、转化率或商业结果证据。",
+            "conditions": "需要可合法使用的真实扫描、路线与代理几何调校，以及逐设备性能验收。示例扫描须保留 David Fletcher / CC BY4.0 署名；应用源码未声明许可，不能将引擎 MIT 或素材 CC BY4.0 当作整站复用授权。 3–5 天限已有合法扫描上的单路线/单次揭示样机，不包含扫描采集、完整身体相机与音频管线。"
+          }
+        },
+        {
+          "id": "membrane-codevember-2026",
+          "title": "Membrane · 让频率在沙粒与薄膜中显形",
+          "author": "Mr.doob（mrdoob）",
+          "platform": "作者公开演示 / GitHub",
+          "pageTime": "2026-11-09T04:56:30Z（作者仓库首次新增 09 Membrane 的提交时间；非本次收录时间）",
+          "url": "https://mrdoob.github.io/codevember-2026/09/",
+          "accent": "#7daca8",
+          "mechanisms": [
+            "数据变成空间",
+            "交互变成叙事"
+          ],
+          "memory": "作者把同一个圆形振膜做成两种可切换的读法：白沙在振动中重排，薄膜以起伏与流动的虹彩显示频率对应的形状。现场从 223.2 Hz 切到 227.2 Hz，圆膜形状随之变化；打开 Particles 后可同时看见白色沙粒。",
+          "why": "有因果链才成立：频率改变模态响应，模态状态参与膜与沙粒的计算，再由材质与视图把差异变得可读。Wave 与 Particles 可以独立开关，让观众比较形状和颗粒的关系；它的价值是用可操控参数解释一种现象。",
+          "input": "频率滑杆（40–300 Hz）、前后共振预设、Wave/Particles 开关、重置、暂停、绕视与缩放；声音需主动打开。源码默认 223.2 Hz，减少动态效果偏好下默认暂停并关闭自动绕视。",
+          "layer": "源码可核验：Three.js 0.187.0 WebGPU/TSL 负责场景，WGSL 计算膜、沙粒与单独的二维薄膜流场；沙粒用实例化的双三角面与解析球面法线/深度呈现，薄膜颜色来自膜厚和视角查询的干涉反射率表。",
+          "motion": "频率切换保留一个可比较的圆膜容器，视角可拖拽；可暂停观察。作者明确：Wave 显示的是同一模态基底的无载稳态解析响应，并做高度放大，不是逐帧带沙粒负载的实际膜位移。薄膜流动另受实时场驱动。",
+          "pipeline": "固定提交中可追踪三段：模态与颗粒接触的 GPU 计算 → 共享 storage buffer 给膜和沙粒渲染 → 膜厚流场与光学查表合成。主页面载入预先计算的初始沙粒状态后继续实时推进；因此启动时已经有图案不代表现场从散沙形成。难点是保留物理状态、解释用显示场和光学层的边界。",
+          "performance": "源码有像素比上限 1.5、GPU 队列上限、页面隐藏时停止推进；粒子渲染读取 GPU buffer，避免每帧完整回传。作者提供可调粒子数及性能记录，但本轮未复测帧率或设备覆盖。WebGPU 是硬要求，无 WebGL 回退；迁移时可另做低密度解析场或视频降级，并保留暂停与减少动态效果支持。",
+          "transfer": "给 Joey 的作品集做一个可验证的“参数→形状”展项：保持同一视角，在两三个带数值标签的共振模式之间切换，并解释颜色、形变各自代表什么。先复现单个解析模态与对照视图；有真实测量或可说明的模型输入时再接 Creative Twin，不能把漂亮波纹称为真实设备监测。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者明确披露：README 说明模型假设、初始状态、显示放大与光学近似；固定源码可核验：https://github.com/mrdoob/codevember-2026/blob/0ea8c66a3b2a227aaf4a2db32815a11036f9a4ab/09/README.md ，https://github.com/mrdoob/codevember-2026/blob/0ea8c66a3b2a227aaf4a2db32815a11036f9a4ab/09/main.js ，https://github.com/mrdoob/codevember-2026/blob/0ea8c66a3b2a227aaf4a2db32815a11036f9a4ab/09/physics/solver.wgsl ，https://github.com/mrdoob/codevember-2026/blob/0ea8c66a3b2a227aaf4a2db32815a11036f9a4ab/09/wave-field.wgsl ，https://github.com/mrdoob/codevember-2026/blob/0ea8c66a3b2a227aaf4a2db32815a11036f9a4ab/09/soap-optics.js 。提交 0ea8c66a3b2a227aaf4a2db32815a11036f9a4ab 于 2026-11-09T04:56:30Z 首次加入本作。演示 index.html 与 main.js HTTP 200，下载文本与固定提交一致。本站于 2026-11-09 在 Chrome 实测 223.2→227.2 Hz 共振切换、Particles 开关和 Reset；已核验虹彩膜与沙粒画面并截图。未运行仓库测试或安装命令；未验证科学精度与作者性能数据。",
+          "image": "./vibe/covers/20261109-membrane-codevember.jpg",
+          "imageSource": "https://mrdoob.github.io/codevember-2026/09/",
+          "imageCredit": "Mr.doob（mrdoob）/ Codevember 2026 · 09 Membrane；主任务核验后的公开演示截图",
+          "context": {
+            "type": "data",
+            "tags": [
+              "交互科学展示",
+              "频率与模态",
+              "WebGPU 计算",
+              "材质与光学"
+            ],
+            "collectedOn": "2026-11-09",
+            "pageTime": "2026-11-09T04:56:30Z（作者仓库首次新增 09 Membrane 的提交时间；非本次收录时间）",
+            "summary": "以可调频率驱动圆膜与沙粒，并以独立的薄膜可视化解释响应形状；适合研究“模型状态与解释性显示如何分开”。",
+            "audience": "交互可视化开发者、创意技术作者、科学展陈设计者。",
+            "value": "可学习把同一输入映射到多种有明确含义的空间表征，并用视图开关帮助观众比较；不据此推断商业、教学或科学验证成果。",
+            "conditions": "需支持 WebGPU 的浏览器与可用 GPU。作者模型是理想圆膜与球形颗粒，不是校准设备数字孪生；二维流场与理想干涉光学各有简化。3–5 天仅指收敛到单一模态的解释性展示，完整多物理仿真不按此估时。Root MIT 之外，soap-spectrum.js 的 CIE 派生数据为 CC BY-SA 4.0，复用需保留对应署名与许可。"
+          }
+        }
+      ],
+      "dateLabel": "NOV 9",
+      "issueNo": "020"
+    },
     {
       "id": "2026-11-08",
       "note": "课程怎样成为可选择的空间，壳层怎样维持连续深入，数据怎样决定材质。本期 3 件新收录均有原作画面与可追溯技术来源；作者发帖／提交时间和收录日分开记录。",
