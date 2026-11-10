@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-09T10:37:09.440Z",
+  "updatedAt": "2026-11-10T10:39:26.493Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,147 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-11-10",
+      "note": "三件近期作品，让光学参数、身体动作与产品比较成为可以操作的画面。技术事实、现场观察和应用建议分别标明；每张展示图来自本次原作核验。",
+      "featuredId": "caustic-codevember-2026",
+      "experiment": {
+        "title": "把两帧自有动作变成可暂停的点线身体",
+        "input": "自己绘制的两组五点坐标（头、双手、双脚），两段短动作；每点固定 id，每段注明手工数据来源。",
+        "target": "在同一画布中插值播放点与连线；切换动作时标签同步，暂停后保留当前姿态供比较。",
+        "stack": "原生 Canvas 2D + requestAnimationFrame + DOM 按钮；二维坐标与线性插值即可。",
+        "acceptance": "30 分钟实验方案，尚未构建：两动作均可播放并切换；暂停后点位不继续变化；动作名称与数据始终对应；减少动态效果时默认静止。它是动作表达练习，不输出关节测量或康复判断。"
+      },
+      "restraint": "Creative Twin 只在有来源明确、授权可用的真实动作、设备或空间数据时接入，并说明采集条件、单位与误差。预录动作肖像、程序生成焦散和模拟屏幕比较都不能被包装成实时测量或数字孪生。",
+      "cases": [
+        {
+          "id": "caustic-codevember-2026",
+          "title": "Caustic · 用一圈波纹串起水下的光与生命",
+          "author": "Mr.doob（mrdoob）",
+          "platform": "作者公开演示 / GitHub",
+          "pageTime": "2026-11-10T08:21:03Z（作者仓库首次新增 10 Caustic 的提交时间；当前核验版本更新于 08:59:01Z，非本次收录时间）",
+          "url": "https://mrdoob.github.io/codevember-2026/10/",
+          "accent": "#295661",
+          "mechanisms": [
+            "数据变成空间",
+            "交互变成叙事"
+          ],
+          "memory": "透明玻璃球悬在水下石阶中央，彩色焦散沿柱面和地面流动；切换 Change view 后，镜头进入金色鱼群，把同一片光变成近距离可比较的材质细节。",
+          "why": "策展判断：折射光、鱼群、漂浮玻璃与镜头共享同一场景时间，光参与材质、阴影和空间尺度的解释；它让观众从观看全景转为比较局部因果，而不是在画面上叠一张波纹动画。",
+          "input": "源码核验：时间、玻璃球升降、水面波函数、Ripple 输入、镜头选择与光学/鱼群/氛围设置。拖动可回到自由视角；镜头预设有建筑视角与跟随鱼群质心的视角。不读取真实海洋、传感器或现场数据。",
+          "layer": "源码核验：原生 Three.js WebGPURenderer 与 TSL，依赖固定 Three.js 188dev 提交；程序生成几何、纹理和环境。折射光子片形成焦散图，再调制石材、鱼和藻类的直接受光；反射、光束、粒子与色彩分层合成。",
+          "motion": "源码核验：鱼群、植物、水、颗粒和跟随镜头共用时钟；鱼群视角根据实际群体中心和朝向更新，拖动释放跟拍。玻璃球与水面接触会发出波纹；Ripple、暂停和切镜头是不同操作，不是滚动叙事。",
+          "pipeline": "固定源码核验：把水面折射前后的光子片面积比转为光强，在分开的水面/玻璃接收图中重建焦散；七个光谱带产生色散，玻璃用共享追踪函数计算壳层界面。再处理直接受光、镜面捕获、屏幕空间反射及 SVGF 去噪。难点是镜头切换后历史缓存、玻璃内外折射、阴影与焦散不相互重复加亮。",
+          "performance": "源码核验：自动分辨率同时受约 120 万总渲染像素预算和 1.5 倍像素比约束，设置可显式覆写；颗粒照明缓存到空间网格，静态建筑合批。隐藏页面不推进时间；减少动态效果偏好默认暂停，暂停后反射历史收敛再停止绘制。硬要求 WebGPU，无 WebGL 回退。未独立测手机帧率或温升；移植建议提供静帧/短视频及精简场景。",
+          "transfer": "Joey 可在原创展览或光学教学小展项中，只保留一个接收平面、一枚简化玻璃体和 Ripple/暂停/两视角，解释水面输入如何改变光斑。先标出哪些是真实数据、哪些是算法参数，避免将程序生成的水下场景称为数字孪生。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者 README 明确描述算法、性能策略与近似，固定版本 a367895cf2b1ff36aee5dc991a1b50d908471dc3 的 main.js/optics.js/crystal-optics.js/camera-views.js/post-processing.js 已文本核验。GitHub API 确认首次提交 5a255673cc0086c9676896da9d10c6c1ede518d5 于 2026-11-10T08:21:03Z；直接演示、部署 index.html/main.js 均 HTTP 200，后两者与固定提交字节一致。作者明确这不是完整光传输：地板焦散重投影、色散夸张、SSR 只见屏内物体、鱼的彩色阴影只取最近遮挡层。未运行作者测试、安装命令、科学精度或设备性能验证。复现难度仅限单接收面、简化玻璃体和一次输入的小展项，不指全场景重做。根 MIT 已读，但本期不提供源码下载。本站于 2026-11-10 在 Chrome 核验水下玻璃球与焦散画面，点击 Ripple，并以 Change view 切到 Amber school，确见镜头转为鱼群近景；未对瞬时波纹幅度或光学能量做测量。展示图为该次鱼群视角截图。来源：https://github.com/mrdoob/codevember-2026/blob/a367895cf2b1ff36aee5dc991a1b50d908471dc3/10/README.md；https://github.com/mrdoob/codevember-2026/blob/a367895cf2b1ff36aee5dc991a1b50d908471dc3/10/optics.js；https://github.com/mrdoob/codevember-2026/blob/a367895cf2b1ff36aee5dc991a1b50d908471dc3/10/main.js",
+          "image": "./vibe/covers/20261110-caustic-mrdoob.jpg",
+          "imageSource": "https://mrdoob.github.io/codevember-2026/10/",
+          "imageCredit": "Mr.doob（mrdoob）/ Codevember 2026 · 10 Caustic；本站于 2026-11-10 核验后的原作截图",
+          "context": {
+            "type": "space",
+            "tags": [
+              "光学可视化",
+              "空间展陈",
+              "程序生成",
+              "WebGPU"
+            ],
+            "collectedOn": "2026-11-10",
+            "pageTime": "2026-11-10T08:21:03Z（作者仓库首次新增的提交时间）",
+            "summary": "用波纹、玻璃体与共享时钟，把光学参数组织成可比较的水下空间。",
+            "audience": "创意开发者、交互展陈与科学可视化设计师。",
+            "value": "学习把输入、光线响应与观看路径连在一起；没有观众理解率或商业结果证据。",
+            "conditions": "需要支持 WebGPU 的设备、明确的算法近似与原创/授权素材；小型实现必须收敛到单个解释目标，不能据画面推断真实光学测量精度。"
+          }
+        },
+        {
+          "id": "au-rel-andrea-napoli",
+          "title": "Au-rel.io — 把作品索引与动作肖像连成同一套界面",
+          "author": "Andrea Aurelio Napoli",
+          "platform": "作者独立站 / Codrops 作者技术文章",
+          "pageTime": "2026-11-09（Codrops 作者技术文章日期；原站最早上线日期未披露）",
+          "url": "https://au-rel.io/",
+          "accent": "#a7aaa3",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "分散的影像块由一枚随指针移动的项目标签串起来；About 则把作者的真实头像接到可切换动作的点线身体上。",
+          "why": "它把“我在看哪个项目”和“这是谁的作品”做成持续可操作的线索。网格、标签、转场和身体动作都服务于识别与阅读，动效承担信息关系，而不是另加一层装饰。",
+          "input": "项目块悬停与点击、滚动，以及 About 的动作、速度、骨架/点显示控制。动作来自预先导出的点帧数据，不能据此称为浏览器实时人体识别。",
+          "layer": "公开应用包可核验：Nuxt 页面与 DOM 承担网格/文字；肖像使用 Three.js 相机投影三维点，再由 Canvas 2D 画点线和头像。实际渲染类调用 canvas.getContext(\"2d\")，不能笼统写成 WebGL 人体渲染。",
+          "motion": "作者说明：首页媒体在固定遮罩内向上进入，项目标签从指针位置延续到详情页标题位置。About 公开实现按播放时间选择相邻帧并插值 xyz，指针横向位置控制身体朝向；切换动作还会混合前后姿态。",
+          "pipeline": "作者披露 FBX→逐帧 JSON。已读取原站 Walking JSON，source 为 Walking.fbx，包含 COCO-17 与 hybrid 71 点帧；应用再做相邻帧插值、旋转、相机投影、2D 绘制。工程难点是动作切换时点索引一致、头像与身体锚点稳定，以及项目跨页时的布局/滚动连续性。",
+          "performance": "源码可核验动作数据按需 fetch 并用 Map 缓存；首页入口检查 prefers-reduced-motion 并把对应入场时长设为0。作者披露移动端改为单项目循环序列，由滚动经过中心更新标签，复用原视频元素；这不是性能实测。移植时应限制同时解码的视频、暂停屏外播放，并给身体动画独立的暂停/静态选项。",
+          "transfer": "Joey 可在自有作品集先试三个原创项目：同一项目 id 同时关联媒体块、常驻可读标题与详情入口；About 用自己有权使用的一段动作和肖像做点线自画像。保留清楚的点击入口与触屏标题，不照搬作者头像或客户作品。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者在 2026-11-09 Codrops 技术文章说明网格、转场、FBX 点帧与移动端组织；本次检索可读取作者正文，Codrops 直接请求返回403，未绕过。原站首页、About、公开部署 JS 与 Walking 数据均 HTTP 200；JS 独立确认 Canvas2D、COCO/hybrid、相邻帧插值、相机投影与动作缓存。本站于 2026-11-10 在 Chrome 从主页进入 About，点击 Change action 后标签变为 SWIMMING，点线身体与头像实际显示；展示图为该次原作截图。未做手机帧率实测，不把此肖像当作康复测量系统；源码/动作/客户素材许可未明确，不提供下载。文章：https://tympanus.net/codrops/2026/11/09/au-rel-io/；实现：https://au-rel.io/_nuxt/BbInkP6f.js；数据：https://aurelio-portfolio.b-cdn.net/public/pose/coco-actions/walking.json",
+          "image": "./vibe/covers/20261110-au-rel-andrea.jpg",
+          "imageSource": "https://au-rel.io/about/",
+          "imageCredit": "Andrea Aurelio Napoli / Au-rel.io；本站于 2026-11-10 核验后的 About 原作截图",
+          "context": {
+            "type": "story",
+            "tags": [
+              "作品集信息组织",
+              "动作数据可视化",
+              "交互肖像",
+              "跨页转场"
+            ],
+            "collectedOn": "2026-11-10",
+            "pageTime": "2026-11-09（作者技术文章；原站最早上线日期未披露）",
+            "summary": "以同一项目身份贯穿网格、指针标签与跨页转场，再把预录动作数据组织为可操控的作者肖像。",
+            "audience": "拥有原创作品、需要改善多媒体浏览路径的设计师与 Creative Technologist。",
+            "value": "可学习如何让动态标签和姿态反馈承担信息识别与个人表达；未观察到浏览效率、转化或商业结果数据。",
+            "conditions": "需有权使用的项目媒体、肖像与动作数据；隐藏标题与循环媒体对触屏、键盘、减少动态效果偏好均要验证。3–5 天范围限三项目索引与一段既有动作肖像，不含原创客户作品、动作采集或全站重建。它读取预制动作，不能作为实时运动评估或康复诊断依据。"
+          }
+        },
+        {
+          "id": "steam-deck-oled-interactive-showcase",
+          "title": "Steam Deck OLED — 可操作的 3D 产品说明",
+          "author": "Maksim Yaletski（scr01ex）",
+          "platform": "作者独立站 · Three.js Forum · GitHub",
+          "pageTime": "作者公开分享：2026-11-09 18:33 UTC（北京时间2026-11-10 02:33）；非最初上线日期",
+          "url": "https://3deck.dev/",
+          "accent": "#ff5b35",
+          "mechanisms": [
+            "模型成为界面",
+            "滚动变成镜头",
+            "交互变成叙事"
+          ],
+          "memory": "同一掌机屏幕里的游戏视频被 OLED/LCD 分割线切开，按 50/50 可保持同一画面对照；更换 ORI 后，屏幕和标题同步切换。作者演示还显示游戏封面从球面展开成环。",
+          "why": "模型同时承担说明和操作：比较滑杆改变模型屏幕两侧的视觉处理，内容库从设备里的内容发展成围绕设备的空间。硬件、屏幕与游戏成为连续状态。",
+          "input": "本站于 2026-11-10 在 Chrome 现场验证滚动进入掌机Overview、点击OLED Display、100% LCD与50/50切换，并切换ORI后看到标题和屏幕视频对应变化。移动方向感应、触摸与声音交互未做真机验证。",
+          "layer": "源码可核验 Three.js / React Three Fiber / drei 场景和 HTML 覆盖层。CanvasTexture 把动态画面映射到掌机屏幕；Shader 按 UV 分割，示意黑位、色彩和边框的差异。",
+          "motion": "ScrollControls 和逐帧相机编排连接设备、暗室比较与内容库；内容卡片沿闭合 Catmull–Rom 曲线移动。作者演示可确认从设备到内容球面/环的转场，移动手感和声音尚未独立实测。",
+          "pipeline": "难点是屏幕 UV、视频/序列帧更新及界面状态同步。源码创建 1280×800 CanvasTexture；独立 4×2 软件 Canvas 每 100ms 采样画面颜色供环境光使用，无需逐帧读回 WebGL 画面。",
+          "performance": "源码把 DPR 限在 1.25–2，关闭动态屏幕纹理 mipmap，在窄屏或纵向比例下隐藏接触阴影。小画布低频采样可复用；重型视频和模型仍需预算。作者的60/120FPS宣称未独立压测，不能写成结果。 本次浏览器初始资源加载等待较长；未测定稳定加载时长。移植应提供可用的加载反馈和轻量备选。",
+          "transfer": "Joey 的作品集可借一个可操作的比较：用自有设备模型展示同一功能在旧流程/新流程的差异，让读者拖动比较。先做单设备、单比较场景，避开整套品牌和游戏资产。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者帖、站点署名与固定 SHA ae373b4c17ce289821020c7796e8b928f755a212 的源码交叉核验；该源码 SHA 不等同已证明的部署版本。本站于 2026-11-10 在 Chrome 等待初始加载后，滚动进入 Overview，再选择 OLED Display、100% LCD、ORI 和 50/50，实见分割界面与对应游戏视频。展示图为此次 50/50 截图；球面/环转场另外由作者 GIF 和源码核验。作者明确声明为独立非商业粉丝概念，非 Valve 官方；屏幕差异是视觉模拟，不是硬件测量。未做手机、音频、方向感应或帧率基准。根 MIT 许可不自动覆盖品牌、模型、游戏视频及封面，本期不提供源码 ZIP。作者帖：https://discourse.threejs.org/t/steam-deck-oled-interactive-3d-showcase-three-js-dynamic-screen-canvas-web-audio/96906；源码：https://github.com/scr01ex/steamdeck-3d-showcase/tree/ae373b4c17ce289821020c7796e8b928f755a212",
+          "image": "./vibe/covers/20261110-steamdeck-oled.jpg",
+          "imageSource": "https://3deck.dev/",
+          "imageCredit": "Maksim Yaletski（scr01ex）/ Steam Deck OLED Interactive Showcase；本站于 2026-11-10 核验后的原作截图；Steam Deck/Steam 属 Valve，Ori 游戏画面归相应权利方。",
+          "context": {
+            "type": "product",
+            "tags": [
+              "3D 产品说明",
+              "可操作的对比",
+              "交互叙事",
+              "动态屏幕材质"
+            ],
+            "collectedOn": "2026-11-10",
+            "pageTime": "作者公开分享：2026-11-09 18:33 UTC；非最初上线日期",
+            "summary": "学习让同一3D设备连续解释外观、体验差异与内容生态。",
+            "audience": "产品设计师、创意开发者、需要解释复杂功能的作品集作者。",
+            "value": "把差异变成读者能操作的界面，可能更容易组织理解；这是应用判断，未验证转化或成交。",
+            "conditions": "使用自有或明确授权的模型与视频，诚实表达功能差异；先验证比较是否帮助理解，再增加相机转场。不得把本作视觉模拟当设备评测。 3–5 天范围只含既有合法资产上的单设备、单比较场景，不含游戏素材制作或完整四章重建。"
+          }
+        }
+      ],
+      "dateLabel": "NOV 10",
+      "issueNo": "021"
+    },
     {
       "id": "2026-11-09",
       "note": "三种可解释的空间交互：拆开相机理解部件、走入街巷看见高斯、切换频率比较膜与沙粒。展示图均来自实际原作，技术事实与移植建议分开。",
