@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-10T10:39:26.493Z",
+  "updatedAt": "2026-11-11T10:41:03.475Z",
   "edition": "public-trial",
   "fullLibrary": {
     "issues": 18,
@@ -8,6 +8,146 @@
     "seasonEndsAt": "030"
   },
   "issues": [
+    {
+      "id": "2026-11-11",
+      "note": "让一个输入带动整套画面：光年距离关联历史地球，四维姿态同时组织几何与受光，滚动进度编排文字。作者披露、固定源码、现场观察与应用建议分别标明；11月10日教程日期不等于作品首次上线日期。",
+      "featuredId": "meanwhile-on-earth",
+      "experiment": {
+        "title": "同一组16点，让四维旋转成为可暂停的线框",
+        "input": "手工枚举[-1,1]^4的16个顶点，只连接恰好相差一个坐标的32条边；一个XW旋转角与透视距离。",
+        "target": "用4D→3D→2D投影让内外框连续交换，暂停后可检查同一条边和端点。",
+        "stack": "原生 Canvas 2D、数组矩阵运算、requestAnimationFrame、DOM 暂停按钮。",
+        "acceptance": "30分钟实验方案，尚未构建：32条边始终连接正确；暂停不推进角度；透视距离位于包围半径之外；减少动态效果时默认静止；明确标注这是透视投影。此实验只验证数学状态和画面一致，不包含原作照明、WebGPU或流体。"
+      },
+      "restraint": "Creative Twin 只在有来源、授权、时间戳、单位与误差的真实空间或行为数据时接入。历史快照拼接、理想望远镜假设、程序生成的四维霓虹和滚动文字都不能称为实时数字孪生；先证明数据映射有助于理解或决策。",
+      "cases": [
+        {
+          "id": "meanwhile-on-earth",
+          "title": "Meanwhile on Earth · 用观测距离拨动地球历史",
+          "author": "Filippo Iori（deemonder）",
+          "platform": "作者公开演示 / Three.js Forum / GitHub",
+          "pageTime": "2026-11-10T21:19:12Z（作者在 Three.js Forum 的公开分享时间；GitHub 仓库同日 10:01:16Z 创建。首次创作日期未独立确认，非本次收录时间）",
+          "url": "https://deemonder.github.io/meanwhile-on-earth/",
+          "accent": "#5b7eab",
+          "mechanisms": [
+            "数据变成空间",
+            "交互变成叙事"
+          ],
+          "memory": "把观测距离调到 2,000 光年，球面显示约两千年前的历史边界，罗马帝国标签贴着地表；距离继续增大，界面从人类历史进入古陆与深时地球。它用一个旋钮把“远”变成“过去”。",
+          "why": "策展判断：用户改变一个有含义的变量，年份、地图、事件与解释同步响应，球体承担查询界面。昼夜和大气帮助辨认空间，核心价值来自距离与年代之间可读的因果，而非单独的地球旋转。这里是理想望远镜的教育性假设与资料重建，不是真实观测影像。",
+          "input": "作者说明与固定源码可核验：光年距离滑杆/数字输入、恒星观测点、拖动地球、年代快捷点、边界开关和事件点击。距离按光传播时间映射出发时刻；历史边界选最近年份快照，事件使用预构建 Wikidata 静态文件，地区简介按需读 Wikipedia；古陆采用 GPlates 板块重建。",
+          "layer": "固定源码核验：globe.gl 提供相机、轨道控制和事件点，Three.js 的自写 ShaderMaterial 混合地表昼夜贴图、地形法线扰动、水面高光与年代外观。历史国界先绘入一张 CanvasTexture；云层、大气层是另两层球壳，与地表共享太阳方向等 uniforms。星空主要是装饰。",
+          "motion": "作者说明与固定源码核验：Journey 把距离逐步增大，让历史倒放；太阳时刻作对齐以避免昼夜闪烁。年代外观参数缓动，拖动或选择观察点改变视角，云层和星空随时钟运动。不是滚动叙事；界面根据覆盖区域移动 globeOffset，让球体落在剩余可视空间中央。",
+          "pipeline": "固定源码核验：距离→儒略日与年代→最近历史边界/相邻古陆重建→Canvas 绘图→纹理更新→同帧更新说明和事件。国界绕过大量独立多边形网格；地区查询仍以几何的 point-in-polygon 完成。难点在跨越巨大时间尺度的滑杆分配、地图异步加载和标签纬度畸变，以及明确表达重建的知识边界。",
+          "performance": "固定源码核验：国界画布宽度取 4096 与 GPU 最大纹理尺寸的较小者，古陆画布为 2048×1024；历史边界按需加载并缓存，事件预构建，避免运行时 Wikidata 慢查询。源码有移动端布局与 CSS 减少动画规则，但这不足以证明 WebGL 渲染已降载；未测手机帧率、温升或内存。迁移建议限事件点、降贴图/像素比，弱设备切换静态二维图，保留距离→年代关系。",
+          "transfer": "Joey 可做原创展览档案的“一条时间轴、一只地球、两个史料节点”：拖动年代时同步切换有出处的地点记录与地图，点选位置读证据。先只做两个可核对时期，不复刻全量天文和古陆系统；真实记录、算法推导和示意外观要分别标注。",
+          "difficulty": "1 天原型",
+          "evidence": "作者论坛发表于 2026-11-10，package.json 与 MIT 根许可署名 Filippo Iori；固定源码 b571d2254f114b17870a73745b23450ccc61e20b 的 README、main.js、earth.js、shader.js、borders.js、continents.js 已文本核验。原作及作者 preview.jpg HTTP 200，展示图实际解码为 1200×630。作者明确：这是理想望远镜假设；边界仅 53 张最近快照；约 6,000 年之外昼夜方向示意，古陆沿用现代海岸线，超过十亿年固定最老重建，星场与云层并非历史观测。本站主代理已在 Chrome 点击 Start 后选择 1945，观察到 81 光年、1945 年、附近年代事件与 ly=81 片段联动，并完成截图；附近事件可含相邻年份，不能描述为 1945 年当天。未做科学精度或设备性能验证。1 天原型仅指两个有证据时期的简化档案界面。代码 MIT，第三方数据另有 GPL-3.0、CC BY 4.0、CC BY-SA 等条款，本期建议不提供代码 ZIP。来源：https://discourse.threejs.org/t/meanwhile-on-earth-what-an-observer-n-light-years-away-would-see-globe-gl-custom-shaders/96993；https://github.com/deemonder/meanwhile-on-earth/blob/b571d2254f114b17870a73745b23450ccc61e20b/README.md；https://github.com/deemonder/meanwhile-on-earth/blob/b571d2254f114b17870a73745b23450ccc61e20b/src/globe/earth.js；https://github.com/deemonder/meanwhile-on-earth/blob/b571d2254f114b17870a73745b23450ccc61e20b/src/data/borders.js 本站展示图为本次操作的原作截图，作者 preview.jpg 另作交叉参照。原作明确写明理想望远镜所需尺寸与可见光衍射限制。",
+          "image": "./vibe/covers/20261111-meanwhile-on-earth.jpg",
+          "imageSource": "https://deemonder.github.io/meanwhile-on-earth/",
+          "imageCredit": "Filippo Iori（deemonder） / 原作；VIBE FRONTIER 于 2026-11-11 实际访问截图，仅压缩尺寸与 JPEG 编码。地表 NASA Visible Earth（经 three-globe）；历史边界 André Ourednik / historical-basemaps；侧栏资料 Wikipedia / Wikidata。第三方来源及条款见作者 README。",
+          "context": {
+            "type": "data",
+            "tags": [
+              "历史可视化",
+              "科学传播",
+              "交互地图",
+              "Three.js"
+            ],
+            "collectedOn": "2026-11-11",
+            "pageTime": "2026-11-10T21:19:12Z（作者在 Three.js Forum 的公开分享时间；GitHub 仓库同日 10:01:16Z 创建。首次创作日期未独立确认，非本次收录时间）",
+            "summary": "用光年距离作为时间输入，把历史边界、事件和地球外观组织成可查询的知识界面。",
+            "audience": "科学传播、展陈、地图叙事与前端可视化设计者。",
+            "value": "学习将一个有解释力的输入映射为同步的空间与文字反馈；作者公开了数据简化和工程实现，尚无学习成效或商业结果证据。",
+            "conditions": "需要可核对的数据来源和逐项不确定性说明；它是假设场景与重建，不能标成真实历史影像或遥测数字孪生。代码、数据和贴图保留各自许可与署名。"
+          }
+        },
+        {
+          "id": "tesseract-codevember-2026",
+          "title": "Tesseract · 让四维结构真正照亮房间",
+          "author": "Mr.doob（mrdoob）",
+          "platform": "作者公开演示 / GitHub",
+          "pageTime": "2026-11-08T03:45:56Z（作者仓库首次新增 08 Tesseract 的提交时间；当前核验版本更新于 06:50:50Z，不代表已证实的最早上线时间）",
+          "url": "https://mrdoob.github.io/codevember-2026/08/",
+          "accent": "#7aa6ff",
+          "mechanisms": [
+            "数据变成空间",
+            "模型成为界面"
+          ],
+          "memory": "现场观察：蓝、绿、紫霓虹光管组成的内外框在暗室中翻转，地面出现对应的彩色受光与尘埃；暂停后换镜头仍可检查同一结构。",
+          "why": "策展判断：值得学的不是把线框加亮，而是让同一套四维投影端点驱动实体光管和空间照明。作者还提供 Light the room 对照开关：保留管身发光与辉光，关闭对房间的照明，使“看见一个亮物体”与“物体照亮环境”的因果可以被检查。",
+          "input": "源码核验：16 个四维顶点、32 条边、四维旋转姿态、透视距离、时间、颜色/闪烁/亮度设置以及轨道相机；Change view 在原视角与七个预设之间切换，Pause 冻结动画，右方向键执行四维四分之一圈。这里是数学状态映射，没有真实建筑、传感器或现场数据。",
+          "layer": "作者说明与固定源码：原生 JavaScript、Three.js 0.187.0 的 WebGPURenderer 与 TSL。四维正交旋转后作三维透视投影，实例化圆柱与接头跟随端点；同一端点、半径、颜色、辐亮度驱动自定义 TubeAreaLight。房间、几何与表面纹理程序生成，房间/光管/尘埃分层合成。",
+          "motion": "作者说明与固定源码：默认 XW 旋转按停顿姿态与五次缓动过渡交替，投影交叉是四维物体三维投影的自然结果，不是切片或拓扑变化。每条边的确定性闪烁包络同时控制可见发光和照明；闪烁与天花板代理灯跟随缓动角行程，停姿时冻结。独立空气流场驱动尘埃，改变雕塑旋转、速度或颜色不会改变尘埃轨迹。拖动轨道、缩放和预设切镜头另行控制观看路径。",
+          "pipeline": "固定源码核验：16 点正交旋转→4D/3D 透视→统一缩放满足房间净空→32 根光管与匹配发光体。自定义光节点解析积分有限细圆柱的漫反射，使用 LTC 表拟合 GGX 镜面分布。地面按四根柱的轮廓近似逐管遮挡；天花板使用三盏彩色代理聚光灯及各自 512×512 PCF 阴影。尘埃从 48×24×48 辐照度体素网格采光，独立 32×16×32 流体经过平流、涡量约束和 20 次 Jacobi 压力迭代，再驱动 GPU 粒子。难点是投影几何、可见发光、照明和闪烁一致，以及分层深度与缓存失效正确。",
+          "performance": "源码策略而非设备实测：房间受光半分辨率，光管与尘埃全分辨率；120,000 个尘埃实例合为一次绘制，缓存辐照度网格只随光管状态变化更新，纯相机移动复用。默认像素比取设备值与 1.5 的较小者，设置允许显式改为 2。隐藏标签不推进；减少动态效果默认暂停并关闭相机阻尼；暂停且交互收敛后跳过绘制，requestAnimationFrame 回调仍调度。关闭尘埃会跳过其光场和流体计算。WebGPU 为硬要求，没有 WebGL 回退。未测手机帧率、温升或跨浏览器兼容；移植建议另备静帧/短视频与更低粒子量，该降级为本站建议。",
+          "transfer": "Joey 可为原创小展项做一个“物体发亮 / 环境受光”的双状态教学：保留16点/32边投影、一块地面、暂停与照明对照，用少量标准灯近似空间反应并明确标注近似。先用简单线框验证投影和观看，再考虑自定义管光照与流体；不把程序生成房间称为数字孪生。复现范围只计投影、基础材质、简化照明及双状态，不包括原作工业天花板、解析管光照和流体全套重建。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者 README 明确披露几何、光照、流体、相机与性能策略，固定 SHA 0576d3eb49140aa0bd0dfa3004345573721b5850 的 README/main/hypercube/pose-motion/tube-area-light/tube-field/particles/airflow/settings/post-processing 已文本核验。GitHub 路径提交记录确认首次新增 45b5761940963c9804e9841888cf858bf40cbcdf 于 2026-11-08T03:45:56Z；固定版本更新于 06:50:50Z。原站 HTTP 200，部署 index/main/hypercube/pose-motion/tube-area-light/settings/post-processing/particles/tube-field 共9个文件与固定提交字节一致。解析管光照是细圆柱近似，无间接反弹、无管光源阴影贴图；地面遮挡与天花板三灯分别是近似，不能称完整物理光传输。尘埃气流没有管体输入，不是全耦合流固仿真。未在本地运行作者工程、执行安装命令、作者测试或设备性能测试；本站于 2026-11-11 在 Chrome 实际访问：暗室霓虹、地面受光和尘埃可见；点击 Pause 后变为 Play，Change view 改变视角，截图已保存。未现场操作 Light the room；该对照功能依据源码，未作设备性能测试。根许可 MIT，LTC vendor 条款须额外保留作者、免责声明和论文引用；本期不建议提供源码下载。来源：https://github.com/mrdoob/codevember-2026/blob/0576d3eb49140aa0bd0dfa3004345573721b5850/08/README.md；https://github.com/mrdoob/codevember-2026/blob/0576d3eb49140aa0bd0dfa3004345573721b5850/08/main.js；https://github.com/mrdoob/codevember-2026/blob/0576d3eb49140aa0bd0dfa3004345573721b5850/08/tube-area-light.js",
+          "image": "./vibe/covers/20261111-mrdoob-tesseract.jpg",
+          "imageSource": "https://mrdoob.github.io/codevember-2026/08/",
+          "imageCredit": "Mr.doob（mrdoob） / 原作；VIBE FRONTIER 于 2026-11-11 实际访问截图，仅压缩尺寸与 JPEG 编码。",
+          "context": {
+            "type": "space",
+            "tags": [
+              "数学可视化",
+              "光照解释",
+              "空间展陈",
+              "WebGPU"
+            ],
+            "collectedOn": "2026-11-11",
+            "pageTime": "2026-11-08T03:45:56Z（作者仓库首次新增的提交时间）",
+            "summary": "将四维投影的一套端点组织成几何、发光与空间受光的共同状态，并用开关让因果可比较。",
+            "audience": "创意开发者、交互展陈与数学/光照教学设计师。",
+            "value": "学习把模型状态和环境反馈连接起来，分清自发光、辉光与照明；未有理解率、观众或商业结果数据。",
+            "conditions": "需要 WebGPU 与明确的算法近似；投影是生成的数学状态，非真实空间采集。小型复现须收敛范围，复用 LTC 实现时另保留第三方条款与论文引用。"
+          }
+        },
+        {
+          "id": "do-not-scroll-antoine-wodniack",
+          "title": "Do Not Scroll · 把一句话变成可倒放的阅读节拍",
+          "author": "Antoine Wodniack",
+          "platform": "Codrops / 作者公开 GitHub",
+          "pageTime": "2026-11-10（Codrops 教程署名日期；固定源码提交于 2026-11-10T09:13:16Z；不是收录时间）",
+          "url": "https://tympanus.net/Demos/DoNotScroll/",
+          "accent": "#ff5400",
+          "mechanisms": [
+            "排版变成界面",
+            "交互变成叙事"
+          ],
+          "memory": "奶油色大字拖着黄、橙、红、紫的多层影子，一词一屏地读完 Do / Not / Scroll；结尾再向下滚动，文字被抛成弧线，原字重新长回。",
+          "why": "策展判断：滚动距离被编排为词语的进入、停读和交接；结尾把要求“不要滚动”的句子变成继续滚动才出现的游戏。彩色拖尾解释运动先后，阅读和操作形成同一条因果，而不是给整段文字套一个入场动效。",
+          "input": "固定源码核验：原生页面滚动、Lenis 平滑滚动位置、wheel / touchmove / 向下阅读键，以及 viewport 尺寸。进入最后半屏滚动范围后，向下输入可随机抛字；会忽略捏合缩放、多指和表单/链接上的快捷键。没有外部实时数据。",
+          "layer": "作者说明与源码可交叉：字与六层拖尾都是 HTML / CSS；SplitText 拆字，原字保留布局，六个重叠 span 用 data-char 伪元素着色。Canvas 2D 只画背后的紫色网格。这里没有 Three.js、WebGL 或三维挤出模型。",
+          "motion": "固定源码核验：ScrollTrigger 把每段进度送入暂停的 GSAP timeline，位移与放大使用不同缓动，并错开各层的时间。普通词进入下一词后才离场，末词停在居中状态；继续向下输入先下压蓄势，再由 Physics2D 抛出六层字影，源字缩放恢复。向上滚动会反向读取时间线，不能把它描述为视频播放。",
+          "pipeline": "固定源码核验：等字体加载后测字宽和共同词中心，统一缩放原点；用独立对象分别存 scrollScale 和 recoveryScale，单一 renderStepGhosts 合成最终 transform，防止滚动与源字恢复争抢样式。抛字的坐标提前缓存，按弹道算离开视口的时长，结束移除 clone；resize 清掉旧飞行并重测。难点在可逆时间线、分字后仍作为整词放大、滚动未结束时抛字的几何一致性。",
+          "performance": "固定源码核验：Lenis 与 GSAP 共用 ticker；抛字最多每秒触发 20 次，结束会移除 DOM，resize 会清飞行；减少动态效果偏好下不启用 Lenis/ticker/抛字，CSS 改为普通流文字并隐藏重影。手机字号有独立规则，但六层 DOM 与持续 Canvas 绘制仍有代价；Grid 直接采用设备像素比，未见像素比上限。没有实测手机帧率、内存或温升。迁移建议缩到 3 个短词、少量拖尾、限制同时在场字数、限制 Canvas 分辨率；这些是本站建议，原作并未全部实现。",
+          "transfer": "Joey 作品集可只挑三个项目关键词，分别展示“观察 / 构建 / 验证”的阅读节拍；末尾抛字只作为结束的小奖励，不承担导航。保留直接进入项目的普通链接和减少动态效果版本；先验证用户能读完、能找到项目，不把停留或视觉记忆推断为转化。",
+          "difficulty": "3–5 天成品",
+          "evidence": "作者仓库 README 直接链接该原作与 Codrops 教程；HTML meta author 和署名一致。固定提交 d57ac1dad7de3cc5f7f360538b9b34fcc9ece4b7 的 script.js / Grid.js / style.scss / index.html 已只读核验，未在本地运行作者工程或执行安装命令。Codrops 搜索索引给出 2026-11-10 及作者姓名；文章直连 HTTP 403，此处没有绕过。本站主代理于 2026-11-11 在 Chrome 实际访问原作，观察滚动从 Do 到 Scroll 的彩色分层拖尾，以及到底后继续向下输入抛字，并保存截图；没有因此推断手机性能或所有键盘/触控行为。本站展示图为本次实际操作原作的截图，已解码核验；作者仓库 OG 图另作交叉参照。代码 MIT 已读；Pangram Pangram 字体获准供原 demo 使用，公开源码回退系统字体，本站本期不提供代码/字体 ZIP 下载。3–5 天仅指 3 个短词、单结尾、普通链接和减少动态效果回退的小页，非同等品牌设计与完整跨设备验收。来源：https://github.com/AntoineW/Codrops-GSAP-Scroll/blob/d57ac1dad7de3cc5f7f360538b9b34fcc9ece4b7/src/js/script.js；https://github.com/AntoineW/Codrops-GSAP-Scroll/blob/d57ac1dad7de3cc5f7f360538b9b34fcc9ece4b7/src/js/Grid.js；https://github.com/AntoineW/Codrops-GSAP-Scroll/blob/d57ac1dad7de3cc5f7f360538b9b34fcc9ece4b7/src/scss/style.scss；https://tympanus.net/codrops/2026/11/10/kinetic-typography-gsap/",
+          "image": "./vibe/covers/20261111-do-not-scroll.jpg",
+          "imageSource": "https://tympanus.net/Demos/DoNotScroll/",
+          "imageCredit": "Antoine Wodniack / 原作；VIBE FRONTIER 于 2026-11-11 实际访问截图，仅压缩尺寸与 JPEG 编码。原 demo 字体由 Pangram Pangram 提供，仅获该 demo 使用许可。",
+          "context": {
+            "type": "story",
+            "tags": [
+              "动态排版",
+              "品牌宣言",
+              "作品集引导",
+              "阅读节拍"
+            ],
+            "collectedOn": "2026-11-11",
+            "pageTime": "2026-11-10（Codrops 教程日期）；2026-11-10T09:13:16Z（固定源码提交）",
+            "summary": "用滚动编排一词一屏的文字，并将阅读结尾转换成抛字游戏。",
+            "audience": "创意开发者、品牌与作品集设计师。",
+            "value": "学习可逆滚动时间线、共享字形变换与结尾互动；没有阅读完成率、客户付费或商业成果证据。",
+            "conditions": "适合短句而非长正文；需合法字体、普通链接、减少动态效果回退和真实手机验证。六层 DOM 与抛字数量需控制。"
+          }
+        }
+      ],
+      "dateLabel": "NOV 11",
+      "issueNo": "022"
+    },
     {
       "id": "2026-11-10",
       "note": "三件近期作品，让光学参数、身体动作与产品比较成为可以操作的画面。技术事实、现场观察和应用建议分别标明；每张展示图来自本次原作核验。",
